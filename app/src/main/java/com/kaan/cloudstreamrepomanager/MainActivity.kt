@@ -1289,26 +1289,7 @@ fun CloudStreamRepoManager() {
                 Modifier.height(8.dp)
             )
 
-            /* =================================================
-               OYNATMA SORUNU ÇÖZÜCÜ
-               ================================================= */
 
-            TvButton(
-                onClick = {
-                    showFixExtractorsDialog = true
-                },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    "🛠️ OYNATMA SORUNU ÇÖZÜCÜ (EXTRACTOR & DNS)",
-                    fontWeight = FontWeight.Bold,
-                    color = CyberYellow
-                )
-            }
-
-            Spacer(
-                Modifier.height(8.dp)
-            )
 
             /* =================================================
                TÜM LİNKLERİ KONTROL
