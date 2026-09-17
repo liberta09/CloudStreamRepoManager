@@ -2110,26 +2110,29 @@ fun StatCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.border(1.dp, CyberBorder, RoundedCornerShape(10.dp)),
+        modifier = modifier.border(1.dp, CyberBorder, RoundedCornerShape(8.dp)),
         colors = CardDefaults.cardColors(containerColor = CyberCardDark),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
-        Column(
-            modifier = Modifier.padding(12.dp)
+        Row(
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text(emoji)
-            Spacer(Modifier.height(2.dp))
-            Text(
-                value,
-                fontWeight = FontWeight.Bold,
-                color = CyberYellow,
-                style = MaterialTheme.typography.titleMedium
-            )
-            Text(
-                title,
-                color = CyberTextSecondary,
-                style = MaterialTheme.typography.bodySmall
-            )
+            Text(emoji, style = MaterialTheme.typography.titleMedium)
+            Column {
+                Text(
+                    text = value,
+                    fontWeight = FontWeight.Bold,
+                    color = CyberYellow,
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Text(
+                    text = title,
+                    color = CyberTextSecondary,
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
         }
     }
 }
