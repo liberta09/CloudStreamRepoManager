@@ -1084,14 +1084,6 @@ fun CloudStreamRepoManager() {
                     modifier =
                         Modifier.weight(1f)
                 )
-
-                StatCard(
-                    emoji = "🗂️",
-                    value = categoryCount.toString(),
-                    title = "Kategori",
-                    modifier =
-                        Modifier.weight(1f)
-                )
             }
 
             Spacer(
@@ -1379,58 +1371,7 @@ fun CloudStreamRepoManager() {
                 Modifier.height(8.dp)
             )
 
-            /* =================================================
-               KATEGORİ
-               ================================================= */
 
-            TvOutlinedButton(
-
-                onClick = {
-                    categoryExpanded = true
-                },
-
-                modifier =
-                    Modifier.fillMaxWidth()
-            ) {
-
-                Text(
-                    "🗂️ Kategori: $selectedCategory"
-                )
-            }
-
-            DropdownMenu(
-
-                expanded =
-                    categoryExpanded,
-
-                onDismissRequest = {
-                    categoryExpanded = false
-                }
-            ) {
-
-                categories.forEach { category ->
-
-                    DropdownMenuItem(
-
-                        text = {
-                            Text(category)
-                        },
-
-                        onClick = {
-
-                            selectedCategory =
-                                category
-
-                            categoryExpanded =
-                                false
-                        }
-                    )
-                }
-            }
-
-            Spacer(
-                Modifier.height(8.dp)
-            )
 
             Text(
 
