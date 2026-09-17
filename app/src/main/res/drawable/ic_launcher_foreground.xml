@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Full Bleed Outer HUD Hexagon Shield Outline (Cyan) -->
+    <path
+        android:strokeColor="#00F0FF"
+        android:strokeWidth="3.5"
+        android:fillColor="#00000000"
+        android:pathData="M54,4 L104,28 L104,80 L54,104 L4,80 L4,28 Z" />
+
+    <!-- HUD Corner Tech Brackets (Neon Pink) -->
+    <path
+        android:strokeColor="#FF0055"
+        android:strokeWidth="4"
+        android:strokeLineCap="square"
+        android:pathData="M12,20 L30,10 M78,10 L96,20 M104,36 L104,72 M4,36 L4,72" />
+
+    <!-- Massive Central Cyber Yellow Cloud Node -->
+    <path
+        android:fillColor="#FCEE09"
+        android:pathData="M38,32 C30,32 24,38 24,46 C18,46 12,52 12,58 C12,68 20,74 30,74 L78,74 L96,74 C102,74 106,66 106,58 C106,50 98,44 90,44 C88,36 80,30 70,30 C64,30 58,34 54,38 C50,34 44,32 38,32 Z" />
+
+    <!-- Sharp Lightning / Power Core Cutout in Cloud (Cyan Glow) -->
+    <path
+        android:fillColor="#00F0FF"
+        android:pathData="M58,36 L46,52 L54,52 L48,68 L64,48 L56,48 Z" />
+
+    <!-- Cyber Digital Stream Rays (Neon Pink Connection Nodes) -->
+    <path
+        android:strokeColor="#00F0FF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M54,74 L54,96 M32,74 L20,92 M76,74 L88,92" />
+
+    <!-- Glowing Cyber Terminal Dots -->
+    <path
+        android:fillColor="#FF0055"
+        android:pathData="M50,96 h8 v8 h-8 z M16,92 h8 v8 h-8 z M84,92 h8 v8 h-8 z" />
+
+    <!-- Cyberpunk 2077 Insignia Top Bar -->
+    <path
+        android:fillColor="#FCEE09"
+        android:pathData="M44,8 h20 v5 h-20 z" />
+</vector>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- İnternet bağlantısı -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Android TV desteği -->
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+
+    <!-- Dokunmatik ekran zorunlu değil -->
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <!-- Android 11+ (API 30+) Paket ve Şema Sorgulama İzinleri (Package Visibility) -->
+    <queries>
+        <!-- CloudStream uygulama paket adları -->
+        <package android:name="com.lagradost.cloudstream3" />
+        <package android:name="com.lagradost.cloudstream3.prerelease" />
+        <package android:name="com.lagradost.cloudstream3.prerelease.debug" />
+        <package android:name="com.lagradost.cloudstream3.debug" />
+
+        <!-- CloudStream özel derin bağlantı (deep link) şeması -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="cloudstreamrepo" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:banner="@drawable/banner"
+        android:label="CloudStream Repo Manager"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CloudStreamRepoManager">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="CloudStream Repo Manager"
+            android:theme="@style/Theme.CloudStreamRepoManager"
+            android:windowSoftInputMode="adjustResize">
+
+            <intent-filter>
+
+                <!-- Uygulamanın normal başlangıcı -->
+                <action android:name="android.intent.action.MAIN" />
+
+                <!-- Telefon / tablet launcher -->
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <!-- Android TV launcher -->
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+
+            </intent-filter>
+
+        </activity>
+
+    </application>
+
+</manifest>
