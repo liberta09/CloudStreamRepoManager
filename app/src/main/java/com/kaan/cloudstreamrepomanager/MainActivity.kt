@@ -340,17 +340,17 @@ fun saveRepos(
 fun getDefaultRepos(): List<Repo> {
     return listOf(
         Repo(
-            name = "PLT Stream",
+            name = "PLT Stream (HintFilmIzle Dahil)",
             url = "https://raw.githubusercontent.com/pltmustafa/plt-stream/refs/heads/master/repo.json",
             code = "!plt-stream",
-            category = "Türkçe",
+            category = "Türkçe / Hint",
             favorite = true
         ),
         Repo(
-            name = "Kraptor CS-TR",
+            name = "Kraptor CS-TR (HintFilmIzle Dahil)",
             url = "https://raw.githubusercontent.com/Kraptor/CS-TR/master/repo.json",
             code = "kraptorcs",
-            category = "Türkçe",
+            category = "Türkçe / Hint",
             favorite = true
         ),
         Repo(
