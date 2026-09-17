@@ -354,6 +354,20 @@ fun getDefaultRepos(): List<Repo> {
             favorite = true
         ),
         Repo(
+            name = "Rowdy Indian Repo",
+            url = "https://raw.githubusercontent.com/rowdy-coder/Cloudstream-Extensions-Rowdy/builds/repo.json",
+            code = "rowdy-indian",
+            category = "Hint / Indian",
+            favorite = false
+        ),
+        Repo(
+            name = "Multilingual Hindi Repo",
+            url = "https://raw.githubusercontent.com/recloudstream/cloudstream-extensions-multilingual/builds/repo.json",
+            code = "cs-hindi",
+            category = "Hint / Indian",
+            favorite = false
+        ),
+        Repo(
             name = "Hexated Repo",
             url = "https://raw.githubusercontent.com/hexated/cloudstream-extensions-hexated/builds/repo.json",
             code = "hexated",
