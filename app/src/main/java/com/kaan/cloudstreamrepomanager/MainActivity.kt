@@ -809,6 +809,10 @@ fun CloudStreamRepoManager() {
         mutableStateOf(false)
     }
 
+    var showFixExtractorsDialog by remember {
+        mutableStateOf(false)
+    }
+
     /* =====================================================
        YEDEKLE
        ===================================================== */
@@ -1279,6 +1283,27 @@ fun CloudStreamRepoManager() {
                         "📥 Geri Yükle"
                     )
                 }
+            }
+
+            Spacer(
+                Modifier.height(8.dp)
+            )
+
+            /* =================================================
+               OYNATMA SORUNU ÇÖZÜCÜ
+               ================================================= */
+
+            TvButton(
+                onClick = {
+                    showFixExtractorsDialog = true
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    "🛠️ OYNATMA SORUNU ÇÖZÜCÜ (EXTRACTOR & DNS)",
+                    fontWeight = FontWeight.Bold,
+                    color = CyberYellow
+                )
             }
 
             Spacer(
@@ -2050,6 +2075,105 @@ fun CloudStreamRepoManager() {
             }
         )
     }
+
+    if (showFixExtractorsDialog) {
+        FixExtractorsDialog(
+            onDismiss = {
+                showFixExtractorsDialog = false
+            },
+            onInstallExtractors = {
+                val extractorsRepo = Repo(
+                    name = "Hexated Extractors Repo",
+                    url = "https://raw.githubusercontent.com/hexated/cloudstream-extensions-hexated/builds/repo.json",
+                    code = "extractors",
+                    category = "Extractors"
+                )
+                openCloudStreamAndPrepareRepo(
+                    context,
+                    extractorsRepo,
+                    onNotInstalled = {
+                        showCloudStreamNotInstalledDialog = true
+                    }
+                )
+                showFixExtractorsDialog = false
+            }
+        )
+    }
+}
+
+/* =========================================================
+   OYNATMA SORUNU ÇÖZÜCÜ DİYALOĞU
+   ========================================================= */
+
+@Composable
+fun FixExtractorsDialog(
+    onDismiss: () -> Unit,
+    onInstallExtractors: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                "🛠️ OYNATMA / LİNK ÇÖZÜCÜ",
+                fontWeight = FontWeight.Bold,
+                color = CyberYellow
+            )
+        },
+        text = {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Text(
+                    "Film açıldığında 'Bağlantı Bulunamadı' uyarısını düzeltmek için 2 adım:",
+                    color = CyberTextPrimary,
+                    fontWeight = FontWeight.SemiBold
+                )
+
+                HorizontalDivider()
+
+                Text(
+                    "ADIM 1: Oynatıcı Çözücülerini Yükle",
+                    fontWeight = FontWeight.Bold,
+                    color = CyberCyan
+                )
+                Text(
+                    "Vidmoly, Doodstream, Filemoon gibi video oynatıcı çözücü eklentilerini CloudStream'e yükler.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = CyberTextSecondary
+                )
+
+                TvButton(
+                    onClick = onInstallExtractors,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("⚡ EXTRACTORS REPOSUNU YÜKLE", fontWeight = FontWeight.Bold)
+                }
+
+                HorizontalDivider()
+
+                Text(
+                    "ADIM 2: DNS Over HTTPS (DoH) Açın",
+                    fontWeight = FontWeight.Bold,
+                    color = CyberCyan
+                )
+                Text(
+                    "Türkiye internet engellerini aşmak için CloudStream içinden DNS değiştirmeniz şarttır:\n\n" +
+                            "1. CloudStream'i açın ➔ Sağ alttan 'Ayarlar (⚙️)' seçin.\n" +
+                            "2. 'Ağ (Network)' sekmesine girin.\n" +
+                            "3. 'DNS over HTTPS (DoH)' seçeneğini 'Cloudflare (1.1.1.1)' yapın.\n" +
+                            "4. Uygulamayı yeniden başlatın.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = CyberYellow
+                )
+            }
+        },
+        confirmButton = {
+            TvButton(onClick = onDismiss) {
+                Text("Anladım")
+            }
+        }
+    )
 }
 
 /* =========================================================
