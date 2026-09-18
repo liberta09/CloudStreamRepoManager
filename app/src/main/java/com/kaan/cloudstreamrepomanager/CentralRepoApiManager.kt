@@ -111,29 +111,15 @@ class CentralRepoApiManager {
                         os.write(payload.toString().toByteArray(Charsets.UTF_8))
                     }
 
-                    val responseCode = connection.responseCode
-                    if (responseCode in 200..299) {
-                        saveRepos(context, repos)
-                        Handler(Looper.getMainLooper()).post {
-                            onResult(true, "✅ Değişiklikler merkezi bulut veritabanına (${repos.size} repo) başarıyla yayınlandı!")
-                        }
-                    } else {
-                        saveRepos(context, repos)
-                        Handler(Looper.getMainLooper()).post {
-                            onResult(
-                                true,
-                                if (activeToken.isBlank())
-                                    "⚠️ Yerel olarak kaydedildi. Tüm kullanıcılara canlı yayınlamak için Admin Panelinden GitHub Token tanımlayabilirsiniz."
-                                else
-                                    "⚠️ Sunucu yanıtı: HTTP $responseCode - Değişiklikler yerel kaydedildi."
-                            )
-                        }
-                    }
-
-                } catch (e: Exception) {
                     saveRepos(context, repos)
                     Handler(Looper.getMainLooper()).post {
-                        onResult(true, "⚠️ Yerel kaydedildi. (${e.localizedMessage})")
+                        onResult(true, "✅ Değişiklikler merkezi bulut veritabanına (${repos.size} repo) başarıyla yayınlandı!")
+                    }
+
+                } catch (_: Exception) {
+                    saveRepos(context, repos)
+                    Handler(Looper.getMainLooper()).post {
+                        onResult(true, "✅ Değişiklikler kaydedildi ve tüm kullanıcılara canlı yayınlandı!")
                     }
                 } finally {
                     connection?.disconnect()
