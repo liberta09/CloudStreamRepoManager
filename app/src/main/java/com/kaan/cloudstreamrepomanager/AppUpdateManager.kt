@@ -83,14 +83,29 @@ class AppUpdateManager {
                             onResult(info)
                         }
                     } else {
+                        // GitHub üzerinde henüz Release tag oluşturulmamışsa varsayılan olarak güncel kabul et
+                        val defaultInfo = AppUpdateInfo(
+                            isUpdateAvailable = false,
+                            latestVersionTag = currentVersion,
+                            releaseNotes = "Uygulamanız en güncel sürümde.",
+                            downloadUrl = "https://github.com/liberta09/CloudStreamRepoManager/releases",
+                            htmlUrl = "https://github.com/liberta09/CloudStreamRepoManager"
+                        )
                         Handler(Looper.getMainLooper()).post {
-                            onResult(null)
+                            onResult(defaultInfo)
                         }
                     }
 
                 } catch (_: Exception) {
+                    val defaultInfo = AppUpdateInfo(
+                        isUpdateAvailable = false,
+                        latestVersionTag = currentVersion,
+                        releaseNotes = "Uygulamanız en güncel sürümde.",
+                        downloadUrl = "https://github.com/liberta09/CloudStreamRepoManager/releases",
+                        htmlUrl = "https://github.com/liberta09/CloudStreamRepoManager"
+                    )
                     Handler(Looper.getMainLooper()).post {
-                        onResult(null)
+                        onResult(defaultInfo)
                     }
                 } finally {
                     connection?.disconnect()
