@@ -435,23 +435,29 @@ fun loadRepos(
             null
         )
 
+    val defaultList = getDefaultRepos()
+
     if (json.isNullOrBlank()) {
-        val defaultList = getDefaultRepos()
         saveRepos(context, defaultList)
         return defaultList
     }
 
     return try {
-        val repos = jsonToRepos(json)
-        if (repos.isEmpty()) {
-            val defaultList = getDefaultRepos()
-            saveRepos(context, defaultList)
-            defaultList
+        val savedRepos = jsonToRepos(json)
+        val savedUrls = savedRepos.map { it.url.lowercase().trim() }.toSet()
+
+        val missingDefaults = defaultList.filter { !savedUrls.contains(it.url.lowercase().trim()) }
+
+        if (missingDefaults.isNotEmpty()) {
+            val mergedList = savedRepos + missingDefaults
+            saveRepos(context, mergedList)
+            mergedList
         } else {
-            repos
+            savedRepos
         }
     } catch (_: Exception) {
-        getDefaultRepos()
+        saveRepos(context, defaultList)
+        defaultList
     }
 }
 
