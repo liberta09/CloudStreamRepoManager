@@ -340,45 +340,80 @@ fun saveRepos(
 fun getDefaultRepos(): List<Repo> {
     return listOf(
         Repo(
-            name = "PLT Stream (HintFilmIzle Dahil)",
+            name = "PLT Stream",
             url = "https://raw.githubusercontent.com/pltmustafa/plt-stream/refs/heads/master/repo.json",
-            code = "!plt-stream",
-            category = "Türkçe / Hint",
+            code = "",
+            category = "Türkçe",
             favorite = true
         ),
         Repo(
-            name = "Kraptor CS-TR (HintFilmIzle Dahil)",
+            name = "Kraptor CS-TR",
             url = "https://raw.githubusercontent.com/Kraptor/CS-TR/master/repo.json",
-            code = "kraptorcs",
-            category = "Türkçe / Hint",
+            code = "",
+            category = "Türkçe",
             favorite = true
         ),
         Repo(
-            name = "Rowdy Indian Repo",
-            url = "https://raw.githubusercontent.com/rowdy-coder/Cloudstream-Extensions-Rowdy/builds/repo.json",
-            code = "rowdy-indian",
-            category = "Hint / Indian",
+            name = "Manitux",
+            url = "https://raw.githubusercontent.com/manitux-app/cs-plugins/refs/heads/main/repo.json",
+            code = "",
+            category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "Multilingual Hindi Repo",
-            url = "https://raw.githubusercontent.com/recloudstream/cloudstream-extensions-multilingual/builds/repo.json",
-            code = "cs-hindi",
-            category = "Hint / Indian",
+            name = "WioSpor",
+            url = "https://raw.githubusercontent.com/Wiojelt/WioSpor/main/repo.json",
+            code = "",
+            category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "Hexated Repo",
-            url = "https://raw.githubusercontent.com/hexated/cloudstream-extensions-hexated/builds/repo.json",
-            code = "hexated",
-            category = "İngilizce",
+            name = "SafakStream",
+            url = "https://raw.githubusercontent.com/SafakStream/SafakStream/builds/repo.json",
+            code = "",
+            category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "Stormunbound Repo",
-            url = "https://raw.githubusercontent.com/stormunbound/cloudstream-extensions/builds/repo.json",
-            code = "stormunbound",
-            category = "İngilizce",
+            name = "Neoser Extensions",
+            url = "https://raw.githubusercontent.com/neoser1984/cloudstream-extensions/main/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "BTVault",
+            url = "https://raw.githubusercontent.com/baristomruk-max/BTVault/main/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "CloudStreamHub",
+            url = "https://raw.githubusercontent.com/Emre-Kahveci/CloudStreamHub/builds/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "Dr-Octagon Turkish",
+            url = "https://github.com/Dr-Octagon/cloudstream-turkish/raw/refs/heads/builds/repo_stable.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "CS Kraptor Aytzey",
+            url = "https://raw.githubusercontent.com/aytzey/cs-kraptor/refs/heads/master/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "Nik CloudStream",
+            url = "https://raw.githubusercontent.com/csprofesor/nik-cloudstream/master/repo.json",
+            code = "",
+            category = "Türkçe",
             favorite = false
         )
     )
@@ -2219,14 +2254,15 @@ fun RepoCard(
                 )
             }
 
-            Spacer(Modifier.height(6.dp))
-
-            Text(
-                text = "🔑 CODE // ${repo.code}",
-                color = CyberPink,
-                fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.bodySmall
-            )
+            if (repo.code.isNotBlank()) {
+                Spacer(Modifier.height(6.dp))
+                Text(
+                    text = "🔑 CODE // ${repo.code}",
+                    color = CyberPink,
+                    fontWeight = FontWeight.SemiBold,
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
 
             Spacer(Modifier.height(4.dp))
 
@@ -2277,11 +2313,13 @@ fun RepoCard(
                     Text("🔗 Linki Kopyala", color = CyberCyan)
                 }
 
-                TvOutlinedButton(
-                    onClick = onCopyCode,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("🔑 Kodu Kopyala", color = CyberCyan)
+                if (repo.code.isNotBlank()) {
+                    TvOutlinedButton(
+                        onClick = onCopyCode,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("🔑 Kodu Kopyala", color = CyberCyan)
+                    }
                 }
             }
 
