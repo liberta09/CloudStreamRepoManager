@@ -436,27 +436,16 @@ fun loadRepos(
             null
         )
 
-    val defaultList = getDefaultRepos()
-
     if (json.isNullOrBlank()) {
+        val defaultList = getDefaultRepos()
         saveRepos(context, defaultList)
         return defaultList
     }
 
     return try {
-        val savedRepos = jsonToRepos(json)
-        val savedUrls = savedRepos.map { it.url.lowercase().trim() }.toSet()
-
-        val missingDefaults = defaultList.filter { !savedUrls.contains(it.url.lowercase().trim()) }
-
-        if (missingDefaults.isNotEmpty()) {
-            val mergedList = savedRepos + missingDefaults
-            saveRepos(context, mergedList)
-            mergedList
-        } else {
-            savedRepos
-        }
+        jsonToRepos(json)
     } catch (_: Exception) {
+        val defaultList = getDefaultRepos()
         saveRepos(context, defaultList)
         defaultList
     }
@@ -868,10 +857,10 @@ fun CloudStreamRepoManager() {
     var showAdminLoginDialog by remember { mutableStateOf(false) }
     var isPublishingToCloud by remember { mutableStateOf(false) }
 
-    // Açılışta Canlı Bulut Senkronizasyonu ve Güncelleme Kontrolü
+    // Uygulama her açıldığında mutlaka güncel bulut verisini çek, önbelleği temizle ve eşitle
     LaunchedEffect(Unit) {
         CentralRepoApiManager.fetchCentralRepos(context) { liveRepos ->
-            if (!liveRepos.isNullOrEmpty()) {
+            if (liveRepos != null) {
                 repos.clear()
                 repos.addAll(liveRepos)
                 saveRepos(context, liveRepos)
@@ -2218,11 +2207,15 @@ fun CloudStreamRepoManager() {
     if (showAdminLoginDialog) {
 
         AdminLoginDialog(
+            currentGithubToken = adminAuthManager.adminGithubToken,
             onDismiss = {
                 showAdminLoginDialog = false
             },
-            onLoginSuccess = {
+            onLoginSuccess = { token ->
                 adminAuthManager.isAdminLoggedIn = true
+                if (token.isNotBlank()) {
+                    adminAuthManager.adminGithubToken = token
+                }
                 isAdminLoggedIn = true
                 showAdminLoginDialog = false
                 Toast.makeText(context, "👑 Admin paneline giriş yapıldı!", Toast.LENGTH_SHORT).show()
@@ -2238,9 +2231,11 @@ fun CloudStreamRepoManager() {
 @Composable
 fun AdminLoginDialog(
     onDismiss: () -> Unit,
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: (String) -> Unit,
+    currentGithubToken: String = ""
 ) {
     var enteredPin by remember { mutableStateOf("") }
+    var enteredToken by remember { mutableStateOf(currentGithubToken) }
     var errorMessage by remember { mutableStateOf("") }
 
     AlertDialog(
@@ -2254,7 +2249,7 @@ fun AdminLoginDialog(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    "Değişiklikleri tüm kullanıcılara canlı yayınlamak için Admin PIN kodunu girin:",
+                    "Değişiklikleri tüm kullanıcılara canlı yayınlamak için Admin PIN ve GitHub Tokeninizi girin:",
                     color = CyberTextPrimary,
                     style = MaterialTheme.typography.bodySmall
                 )
@@ -2270,6 +2265,18 @@ fun AdminLoginDialog(
                     ),
                     modifier = Modifier.fillMaxWidth()
                 )
+                OutlinedTextField(
+                    value = enteredToken,
+                    onValueChange = { enteredToken = it },
+                    label = { Text("GitHub Token (Bulut Eşitleme İçin)") },
+                    placeholder = { Text("ghp_...") },
+                    singleLine = true,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberCyan,
+                        unfocusedBorderColor = CyberBorder
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                )
                 if (errorMessage.isNotBlank()) {
                     Text(errorMessage, color = CyberPink, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodySmall)
                 }
@@ -2279,7 +2286,7 @@ fun AdminLoginDialog(
             TvButton(
                 onClick = {
                     if (enteredPin.trim() == "1907" || enteredPin.trim() == "admin123") {
-                        onLoginSuccess()
+                        onLoginSuccess(enteredToken.trim())
                     } else {
                         errorMessage = "❌ Hatalı Admin PIN Kodu! (Varsayılan PIN: 1907)"
                     }
