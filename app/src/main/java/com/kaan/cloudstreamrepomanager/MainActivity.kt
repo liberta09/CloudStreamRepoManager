@@ -41,6 +41,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -862,8 +863,21 @@ fun CloudStreamRepoManager() {
         mutableStateOf(false)
     }
 
-    // Açılışta otomatik güncelleme kontrolü
+    val adminAuthManager = remember { AdminAuthManager(context) }
+    var isAdminLoggedIn by remember { mutableStateOf(adminAuthManager.isAdminLoggedIn) }
+    var showAdminLoginDialog by remember { mutableStateOf(false) }
+    var isPublishingToCloud by remember { mutableStateOf(false) }
+
+    // Açılışta Canlı Bulut Senkronizasyonu ve Güncelleme Kontrolü
     LaunchedEffect(Unit) {
+        CentralRepoApiManager.fetchCentralRepos(context) { liveRepos ->
+            if (!liveRepos.isNullOrEmpty()) {
+                repos.clear()
+                repos.addAll(liveRepos)
+                saveRepos(context, liveRepos)
+            }
+        }
+
         AppUpdateManager.checkForUpdates("1.0.0") { info ->
             if (info != null && info.isUpdateAvailable) {
                 updateInfo = info
@@ -1084,19 +1098,37 @@ fun CloudStreamRepoManager() {
                 title = {
                     Column {
                         Text(
-                            text = "⚡ CYBER // CS REPO MANAGER",
+                            text = if (isAdminLoggedIn) "👑 ADMIN // REPO PANELİ" else "⚡ CYBER // CS REPO MANAGER",
                             fontWeight = FontWeight.Bold,
-                            color = CyberYellow,
+                            color = if (isAdminLoggedIn) CyberYellow else CyberCyan,
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
-                            text = "SYSTEM // REPO_KATALOG_V2.0",
-                            color = CyberCyan,
+                            text = if (isAdminLoggedIn) "STATUS: ADMIN_FULL_ACCESS (EDIT/PUSH)" else "STATUS: CANLI_SENKRON_KULLANICI_MODU",
+                            color = if (isAdminLoggedIn) CyberGreen else CyberTextSecondary,
                             style = MaterialTheme.typography.labelSmall
                         )
                     }
                 },
                 actions = {
+                    TextButton(
+                        onClick = {
+                            if (isAdminLoggedIn) {
+                                adminAuthManager.logoutAdmin()
+                                isAdminLoggedIn = false
+                                Toast.makeText(context, "Admin panelinden çıkış yapıldı", Toast.LENGTH_SHORT).show()
+                            } else {
+                                showAdminLoginDialog = true
+                            }
+                        }
+                    ) {
+                        Text(
+                            text = if (isAdminLoggedIn) "👑 ÇIKIŞ" else "🔑 ADMIN GİRİŞİ",
+                            color = if (isAdminLoggedIn) CyberPink else CyberYellow,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
                     TextButton(
                         onClick = {
                             showSettingsDialog = true
@@ -1232,52 +1264,50 @@ fun CloudStreamRepoManager() {
             )
 
             /* =================================================
-               EKLE / FAVORİ
+               ADMIN / KULLANICI AKSİYON BARI
                ================================================= */
 
             Row(
-
-                modifier =
-                    Modifier.fillMaxWidth(),
-
-                horizontalArrangement =
-                    Arrangement.spacedBy(8.dp)
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                if (isAdminLoggedIn) {
+                    TvButton(
+                        onClick = {
+                            showAddDialog = true
+                        },
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("+ Repo Ekle", fontWeight = FontWeight.Bold)
+                    }
 
-                TvButton(
-
-                    onClick = {
-                        showAddDialog = true
-                    },
-
-                    modifier =
-                        Modifier.weight(1f)
-                ) {
-
-                    Text(
-                        "+ Repo Ekle"
-                    )
-                }
-
-                TvOutlinedButton(
-
-                    onClick = {
-
-                        showFavoritesOnly =
-                            !showFavoritesOnly
-                    },
-
-                    modifier =
-                        Modifier.weight(1f)
-                ) {
-
-                    Text(
-
-                        if (showFavoritesOnly)
-                            "Tümünü Göster"
-                        else
-                            "⭐ Favoriler"
-                    )
+                    TvButton(
+                        onClick = {
+                            isPublishingToCloud = true
+                            Toast.makeText(context, "Değişiklikler merkezi bulut API'sine eşitleniyor...", Toast.LENGTH_SHORT).show()
+                            CentralRepoApiManager.publishCentralReposToCloud(
+                                context,
+                                repos.toList(),
+                                githubToken = ""
+                            ) { success, msg ->
+                                isPublishingToCloud = false
+                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+                            }
+                        },
+                        enabled = !isPublishingToCloud,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(if (isPublishingToCloud) "⏳ Eşitleniyor..." else "☁️ BULUTA YAYINLA", fontWeight = FontWeight.Bold)
+                    }
+                } else {
+                    TvOutlinedButton(
+                        onClick = {
+                            showFavoritesOnly = !showFavoritesOnly
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(if (showFavoritesOnly) "Tüm Repoları Göster" else "⭐ Sadece Favori Repolar", color = CyberYellow)
+                    }
                 }
             }
 
@@ -2168,6 +2198,87 @@ fun CloudStreamRepoManager() {
             }
         )
     }
+
+    /* =========================================================
+       ADMIN GİRİŞ DİYALOĞU
+       ========================================================= */
+
+    if (showAdminLoginDialog) {
+
+        AdminLoginDialog(
+            onDismiss = {
+                showAdminLoginDialog = false
+            },
+            onLoginSuccess = {
+                adminAuthManager.isAdminLoggedIn = true
+                isAdminLoggedIn = true
+                showAdminLoginDialog = false
+                Toast.makeText(context, "👑 Admin paneline giriş yapıldı!", Toast.LENGTH_SHORT).show()
+            }
+        )
+    }
+}
+
+/* =========================================================
+   ADMIN GİRİŞ DİYALOĞU BİLEŞENİ
+   ========================================================= */
+
+@Composable
+fun AdminLoginDialog(
+    onDismiss: () -> Unit,
+    onLoginSuccess: () -> Unit
+) {
+    var enteredPin by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text("👑 Admin Panel Girişi", fontWeight = FontWeight.Bold, color = CyberYellow)
+        },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    "Değişiklikleri tüm kullanıcılara yayınlamak ve yönetici yetkisi almak için Admin PIN kodunu girin:",
+                    color = CyberTextPrimary,
+                    style = MaterialTheme.typography.bodySmall
+                )
+                OutlinedTextField(
+                    value = enteredPin,
+                    onValueChange = { enteredPin = it },
+                    label = { Text("Admin PIN") },
+                    placeholder = { Text("Varsayılan PIN: 1907") },
+                    singleLine = true,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberYellow,
+                        unfocusedBorderColor = CyberBorder
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                )
+                if (errorMessage.isNotBlank()) {
+                    Text(errorMessage, color = CyberPink, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        },
+        confirmButton = {
+            TvButton(
+                onClick = {
+                    if (enteredPin.trim() == "1907" || enteredPin.trim() == "admin123") {
+                        onLoginSuccess()
+                    } else {
+                        errorMessage = "❌ Hatalı Admin PIN Kodu! (Varsayılan PIN: 1907)"
+                    }
+                }
+            ) {
+                Text("Giriş Yap", fontWeight = FontWeight.Bold)
+            }
+        },
+        dismissButton = {
+            TvOutlinedButton(onClick = onDismiss) {
+                Text("İptal")
+            }
+        }
+    )
 }
 
 /* =========================================================

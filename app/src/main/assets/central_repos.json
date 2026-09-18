@@ -1,0 +1,79 @@
+[
+  {
+    "name": "PLT Stream",
+    "url": "https://raw.githubusercontent.com/pltmustafa/plt-stream/refs/heads/master/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": true
+  },
+  {
+    "name": "Kraptor CS-TR",
+    "url": "https://raw.githubusercontent.com/Kraptor/CS-TR/master/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": true
+  },
+  {
+    "name": "Manitux",
+    "url": "https://raw.githubusercontent.com/manitux-app/cs-plugins/refs/heads/main/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  },
+  {
+    "name": "WioSpor",
+    "url": "https://raw.githubusercontent.com/Wiojelt/WioSpor/main/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  },
+  {
+    "name": "SafakStream",
+    "url": "https://raw.githubusercontent.com/SafakStream/SafakStream/builds/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  },
+  {
+    "name": "Neoser Extensions",
+    "url": "https://raw.githubusercontent.com/neoser1984/cloudstream-extensions/main/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  },
+  {
+    "name": "BTVault",
+    "url": "https://raw.githubusercontent.com/baristomruk-max/BTVault/main/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  },
+  {
+    "name": "CloudStreamHub",
+    "url": "https://raw.githubusercontent.com/Emre-Kahveci/CloudStreamHub/builds/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  },
+  {
+    "name": "Dr-Octagon Turkish",
+    "url": "https://github.com/Dr-Octagon/cloudstream-turkish/raw/refs/heads/builds/repo_stable.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  },
+  {
+    "name": "CS Kraptor Aytzey",
+    "url": "https://raw.githubusercontent.com/aytzey/cs-kraptor/refs/heads/master/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  },
+  {
+    "name": "Nik CloudStream",
+    "url": "https://raw.githubusercontent.com/csprofesor/nik-cloudstream/master/repo.json",
+    "code": "",
+    "category": "Türkçe",
+    "favorite": false
+  }
+]
