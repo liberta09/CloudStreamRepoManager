@@ -1820,25 +1820,33 @@ fun CloudStreamRepoManager() {
 
                     else -> {
 
-                        repos.add(
-                            Repo(
-                                name = cleanName,
-                                url = cleanUrl,
-                                code = cleanCode,
-                                category = cleanCategory
-                            )
+                        val newRepo = Repo(
+                            name = cleanName,
+                            url = cleanUrl,
+                            code = cleanCode,
+                            category = cleanCategory
                         )
+
+                        repos.add(newRepo)
 
                         saveRepos(
                             context,
                             repos
                         )
 
+                        if (isAdminLoggedIn) {
+                            CentralRepoApiManager.publishCentralReposToCloud(
+                                context,
+                                repos.toList(),
+                                githubToken = ""
+                            ) { _, _ -> }
+                        }
+
                         showAddDialog = false
 
                         Toast.makeText(
                             context,
-                            "Repo başarıyla eklendi",
+                            "Repo eklendi ve bulut veritabanına aktarıldı",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -2030,15 +2038,19 @@ fun CloudStreamRepoManager() {
                         repos
                     )
 
-                    if (
-                        selectedCategory != "Tümü" &&
-                        repos.none {
-                            it.category ==
-                                    selectedCategory
+                    // Admin modunda silme işlemini anında bulut veritabanına kalıcı olarak yansıt
+                    if (isAdminLoggedIn) {
+                        CentralRepoApiManager.publishCentralReposToCloud(
+                            context,
+                            repos.toList(),
+                            githubToken = ""
+                        ) { _, _ ->
+                            Toast.makeText(
+                                context,
+                                "🗑️ Silme işlemi bulut veritabanına kalıcı olarak senkronize edildi",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                    ) {
-                        selectedCategory =
-                            "Tümü"
                     }
 
                     Toast.makeText(
