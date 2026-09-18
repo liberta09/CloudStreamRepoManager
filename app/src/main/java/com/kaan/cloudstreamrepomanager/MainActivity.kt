@@ -850,6 +850,28 @@ fun CloudStreamRepoManager() {
         mutableStateOf(false)
     }
 
+    var updateInfo by remember {
+        mutableStateOf<AppUpdateInfo?>(null)
+    }
+
+    var showUpdateDialog by remember {
+        mutableStateOf(false)
+    }
+
+    var checkingUpdate by remember {
+        mutableStateOf(false)
+    }
+
+    // Açılışta otomatik güncelleme kontrolü
+    LaunchedEffect(Unit) {
+        AppUpdateManager.checkForUpdates("1.0.0") { info ->
+            if (info != null && info.isUpdateAvailable) {
+                updateInfo = info
+                showUpdateDialog = true
+            }
+        }
+    }
+
     var showFixExtractorsDialog by remember {
         mutableStateOf(false)
     }
@@ -1667,6 +1689,23 @@ fun CloudStreamRepoManager() {
                     "Hazır repolar başarıyla yüklendi",
                     Toast.LENGTH_SHORT
                 ).show()
+            },
+
+            onCheckAppUpdate = {
+                checkingUpdate = true
+                Toast.makeText(context, "Güncellemeler kontrol ediliyor...", Toast.LENGTH_SHORT).show()
+                AppUpdateManager.checkForUpdates("1.0.0") { info ->
+                    checkingUpdate = false
+                    if (info != null && info.isUpdateAvailable) {
+                        updateInfo = info
+                        showUpdateDialog = true
+                        showSettingsDialog = false
+                    } else if (info != null) {
+                        Toast.makeText(context, "Uygulamanız en güncel sürümde (v1.0.0)", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Güncelleme sunucusuna bağlanılamadı", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         )
     }
@@ -2062,6 +2101,73 @@ fun CloudStreamRepoManager() {
             }
         )
     }
+
+    /* =========================================================
+       GÜNCELLEME DİYALOĞU
+       ========================================================= */
+
+    if (showUpdateDialog && updateInfo != null) {
+
+        AlertDialog(
+            onDismissRequest = {
+                showUpdateDialog = false
+            },
+            title = {
+                Text(
+                    "🚀 YENİ SÜRÜM MEVCUT!",
+                    fontWeight = FontWeight.Bold,
+                    color = CyberYellow
+                )
+            },
+            text = {
+                Column(
+                    modifier = Modifier.verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        "Yeni Sürüm: v${updateInfo!!.latestVersionTag}",
+                        fontWeight = FontWeight.Bold,
+                        color = CyberCyan
+                    )
+                    Text(
+                        "Mevcut Sürüm: v1.0.0",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = CyberTextSecondary
+                    )
+                    HorizontalDivider()
+                    Text(
+                        "Yenilikler ve Notlar:",
+                        fontWeight = FontWeight.SemiBold,
+                        color = CyberTextPrimary
+                    )
+                    Text(
+                        updateInfo!!.releaseNotes,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = CyberTextSecondary
+                    )
+                }
+            },
+            confirmButton = {
+                TvButton(
+                    onClick = {
+                        AppUpdateManager.downloadAndInstallUpdate(context, updateInfo!!.downloadUrl)
+                        showUpdateDialog = false
+                    }
+                ) {
+                    Text("📥 Şimdi Güncelle (APK İndir)", fontWeight = FontWeight.Bold)
+                }
+            },
+            dismissButton = {
+                TvOutlinedButton(
+                    onClick = {
+                        showUpdateDialog = false
+                    }
+                ) {
+                    Text("Daha Sonra")
+                }
+            }
+        )
+    }
 }
 
 /* =========================================================
@@ -2378,7 +2484,9 @@ fun SettingsDialog(
 
     onRestore: () -> Unit,
 
-    onRestoreDefaults: () -> Unit
+    onRestoreDefaults: () -> Unit,
+
+    onCheckAppUpdate: () -> Unit
 ) {
 
     AlertDialog(
@@ -2399,6 +2507,13 @@ fun SettingsDialog(
             ) {
 
                 Text("Repo yönetimi ve uygulama işlemleri")
+
+                TvOutlinedButton(
+                    onClick = onCheckAppUpdate,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("🔄 Güncellemeleri Kontrol Et")
+                }
 
                 TvOutlinedButton(
                     onClick = onRestoreDefaults,
