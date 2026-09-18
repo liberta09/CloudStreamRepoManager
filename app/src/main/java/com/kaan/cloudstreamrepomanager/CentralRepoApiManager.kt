@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
@@ -43,7 +42,6 @@ class CentralRepoApiManager {
                             onResult(repos)
                         }
                     } else {
-                        // Bulut API yanıt vermezse Asset içindeki varsayılan repolara düş
                         val fallbackRepos = loadReposFromAssets(context)
                         Handler(Looper.getMainLooper()).post {
                             onResult(fallbackRepos)
@@ -66,16 +64,19 @@ class CentralRepoApiManager {
         fun publishCentralReposToCloud(
             context: Context,
             repos: List<Repo>,
-            githubToken: String,
+            githubToken: String = "",
             onResult: (Boolean, String) -> Unit
         ) {
             Thread {
                 var connection: HttpURLConnection? = null
                 try {
+                    val adminAuthManager = AdminAuthManager(context)
+                    val activeToken = githubToken.ifBlank { adminAuthManager.adminGithubToken }
+
                     val jsonContent = reposToJson(repos)
 
                     // 1. Önce mevcut dosyanın SHA değerini GitHub API'den al
-                    val sha = getGitHubFileSha(githubToken)
+                    val sha = getGitHubFileSha(activeToken)
 
                     // 2. Güncel JSON içeriğini Base64 formatına çevir
                     val encodedContent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -85,7 +86,7 @@ class CentralRepoApiManager {
                     }
 
                     val payload = JSONObject().apply {
-                        put("message", "👑 Admin: Updated central repository catalog")
+                        put("message", "👑 Admin: Synchronized central repository catalog (${repos.size} repos)")
                         put("content", encodedContent)
                         if (sha.isNotBlank()) {
                             put("sha", sha)
@@ -102,8 +103,8 @@ class CentralRepoApiManager {
                     connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
                     connection.setRequestProperty("Content-Type", "application/json")
                     connection.setRequestProperty("Accept", "application/vnd.github.v3+json")
-                    if (githubToken.isNotBlank()) {
-                        connection.setRequestProperty("Authorization", "token $githubToken")
+                    if (activeToken.isNotBlank()) {
+                        connection.setRequestProperty("Authorization", "Bearer $activeToken")
                     }
 
                     connection.outputStream.use { os ->
@@ -114,20 +115,25 @@ class CentralRepoApiManager {
                     if (responseCode in 200..299) {
                         saveRepos(context, repos)
                         Handler(Looper.getMainLooper()).post {
-                            onResult(true, "✅ Değişiklikler merkezi bulut API'sine başarıyla senkronize edildi!")
+                            onResult(true, "✅ Değişiklikler merkezi bulut veritabanına (${repos.size} repo) başarıyla yayınlandı!")
                         }
                     } else {
-                        // Token yoksa veya yetki hatası varsa yerel olarak kaydet
                         saveRepos(context, repos)
                         Handler(Looper.getMainLooper()).post {
-                            onResult(true, "⚠️ Değişiklikler emülatörde yerel olarak kaydedildi (Bulut eşitleme için GitHub Token tanımlanabilir).")
+                            onResult(
+                                true,
+                                if (activeToken.isBlank())
+                                    "⚠️ Yerel olarak kaydedildi. Tüm kullanıcılara canlı yayınlamak için Admin Panelinden GitHub Token tanımlayabilirsiniz."
+                                else
+                                    "⚠️ Sunucu yanıtı: HTTP $responseCode - Değişiklikler yerel kaydedildi."
+                            )
                         }
                     }
 
                 } catch (e: Exception) {
                     saveRepos(context, repos)
                     Handler(Looper.getMainLooper()).post {
-                        onResult(true, "⚠️ Yerel olarak kaydedildi. (${e.localizedMessage})")
+                        onResult(true, "⚠️ Yerel kaydedildi. (${e.localizedMessage})")
                     }
                 } finally {
                     connection?.disconnect()
@@ -145,7 +151,7 @@ class CentralRepoApiManager {
                 connection.readTimeout = 5000
                 connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
                 if (token.isNotBlank()) {
-                    connection.setRequestProperty("Authorization", "token $token")
+                    connection.setRequestProperty("Authorization", "Bearer $token")
                 }
 
                 if (connection.responseCode in 200..299) {

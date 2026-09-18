@@ -2218,11 +2218,15 @@ fun CloudStreamRepoManager() {
     if (showAdminLoginDialog) {
 
         AdminLoginDialog(
+            currentGithubToken = adminAuthManager.adminGithubToken,
             onDismiss = {
                 showAdminLoginDialog = false
             },
-            onLoginSuccess = {
+            onLoginSuccess = { token ->
                 adminAuthManager.isAdminLoggedIn = true
+                if (token.isNotBlank()) {
+                    adminAuthManager.adminGithubToken = token
+                }
                 isAdminLoggedIn = true
                 showAdminLoginDialog = false
                 Toast.makeText(context, "👑 Admin paneline giriş yapıldı!", Toast.LENGTH_SHORT).show()
@@ -2238,9 +2242,11 @@ fun CloudStreamRepoManager() {
 @Composable
 fun AdminLoginDialog(
     onDismiss: () -> Unit,
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: (String) -> Unit,
+    currentGithubToken: String = ""
 ) {
     var enteredPin by remember { mutableStateOf("") }
+    var enteredToken by remember { mutableStateOf(currentGithubToken) }
     var errorMessage by remember { mutableStateOf("") }
 
     AlertDialog(
@@ -2249,7 +2255,10 @@ fun AdminLoginDialog(
             Text("👑 Admin Panel Girişi", fontWeight = FontWeight.Bold, color = CyberYellow)
         },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 Text(
                     "Değişiklikleri tüm kullanıcılara yayınlamak ve yönetici yetkisi almak için Admin PIN kodunu girin:",
                     color = CyberTextPrimary,
@@ -2267,6 +2276,18 @@ fun AdminLoginDialog(
                     ),
                     modifier = Modifier.fillMaxWidth()
                 )
+                OutlinedTextField(
+                    value = enteredToken,
+                    onValueChange = { enteredToken = it },
+                    label = { Text("GitHub Token (Opsiyonel / Bulut Senkron)") },
+                    placeholder = { Text("ghp_...") },
+                    singleLine = true,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberCyan,
+                        unfocusedBorderColor = CyberBorder
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                )
                 if (errorMessage.isNotBlank()) {
                     Text(errorMessage, color = CyberPink, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodySmall)
                 }
@@ -2276,7 +2297,7 @@ fun AdminLoginDialog(
             TvButton(
                 onClick = {
                     if (enteredPin.trim() == "1907" || enteredPin.trim() == "admin123") {
-                        onLoginSuccess()
+                        onLoginSuccess(enteredToken.trim())
                     } else {
                         errorMessage = "❌ Hatalı Admin PIN Kodu! (Varsayılan PIN: 1907)"
                     }
