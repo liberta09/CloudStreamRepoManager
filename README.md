@@ -4,22 +4,37 @@
   <img src="https://img.shields.io/badge/Platform-Android-brightgreen?style=for-the-badge&logo=android" />
   <img src="https://img.shields.io/badge/Language-Kotlin-blue?style=for-the-badge&logo=kotlin" />
   <img src="https://img.shields.io/badge/UI-Jetpack%20Compose-yellow?style=for-the-badge&logo=jetpackcompose" />
-  <img src="https://img.shields.io/badge/Catalog-Realtime%20Central%20Sync-purple?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Catalog-Verified%20Central%20Sync-purple?style=for-the-badge" />
 </p>
 
-**CloudStream Repo Manager**, CloudStream Android uygulaması için geliştirilmiş fütüristik, anlık canlı bulut senkronizasyonlu ve tek tıkla eklenti yükleme destekli güvenli eklenti kataloğu yöneticisidir.
+**CloudStream Repo Manager**, CloudStream Android uygulaması için geliştirilmiş fütüristik, canlı bulut senkronizasyonlu ve tek tıkla eklenti yükleme destekli güvenli eklenti kataloğu yöneticisidir.
 
 ---
 
 ━━━━━━━━━━━━━━━━━━━━
 
+### 📱 CLOUDSTREAM REPO MANAGER (KULLANICI SÜRÜMÜ)
+
+Kullanıcı sürümünü indirmek için aşağıdaki butona tıklayın:
+
+<p align="center">
+  <a href="https://github.com/liberta09/CloudStreamRepoManager/releases/download/v1.0.0/CloudStreamRepoManager_User_v1.0.0.apk">
+    <img src="https://img.shields.io/badge/📥%20APK%20İNDİR-CloudStreamRepoManager__User__v1.0.0.apk-brightgreen?style=for-the-badge&logo=android&logoColor=white" alt="APK İndir" height="60" />
+  </a>
+</p>
+
+<p align="center">
+  <b>📦 Dosya Adı:</b> <code>CloudStreamRepoManager_User_v1.0.0.apk</code> | <b>Resmi Sürüm Tag:</b> <a href="https://github.com/liberta09/CloudStreamRepoManager/releases/tag/v1.0.0"><code>v1.0.0</code></a>
+</p>
+
+━━━━━━━━━━━━━━━━━━━━
 
 ---
 
 ## ✨ Kullanıcı Özellikleri
 
 * ⚡ **Tek Tıkla CloudStream'e Aktarım:** `cloudstreamrepo://` özel bağlantı protokolü ile eklenti repolarını tek dokunuşla CloudStream'e yükleyebilirsiniz.
-* ☁️ **Anlık Canlı Merkezi Senkronizasyon:** Uygulama her açıldığında doğrulanmış merkezi eklenti listesini GitHub API üzerinden önbellek gecikmesiz anında çeker.
+* ☁️ **Canlı Merkezi Senkronizasyon:** Uygulama her açıldığında doğrulanmış merkezi eklenti listesini buluttan otomatik çeker ve günceller.
 * 📦 **Hazır Türkçe Eklenti Kataloğu:** En popüler Türkçe film, dizi, canlı TV ve eklenti kaynakları merkezi olarak sunulur.
 * 🛠️ **Oynatıcı Çözücü Desteği (Extractors):** Vidmoly, Doodstream, Filemoon gibi video oynatıcılarını CloudStream'e yükleyen tek tıkla tamir aracı.
 * 🔎 **Repo Arama ve Favoriler:** İsim, kategori veya koda göre hızlı arama yapabilir, favori repolarınızı işaretleyebilirsiniz.
@@ -30,7 +45,7 @@
 ## 📖 Kurulum Talimatları (Telefon & Android TV)
 
 ### 📱 Android Telefon & Tablet Kurulumu:
-1. Masaüstünüzdeki veya GitHub Yayınlar sayfasındaki `CloudStreamRepoManager_Kullanici_Surumu.apk` dosyasını indirin.
+1. Yukarıdaki **`📥 APK İNDİR`** butonuna basarak `CloudStreamRepoManager_User_v1.0.0.apk` dosyasını indirin.
 2. İndirdiğiniz `.apk` dosyasına dokunun.
 3. Çıkan uyarılarda **`Ayarlar ➔ Bilinmeyen Kaynaklardan Uygulama Yüklemeye İzin Ver`** seçeneğini aktifleştirin.
 4. **Yükle** butonuna basarak kurulumu tamamlayın.
