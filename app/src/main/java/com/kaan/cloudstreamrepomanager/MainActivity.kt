@@ -229,7 +229,7 @@ fun CyberSplashScreen(onFinish: () -> Unit) {
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = "⚡ CYBER // CS REPO MANAGER",
+                text = "⚡ CS REPO MANAGER",
                 fontWeight = FontWeight.Bold,
                 color = CyberYellow,
                 style = MaterialTheme.typography.headlineSmall
@@ -1119,7 +1119,7 @@ fun CloudStreamRepoManager() {
                 title = {
                     Column {
                         Text(
-                            text = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) "👑 ADMIN // REPO PANELİ" else "⚡ CYBER // CS REPO MANAGER",
+                            text = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) "👑 ADMIN // REPO PANELİ" else "⚡ CS REPO MANAGER",
                             fontWeight = FontWeight.Bold,
                             color = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) CyberYellow else CyberCyan,
                             style = MaterialTheme.typography.titleMedium
