@@ -1909,20 +1909,23 @@ fun CloudStreamRepoManager() {
                         )
 
                         if (isAdminLoggedIn) {
+                            Toast.makeText(context, "Repo eklendi, GitHub'a senkronize ediliyor...", Toast.LENGTH_SHORT).show()
                             CentralRepoApiManager.publishCentralReposToCloud(
                                 context,
-                                repos.toList(),
-                                githubToken = ""
-                            ) { _, _ -> }
+                                repos.toList()
+                            ) { success, msg -> 
+                                val statusMsg = if (success) "✅ GitHub senkronizasyonu başarılı!" else "❌ Senkronizasyon hatası: $msg"
+                                Toast.makeText(context, statusMsg, Toast.LENGTH_LONG).show()
+                            }
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Repo eklendi",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                         showAddDialog = false
-
-                        Toast.makeText(
-                            context,
-                            "Repo eklendi ve bulut veritabanına aktarıldı",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
                 }
             }
@@ -2061,11 +2064,22 @@ fun CloudStreamRepoManager() {
                                 showEditDialog = false
                                 selectedRepo = null
 
-                                Toast.makeText(
-                                    context,
-                                    "Repo güncellendi",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                if (isAdminLoggedIn) {
+                                    Toast.makeText(context, "Repo düzenlendi, GitHub'a senkronize ediliyor...", Toast.LENGTH_SHORT).show()
+                                    CentralRepoApiManager.publishCentralReposToCloud(
+                                        context,
+                                        repos.toList()
+                                    ) { success, msg -> 
+                                        val statusMsg = if (success) "✅ GitHub senkronizasyonu başarılı!" else "❌ Senkronizasyon hatası: $msg"
+                                        Toast.makeText(context, statusMsg, Toast.LENGTH_LONG).show()
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        context,
+                                        "Repo güncellendi",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
                         }
                     }
@@ -2115,17 +2129,21 @@ fun CloudStreamRepoManager() {
                     )
 
                     if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) {
+                        Toast.makeText(context, "Repo silindi, GitHub'a senkronize ediliyor...", Toast.LENGTH_SHORT).show()
                         CentralRepoApiManager.publishCentralReposToCloud(
                             context,
                             repos.toList()
-                        ) { _, _ -> }
+                        ) { success, msg ->
+                            val statusMsg = if (success) "✅ GitHub senkronizasyonu başarılı!" else "❌ Senkronizasyon hatası: $msg"
+                            Toast.makeText(context, statusMsg, Toast.LENGTH_LONG).show()
+                        }
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Repo kalıcı olarak silindi ve önbellek temizlendi.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-
-                    Toast.makeText(
-                        context,
-                        "Repo kalıcı olarak silindi ve önbellek temizlendi.",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
 
                 showDeleteDialog = false

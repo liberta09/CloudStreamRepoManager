@@ -13,10 +13,10 @@ class CentralRepoApiManager {
 
     companion object {
         private const val CENTRAL_REPO_URL =
-            "https://raw.githubusercontent.com/liberta09/CloudStreamRepoManager/main/app/src/main/assets/central_repos.json"
+            "https://raw.githubusercontent.com/liberta09/CloudStreamRepoManager/main/central_repos.json"
 
         private const val GITHUB_CONTENTS_API =
-            "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/app/src/main/assets/central_repos.json"
+            "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/central_repos.json"
 
         /**
          * GitHub üzerindeki merkezi repo.json dosyasından canlı kataloğu çeker.
