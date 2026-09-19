@@ -19,10 +19,11 @@ class CentralRepoApiManager {
             "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/app/src/main/assets/central_repos.json"
 
         /**
-         * Merkezi Bulut API'sinden canlı repo listesini çeker.
+         * GitHub üzerindeki merkezi repo.json dosyasından canlı kataloğu çeker.
          */
         fun fetchCentralRepos(
             context: Context,
+            token: String = "",
             onResult: (List<Repo>?) -> Unit
         ) {
             Thread {
@@ -34,6 +35,9 @@ class CentralRepoApiManager {
                     connection.connectTimeout = 8000
                     connection.readTimeout = 8000
                     connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
+                    if (token.isNotBlank()) {
+                        connection.setRequestProperty("Authorization", "Bearer $token")
+                    }
 
                     if (connection.responseCode in 200..299) {
                         val body = connection.inputStream.bufferedReader().use { it.readText() }
@@ -59,7 +63,34 @@ class CentralRepoApiManager {
         }
 
         /**
-         * Admin yetkisiyle güncellenmiş repo listesini buluta (GitHub API) yayınlar.
+         * GitHub üzerindeki repo.json kataloğunda yeni versiyon/güncelleme var mı kontrol eder.
+         */
+        fun checkForRepoCatalogUpdates(
+            context: Context,
+            currentRepos: List<Repo>,
+            onResult: (Boolean, List<Repo>?, String) -> Unit
+        ) {
+            fetchCentralRepos(context) { liveRepos ->
+                if (liveRepos != null) {
+                    val currentUrls = currentRepos.map { it.url.trim().lowercase() }.toSet()
+                    val liveUrls = liveRepos.map { it.url.trim().lowercase() }.toSet()
+
+                    val isDifferent = currentUrls != liveUrls || currentRepos.size != liveRepos.size
+
+                    if (isDifferent) {
+                        onResult(true, liveRepos, "🚀 Merkezi repository kataloğunda yeni güncellemeler mevcut!")
+                    } else {
+                        onResult(false, null, "✅ Repository listeniz en güncel durumda.")
+                    }
+                } else {
+                    onResult(false, null, "⚠️ Güncelleme sunucusuna bağlanılamadı.")
+                }
+            }
+        }
+
+        /**
+         * Admin yetkisiyle güncellenmiş repo listesini GitHub REST API üzerinden
+         * SHA çakışması kontrolü ve Bearer Token yetkilendirmesiyle yayınlar.
          */
         fun publishCentralReposToCloud(
             context: Context,
@@ -73,12 +104,23 @@ class CentralRepoApiManager {
                     val adminAuthManager = AdminAuthManager(context)
                     val activeToken = githubToken.ifBlank { adminAuthManager.adminGithubToken }
 
+                    if (activeToken.isBlank()) {
+                        saveRepos(context, repos)
+                        Handler(Looper.getMainLooper()).post {
+                            onResult(
+                                false,
+                                "⚠️ GitHub Token Tanımlı Değil! Değişiklikleri GitHub'a kalıcı işlemek için Admin Panelinde 'repo' izinli Personal Access Token (PAT) giriniz."
+                            )
+                        }
+                        return@Thread
+                    }
+
                     val jsonContent = reposToJson(repos)
 
-                    // 1. Önce mevcut dosyanın SHA değerini GitHub API'den al
+                    // 1. Önce dosyanın güncel SHA değerini ve doğrulamasını al (SHA çakışması önleme)
                     val sha = getGitHubFileSha(activeToken)
 
-                    // 2. Güncel JSON içeriğini Base64 formatına çevir
+                    // 2. Güncel JSON içeriğini Base64 formatına dönüştür
                     val encodedContent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         Base64.getEncoder().encodeToString(jsonContent.toByteArray(Charsets.UTF_8))
                     } else {
@@ -86,7 +128,7 @@ class CentralRepoApiManager {
                     }
 
                     val payload = JSONObject().apply {
-                        put("message", "👑 Admin: Synchronized central repository catalog (${repos.size} repos)")
+                        put("message", "👑 Admin: Updated central repository catalog (${repos.size} repos)")
                         put("content", encodedContent)
                         if (sha.isNotBlank()) {
                             put("sha", sha)
@@ -103,23 +145,37 @@ class CentralRepoApiManager {
                     connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
                     connection.setRequestProperty("Content-Type", "application/json")
                     connection.setRequestProperty("Accept", "application/vnd.github.v3+json")
-                    if (activeToken.isNotBlank()) {
-                        connection.setRequestProperty("Authorization", "Bearer $activeToken")
-                    }
+                    connection.setRequestProperty("Authorization", "Bearer $activeToken")
 
                     connection.outputStream.use { os ->
                         os.write(payload.toString().toByteArray(Charsets.UTF_8))
                     }
 
-                    saveRepos(context, repos)
-                    Handler(Looper.getMainLooper()).post {
-                        onResult(true, "✅ Değişiklikler merkezi bulut veritabanına (${repos.size} repo) başarıyla yayınlandı!")
+                    val responseCode = connection.responseCode
+                    if (responseCode in 200..299) {
+                        saveRepos(context, repos)
+                        Handler(Looper.getMainLooper()).post {
+                            onResult(true, "✅ Değişiklikler GitHub repository dosyasına (central_repos.json) başarıyla yayınlandı! SHA: ${sha.take(7)}")
+                        }
+                    } else if (responseCode == 409) {
+                        Handler(Looper.getMainLooper()).post {
+                            onResult(false, "⚠️ SHA Çakışması! Dosya başka bir işlem tarafından değiştirilmiş. Lütfen güncelleyip tekrar deneyin.")
+                        }
+                    } else if (responseCode == 401 || responseCode == 403) {
+                        Handler(Looper.getMainLooper()).post {
+                            onResult(false, "❌ Yetkisiz Erişim (HTTP $responseCode)! Girdiğiniz GitHub Token 'repo' yazma iznine sahip olmalıdır.")
+                        }
+                    } else {
+                        saveRepos(context, repos)
+                        Handler(Looper.getMainLooper()).post {
+                            onResult(false, "⚠️ GitHub Sunucu Yanıtı: HTTP $responseCode")
+                        }
                     }
 
-                } catch (_: Exception) {
+                } catch (e: Exception) {
                     saveRepos(context, repos)
                     Handler(Looper.getMainLooper()).post {
-                        onResult(true, "✅ Değişiklikler kaydedildi ve tüm kullanıcılara canlı yayınlandı!")
+                        onResult(false, "⚠️ Hata oluştu: ${e.localizedMessage}")
                     }
                 } finally {
                     connection?.disconnect()

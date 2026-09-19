@@ -1119,14 +1119,14 @@ fun CloudStreamRepoManager() {
                 title = {
                     Column {
                         Text(
-                            text = if (isAdminLoggedIn) "👑 ADMIN // REPO PANELİ" else "⚡ CYBER // CS REPO MANAGER",
+                            text = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) "👑 ADMIN // REPO PANELİ" else "⚡ CYBER // CS REPO MANAGER",
                             fontWeight = FontWeight.Bold,
-                            color = if (isAdminLoggedIn) CyberYellow else CyberCyan,
+                            color = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) CyberYellow else CyberCyan,
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
-                            text = if (isAdminLoggedIn) "STATUS: ADMIN_FULL_ACCESS (EDIT/PUSH)" else "STATUS: CANLI_SENKRON_KULLANICI_MODU",
-                            color = if (isAdminLoggedIn) CyberGreen else CyberTextSecondary,
+                            text = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) "STATUS: ADMIN_FULL_ACCESS (EDIT/PUSH)" else "STATUS: CANLI_SENKRON_KULLANICI_MODU",
+                            color = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) CyberGreen else CyberTextSecondary,
                             style = MaterialTheme.typography.labelSmall
                         )
                     }
@@ -1746,17 +1746,27 @@ fun CloudStreamRepoManager() {
 
             onCheckAppUpdate = {
                 checkingUpdate = true
-                Toast.makeText(context, "Güncellemeler kontrol ediliyor...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Merkezi katalog ve sürüm güncellemeleri kontrol ediliyor...", Toast.LENGTH_SHORT).show()
+
+                // 1. Merkezi Repo Kataloğu Güncelleme Kontrolü
+                CentralRepoApiManager.checkForRepoCatalogUpdates(context, repos.toList()) { hasCatalogUpdate, liveRepos, catalogMsg ->
+                    if (hasCatalogUpdate && liveRepos != null) {
+                        repos.clear()
+                        repos.addAll(liveRepos)
+                        saveRepos(context, liveRepos)
+                        Toast.makeText(context, catalogMsg, Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(context, catalogMsg, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                // 2. Uygulama Versiyon Kontrolü
                 AppUpdateManager.checkForUpdates("1.0.0") { info ->
                     checkingUpdate = false
                     if (info != null && info.isUpdateAvailable) {
                         updateInfo = info
                         showUpdateDialog = true
                         showSettingsDialog = false
-                    } else if (info != null) {
-                        Toast.makeText(context, "Uygulamanız en güncel sürümde (v1.0.0)", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "Güncelleme sunucusuna bağlanılamadı", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
