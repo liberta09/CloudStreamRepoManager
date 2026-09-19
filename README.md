@@ -13,19 +13,7 @@
 
 ━━━━━━━━━━━━━━━━━━━━
 
-### 📱 CLOUDSTREAM REPO MANAGER (KULLANICI SÜRÜMÜ)
 
-Kullanıcı sürümünü ve güncellemeleri takip etmek için resmi GitHub Yayınları sayfasını kullanabilirsiniz:
-
-<p align="center">
-  <a href="https://github.com/liberta09/CloudStreamRepoManager/releases" target="_blank">
-    <img src="https://img.shields.io/badge/🚀%20RESMİ%20YAYINLAR-GitHub%20Releases-blue?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Releases" height="60" />
-  </a>
-</p>
-
-<p align="center">
-  <b>📦 Yayınlar Sayfası:</b> <a href=📦 Yayınlar Sayfası: github.com/liberta09/CloudStreamRepoManager/releases"">github.com/liberta09/CloudStreamRepoManager/releases</a>
-</p>
 
 ━━━━━━━━━━━━━━━━━━━━
 
