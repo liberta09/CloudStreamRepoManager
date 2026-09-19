@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-20T00:27:23Z",
+  "updatedAt": "2026-09-20T02:55:17Z",
   "repos": [
     {
       "id": "1",
@@ -111,6 +111,14 @@
       "name": "Makoto'nun Cloudstream Reposu",
       "url": "https:\/\/raw.githubusercontent.com\/Sertel392\/Makotogecici\/refs\/heads\/main\/repo.json",
       "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "15",
+      "name": "Wio Sinema",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSinema\/builds\/repo.json",
+      "code": "yok",
       "category": "Türkçe",
       "favorite": false
     }
