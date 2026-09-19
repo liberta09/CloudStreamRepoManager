@@ -1294,7 +1294,7 @@ fun CloudStreamRepoManager() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                if (isAdminLoggedIn) {
+                if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) {
                     TvButton(
                         onClick = {
                             showAddDialog = true
