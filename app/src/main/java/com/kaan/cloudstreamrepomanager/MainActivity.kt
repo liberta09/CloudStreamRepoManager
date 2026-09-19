@@ -154,7 +154,7 @@ private const val PREFS_NAME = "cloudstream_repo_manager"
 private const val REPOS_KEY = "repos"
 
 // Build Konfigürasyonu: Kullanıcı (Non-Admin) Sürümü için 'false', Admin Sürümü için 'true'
-const val ENABLE_ADMIN_PANEL_FEATURE = true
+const val ENABLE_ADMIN_PANEL_FEATURE = false
 
 /* =========================================================
    ACTIVITY

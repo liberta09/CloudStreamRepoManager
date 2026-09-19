@@ -11,18 +11,18 @@
 
 ---
 
-## 📥 UYGULAMA İNDİRME (GOOGLE DRIVE)
+## 📥 KULLANICI APK İNDİRME (GITHUB RELEASE)
 
-Uygulamanın güncel sürümünü aşağıdaki büyük indirme butonuna tıklayarak doğrudan **Google Drive** üzerinden güvenle indirebilirsiniz:
+Uygulamanın onaylanmış ve güvenli resmi kullanıcı sürümünü aşağıdaki indirme butonuna tıklayarak doğrudan **GitHub Release** üzerinden indirebilirsiniz:
 
 <p align="center">
-  <a href="https://drive.google.com/file/d/1_CloudStreamRepoManager_User_v1.0.0/view?usp=sharing" target="_blank">
-    <img src="https://img.shields.io/badge/📥%20APK%20İNDİR-Google%20Drive-brightgreen?style=for-the-badge&logo=android&logoColor=white" alt="APK İndir" height="60" />
+  <a href="https://github.com/liberta09/CloudStreamRepoManager/releases/download/v1.0.0/CloudStreamRepoManager_v1.0.0.apk">
+    <img src="https://img.shields.io/badge/📥%20APK%20İNDİR-GitHub%20Release-brightgreen?style=for-the-badge&logo=android&logoColor=white" alt="APK İndir" height="60" />
   </a>
 </p>
 
 <p align="center">
-  <b>📱 Dosya Adı:</b> <code>CloudStreamRepoManager_Kullanici_Surumu.apk</code> | <b>Sürüm:</b> <code>v1.0.0</code>
+  <b>📱 Dosya Adı:</b> <code>CloudStreamRepoManager_v1.0.0.apk</code> | <b>Sürüm Tag:</b> <a href="https://github.com/liberta09/CloudStreamRepoManager/releases/tag/v1.0.0"><code>v1.0.0</code></a>
 </p>
 
 ---
@@ -41,7 +41,7 @@ Uygulamanın güncel sürümünü aşağıdaki büyük indirme butonuna tıklaya
 ## 📖 Kurulum Talimatları (Telefon & Android TV)
 
 ### 📱 Android Telefon & Tablet Kurulumu:
-1. Yukarıdaki **`📥 APK İNDİR`** butonuna basarak APK dosyasını indirin.
+1. Yukarıdaki **`📥 APK İNDİR`** butonuna basarak `CloudStreamRepoManager_v1.0.0.apk` dosyasını indirin.
 2. İndirdiğiniz `.apk` dosyasına dokunun.
 3. Çıkan uyarı ekranında **`Ayarlar ➔ Bilinmeyen Kaynaklardan Uygulama Yüklemeye İzin Ver`** seçeneğini aktifleştirin.
 4. **Yükle** butonuna basarak kurulumu tamamlayın.
