@@ -19,6 +19,27 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "version"
+    productFlavors {
+        create("user") {
+            dimension = "version"
+            applicationId = "com.kaan.cloudstreamrepomanager.user"
+            manifestPlaceholders["appName"] = "CloudStream Repo Manager"
+            buildConfigField("Boolean", "ENABLE_ADMIN_PANEL", "false")
+        }
+        create("admin") {
+            dimension = "version"
+            applicationId = "com.kaan.cloudstreamrepomanager.admin"
+            manifestPlaceholders["appName"] = "CloudStream Repo Manager Admin"
+            buildConfigField("Boolean", "ENABLE_ADMIN_PANEL", "true")
+        }
+    }
+
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+
     buildTypes {
         release {
             optimization {
@@ -29,9 +50,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    buildFeatures {
-        compose = true
     }
 }
 

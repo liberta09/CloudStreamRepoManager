@@ -42,7 +42,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:banner="@drawable/banner"
-        android:label="CloudStream Repo Manager"
+        android:label="${appName}"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CloudStreamRepoManager">
@@ -50,7 +50,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="CloudStream Repo Manager"
+            android:label="${appName}"
             android:theme="@style/Theme.CloudStreamRepoManager"
             android:windowSoftInputMode="adjustResize">
 

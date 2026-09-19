@@ -156,8 +156,8 @@ data class Repo(
 private const val PREFS_NAME = "cloudstream_repo_manager"
 private const val REPOS_KEY = "repos"
 
-// Build Konfigürasyonu: Kullanıcı (Non-Admin) Sürümü için 'false', Admin Sürümü için 'true'
-const val ENABLE_ADMIN_PANEL_FEATURE = false
+// Product Flavors Build Konfigürasyonu (BuildConfig üzerinden otomatik gelir)
+val ENABLE_ADMIN_PANEL_FEATURE = BuildConfig.ENABLE_ADMIN_PANEL
 
 /* =========================================================
    ACTIVITY
@@ -505,19 +505,23 @@ fun loadRepos(
 
     if (json.isNullOrBlank()) {
         val defaultList = getDefaultRepos()
-        val filtered = filterDeletedRepos(context, defaultList)
-        saveRepos(context, filtered)
-        return filtered
+        saveRepos(context, defaultList)
+        return defaultList
     }
 
     return try {
         val repos = jsonToRepos(json)
-        filterDeletedRepos(context, repos)
+        if (repos.isEmpty()) {
+            val defaultList = getDefaultRepos()
+            saveRepos(context, defaultList)
+            defaultList
+        } else {
+            repos
+        }
     } catch (_: Exception) {
         val defaultList = getDefaultRepos()
-        val filtered = filterDeletedRepos(context, defaultList)
-        saveRepos(context, filtered)
-        filtered
+        saveRepos(context, defaultList)
+        defaultList
     }
 }
 
@@ -927,14 +931,13 @@ fun CloudStreamRepoManager() {
     var showAdminLoginDialog by remember { mutableStateOf(false) }
     var isPublishingToCloud by remember { mutableStateOf(false) }
 
-    // Uygulama her açıldığında güncel bulut verisini çek ve silinenleri filtreleyerek eşitle
+    // Uygulama her açıldığında merkezi GitHub repo.json verisini çek ve önbelleği güncelle
     LaunchedEffect(Unit) {
         CentralRepoApiManager.fetchCentralRepos(context) { liveRepos ->
-            if (liveRepos != null) {
-                val cleanLiveRepos = filterDeletedRepos(context, liveRepos)
+            if (liveRepos != null && liveRepos.isNotEmpty()) {
                 repos.clear()
-                repos.addAll(cleanLiveRepos)
-                saveRepos(context, cleanLiveRepos)
+                repos.addAll(liveRepos)
+                saveRepos(context, liveRepos)
             }
         }
 
