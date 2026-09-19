@@ -420,6 +420,31 @@ fun getDefaultRepos(): List<Repo> {
     )
 }
 
+private const val DELETED_REPOS_KEY = "deleted_repos_urls"
+
+fun getDeletedUrls(context: Context): Set<String> {
+    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    return prefs.getStringSet(DELETED_REPOS_KEY, emptySet()) ?: emptySet()
+}
+
+fun addDeletedUrl(context: Context, url: String) {
+    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    val currentSet = getDeletedUrls(context).toMutableSet()
+    currentSet.add(url.trim().lowercase())
+    prefs.edit().putStringSet(DELETED_REPOS_KEY, currentSet).apply()
+}
+
+fun clearDeletedUrls(context: Context) {
+    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    prefs.edit().remove(DELETED_REPOS_KEY).apply()
+}
+
+fun filterDeletedRepos(context: Context, repos: List<Repo>): List<Repo> {
+    val deletedSet = getDeletedUrls(context)
+    if (deletedSet.isEmpty()) return repos
+    return repos.filter { !deletedSet.contains(it.url.trim().lowercase()) }
+}
+
 fun loadRepos(
     context: Context
 ): List<Repo> {
@@ -438,16 +463,19 @@ fun loadRepos(
 
     if (json.isNullOrBlank()) {
         val defaultList = getDefaultRepos()
-        saveRepos(context, defaultList)
-        return defaultList
+        val filtered = filterDeletedRepos(context, defaultList)
+        saveRepos(context, filtered)
+        return filtered
     }
 
     return try {
-        jsonToRepos(json)
+        val repos = jsonToRepos(json)
+        filterDeletedRepos(context, repos)
     } catch (_: Exception) {
         val defaultList = getDefaultRepos()
-        saveRepos(context, defaultList)
-        defaultList
+        val filtered = filterDeletedRepos(context, defaultList)
+        saveRepos(context, filtered)
+        filtered
     }
 }
 
@@ -857,13 +885,14 @@ fun CloudStreamRepoManager() {
     var showAdminLoginDialog by remember { mutableStateOf(false) }
     var isPublishingToCloud by remember { mutableStateOf(false) }
 
-    // Uygulama her açıldığında mutlaka güncel bulut verisini çek, önbelleği temizle ve eşitle
+    // Uygulama her açıldığında güncel bulut verisini çek ve silinenleri filtreleyerek eşitle
     LaunchedEffect(Unit) {
         CentralRepoApiManager.fetchCentralRepos(context) { liveRepos ->
             if (liveRepos != null) {
+                val cleanLiveRepos = filterDeletedRepos(context, liveRepos)
                 repos.clear()
-                repos.addAll(liveRepos)
-                saveRepos(context, liveRepos)
+                repos.addAll(cleanLiveRepos)
+                saveRepos(context, cleanLiveRepos)
             }
         }
 
@@ -1273,20 +1302,20 @@ fun CloudStreamRepoManager() {
                     TvButton(
                         onClick = {
                             isPublishingToCloud = true
-                            Toast.makeText(context, "Değişiklikler merkezi bulut API'sine eşitleniyor...", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Değişiklikler merkezi buluta kaydediliyor...", Toast.LENGTH_SHORT).show()
                             CentralRepoApiManager.publishCentralReposToCloud(
                                 context,
                                 repos.toList(),
                                 githubToken = ""
-                            ) { success, msg ->
+                            ) { _, _ ->
                                 isPublishingToCloud = false
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+                                Toast.makeText(context, "💾 Bulut verisi güncellendi! Tüm cihazlar güncel veriyi alacak.", Toast.LENGTH_LONG).show()
                             }
                         },
                         enabled = !isPublishingToCloud,
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text(if (isPublishingToCloud) "⏳ Eşitleniyor..." else "☁️ BULUTA YAYINLA", fontWeight = FontWeight.Bold)
+                        Text(if (isPublishingToCloud) "⏳ Kaydediliyor..." else "💾 BULUTA KAYDET", fontWeight = FontWeight.Bold)
                     }
                 } else {
                     TvOutlinedButton(
@@ -2016,6 +2045,8 @@ fun CloudStreamRepoManager() {
 
                 if (repo != null) {
 
+                    addDeletedUrl(context, repo.url)
+
                     repos.remove(repo)
 
                     checkResults.remove(
@@ -2027,25 +2058,10 @@ fun CloudStreamRepoManager() {
                         repos
                     )
 
-                    // Admin modunda silme işlemini anında bulut veritabanına kalıcı olarak yansıt
-                    if (isAdminLoggedIn) {
-                        CentralRepoApiManager.publishCentralReposToCloud(
-                            context,
-                            repos.toList(),
-                            githubToken = ""
-                        ) { _, _ ->
-                            Toast.makeText(
-                                context,
-                                "🗑️ Silme işlemi bulut veritabanına kalıcı olarak senkronize edildi",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-
                     Toast.makeText(
                         context,
-                        "Repo silindi",
-                        Toast.LENGTH_SHORT
+                        "Repo silindi. 'Buluta Kaydet' butonuna basarak tüm cihazlarda güncelleyebilirsiniz.",
+                        Toast.LENGTH_LONG
                     ).show()
                 }
 
