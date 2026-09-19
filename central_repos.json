@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-19T19:05:00Z",
+  "updatedAt": "2026-09-20T00:24:14Z",
   "repos": [
     {
       "id": "1",
       "name": "NeO Eklenti Deposu",
-      "url": "https://raw.githubusercontent.com/neoser1984/cloudstream-extensions/main/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/neoser1984\/cloudstream-extensions\/main\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -13,7 +13,7 @@
     {
       "id": "2",
       "name": "SafakStream Repository",
-      "url": "https://raw.githubusercontent.com/SafakStream/SafakStream/builds/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/SafakStream\/SafakStream\/builds\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -21,7 +21,7 @@
     {
       "id": "3",
       "name": "Manitux Cloudstream Plugins",
-      "url": "https://raw.githubusercontent.com/manitux-app/cs-plugins/refs/heads/main/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/manitux-app\/cs-plugins\/refs\/heads\/main\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -29,7 +29,7 @@
     {
       "id": "4",
       "name": "TurkSinema",
-      "url": "https://raw.githubusercontent.com/Wiojelt/TurkSinema/main/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSinema\/main\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -37,7 +37,7 @@
     {
       "id": "5",
       "name": "cstest",
-      "url": "https://raw.githubusercontent.com/ctnkyaumt/cstest/master/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/ctnkyaumt\/cstest\/master\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -45,7 +45,7 @@
     {
       "id": "6",
       "name": "AllForU",
-      "url": "https://raw.githubusercontent.com/RVRBEAST76/allforu-repo/builds/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/RVRBEAST76\/allforu-repo\/builds\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -53,7 +53,7 @@
     {
       "id": "7",
       "name": "BronzeCloud",
-      "url": "https://raw.githubusercontent.com/Dr-Octagon/cloudstream-turkish/refs/heads/builds/repo_stable.json",
+      "url": "https:\/\/raw.githubusercontent.com\/Dr-Octagon\/cloudstream-turkish\/refs\/heads\/builds\/repo_stable.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -61,7 +61,7 @@
     {
       "id": "8",
       "name": "Turkish Providers Repository | @feroxxcs3",
-      "url": "https://raw.githubusercontent.com/liberta09/Kekik-cloudstream/builds/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/liberta09\/Kekik-cloudstream\/builds\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -69,7 +69,7 @@
     {
       "id": "9",
       "name": "Phisher Repo",
-      "url": "https://raw.githubusercontent.com/phisher98/cloudstream-extensions-phisher/refs/heads/builds/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/phisher98\/cloudstream-extensions-phisher\/refs\/heads\/builds\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -77,7 +77,7 @@
     {
       "id": "10",
       "name": "Mega repository",
-      "url": "https://raw.githubusercontent.com/self-similarity/MegaRepo/builds/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/self-similarity\/MegaRepo\/builds\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -85,7 +85,7 @@
     {
       "id": "11",
       "name": "mudti",
-      "url": "https://raw.githubusercontent.com/pltmustafa/plt-stream/refs/heads/master/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/pltmustafa\/plt-stream\/refs\/heads\/master\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -93,7 +93,7 @@
     {
       "id": "12",
       "name": "megaturk",
-      "url": "https://raw.githubusercontent.com/Kraptor123/TurkMegaRepo/refs/heads/master/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/TurkMegaRepo\/refs\/heads\/master\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -101,7 +101,7 @@
     {
       "id": "13",
       "name": "Latte - Sinetech.TR",
-      "url": "https://raw.githubusercontent.com/GitLatte/Sinetech/refs/heads/main/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/GitLatte\/Sinetech\/refs\/heads\/main\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
@@ -109,7 +109,7 @@
     {
       "id": "14",
       "name": "Makoto'nun Cloudstream Reposu",
-      "url": "https://raw.githubusercontent.com/Sertel392/Makotogecici/refs/heads/main/repo.json",
+      "url": "https:\/\/raw.githubusercontent.com\/Sertel392\/Makotogecici\/refs\/heads\/main\/repo.json",
       "code": "",
       "category": "Türkçe",
       "favorite": false
