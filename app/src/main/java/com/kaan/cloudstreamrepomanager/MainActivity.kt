@@ -938,7 +938,7 @@ fun CloudStreamRepoManager() {
             }
         }
 
-        AppUpdateManager.checkForUpdates("1.0.0") { info ->
+        AppUpdateManager.checkForUpdates(BuildConfig.VERSION_NAME) { info ->
             if (info != null && info.isUpdateAvailable) {
                 updateInfo = info
                 showUpdateDialog = true
@@ -1800,12 +1800,14 @@ fun CloudStreamRepoManager() {
                 }
 
                 // 2. Uygulama Versiyon Kontrolü
-                AppUpdateManager.checkForUpdates("1.0.0") { info ->
+                AppUpdateManager.checkForUpdates(BuildConfig.VERSION_NAME) { info ->
                     checkingUpdate = false
                     if (info != null && info.isUpdateAvailable) {
                         updateInfo = info
                         showUpdateDialog = true
                         showSettingsDialog = false
+                    } else if (info != null) {
+                        Toast.makeText(context, "Uygulamanız en güncel sürümde (v${BuildConfig.VERSION_NAME})", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
