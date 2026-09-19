@@ -24,7 +24,7 @@ Kullanıcı sürümünü ve güncellemeleri takip etmek için resmi GitHub Yayı
 </p>
 
 <p align="center">
-  <b>📦 Yayınlar Sayfası:</b> <a href="https://github.com/liberta09/CloudStreamRepoManager/releases">github.com/liberta09/CloudStreamRepoManager/releases</a>
+  <b>📦 Yayınlar Sayfası:</b> <a href=https://github.com/liberta09/CloudStreamRepoManager/tree/main/app/release"">github.com/liberta09/CloudStreamRepoManager/releases</a>
 </p>
 
 ━━━━━━━━━━━━━━━━━━━━
