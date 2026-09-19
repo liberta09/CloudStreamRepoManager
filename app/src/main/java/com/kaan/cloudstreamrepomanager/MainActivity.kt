@@ -505,23 +505,19 @@ fun loadRepos(
 
     if (json.isNullOrBlank()) {
         val defaultList = getDefaultRepos()
-        saveRepos(context, defaultList)
-        return defaultList
+        val filtered = filterDeletedRepos(context, defaultList)
+        saveRepos(context, filtered)
+        return filtered
     }
 
     return try {
         val repos = jsonToRepos(json)
-        if (repos.isEmpty()) {
-            val defaultList = getDefaultRepos()
-            saveRepos(context, defaultList)
-            defaultList
-        } else {
-            repos
-        }
+        filterDeletedRepos(context, repos)
     } catch (_: Exception) {
         val defaultList = getDefaultRepos()
-        saveRepos(context, defaultList)
-        defaultList
+        val filtered = filterDeletedRepos(context, defaultList)
+        saveRepos(context, filtered)
+        filtered
     }
 }
 
@@ -931,13 +927,14 @@ fun CloudStreamRepoManager() {
     var showAdminLoginDialog by remember { mutableStateOf(false) }
     var isPublishingToCloud by remember { mutableStateOf(false) }
 
-    // Uygulama her açıldığında merkezi GitHub repo.json verisini çek ve önbelleği güncelle
+    // Uygulama her açıldığında merkezi GitHub repo.json verisini çek, silinenleri filtrele ve önbelleği güncelle
     LaunchedEffect(Unit) {
         CentralRepoApiManager.fetchCentralRepos(context) { liveRepos ->
             if (liveRepos != null && liveRepos.isNotEmpty()) {
+                val cleanRepos = filterDeletedRepos(context, liveRepos)
                 repos.clear()
-                repos.addAll(liveRepos)
-                saveRepos(context, liveRepos)
+                repos.addAll(cleanRepos)
+                saveRepos(context, cleanRepos)
             }
         }
 
@@ -2115,10 +2112,17 @@ fun CloudStreamRepoManager() {
                         repos
                     )
 
+                    if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) {
+                        CentralRepoApiManager.publishCentralReposToCloud(
+                            context,
+                            repos.toList()
+                        ) { _, _ -> }
+                    }
+
                     Toast.makeText(
                         context,
-                        "Repo silindi. 'Buluta Kaydet' butonuna basarak tüm cihazlarda güncelleyebilirsiniz.",
-                        Toast.LENGTH_LONG
+                        "Repo kalıcı olarak silindi ve önbellek temizlendi.",
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
 
