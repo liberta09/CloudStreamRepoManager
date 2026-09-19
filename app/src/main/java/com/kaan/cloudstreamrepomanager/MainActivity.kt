@@ -76,6 +76,9 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 private fun TvOutlinedButton(
@@ -278,13 +281,15 @@ fun CyberSplashScreen(onFinish: () -> Unit) {
    JSON
    ========================================================= */
 
-fun reposToJson(repos: List<Repo>): String {
+fun reposToJson(repos: List<Repo>, version: Int = 1): String {
+    val root = JSONObject()
+    root.put("version", version)
+    root.put("updatedAt", SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).format(Date()))
 
     val array = JSONArray()
-
-    repos.forEach { repo ->
+    repos.forEachIndexed { index, repo ->
         val obj = JSONObject()
-
+        obj.put("id", (index + 1).toString())
         obj.put("name", repo.name)
         obj.put("url", repo.url)
         obj.put("code", repo.code)
@@ -293,19 +298,25 @@ fun reposToJson(repos: List<Repo>): String {
 
         array.put(obj)
     }
+    root.put("repos", array)
 
-    return array.toString(2)
+    return root.toString(2)
 }
 
 fun jsonToRepos(json: String): List<Repo> {
-
-    val array = JSONArray(json)
     val result = mutableListOf<Repo>()
+    if (json.isBlank()) return result
+
+    val trimmed = json.trim()
+    val array = if (trimmed.startsWith("{")) {
+        val root = JSONObject(trimmed)
+        root.optJSONArray("repos") ?: JSONArray()
+    } else {
+        JSONArray(trimmed)
+    }
 
     for (i in 0 until array.length()) {
-
         val obj = array.getJSONObject(i)
-
         result.add(
             Repo(
                 name = obj.optString("name"),
@@ -344,78 +355,106 @@ fun saveRepos(
 fun getDefaultRepos(): List<Repo> {
     return listOf(
         Repo(
-            name = "PLT Stream",
-            url = "https://raw.githubusercontent.com/pltmustafa/plt-stream/refs/heads/master/repo.json",
+            name = "cs-karma",
+            url = "https://raw.githubusercontent.com/Kraptor123/cs-Karma/refs/heads/master/repo.json",
             code = "",
             category = "Türkçe",
             favorite = true
         ),
         Repo(
-            name = "Kraptor CS-TR",
-            url = "https://raw.githubusercontent.com/Kraptor/CS-TR/master/repo.json",
+            name = "NeO Eklenti Deposu",
+            url = "https://raw.githubusercontent.com/neoser1984/cloudstream-extensions/main/repo.json",
             code = "",
             category = "Türkçe",
             favorite = true
         ),
         Repo(
-            name = "Manitux",
-            url = "https://raw.githubusercontent.com/manitux-app/cs-plugins/refs/heads/main/repo.json",
-            code = "",
-            category = "Türkçe",
-            favorite = false
-        ),
-        Repo(
-            name = "WioSpor",
-            url = "https://raw.githubusercontent.com/Wiojelt/WioSpor/main/repo.json",
-            code = "",
-            category = "Türkçe",
-            favorite = false
-        ),
-        Repo(
-            name = "SafakStream",
+            name = "SafakStream Repository",
             url = "https://raw.githubusercontent.com/SafakStream/SafakStream/builds/repo.json",
             code = "",
             category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "Neoser Extensions",
-            url = "https://raw.githubusercontent.com/neoser1984/cloudstream-extensions/main/repo.json",
+            name = "Manitux Cloudstream Plugins",
+            url = "https://raw.githubusercontent.com/manitux-app/cs-plugins/refs/heads/main/repo.json",
             code = "",
             category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "BTVault",
-            url = "https://raw.githubusercontent.com/baristomruk-max/BTVault/main/repo.json",
+            name = "TurkSinema",
+            url = "https://raw.githubusercontent.com/Wiojelt/TurkSinema/main/repo.json",
             code = "",
             category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "CloudStreamHub",
-            url = "https://raw.githubusercontent.com/Emre-Kahveci/CloudStreamHub/builds/repo.json",
+            name = "cstest",
+            url = "https://raw.githubusercontent.com/ctnkyaumt/cstest/master/repo.json",
             code = "",
             category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "Dr-Octagon Turkish",
-            url = "https://github.com/Dr-Octagon/cloudstream-turkish/raw/refs/heads/builds/repo_stable.json",
+            name = "AllForU",
+            url = "https://raw.githubusercontent.com/RVRBEAST76/allforu-repo/builds/repo.json",
             code = "",
             category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "CS Kraptor Aytzey",
-            url = "https://raw.githubusercontent.com/aytzey/cs-kraptor/refs/heads/master/repo.json",
+            name = "BronzeCloud",
+            url = "https://raw.githubusercontent.com/Dr-Octagon/cloudstream-turkish/refs/heads/builds/repo_stable.json",
             code = "",
             category = "Türkçe",
             favorite = false
         ),
         Repo(
-            name = "Nik CloudStream",
-            url = "https://raw.githubusercontent.com/csprofesor/nik-cloudstream/master/repo.json",
+            name = "Turkish Providers Repository | @feroxxcs3",
+            url = "https://raw.githubusercontent.com/liberta09/Kekik-cloudstream/builds/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "Phisher Repo",
+            url = "https://raw.githubusercontent.com/phisher98/cloudstream-extensions-phisher/refs/heads/builds/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "Mega repository",
+            url = "https://raw.githubusercontent.com/self-similarity/MegaRepo/builds/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "mudti",
+            url = "https://raw.githubusercontent.com/pltmustafa/plt-stream/refs/heads/master/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "megaturk",
+            url = "https://raw.githubusercontent.com/Kraptor123/TurkMegaRepo/refs/heads/master/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "Latte - Sinetech.TR",
+            url = "https://raw.githubusercontent.com/GitLatte/Sinetech/refs/heads/main/repo.json",
+            code = "",
+            category = "Türkçe",
+            favorite = false
+        ),
+        Repo(
+            name = "Makoto'nun Cloudstream Reposu",
+            url = "https://raw.githubusercontent.com/Sertel392/Makotogecici/refs/heads/main/repo.json",
             code = "",
             category = "Türkçe",
             favorite = false
