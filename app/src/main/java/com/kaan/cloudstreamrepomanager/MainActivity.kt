@@ -153,6 +153,9 @@ data class Repo(
 private const val PREFS_NAME = "cloudstream_repo_manager"
 private const val REPOS_KEY = "repos"
 
+// Build Konfigürasyonu: Kullanıcı (Non-Admin) Sürümü için 'false', Admin Sürümü için 'true'
+const val ENABLE_ADMIN_PANEL_FEATURE = true
+
 /* =========================================================
    ACTIVITY
    ========================================================= */
@@ -1129,22 +1132,24 @@ fun CloudStreamRepoManager() {
                     }
                 },
                 actions = {
-                    TextButton(
-                        onClick = {
-                            if (isAdminLoggedIn) {
-                                adminAuthManager.logoutAdmin()
-                                isAdminLoggedIn = false
-                                Toast.makeText(context, "Admin panelinden çıkış yapıldı", Toast.LENGTH_SHORT).show()
-                            } else {
-                                showAdminLoginDialog = true
+                    if (ENABLE_ADMIN_PANEL_FEATURE) {
+                        TextButton(
+                            onClick = {
+                                if (isAdminLoggedIn) {
+                                    adminAuthManager.logoutAdmin()
+                                    isAdminLoggedIn = false
+                                    Toast.makeText(context, "Admin panelinden çıkış yapıldı", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    showAdminLoginDialog = true
+                                }
                             }
+                        ) {
+                            Text(
+                                text = if (isAdminLoggedIn) "👑 ÇIKIŞ" else "🔑 ADMIN GİRİŞİ",
+                                color = if (isAdminLoggedIn) CyberPink else CyberYellow,
+                                fontWeight = FontWeight.Bold
+                            )
                         }
-                    ) {
-                        Text(
-                            text = if (isAdminLoggedIn) "👑 ÇIKIŞ" else "🔑 ADMIN GİRİŞİ",
-                            color = if (isAdminLoggedIn) CyberPink else CyberYellow,
-                            fontWeight = FontWeight.Bold
-                        )
                     }
 
                     TextButton(
@@ -2546,18 +2551,20 @@ fun RepoCard(
                     Text(if (repo.favorite) "★ Favoriden Çıkar" else "⭐ Favori", color = CyberYellow)
                 }
 
-                TvOutlinedButton(
-                    onClick = onEdit,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("✏️ Düzenle", color = CyberCyan)
-                }
+                if (ENABLE_ADMIN_PANEL_FEATURE) {
+                    TvOutlinedButton(
+                        onClick = onEdit,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("✏️ Düzenle", color = CyberCyan)
+                    }
 
-                TvOutlinedButton(
-                    onClick = onDelete,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("🗑️ Sil", color = CyberPink)
+                    TvOutlinedButton(
+                        onClick = onDelete,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("🗑️ Sil", color = CyberPink)
+                    }
                 }
             }
 
