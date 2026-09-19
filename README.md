@@ -1,72 +1,68 @@
 # ⚡ CloudStream Repo Manager (v1.0.0)
 
-![Android](https://img.shields.io/badge/Platform-Android-green.svg)
-![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue.svg)
-![Compose](https://img.shields.io/badge/UI-Jetpack%20Compose%20%2B%20Material3-yellow.svg)
-![Theme](https://img.shields.io/badge/Theme-Cyberpunk%202077-pink.svg)
-![Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Android-brightgreen?style=for-the-badge&logo=android" />
+  <img src="https://img.shields.io/badge/Language-Kotlin-blue?style=for-the-badge&logo=kotlin" />
+  <img src="https://img.shields.io/badge/UI-Jetpack%20Compose-yellow?style=for-the-badge&logo=jetpackcompose" />
+  <img src="https://img.shields.io/badge/Theme-Cyberpunk-pink?style=for-the-badge" />
+</p>
 
-**CloudStream Repo Manager**, CloudStream Android uygulaması için geliştirilmiş fütüristik **Cyberpunk 2077** temalı, merkezi bulut senkronizasyonlu ve tek tıkla eklenti yükleme destekli gelişmiş eklenti kataloğu yöneticisidir.
-
----
-
-## 📥 APK İndirme Bağlantıları (Bulut Depolama / Google Drive)
-
-Uygulama APK dosyalarını yüksek hızlı ve güvenli bulut depolama servisleri üzerinden indirebilirsiniz:
-
-* 📱 **[Kullanıcı Sürümü APK İndir (Google Drive)](https://drive.google.com/file/d/1_CloudStreamRepoManager_User_v1.0.0/view?usp=sharing)**
-  * *Açıklama:* Tüm CloudStream kullanıcıları için tasarlanmış **Sade, Güvenli ve Değiştirilemez** sürümdür.
-* 👑 **[Admin (Yönetici) Sürümü APK İndir (Google Drive)](https://drive.google.com/file/d/1_CloudStreamRepoManager_Admin_v1.0.0/view?usp=sharing)**
-  * *Açıklama:* Merkezi repo listesini düzenleme, silme, ekleme ve tüm cihazlara yayınlama yetkisine sahip yönetici sürümüdür.
+**CloudStream Repo Manager**, CloudStream Android uygulaması için geliştirilmiş fütüristik **Cyberpunk 2077** temalı, canlı bulut senkronizasyonlu ve tek tıkla eklenti yükleme destekli güvenli eklenti kataloğu yöneticisidir.
 
 ---
 
-## 🚀 Sürüm Notları (v1.0.0 - İlk Resmi Sürüm)
+## 📥 UYGULAMA İNDİRME (GOOGLE DRIVE)
 
-* 🎨 **Cyberpunk 2077 Teması:** `CyberYellow (#FCEE09)`, `CyberCyan (#00F0FF)`, `CyberPink (#FF0055)` ve koyu arka plan tonlarıyla hazırlanan modern Jetpack Compose arayüzü.
-* 📦 **11 Hazır Türkçe Repo Kataloğu:** PLT Stream, Kraptor CS-TR, Manitux, WioSpor, SafakStream, Neoser, BTVault, CloudStreamHub, Dr-Octagon, CS Kraptor Aytzey ve Nik CloudStream repoları preloaded olarak dahil edilmiştir.
-* ☁️ **Merkezi Bulut Senkronizasyonu (`central_repos.json`):** Uygulama her açıldığında doğrulanmış en güncel bulut verisini çeker ve önbelleği senkronize eder.
-* 🔗 **1 Tıkla CloudStream'e Aktarım:** `cloudstreamrepo://` özel derin bağlantı (deep link) protokolü ile eklentileri tek dokunuşla CloudStream'e yükler.
-* 🛠️ **Oynatıcı Çözücü Desteği (Extractors):** Vidmoly, Doodstream, Filemoon gibi video oynatıcı çözücülerini yükleyen özel araç.
-* 🔐 **Güvenli Admin Paneli & SHA Kontrolü:** PIN şifreli ve GitHub SHA çakışması korumalı bulut yayınlama motoru.
-* 📺 **Android TV & Kumanda Uyumluluğu:** TV kumandası odaklanma (Focus Highlight) ve Tam Ekran Siber Açılış Ekranı (Splash Screen) desteği.
+Uygulamanın güncel sürümünü aşağıdaki büyük indirme butonuna tıklayarak doğrudan **Google Drive** üzerinden güvenle indirebilirsiniz:
+
+<p align="center">
+  <a href="https://drive.google.com/file/d/1_CloudStreamRepoManager_User_v1.0.0/view?usp=sharing" target="_blank">
+    <img src="https://img.shields.io/badge/📥%20APK%20İNDİR-Google%20Drive-brightgreen?style=for-the-badge&logo=android&logoColor=white" alt="APK İndir" height="60" />
+  </a>
+</p>
+
+<p align="center">
+  <b>📱 Dosya Adı:</b> <code>CloudStreamRepoManager_Kullanici_Surumu.apk</code> | <b>Sürüm:</b> <code>v1.0.0</code>
+</p>
+
+---
+
+## ✨ Öne Çıkan Özellikler
+
+* ⚡ **Tek Tıkla CloudStream'e Aktarım:** `cloudstreamrepo://` protokolü sayesinde eklenti repolarını tek dokunuşla CloudStream'e yükleyin.
+* ☁️ **Canlı Merkezi Senkronizasyon:** Uygulama her açıldığında doğrulanmış ve güncellenmiş merkezi eklenti listesini buluttan otomatik çeker.
+* 📦 **Hazır Türkçe Eklenti Kataloğu:** En popüler Türkçe film, dizi, canlı TV ve eklenti kaynakları kataloğa dahil edilmiştir.
+* 🛠️ **Oynatıcı Çözücü Desteği (Extractors):** Vidmoly, Doodstream, Filemoon gibi video oynatıcılarını CloudStream'e yükleyen tek tıkla tamir aracı.
+* 🎨 **Cyberpunk Arayüz:** Modern, göz yormayan karanlık tema ve hızlı arama filtreleri.
+* 📺 **Android TV & TV Box Desteği:** TV kumandası odaklanma (Focus Highlight) tam desteği.
 
 ---
 
 ## 📖 Kurulum Talimatları (Telefon & Android TV)
 
-### 1. Android Telefon ve Tablet Kurulumu:
-1. Yukarıdaki **Google Drive** indirme bağlantısına tıklayarak `CloudStreamRepoManager_Kullanici_Surumu.apk` dosyasını telefonunuza indirin.
-2. İndirdiğiniz `.apk` dosyasına tıklayın.
-3. Eğer uyarı çıkarsa: **`Ayarlar ➔ Bilinmeyen Kaynaklardan Uygulama Yüklemeye İzin Ver`** seçeneğini aktif edin.
+### 📱 Android Telefon & Tablet Kurulumu:
+1. Yukarıdaki **`📥 APK İNDİR`** butonuna basarak APK dosyasını indirin.
+2. İndirdiğiniz `.apk` dosyasına dokunun.
+3. Çıkan uyarı ekranında **`Ayarlar ➔ Bilinmeyen Kaynaklardan Uygulama Yüklemeye İzin Ver`** seçeneğini aktifleştirin.
 4. **Yükle** butonuna basarak kurulumu tamamlayın.
 
-### 2. Android TV & TV Box Kurulumu:
-1. TV cihazınıza Google Play Store üzerinden **Send Files to TV** veya **Downloader** uygulamasını kurun.
-2. Bilgisayarınızdan veya telefonunuzdan indirdiğiniz APK dosyasını TV'ye gönderin.
-3. TV'deki bir dosya yöneticisi (örneğin *AnExplorer* veya *FX File Explorer*) ile `.apk` dosyasını çalıştırıp kurun.
+### 📺 Android TV & TV Box Kurulumu:
+1. TV cihazınıza Google Play Store üzerinden **Send Files to TV** veya **Downloader** uygulamasını indirin.
+2. Telefonunuzdan veya bilgisayarınızdan indirdiğiniz APK dosyasını TV'nize gönderin.
+3. TV'deki bir dosya yöneticisi ile `.apk` dosyasını çalıştırıp kurulumu onaylayın.
 
 ---
 
 ## ⚡ CloudStream'e Repo Nasıl Aktarılır?
 
 1. **CloudStream Repo Manager** uygulamasını açın.
-2. Listeden yüklemek istediğiniz reponun altındaki **`⚡ CLOUDSTREAM'E AKTAR`** butonuna basın.
-3. Cihazınızdaki **CloudStream** uygulaması otomatik olarak açılacaktır.
-4. Ekrana gelen **"Bu Eklenti Reposu Eklensin mi?"** uyarısında **"Onayla / Yükle"** seçeneğini seçin.
-5. Film, dizi veya TV yayınlarının açılmaması durumunda ana ekrandaki **`🛠️ OYNATMA / LİNK ÇÖZÜCÜ`** butonuna basarak Extractors eklentisini de yükleyin.
+2. Listeden yüklemek istediğiniz reponun altındaki **`⚡ CLOUDSTREAM'E AKTAR`** butonuna dokunun.
+3. Cihazınızdaki **CloudStream** uygulaması otomatik açılacaktır.
+4. Ekrana gelen **"Bu Eklenti Reposu Eklensin mi?"** penceresinde **"Yükle / Onayla"** seçeneğini seçin.
+5. Yayınların açılmaması durumunda ana ekrandaki **`🛠️ OYNATMA / LİNK ÇÖZÜCÜ`** butonunu kullanabilirsiniz.
 
 ---
 
-## 👑 Yönetici (Admin) Paneli Kullanımı
+## 📄 Lisans
 
-1. Admin Sürümü APK'sını kurduktan sonra sağ üstteki **`🔑 ADMIN GİRİŞİ`** butonuna tıklayın.
-2. **Admin PIN Kodu:** `1907` giriniz.
-3. Dilediğiniz repoları ekleyin, düzenleyin veya silin.
-4. Tüm değişiklikleri kullanıcılara yayınlamak için ana ekrandaki **`💾 GITHUB'A KAYDET`** butonuna basınız.
-
----
-
-## 📄 Lisans & Katkıda Bulunma
-
-Bu proje açık kaynaklıdır ve **MIT Lisansı** ile lisanslanmıştır. Projeye katkıda bulunmak veya hata bildirmek için [GitHub Repository Issues](https://github.com/liberta09/CloudStreamRepoManager/issues) sayfasını kullanabilirsiniz.
+Bu proje açık kaynaklıdır ve **MIT Lisansı** altında sunulmaktadır.
