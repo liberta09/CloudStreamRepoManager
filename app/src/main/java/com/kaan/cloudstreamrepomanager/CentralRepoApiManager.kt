@@ -20,6 +20,8 @@ class CentralRepoApiManager {
 
         /**
          * GitHub üzerindeki merkezi repo.json dosyasından canlı kataloğu çeker.
+         * Önbellek (CDN Cache) gecikmesini önlemek için timestamp parametresi ve
+         * doğrudan GitHub API yedeklemesi kullanılır.
          */
         fun fetchCentralRepos(
             context: Context,
@@ -29,12 +31,16 @@ class CentralRepoApiManager {
             Thread {
                 var connection: HttpURLConnection? = null
                 try {
-                    val url = URL(CENTRAL_REPO_URL)
+                    // Önbellek bypass timestamp parametresi
+                    val cacheBustUrl = "$CENTRAL_REPO_URL?nocache=${System.currentTimeMillis()}"
+                    val url = URL(cacheBustUrl)
                     connection = url.openConnection() as HttpURLConnection
                     connection.requestMethod = "GET"
                     connection.connectTimeout = 8000
                     connection.readTimeout = 8000
                     connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
+                    connection.setRequestProperty("Cache-Control", "no-cache, no-store, must-revalidate")
+                    connection.setRequestProperty("Pragma", "no-cache")
                     if (token.isNotBlank()) {
                         connection.setRequestProperty("Authorization", "Bearer $token")
                     }
@@ -46,13 +52,15 @@ class CentralRepoApiManager {
                             onResult(repos)
                         }
                     } else {
-                        val fallbackRepos = loadReposFromAssets(context)
+                        val apiRepos = fetchFromGitHubApiDirect(token)
+                        val fallbackRepos = apiRepos ?: loadReposFromAssets(context)
                         Handler(Looper.getMainLooper()).post {
                             onResult(fallbackRepos)
                         }
                     }
                 } catch (_: Exception) {
-                    val fallbackRepos = loadReposFromAssets(context)
+                    val apiRepos = fetchFromGitHubApiDirect(token)
+                    val fallbackRepos = apiRepos ?: loadReposFromAssets(context)
                     Handler(Looper.getMainLooper()).post {
                         onResult(fallbackRepos)
                     }
@@ -60,6 +68,40 @@ class CentralRepoApiManager {
                     connection?.disconnect()
                 }
             }.start()
+        }
+
+        private fun fetchFromGitHubApiDirect(token: String): List<Repo>? {
+            var connection: HttpURLConnection? = null
+            return try {
+                val url = URL(GITHUB_CONTENTS_API)
+                connection = url.openConnection() as HttpURLConnection
+                connection.requestMethod = "GET"
+                connection.connectTimeout = 5000
+                connection.readTimeout = 5000
+                connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
+                if (token.isNotBlank()) {
+                    connection.setRequestProperty("Authorization", "Bearer $token")
+                }
+
+                if (connection.responseCode in 200..299) {
+                    val body = connection.inputStream.bufferedReader().use { it.readText() }
+                    val json = JSONObject(body)
+                    val base64Content = json.optString("content", "").replace("\n", "").trim()
+                    if (base64Content.isNotBlank()) {
+                        val decodedBytes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            Base64.getDecoder().decode(base64Content)
+                        } else {
+                            android.util.Base64.decode(base64Content, android.util.Base64.DEFAULT)
+                        }
+                        val decodedJson = String(decodedBytes, Charsets.UTF_8)
+                        jsonToRepos(decodedJson)
+                    } else null
+                } else null
+            } catch (_: Exception) {
+                null
+            } finally {
+                connection?.disconnect()
+            }
         }
 
         /**
