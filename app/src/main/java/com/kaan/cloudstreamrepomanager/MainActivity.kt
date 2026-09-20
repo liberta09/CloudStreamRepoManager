@@ -48,6 +48,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.runtime.Composable
@@ -1152,78 +1157,85 @@ fun CloudStreamRepoManager() {
        ===================================================== */
 
     val listState = rememberLazyListState()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    var isTopBarVisible by remember { mutableStateOf(true) }
 
-    // D-Pad / Kumanda kaydırmalarında üst menüyü senkronize et
+    // Dokunmatik telefon kaydırması için:
     LaunchedEffect(listState) {
+        var prevIndex = listState.firstVisibleItemIndex
+        var prevOffset = listState.firstVisibleItemScrollOffset
         snapshotFlow {
-            Pair(listState.firstVisibleItemIndex, listState.firstVisibleItemScrollOffset) 
-        }.collect { (index, offset) ->
-            if (index > 0 || offset > 50) {
-                // Liste aşağı kaydırıldı, üst barı gizle
-                scrollBehavior.state.heightOffset = scrollBehavior.state.heightOffsetLimit
-            } else if (index == 0 && offset < 10) {
-                // Listenin başına gelindi, üst barı göster
-                scrollBehavior.state.heightOffset = 0f
-            }
+            listState.firstVisibleItemIndex to listState.firstVisibleItemScrollOffset 
         }
+            .collect { (currIndex, currOffset) ->
+                if (currIndex > prevIndex || currOffset > prevOffset + 8) {
+                    isTopBarVisible = false
+                } else if (currIndex < prevIndex || currOffset < prevOffset - 8 || (currIndex == 0 && currOffset < 15)) {
+                    isTopBarVisible = true
+                }
+                prevIndex = currIndex
+                prevOffset = currOffset
+            }
     }
 
     Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         containerColor = CyberBgDark,
         topBar = {
-            TopAppBar(
-                scrollBehavior = scrollBehavior,
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = CyberSurfaceDark,
-                    titleContentColor = CyberYellow
-                ),
-                title = {
-                    Column {
-                        Text(
-                            text = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) "👑 ADMIN // REPO PANELİ" else "⚡ CS REPO MANAGER",
-                            fontWeight = FontWeight.Bold,
-                            color = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) CyberYellow else CyberCyan,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                        Text(
-                            text = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) "STATUS: ADMIN_FULL_ACCESS (EDIT/PUSH)" else "STATUS: CANLI_SENKRON_KULLANICI_MODU",
-                            color = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) CyberGreen else CyberTextSecondary,
-                            style = MaterialTheme.typography.labelSmall
-                        )
-                    }
-                },
-                actions = {
-                    if (ENABLE_ADMIN_PANEL_FEATURE) {
-                        TextButton(
-                            onClick = {
-                                if (isAdminLoggedIn) {
-                                    adminAuthManager.logoutAdmin()
-                                    isAdminLoggedIn = false
-                                    Toast.makeText(context, "Admin panelinden çıkış yapıldı", Toast.LENGTH_SHORT).show()
-                                } else {
-                                    showAdminLoginDialog = true
-                                }
-                            }
-                        ) {
+            AnimatedVisibility(
+                visible = isTopBarVisible,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut()
+            ) {
+                TopAppBar(
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = CyberSurfaceDark,
+                        titleContentColor = CyberYellow
+                    ),
+                    title = {
+                        Column {
                             Text(
-                                text = if (isAdminLoggedIn) "👑 ÇIKIŞ" else "🔑 ADMIN GİRİŞİ",
-                                color = if (isAdminLoggedIn) CyberPink else CyberYellow,
-                                fontWeight = FontWeight.Bold
+                                text = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) "👑 ADMIN // REPO PANELİ" else "⚡ CS REPO MANAGER",
+                                fontWeight = FontWeight.Bold,
+                                color = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) CyberYellow else CyberCyan,
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            Text(
+                                text = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) "STATUS: ADMIN_FULL_ACCESS (EDIT/PUSH)" else "STATUS: CANLI_SENKRON_KULLANICI_MODU",
+                                color = if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) CyberGreen else CyberTextSecondary,
+                                style = MaterialTheme.typography.labelSmall
                             )
                         }
-                    }
-
-                    TextButton(
-                        onClick = {
-                            showSettingsDialog = true
+                    },
+                    actions = {
+                        if (ENABLE_ADMIN_PANEL_FEATURE) {
+                            TextButton(
+                                onClick = {
+                                    if (isAdminLoggedIn) {
+                                        adminAuthManager.logoutAdmin()
+                                        isAdminLoggedIn = false
+                                        Toast.makeText(context, "Admin panelinden çıkış yapıldı", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        showAdminLoginDialog = true
+                                    }
+                                }
+                            ) {
+                                Text(
+                                    text = if (isAdminLoggedIn) "👑 ÇIKIŞ" else "🔑 ADMIN GİRİŞİ",
+                                    color = if (isAdminLoggedIn) CyberPink else CyberYellow,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
                         }
-                    ) {
-                        Text("⚙️ AYARLAR", color = CyberCyan, fontWeight = FontWeight.Bold)
+
+                        TextButton(
+                            onClick = {
+                                showSettingsDialog = true
+                            }
+                        ) {
+                            Text("⚙️ AYARLAR", color = CyberCyan, fontWeight = FontWeight.Bold)
+                        }
                     }
-                }
-            )
+                )
+            }
         }
 
     ) { padding ->
@@ -2590,11 +2602,13 @@ fun RepoCard(
     onCheck: () -> Unit
 ) {
     val borderColor = if (repo.favorite) CyberYellow else CyberBorder
+    var expanded by remember { mutableStateOf(false) }
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .border(1.dp, borderColor, RoundedCornerShape(12.dp)),
+            .border(1.dp, borderColor, RoundedCornerShape(12.dp))
+            .clickable { expanded = !expanded },
         colors = CardDefaults.cardColors(containerColor = CyberCardDark),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
@@ -2610,116 +2624,132 @@ fun RepoCard(
                     text = if (repo.favorite) "⭐ ${repo.name}" else repo.name,
                     fontWeight = FontWeight.Bold,
                     color = if (repo.favorite) CyberYellow else CyberTextPrimary,
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                    text = "[ ${repo.category.uppercase()} ]",
-                    color = CyberCyan,
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.bodySmall
-                )
-            }
-
-            if (repo.code.isNotBlank()) {
-                Spacer(Modifier.height(6.dp))
-                Text(
-                    text = "🔑 CODE // ${repo.code}",
-                    color = CyberPink,
-                    fontWeight = FontWeight.SemiBold,
-                    style = MaterialTheme.typography.bodySmall
-                )
-            }
-
-            Spacer(Modifier.height(4.dp))
-
-            Text(
-                text = repo.url,
-                color = CyberTextSecondary,
-                style = MaterialTheme.typography.bodySmall
-            )
-
-            Spacer(Modifier.height(12.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                TvOutlinedButton(
-                    onClick = onFavorite,
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.weight(1f)
-                ) {
-                    Text(if (repo.favorite) "★ Favoriden Çıkar" else "⭐ Favori", color = CyberYellow)
-                }
-
-                if (ENABLE_ADMIN_PANEL_FEATURE) {
-                    TvOutlinedButton(
-                        onClick = onEdit,
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text("✏️ Düzenle", color = CyberCyan)
-                    }
-
-                    TvOutlinedButton(
-                        onClick = onDelete,
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text("🗑️ Sil", color = CyberPink)
-                    }
-                }
-            }
-
-            Spacer(Modifier.height(6.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                TvOutlinedButton(
-                    onClick = onCopyLink,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("🔗 Linki Kopyala", color = CyberCyan)
-                }
-
-                if (repo.code.isNotBlank()) {
-                    TvOutlinedButton(
-                        onClick = onCopyCode,
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text("🔑 Kodu Kopyala", color = CyberCyan)
-                    }
-                }
-            }
-
-            Spacer(Modifier.height(6.dp))
-
-            TvButton(
-                onClick = onAddToCloudStream,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("⚡ CLOUDSTREAM'E AKTAR", fontWeight = FontWeight.Bold)
-            }
-
-            Spacer(Modifier.height(6.dp))
-
-            TvOutlinedButton(
-                onClick = onCheck,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("🔎 Link Durumunu Kontrol Et", color = CyberTextPrimary)
-            }
-
-            if (checkResult != null) {
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = checkResult,
-                    fontWeight = FontWeight.Bold,
-                    color = when {
-                        checkResult.startsWith("🟢") -> CyberGreen
-                        checkResult.startsWith("🟡") -> CyberYellow
-                        else -> CyberPink
-                    }
                 )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = "[ ${repo.category.uppercase()} ]",
+                        color = CyberCyan,
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Text(
+                        text = if (expanded) "  ▲" else "  ▼",
+                        color = CyberTextSecondary,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            }
+
+            AnimatedVisibility(
+                visible = expanded,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut()
+            ) {
+                Column {
+                    if (repo.code.isNotBlank()) {
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            text = "🔑 CODE // ${repo.code}",
+                            color = CyberPink,
+                            fontWeight = FontWeight.SemiBold,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+
+                    Spacer(Modifier.height(4.dp))
+
+                    Text(
+                        text = repo.url,
+                        color = CyberTextSecondary,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+
+                    Spacer(Modifier.height(12.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        TvOutlinedButton(
+                            onClick = onFavorite,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(if (repo.favorite) "★ Favoriden Çıkar" else "⭐ Favori", color = CyberYellow)
+                        }
+
+                        if (ENABLE_ADMIN_PANEL_FEATURE) {
+                            TvOutlinedButton(
+                                onClick = onEdit,
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Text("✏️ Düzenle", color = CyberCyan)
+                            }
+
+                            TvOutlinedButton(
+                                onClick = onDelete,
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Text("🗑️ Sil", color = CyberPink)
+                            }
+                        }
+                    }
+
+                    Spacer(Modifier.height(6.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        TvOutlinedButton(
+                            onClick = onCopyLink,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("🔗 Linki Kopyala", color = CyberCyan)
+                        }
+
+                        if (repo.code.isNotBlank()) {
+                            TvOutlinedButton(
+                                onClick = onCopyCode,
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Text("🔑 Kodu Kopyala", color = CyberCyan)
+                            }
+                        }
+                    }
+
+                    Spacer(Modifier.height(6.dp))
+
+                    TvButton(
+                        onClick = onAddToCloudStream,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("⚡ CLOUDSTREAM'E AKTAR", fontWeight = FontWeight.Bold)
+                    }
+
+                    Spacer(Modifier.height(6.dp))
+
+                    TvOutlinedButton(
+                        onClick = onCheck,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("🔎 Link Durumunu Kontrol Et", color = CyberTextPrimary)
+                    }
+
+                    if (checkResult != null) {
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            text = checkResult,
+                            fontWeight = FontWeight.Bold,
+                            color = when {
+                                checkResult.startsWith("🟢") -> CyberGreen
+                                checkResult.startsWith("🟡") -> CyberYellow
+                                else -> CyberPink
+                            }
+                        )
+                    }
+                }
             }
         }
     }
