@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-20T03:44:21Z",
+  "updatedAt": "2026-09-20T13:44:20Z",
   "repos": [
     {
       "id": "1",
@@ -144,6 +144,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/baristomruk-max\/BTVault\/main\/repo.json",
       "code": ".",
       "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "19",
+      "name": "wiojelt",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSpor\/main\/repo.json",
+      "code": ".",
+      "category": "spor",
       "favorite": false
     }
   ]
