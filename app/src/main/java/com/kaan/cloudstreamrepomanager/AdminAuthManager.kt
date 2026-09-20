@@ -5,20 +5,35 @@ import android.content.SharedPreferences
 
 class AdminAuthManager(private val context: Context) {
 
-    private val prefs: SharedPreferences =
+    private val prefs: SharedPreferences? = try {
         context.getSharedPreferences(PREFS_ADMIN_AUTH, Context.MODE_PRIVATE)
+    } catch (_: Exception) {
+        null
+    }
 
     var isAdminLoggedIn: Boolean
-        get() = prefs.getBoolean(KEY_IS_ADMIN_LOGGED_IN, false)
-        set(value) = prefs.edit().putBoolean(KEY_IS_ADMIN_LOGGED_IN, value).apply()
+        get() = prefs?.getBoolean(KEY_IS_ADMIN_LOGGED_IN, false) ?: false
+        set(value) {
+            try {
+                prefs?.edit()?.putBoolean(KEY_IS_ADMIN_LOGGED_IN, value)?.apply()
+            } catch (_: Exception) {}
+        }
 
     var adminPasscode: String
-        get() = prefs.getString(KEY_ADMIN_PASSCODE, DEFAULT_ADMIN_PASSCODE) ?: DEFAULT_ADMIN_PASSCODE
-        set(value) = prefs.edit().putString(KEY_ADMIN_PASSCODE, value).apply()
+        get() = prefs?.getString(KEY_ADMIN_PASSCODE, DEFAULT_ADMIN_PASSCODE) ?: DEFAULT_ADMIN_PASSCODE
+        set(value) {
+            try {
+                prefs?.edit()?.putString(KEY_ADMIN_PASSCODE, value)?.apply()
+            } catch (_: Exception) {}
+        }
 
     var adminGithubToken: String
-        get() = prefs.getString(KEY_ADMIN_GITHUB_TOKEN, "") ?: ""
-        set(value) = prefs.edit().putString(KEY_ADMIN_GITHUB_TOKEN, value).apply()
+        get() = prefs?.getString(KEY_ADMIN_GITHUB_TOKEN, "") ?: ""
+        set(value) {
+            try {
+                prefs?.edit()?.putString(KEY_ADMIN_GITHUB_TOKEN, value)?.apply()
+            } catch (_: Exception) {}
+        }
 
     fun authenticateAdmin(enteredPasscode: String): Boolean {
         return if (enteredPasscode.trim() == adminPasscode || enteredPasscode.trim() == "admin123") {
