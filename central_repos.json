@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-20T03:01:48Z",
+  "updatedAt": "2026-09-20T03:04:43Z",
   "repos": [
     {
       "id": "1",
@@ -135,6 +135,14 @@
       "name": "Ripplay",
       "url": "https:\/\/raw.githubusercontent.com\/Ripplay\/cloudstream-repo\/main\/repo.json",
       "code": "yok",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "18",
+      "name": "Blackhope01",
+      "url": "https:\/\/raw.githubusercontent.com\/blackhope01\/cloudstream-plugins\/refs\/heads\/main\/repo.json",
+      "code": ".",
       "category": "Türkçe",
       "favorite": false
     }
