@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -47,6 +48,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberTopAppBarState
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -69,6 +72,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import kotlinx.coroutines.delay
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import com.kaan.cloudstreamrepomanager.ui.theme.*
@@ -1147,10 +1151,30 @@ fun CloudStreamRepoManager() {
        EKRAN
        ===================================================== */
 
+    val listState = rememberLazyListState()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+
+    // D-Pad / Kumanda kaydırmalarında üst menüyü senkronize et
+    LaunchedEffect(listState) {
+        snapshotFlow {
+            Pair(listState.firstVisibleItemIndex, listState.firstVisibleItemScrollOffset) 
+        }.collect { (index, offset) ->
+            if (index > 0 || offset > 50) {
+                // Liste aşağı kaydırıldı, üst barı gizle
+                scrollBehavior.state.heightOffset = scrollBehavior.state.heightOffsetLimit
+            } else if (index == 0 && offset < 10) {
+                // Listenin başına gelindi, üst barı göster
+                scrollBehavior.state.heightOffset = 0f
+            }
+        }
+    }
+
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         containerColor = CyberBgDark,
         topBar = {
             TopAppBar(
+                scrollBehavior = scrollBehavior,
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = CyberSurfaceDark,
                     titleContentColor = CyberYellow
@@ -1567,7 +1591,7 @@ fun CloudStreamRepoManager() {
                     }
 
                 LazyColumn(
-
+                    state = listState,
                     modifier =
                         Modifier.fillMaxSize(),
 
