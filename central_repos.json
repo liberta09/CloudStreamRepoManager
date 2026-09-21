@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T20:29:27Z",
+  "updatedAt": "2026-09-21T20:30:54Z",
   "repos": [
     {
       "id": "1",
@@ -230,6 +230,14 @@
       "id": "29",
       "name": "safarxe",
       "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "30",
+      "name": "ramazansancar",
+      "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
       "code": ".",
       "category": "TÜRKÇE",
       "favorite": false
