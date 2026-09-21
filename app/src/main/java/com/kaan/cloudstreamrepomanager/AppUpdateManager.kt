@@ -48,19 +48,14 @@ class AppUpdateManager {
             onResult: (AppUpdateInfo?) -> Unit
         ) {
             Thread {
-                var connection: HttpURLConnection? = null
                 try {
-                    val url = URL(GITHUB_RELEASE_API)
-                    connection = url.openConnection() as HttpURLConnection
-                    connection.requestMethod = "GET"
-                    connection.connectTimeout = 8000
-                    connection.readTimeout = 8000
-                    connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
-                    connection.setRequestProperty("Accept", "application/vnd.github.v3+json")
+                    val result = NetworkUtils.openFollowRedirectsConnection(
+                        initialUrl = GITHUB_RELEASE_API,
+                        headers = mapOf("Accept" to "application/vnd.github.v3+json")
+                    )
 
-                    if (connection.responseCode in 200..299) {
-                        val body = connection.inputStream.bufferedReader().use { it.readText() }
-                        val json = JSONObject(body)
+                    if (result.isSuccess && result.body.isNotBlank()) {
+                        val json = JSONObject(result.body)
 
                         val latestTag = json.optString("tag_name", "").removePrefix("v").trim()
                         val releaseNotes = json.optString("body", "Yeni özellikler ve hata düzeltmeleri içerir.")
@@ -74,7 +69,7 @@ class AppUpdateManager {
                             for (i in 0 until assets.length()) {
                                 val asset = assets.getJSONObject(i)
                                 val assetName = asset.optString("name", "").lowercase()
-                                val assetUrl = asset.optString("browser_download_url", "")
+                                val assetUrl = NetworkUtils.sanitizeUrl(asset.optString("browser_download_url", ""))
                                 if (assetName.endsWith(".apk")) {
                                     if (fallbackUrl.isBlank()) fallbackUrl = assetUrl
 
@@ -102,8 +97,8 @@ class AppUpdateManager {
                             isUpdateAvailable = isUpdate,
                             latestVersionTag = latestTag,
                             releaseNotes = releaseNotes,
-                            downloadUrl = downloadUrl,
-                            htmlUrl = htmlUrl
+                            downloadUrl = NetworkUtils.sanitizeUrl(downloadUrl),
+                            htmlUrl = NetworkUtils.sanitizeUrl(htmlUrl)
                         )
 
                         Handler(Looper.getMainLooper()).post {
@@ -133,8 +128,6 @@ class AppUpdateManager {
                     Handler(Looper.getMainLooper()).post {
                         onResult(defaultInfo)
                     }
-                } finally {
-                    connection?.disconnect()
                 }
             }.start()
         }
@@ -168,13 +161,15 @@ class AppUpdateManager {
          * Yeni sürüm APK'sını indirir, ekranda % olarak Progress Dialog gösterir ve indirme bittiğinde
          * doğrudan Android Paket Yükleyici (Package Installer) ekranını açar.
          */
-        fun downloadAndInstallUpdate(context: Context, downloadUrl: String) {
+        fun downloadAndInstallUpdate(context: Context, rawDownloadUrl: String) {
             try {
                 if (!checkInstallPermission(context)) {
                     return
                 }
 
-                if (downloadUrl.endsWith(".apk")) {
+                val downloadUrl = NetworkUtils.sanitizeUrl(rawDownloadUrl)
+
+                if (downloadUrl.contains(".apk", ignoreCase = true)) {
                     val apkFileName = "CloudStreamRepoManager_Update.apk"
                     val destinationFile = File(
                         context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS),
@@ -324,7 +319,7 @@ class AppUpdateManager {
                     context.startActivity(intent)
                 }
             } catch (_: Exception) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(downloadUrl)).apply {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(rawDownloadUrl)).apply {
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 }
                 context.startActivity(intent)

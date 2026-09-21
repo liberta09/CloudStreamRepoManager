@@ -29,25 +29,23 @@ class CentralRepoApiManager {
             onResult: (List<Repo>?) -> Unit
         ) {
             Thread {
-                var connection: HttpURLConnection? = null
                 try {
-                    // Önbellek bypass timestamp parametresi
                     val cacheBustUrl = "$CENTRAL_REPO_URL?nocache=${System.currentTimeMillis()}"
-                    val url = URL(cacheBustUrl)
-                    connection = url.openConnection() as HttpURLConnection
-                    connection.requestMethod = "GET"
-                    connection.connectTimeout = 8000
-                    connection.readTimeout = 8000
-                    connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
-                    connection.setRequestProperty("Cache-Control", "no-cache, no-store, must-revalidate")
-                    connection.setRequestProperty("Pragma", "no-cache")
+                    val headers = mutableMapOf(
+                        "Cache-Control" to "no-cache, no-store, must-revalidate",
+                        "Pragma" to "no-cache"
+                    )
                     if (token.isNotBlank()) {
-                        connection.setRequestProperty("Authorization", "Bearer $token")
+                        headers["Authorization"] = "Bearer $token"
                     }
 
-                    if (connection.responseCode in 200..299) {
-                        val body = connection.inputStream.bufferedReader().use { it.readText() }
-                        val repos = jsonToRepos(body)
+                    val result = NetworkUtils.openFollowRedirectsConnection(
+                        initialUrl = cacheBustUrl,
+                        headers = headers
+                    )
+
+                    if (result.isSuccess && result.body.isNotBlank()) {
+                        val repos = jsonToRepos(result.body)
                         Handler(Looper.getMainLooper()).post {
                             onResult(repos)
                         }
@@ -64,8 +62,6 @@ class CentralRepoApiManager {
                     Handler(Looper.getMainLooper()).post {
                         onResult(fallbackRepos)
                     }
-                } finally {
-                    connection?.disconnect()
                 }
             }.start()
         }

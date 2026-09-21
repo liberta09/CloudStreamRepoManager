@@ -786,61 +786,28 @@ fun validateCloudStreamRepoJson(
 fun performRepoCheck(
     urlString: String
 ): String {
-
-    var connection: HttpURLConnection? = null
-
     return try {
-
-        val url = URL(urlString)
-
-        connection =
-            url.openConnection() as HttpURLConnection
-
-        connection.requestMethod = "GET"
-        connection.connectTimeout = 8000
-        connection.readTimeout = 8000
-        connection.instanceFollowRedirects = true
-
-        connection.setRequestProperty(
-            "User-Agent",
-            "CloudStream-Repo-Manager"
+        val result = NetworkUtils.openFollowRedirectsConnection(
+            initialUrl = urlString,
+            method = "GET"
         )
 
-        val responseCode =
-            connection.responseCode
-
         when {
-
-            responseCode in 200..299 -> {
-
-                val body =
-                    connection.inputStream
-                        .bufferedReader()
-                        .use { it.readText() }
-
-                validateCloudStreamRepoJson(body)
+            result.isSuccess -> {
+                validateCloudStreamRepoJson(result.body)
             }
-
-            responseCode in 300..399 ->
-                "🟡 Yönlendirme — HTTP $responseCode"
-
-            responseCode in 400..499 ->
-                "🟠 İstemci hatası — HTTP $responseCode"
-
-            responseCode in 500..599 ->
-                "🔴 Sunucu hatası — HTTP $responseCode"
-
-            else ->
-                "🟠 Sunucu yanıtı — HTTP $responseCode"
+            result.responseCode in 400..499 -> {
+                "🟠 HTTP ${result.responseCode} Hata"
+            }
+            result.responseCode in 500..599 -> {
+                "🔴 Sunucu hatası — HTTP ${result.responseCode}"
+            }
+            else -> {
+                "🔴 Bağlantı başarısız (HTTP ${result.responseCode})"
+            }
         }
-
-    } catch (_: Exception) {
-
-        "🔴 Bağlantı başarısız"
-
-    } finally {
-
-        connection?.disconnect()
+    } catch (e: Exception) {
+        "🔴 Bağlantı hatası"
     }
 }
 
