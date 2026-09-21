@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-20T19:37:54Z",
+  "updatedAt": "2026-09-21T11:48:56Z",
   "repos": [
     {
       "id": "1",
@@ -76,14 +76,6 @@
     },
     {
       "id": "10",
-      "name": "mudti",
-      "url": "https:\/\/raw.githubusercontent.com\/pltmustafa\/plt-stream\/refs\/heads\/master\/repo.json",
-      "code": "",
-      "category": "Türkçe",
-      "favorite": false
-    },
-    {
-      "id": "11",
       "name": "megaturk",
       "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/TurkMegaRepo\/refs\/heads\/master\/repo.json",
       "code": "",
@@ -91,7 +83,7 @@
       "favorite": false
     },
     {
-      "id": "12",
+      "id": "11",
       "name": "Latte - Sinetech.TR",
       "url": "https:\/\/raw.githubusercontent.com\/GitLatte\/Sinetech\/refs\/heads\/main\/repo.json",
       "code": "",
@@ -99,7 +91,7 @@
       "favorite": false
     },
     {
-      "id": "13",
+      "id": "12",
       "name": "Makoto'nun Cloudstream Reposu",
       "url": "https:\/\/raw.githubusercontent.com\/Sertel392\/Makotogecici\/refs\/heads\/main\/repo.json",
       "code": "",
@@ -107,7 +99,7 @@
       "favorite": false
     },
     {
-      "id": "14",
+      "id": "13",
       "name": "Wio Sinema",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSinema\/builds\/repo.json",
       "code": "yok",
@@ -115,7 +107,7 @@
       "favorite": false
     },
     {
-      "id": "15",
+      "id": "14",
       "name": "TurkSpor",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSpor\/main\/repo.json",
       "code": ".",
@@ -123,7 +115,7 @@
       "favorite": false
     },
     {
-      "id": "16",
+      "id": "15",
       "name": "Ripplay",
       "url": "https:\/\/raw.githubusercontent.com\/Ripplay\/cloudstream-repo\/main\/repo.json",
       "code": "yok",
@@ -131,7 +123,7 @@
       "favorite": false
     },
     {
-      "id": "17",
+      "id": "16",
       "name": "Blackhope01",
       "url": "https:\/\/raw.githubusercontent.com\/blackhope01\/cloudstream-plugins\/refs\/heads\/main\/repo.json",
       "code": ".",
@@ -139,7 +131,7 @@
       "favorite": false
     },
     {
-      "id": "18",
+      "id": "17",
       "name": "EmreKahveci",
       "url": "https:\/\/raw.githubusercontent.com\/baristomruk-max\/BTVault\/main\/repo.json",
       "code": ".",
@@ -147,7 +139,7 @@
       "favorite": false
     },
     {
-      "id": "19",
+      "id": "18",
       "name": "wiojelt",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSpor\/main\/repo.json",
       "code": ".",
