@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T18:28:24Z",
+  "updatedAt": "2026-09-21T20:16:50Z",
   "repos": [
     {
       "id": "1",
@@ -216,6 +216,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/Abodabodd\/re-3arabi\/refs\/heads\/main\/repo",
       "code": ".",
       "category": "ARAPÇA",
+      "favorite": false
+    },
+    {
+      "id": "28",
+      "name": "CDEScript",
+      "url": "https:\/\/raw.githubusercontent.com\/GD2021\/CDEScript\/refs\/heads\/main\/repo.json",
+      "code": ".",
+      "category": "HİNT",
       "favorite": false
     }
   ]
