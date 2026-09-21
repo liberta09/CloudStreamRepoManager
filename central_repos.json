@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:24:57Z",
+  "updatedAt": "2026-09-21T15:32:19Z",
   "repos": [
     {
       "id": "1",
@@ -152,6 +152,14 @@
       "url": "https:\/\/tinyurl.com\/WioSpor",
       "code": ".",
       "category": "SPOR",
+      "favorite": false
+    },
+    {
+      "id": "20",
+      "name": "cs-karma",
+      "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/cs-Karma\/refs\/heads\/master\/repo.json",
+      "code": ".",
+      "category": "İNGİLİZCE",
       "favorite": false
     }
   ]
