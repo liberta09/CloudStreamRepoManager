@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:43:28Z",
+  "updatedAt": "2026-09-21T15:45:33Z",
   "repos": [
     {
       "id": "1",
@@ -192,6 +192,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/neoser1984\/cloudstream-extensions\/main\/repo.json",
       "code": ".",
       "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "25",
+      "name": "Megix Repo",
+      "url": "https:\/\/raw.githubusercontent.com\/SaurabhKaperwan\/CSX\/builds\/CS.json",
+      "code": ".",
+      "category": "HİNTÇE",
       "favorite": false
     }
   ]
