@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:23:23Z",
+  "updatedAt": "2026-09-21T15:23:59Z",
   "repos": [
     {
       "id": "1",
@@ -62,8 +62,8 @@
       "id": "8",
       "name": "Phisher Repo",
       "url": "https:\/\/raw.githubusercontent.com\/phisher98\/cloudstream-extensions-phisher\/refs\/heads\/builds\/repo.json",
-      "code": "",
-      "category": "Türkçe",
+      "code": ".",
+      "category": "HİNT",
       "favorite": false
     },
     {
