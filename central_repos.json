@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T20:42:09Z",
+  "updatedAt": "2026-09-21T23:28:39Z",
   "repos": [
     {
       "id": "1",
@@ -248,14 +248,6 @@
       "url": "https:\/\/raw.githubusercontent.com\/tamersariii\/xcloudstream_tr_repo\/main\/repo.json",
       "code": ".",
       "category": "FİLM",
-      "favorite": false
-    },
-    {
-      "id": "32",
-      "name": "etumen",
-      "url": "https:\/\/raw.githubusercontent.com\/etumen\/cs-kraptor\/master\/repo.json",
-      "code": ".",
-      "category": "TÜRKÇE",
       "favorite": false
     }
   ]
