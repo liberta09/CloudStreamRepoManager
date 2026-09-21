@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:34:57Z",
+  "updatedAt": "2026-09-21T15:36:38Z",
   "repos": [
     {
       "id": "1",
@@ -168,6 +168,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/doGior\/doGiorsHadEnough\/refs\/heads\/builds\/repo.json",
       "code": ".",
       "category": "İTALYANCA",
+      "favorite": false
+    },
+    {
+      "id": "22",
+      "name": "German providers repository",
+      "url": "https:\/\/raw.githubusercontent.com\/Bnyro\/GermanProviders\/refs\/heads\/master\/repo.json",
+      "code": ".",
+      "category": "ALMANCA",
       "favorite": false
     }
   ]
