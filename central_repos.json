@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:36:38Z",
+  "updatedAt": "2026-09-21T15:37:35Z",
   "repos": [
     {
       "id": "1",
@@ -176,6 +176,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/Bnyro\/GermanProviders\/refs\/heads\/master\/repo.json",
       "code": ".",
       "category": "ALMANCA",
+      "favorite": false
+    },
+    {
+      "id": "23",
+      "name": "Vietnamese Extension",
+      "url": "https:\/\/gitlab.com\/tearrs\/cloudstream-vietnamese\/-\/raw\/main\/repo.json",
+      "code": ".",
+      "category": "VİETNAMCA",
       "favorite": false
     }
   ]
