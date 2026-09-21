@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:50:49Z",
+  "updatedAt": "2026-09-21T17:47:31Z",
   "repos": [
     {
       "id": "1",
@@ -216,6 +216,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/Abodabodd\/re-3arabi\/refs\/heads\/main\/repo",
       "code": ".",
       "category": "ARAPÇA",
+      "favorite": false
+    },
+    {
+      "id": "28",
+      "name": "ferox",
+      "url": "https:\/\/raw.githubusercontent.com\/feroxx\/Kekik-cloudstream\/refs\/heads\/master\/repo.json",
+      "code": ".",
+      "category": "Türkçe",
       "favorite": false
     }
   ]
