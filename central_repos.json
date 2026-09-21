@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:45:33Z",
+  "updatedAt": "2026-09-21T15:48:08Z",
   "repos": [
     {
       "id": "1",
@@ -200,6 +200,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/SaurabhKaperwan\/CSX\/builds\/CS.json",
       "code": ".",
       "category": "HİNTÇE",
+      "favorite": false
+    },
+    {
+      "id": "26",
+      "name": "CNC REPO ( ALL LAUNGAGES",
+      "url": "https:\/\/raw.githubusercontent.com\/NivinCNC\/CNCVerse-Cloud-Stream-Extension\/refs\/heads\/builds\/CNC.json",
+      "code": ".",
+      "category": "HİNT",
       "favorite": false
     }
   ]
