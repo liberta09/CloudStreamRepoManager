@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:16:08Z",
+  "updatedAt": "2026-09-21T15:17:00Z",
   "repos": [
     {
       "id": "1",
@@ -111,7 +111,7 @@
       "name": "TurkSpor",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSpor\/main\/repo.json",
       "code": ".",
-      "category": "Türkçe",
+      "category": "SPOR",
       "favorite": false
     },
     {
