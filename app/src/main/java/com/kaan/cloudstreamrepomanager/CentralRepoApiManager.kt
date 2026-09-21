@@ -2,9 +2,11 @@ package com.kaan.cloudstreamrepomanager
 
 import android.content.Context
 import android.os.Build
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import org.json.JSONObject
+import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Base64
@@ -20,8 +22,8 @@ class CentralRepoApiManager {
 
         /**
          * GitHub üzerindeki merkezi repo.json dosyasından canlı kataloğu çeker.
-         * Önbellek (CDN Cache) gecikmesini önlemek için timestamp parametresi ve
-         * doğrudan GitHub API yedeklemesi kullanılır.
+         * CDN önbellek (Cache) gecikmesini 0 saniyeye indirmek için doğrudan GitHub REST Contents API
+         * ve yerel ortak paylaşım dosyası öncelikli olarak kullanılır.
          */
         fun fetchCentralRepos(
             context: Context,
@@ -30,6 +32,26 @@ class CentralRepoApiManager {
         ) {
             Thread {
                 try {
+                    // 1. Öncelik: DİREKT GITHUB CONTENTS API (0 Saniye CDN Gecikmesi)
+                    val apiRepos = fetchFromGitHubApiDirect(token)
+                    if (apiRepos != null && apiRepos.isNotEmpty()) {
+                        saveSharedLocalRepos(context, apiRepos)
+                        Handler(Looper.getMainLooper()).post {
+                            onResult(apiRepos)
+                        }
+                        return@Thread
+                    }
+
+                    // 2. Öncelik: YEREL ORTAK SENKRON DOSYASI (Aynı cihazda Admin <-> Kullanıcı testleri için)
+                    val sharedLocalRepos = loadSharedLocalRepos(context)
+                    if (sharedLocalRepos != null && sharedLocalRepos.isNotEmpty()) {
+                        Handler(Looper.getMainLooper()).post {
+                            onResult(sharedLocalRepos)
+                        }
+                        return@Thread
+                    }
+
+                    // 3. Öncelik: RAW GITHUB CDN
                     val cacheBustUrl = "$CENTRAL_REPO_URL?nocache=${System.currentTimeMillis()}"
                     val headers = mutableMapOf(
                         "Cache-Control" to "no-cache, no-store, must-revalidate",
@@ -46,19 +68,19 @@ class CentralRepoApiManager {
 
                     if (result.isSuccess && result.body.isNotBlank()) {
                         val repos = jsonToRepos(result.body)
+                        saveSharedLocalRepos(context, repos)
                         Handler(Looper.getMainLooper()).post {
                             onResult(repos)
                         }
                     } else {
-                        val apiRepos = fetchFromGitHubApiDirect(token)
-                        val fallbackRepos = apiRepos ?: loadReposFromAssets(context)
+                        val fallbackRepos = loadReposFromAssets(context)
                         Handler(Looper.getMainLooper()).post {
                             onResult(fallbackRepos)
                         }
                     }
                 } catch (_: Exception) {
-                    val apiRepos = fetchFromGitHubApiDirect(token)
-                    val fallbackRepos = apiRepos ?: loadReposFromAssets(context)
+                    val sharedLocalRepos = loadSharedLocalRepos(context)
+                    val fallbackRepos = sharedLocalRepos ?: loadReposFromAssets(context)
                     Handler(Looper.getMainLooper()).post {
                         onResult(fallbackRepos)
                     }
@@ -67,22 +89,20 @@ class CentralRepoApiManager {
         }
 
         private fun fetchFromGitHubApiDirect(token: String): List<Repo>? {
-            var connection: HttpURLConnection? = null
             return try {
-                val url = URL(GITHUB_CONTENTS_API)
-                connection = url.openConnection() as HttpURLConnection
-                connection.requestMethod = "GET"
-                connection.connectTimeout = 5000
-                connection.readTimeout = 5000
-                connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
+                val headers = mutableMapOf<String, String>()
                 if (token.isNotBlank()) {
-                    connection.setRequestProperty("Authorization", "Bearer $token")
+                    headers["Authorization"] = "Bearer $token"
                 }
 
-                if (connection.responseCode in 200..299) {
-                    val body = connection.inputStream.bufferedReader().use { it.readText() }
-                    val json = JSONObject(body)
-                    val base64Content = json.optString("content", "").replace("\n", "").trim()
+                val result = NetworkUtils.openFollowRedirectsConnection(
+                    initialUrl = GITHUB_CONTENTS_API,
+                    headers = headers
+                )
+
+                if (result.isSuccess && result.body.isNotBlank()) {
+                    val json = JSONObject(result.body)
+                    val base64Content = json.optString("content", "").replace("\n", "").replace("\r", "").trim()
                     if (base64Content.isNotBlank()) {
                         val decodedBytes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             Base64.getDecoder().decode(base64Content)
@@ -95,8 +115,6 @@ class CentralRepoApiManager {
                 } else null
             } catch (_: Exception) {
                 null
-            } finally {
-                connection?.disconnect()
             }
         }
 
@@ -142,12 +160,15 @@ class CentralRepoApiManager {
                     val adminAuthManager = AdminAuthManager(context)
                     val activeToken = githubToken.ifBlank { adminAuthManager.adminGithubToken }
 
+                    // Her durumda yerel ortak senkron dosyasına kaydet
+                    saveSharedLocalRepos(context, repos)
+                    saveRepos(context, repos)
+
                     if (activeToken.isBlank()) {
-                        saveRepos(context, repos)
                         Handler(Looper.getMainLooper()).post {
                             onResult(
                                 false,
-                                "⚠️ GitHub Token Tanımlı Değil! Değişiklikleri GitHub'a kalıcı işlemek için Admin Panelinde 'repo' izinli Personal Access Token (PAT) giriniz."
+                                "⚠️ GitHub Token Tanımlı Değil! Değişiklikler bu cihaza kaydedildi ancak GitHub'a yayınlamak için Admin Panelinde Token giriniz."
                             )
                         }
                         return@Thread
@@ -155,7 +176,7 @@ class CentralRepoApiManager {
 
                     val jsonContent = reposToJson(repos)
 
-                    // 1. Önce dosyanın güncel SHA değerini ve doğrulamasını al (SHA çakışması önleme)
+                    // 1. Dosyanın güncel SHA değerini al
                     val sha = getGitHubFileSha(activeToken)
 
                     // 2. Güncel JSON içeriğini Base64 formatına dönüştür
@@ -180,7 +201,7 @@ class CentralRepoApiManager {
                     connection.connectTimeout = 10000
                     connection.readTimeout = 10000
                     connection.doOutput = true
-                    connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
+                    connection.setRequestProperty("User-Agent", NetworkUtils.DEFAULT_USER_AGENT)
                     connection.setRequestProperty("Content-Type", "application/json")
                     connection.setRequestProperty("Accept", "application/vnd.github.v3+json")
                     connection.setRequestProperty("Authorization", "Bearer $activeToken")
@@ -197,14 +218,13 @@ class CentralRepoApiManager {
                         }
                     } else if (responseCode == 409) {
                         Handler(Looper.getMainLooper()).post {
-                            onResult(false, "⚠️ SHA Çakışması! Dosya başka bir işlem tarafından değiştirilmiş. Lütfen güncelleyip tekrar deneyin.")
+                            onResult(false, "⚠️ SHA Çakışması! Lütfen güncelleyip tekrar deneyin.")
                         }
                     } else if (responseCode == 401 || responseCode == 403) {
                         Handler(Looper.getMainLooper()).post {
                             onResult(false, "❌ Yetkisiz Erişim (HTTP $responseCode)! Girdiğiniz GitHub Token 'repo' yazma iznine sahip olmalıdır.")
                         }
                     } else {
-                        saveRepos(context, repos)
                         Handler(Looper.getMainLooper()).post {
                             onResult(false, "⚠️ GitHub Sunucu Yanıtı: HTTP $responseCode")
                         }
@@ -222,29 +242,46 @@ class CentralRepoApiManager {
         }
 
         private fun getGitHubFileSha(token: String): String {
-            var connection: HttpURLConnection? = null
             return try {
-                val url = URL(GITHUB_CONTENTS_API)
-                connection = url.openConnection() as HttpURLConnection
-                connection.requestMethod = "GET"
-                connection.connectTimeout = 5000
-                connection.readTimeout = 5000
-                connection.setRequestProperty("User-Agent", "CloudStream-Repo-Manager")
+                val headers = mutableMapOf<String, String>()
                 if (token.isNotBlank()) {
-                    connection.setRequestProperty("Authorization", "Bearer $token")
+                    headers["Authorization"] = "Bearer $token"
                 }
 
-                if (connection.responseCode in 200..299) {
-                    val body = connection.inputStream.bufferedReader().use { it.readText() }
-                    val json = JSONObject(body)
+                val result = NetworkUtils.openFollowRedirectsConnection(
+                    initialUrl = GITHUB_CONTENTS_API,
+                    headers = headers
+                )
+
+                if (result.isSuccess && result.body.isNotBlank()) {
+                    val json = JSONObject(result.body)
                     json.optString("sha", "")
-                } else {
-                    ""
-                }
+                } else ""
             } catch (_: Exception) {
                 ""
-            } finally {
-                connection?.disconnect()
+            }
+        }
+
+        fun saveSharedLocalRepos(context: Context, repos: List<Repo>) {
+            try {
+                val sharedDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                if (!sharedDir.exists()) sharedDir.mkdirs()
+                val sharedFile = File(sharedDir, "cs_repo_manager_shared_catalog.json")
+                val json = reposToJson(repos)
+                sharedFile.writeText(json, Charsets.UTF_8)
+            } catch (_: Exception) {}
+        }
+
+        fun loadSharedLocalRepos(context: Context): List<Repo>? {
+            return try {
+                val sharedDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                val sharedFile = File(sharedDir, "cs_repo_manager_shared_catalog.json")
+                if (sharedFile.exists()) {
+                    val json = sharedFile.readText(Charsets.UTF_8)
+                    jsonToRepos(json)
+                } else null
+            } catch (_: Exception) {
+                null
             }
         }
 
