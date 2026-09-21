@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:24:04Z",
+  "updatedAt": "2026-09-21T15:24:53Z",
   "repos": [
     {
       "id": "1",
@@ -38,8 +38,8 @@
       "id": "5",
       "name": "AllForU",
       "url": "https:\/\/raw.githubusercontent.com\/RVRBEAST76\/allforu-repo\/builds\/repo.json",
-      "code": "",
-      "category": "Türkçe",
+      "code": ".",
+      "category": "İNGİLİZCE",
       "favorite": false
     },
     {
