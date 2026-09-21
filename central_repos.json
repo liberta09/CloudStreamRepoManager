@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:48:08Z",
+  "updatedAt": "2026-09-21T15:49:18Z",
   "repos": [
     {
       "id": "1",
@@ -208,6 +208,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/NivinCNC\/CNCVerse-Cloud-Stream-Extension\/refs\/heads\/builds\/CNC.json",
       "code": ".",
       "category": "HİNT",
+      "favorite": false
+    },
+    {
+      "id": "27",
+      "name": "3rabi",
+      "url": "https:\/\/raw.githubusercontent.com\/Abodabodd\/re-3arabi\/refs\/heads\/main\/repo",
+      "code": ".",
+      "category": "ARAPÇA",
       "favorite": false
     }
   ]
