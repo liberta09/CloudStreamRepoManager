@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T15:38:22Z",
+  "updatedAt": "2026-09-21T15:42:29Z",
   "repos": [
     {
       "id": "1",
@@ -184,6 +184,14 @@
       "url": "https:\/\/gitlab.com\/tearrs\/cloudstream-vietnamese\/-\/raw\/main\/repo.json",
       "code": ".",
       "category": "VİETNAMCA",
+      "favorite": false
+    },
+    {
+      "id": "24",
+      "name": "NeO Eklenti Deposu",
+      "url": "https:\/\/raw.githubusercontent.com\/neoser1984\/cloudstream-extensions\/main\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
       "favorite": false
     }
   ]
