@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T20:17:05Z",
+  "updatedAt": "2026-09-21T20:29:27Z",
   "repos": [
     {
       "id": "1",
@@ -224,6 +224,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/GD2021\/CDEScript\/refs\/heads\/main\/repo.json",
       "code": ".",
       "category": "HİNT",
+      "favorite": false
+    },
+    {
+      "id": "29",
+      "name": "safarxe",
+      "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
       "favorite": false
     }
   ]
