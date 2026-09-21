@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T23:30:28Z",
+  "updatedAt": "2026-09-21T23:35:31Z",
   "repos": [
     {
       "id": "1",
@@ -212,14 +212,6 @@
     },
     {
       "id": "27",
-      "name": "3rabi",
-      "url": "https:\/\/raw.githubusercontent.com\/Abodabodd\/re-3arabi\/refs\/heads\/main\/repo",
-      "code": ".",
-      "category": "ARAPÇA",
-      "favorite": false
-    },
-    {
-      "id": "28",
       "name": "CDEScript",
       "url": "https:\/\/raw.githubusercontent.com\/GD2021\/CDEScript\/refs\/heads\/main\/repo.json",
       "code": ".",
@@ -227,7 +219,7 @@
       "favorite": false
     },
     {
-      "id": "29",
+      "id": "28",
       "name": "safarxe",
       "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
       "code": ".",
@@ -235,7 +227,7 @@
       "favorite": false
     },
     {
-      "id": "30",
+      "id": "29",
       "name": "ramazansancar",
       "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -243,7 +235,7 @@
       "favorite": false
     },
     {
-      "id": "31",
+      "id": "30",
       "name": "tamersariii",
       "url": "https:\/\/raw.githubusercontent.com\/tamersariii\/xcloudstream_tr_repo\/main\/repo.json",
       "code": ".",
