@@ -15,7 +15,7 @@
       </SelectionState>
       <SelectionState runConfigName="androidTest">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2026-09-20T23:24:49.944402300Z">
+        <DropdownSelection timestamp="2026-09-21T00:43:31.389435100Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\okay\.android\avd\Television_1080p.avd" />

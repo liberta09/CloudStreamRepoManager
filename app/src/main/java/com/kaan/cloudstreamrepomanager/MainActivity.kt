@@ -17,6 +17,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -101,6 +106,35 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
+private fun TvIconButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    content: @Composable () -> Unit
+) {
+    var focused by remember { mutableStateOf(false) }
+    val scale by animateFloatAsState(targetValue = if (focused) 1.2f else 1.0f, animationSpec = tween(150), label = "iconScale")
+    val borderColor by animateColorAsState(targetValue = if (focused) CyberYellow else Color.Transparent, animationSpec = tween(150), label = "iconBorder")
+    val bgColor by animateColorAsState(targetValue = if (focused) CyberCardDark else Color.Transparent, animationSpec = tween(150), label = "iconBg")
+
+    Box(
+        modifier = modifier
+            .size(36.dp)
+            .onFocusChanged { focused = it.isFocused }
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            }
+            .background(bgColor, RoundedCornerShape(50))
+            .border(if (focused) 2.dp else 0.dp, borderColor, RoundedCornerShape(50))
+            .clickable(enabled = enabled, onClick = onClick),
+        contentAlignment = Alignment.Center
+    ) {
+        content()
+    }
+}
+
+@Composable
 private fun TvOutlinedButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -108,15 +142,20 @@ private fun TvOutlinedButton(
     content: @Composable RowScope.() -> Unit
 ) {
     var focused by remember { mutableStateOf(false) }
-    val borderColor = if (focused) CyberYellow else CyberBorder
-    
+    val scale by animateFloatAsState(targetValue = if (focused) 1.08f else 1.0f, animationSpec = tween(150), label = "outBtnScale")
+    val borderColor by animateColorAsState(targetValue = if (focused) CyberYellow else CyberBorder, animationSpec = tween(150), label = "outBtnBorder")
+
     OutlinedButton(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
-            .onFocusChanged { focused = it.isFocused },
+            .onFocusChanged { focused = it.isFocused }
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            },
         enabled = enabled,
-        border = BorderStroke(1.5.dp, borderColor),
+        border = BorderStroke(if (focused) 2.dp else 1.dp, borderColor),
         contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
         content = content
     )
@@ -130,15 +169,20 @@ private fun TvButton(
     content: @Composable RowScope.() -> Unit
 ) {
     var focused by remember { mutableStateOf(false) }
-    val borderColor = if (focused) CyberYellow else Color.Transparent
+    val scale by animateFloatAsState(targetValue = if (focused) 1.08f else 1.0f, animationSpec = tween(150), label = "btnScale")
+    val borderColor by animateColorAsState(targetValue = if (focused) CyberYellow else Color.Transparent, animationSpec = tween(150), label = "btnBorder")
 
     Button(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
-            .onFocusChanged { focused = it.isFocused },
+            .onFocusChanged { focused = it.isFocused }
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            },
         enabled = enabled,
-        border = BorderStroke(1.5.dp, borderColor),
+        border = BorderStroke(2.dp, borderColor),
         contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
         content = content
     )
@@ -152,15 +196,20 @@ private fun TvFilledTonalButton(
     content: @Composable RowScope.() -> Unit
 ) {
     var focused by remember { mutableStateOf(false) }
-    val borderColor = if (focused) CyberYellow else Color.Transparent
+    val scale by animateFloatAsState(targetValue = if (focused) 1.08f else 1.0f, animationSpec = tween(150), label = "tonalScale")
+    val borderColor by animateColorAsState(targetValue = if (focused) CyberYellow else Color.Transparent, animationSpec = tween(150), label = "tonalBorder")
 
     FilledTonalButton(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
-            .onFocusChanged { focused = it.isFocused },
+            .onFocusChanged { focused = it.isFocused }
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            },
         enabled = enabled,
-        border = BorderStroke(1.5.dp, borderColor),
+        border = BorderStroke(2.dp, borderColor),
         contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
         content = content
     )
@@ -1178,12 +1227,13 @@ fun CloudStreamRepoManager() {
                 color = CyberSurfaceDark,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(48.dp),
+                    .statusBarsPadding(),
                 shadowElevation = 4.dp
             ) {
                 Row(
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxWidth()
+                        .height(48.dp)
                         .padding(horizontal = 8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -1275,15 +1325,14 @@ fun CloudStreamRepoManager() {
                         horizontalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
                         // Sadece Favoriler Toggle
-                        IconButton(
-                            onClick = { showFavoritesOnly = !showFavoritesOnly },
-                            modifier = Modifier.size(32.dp)
+                        TvIconButton(
+                            onClick = { showFavoritesOnly = !showFavoritesOnly }
                         ) {
                             Text(if (showFavoritesOnly) "★" else "⭐", fontSize = 14.sp, color = CyberYellow)
                         }
 
                         // Kontrol Et
-                        IconButton(
+                        TvIconButton(
                             onClick = {
                                 if (repos.isEmpty()) {
                                     Toast.makeText(context, "Kontrol edilecek repo yok", Toast.LENGTH_SHORT).show()
@@ -1301,24 +1350,21 @@ fun CloudStreamRepoManager() {
                                     )
                                 }
                             },
-                            enabled = !checkingAll,
-                            modifier = Modifier.size(32.dp)
+                            enabled = !checkingAll
                         ) {
                             Text(if (checkingAll) "⏳" else "🔍", fontSize = 14.sp)
                         }
 
                         // Yedekle
-                        IconButton(
-                            onClick = { backupLauncher.launch("cloudstream_repos_backup.json") },
-                            modifier = Modifier.size(32.dp)
+                        TvIconButton(
+                            onClick = { backupLauncher.launch("cloudstream_repos_backup.json") }
                         ) {
                             Text("💾", fontSize = 14.sp)
                         }
 
                         // Geri Yükle
-                        IconButton(
-                            onClick = { restoreLauncher.launch(arrayOf("application/json", "text/json", "text/plain", "*/*")) },
-                            modifier = Modifier.size(32.dp)
+                        TvIconButton(
+                            onClick = { restoreLauncher.launch(arrayOf("application/json", "text/json", "text/plain", "*/*")) }
                         ) {
                             Text("📥", fontSize = 14.sp)
                         }
@@ -1326,14 +1372,13 @@ fun CloudStreamRepoManager() {
                         // Admin Yetkileri
                         if (ENABLE_ADMIN_PANEL_FEATURE) {
                             if (isAdminLoggedIn) {
-                                IconButton(
-                                    onClick = { showAddDialog = true },
-                                    modifier = Modifier.size(32.dp)
+                                TvIconButton(
+                                    onClick = { showAddDialog = true }
                                 ) {
                                     Text("➕", fontSize = 14.sp)
                                 }
 
-                                IconButton(
+                                TvIconButton(
                                     onClick = {
                                         isPublishingToCloud = true
                                         Toast.makeText(context, "Buluta kaydediliyor...", Toast.LENGTH_SHORT).show()
@@ -1342,14 +1387,13 @@ fun CloudStreamRepoManager() {
                                             Toast.makeText(context, "💾 Bulut verisi güncellendi!", Toast.LENGTH_SHORT).show()
                                         }
                                     },
-                                    enabled = !isPublishingToCloud,
-                                    modifier = Modifier.size(32.dp)
+                                    enabled = !isPublishingToCloud
                                 ) {
                                     Text(if (isPublishingToCloud) "⏳" else "☁️", fontSize = 14.sp)
                                 }
                             }
 
-                            IconButton(
+                            TvIconButton(
                                 onClick = {
                                     if (isAdminLoggedIn) {
                                         adminAuthManager.logoutAdmin()
@@ -1358,17 +1402,15 @@ fun CloudStreamRepoManager() {
                                     } else {
                                         showAdminLoginDialog = true
                                     }
-                                },
-                                modifier = Modifier.size(32.dp)
+                                }
                             ) {
                                 Text(if (isAdminLoggedIn) "👑" else "🔑", fontSize = 14.sp)
                             }
                         }
 
                         // Ayarlar
-                        IconButton(
-                            onClick = { showSettingsDialog = true },
-                            modifier = Modifier.size(32.dp)
+                        TvIconButton(
+                            onClick = { showSettingsDialog = true }
                         ) {
                             Text("⚙️", fontSize = 14.sp)
                         }
@@ -1543,29 +1585,26 @@ fun CloudStreamRepoManager() {
 
             onCheckAppUpdate = {
                 checkingUpdate = true
-                Toast.makeText(context, "Merkezi katalog ve sürüm güncellemeleri kontrol ediliyor...", Toast.LENGTH_SHORT).show()
 
-                // 1. Merkezi Repo Kataloğu Güncelleme Kontrolü
-                CentralRepoApiManager.checkForRepoCatalogUpdates(context, repos.toList()) { hasCatalogUpdate, liveRepos, catalogMsg ->
-                    if (hasCatalogUpdate && liveRepos != null) {
-                        repos.clear()
-                        repos.addAll(liveRepos)
-                        saveRepos(context, liveRepos)
-                        Toast.makeText(context, catalogMsg, Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(context, catalogMsg, Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                // 2. Uygulama Versiyon Kontrolü
+                // 1. Uygulama Versiyon Kontrolü
                 AppUpdateManager.checkForUpdates(BuildConfig.VERSION_NAME) { info ->
                     checkingUpdate = false
                     if (info != null && info.isUpdateAvailable) {
                         updateInfo = info
                         showUpdateDialog = true
                         showSettingsDialog = false
-                    } else if (info != null) {
-                        Toast.makeText(context, "Uygulamanız en güncel sürümde (v${BuildConfig.VERSION_NAME})", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // 2. Yeni APK yoksa Merkezi Repo Kataloğu Güncelleme Kontrolü yap ve bildir
+                        CentralRepoApiManager.checkForRepoCatalogUpdates(context, repos.toList()) { hasCatalogUpdate, liveRepos, catalogMsg ->
+                            if (hasCatalogUpdate && liveRepos != null) {
+                                repos.clear()
+                                repos.addAll(liveRepos)
+                                saveRepos(context, liveRepos)
+                                Toast.makeText(context, catalogMsg, Toast.LENGTH_LONG).show()
+                            } else {
+                                Toast.makeText(context, catalogMsg, Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     }
                 }
             }
@@ -2016,7 +2055,7 @@ fun CloudStreamRepoManager() {
                         color = CyberCyan
                     )
                     Text(
-                        "Mevcut Sürüm: v1.0.0",
+                        "Mevcut Sürüm: v${BuildConfig.VERSION_NAME}",
                         style = MaterialTheme.typography.bodySmall,
                         color = CyberTextSecondary
                     )
