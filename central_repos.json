@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T20:30:54Z",
+  "updatedAt": "2026-09-21T20:33:15Z",
   "repos": [
     {
       "id": "1",
@@ -240,6 +240,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
       "code": ".",
       "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "31",
+      "name": "tamersariii",
+      "url": "https:\/\/raw.githubusercontent.com\/tamersariii\/xcloudstream_tr_repo\/main\/repo.json",
+      "code": ".",
+      "category": "FİLM",
       "favorite": false
     }
   ]
