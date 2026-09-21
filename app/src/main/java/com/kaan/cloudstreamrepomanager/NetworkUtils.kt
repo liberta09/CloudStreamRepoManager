@@ -10,19 +10,30 @@ import java.net.URLDecoder
 object NetworkUtils {
 
     private const val TAG = "NetworkUtils"
-    const val DEFAULT_USER_AGENT =
-        "Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36 CloudStreamRepoManager/1.1.1"
+    const val DEFAULT_USER_AGENT = "CloudStreamRepoManager-Android"
 
     /**
-     * URL'deki boşlukları, özel karakterleri, çift slash (//) hatalarını temizler ve
-     * geçerli bir HTTP/HTTPS URL'sine dönüştürür.
+     * URL'deki boşlukları, özel karakterleri, GitHub hatalı formatlarını temizler ve
+     * doğrudan indirme/raw formatına dönüştürür.
      */
     fun sanitizeUrl(rawUrl: String): String {
         if (rawUrl.isBlank()) return ""
 
         var url = rawUrl.trim()
 
-        // Çift slash hatalarını temizle (http:// veya https:// protokolü sonrasındaki // yolları düzelt)
+        // 1. RAW Dosya URL Dönüştürme:
+        // "github.com/{user}/{repo}/raw/{branch}/{file}" -> "raw.githubusercontent.com/{user}/{repo}/{branch}/{file}"
+        if (url.contains("github.com/", ignoreCase = true) && url.contains("/raw/", ignoreCase = true)) {
+            url = url.replace(Regex("https?://github\\.com/([^/]+)/([^/]+)/raw/"), "https://raw.githubusercontent.com/$1/$2/")
+        }
+        // "github.com/{user}/{repo}/blob/{branch}/{file}?raw=true" -> "raw.githubusercontent.com/{user}/{repo}/{branch}/{file}"
+        if (url.contains("github.com/", ignoreCase = true) && url.contains("/blob/", ignoreCase = true)) {
+            url = url.replace(Regex("https?://github\\.com/([^/]+)/([^/]+)/blob/"), "https://raw.githubusercontent.com/$1/$2/")
+                .replace("?raw=true", "")
+                .replace("&raw=true", "")
+        }
+
+        // 2. Çift Slash Hatalarını Temizle (http:// veya https:// protokolü dışındaki // yolları)
         val schemeEndIndex = url.indexOf("://")
         if (schemeEndIndex != -1) {
             val scheme = url.substring(0, schemeEndIndex + 3)
@@ -32,13 +43,10 @@ object NetworkUtils {
         }
 
         return try {
-            // Zaten encode edilmiş mi kontrol et
             val decoded = URLDecoder.decode(url, "UTF-8")
             if (decoded != url) {
-                // Zaten encode edilmiş, geri döndür
                 url
             } else {
-                // Uri üzerinden güvenli encode et
                 val parsedUri = Uri.parse(url)
                 parsedUri.toString()
             }
@@ -48,8 +56,26 @@ object NetworkUtils {
     }
 
     /**
-     * Yönlendirmeleri (301, 302, 303, 307, 308) şeffaf bir şekilde takip eder.
-     * HTTP <-> HTTPS ve alan adı geçişlerinde de sorunsuz çalışır.
+     * GitHub Release ve Raw indirmeleri için doğrudan indirme URL'si oluşturur.
+     * Format: https://github.com/{owner}/{repo}/releases/download/{tag}/{file_name}
+     */
+    fun buildReleaseDownloadUrl(owner: String, repo: String, tag: String = "latest", fileName: String): String {
+        val cleanTag = tag.trim().removePrefix("v")
+        val tagSegment = if (cleanTag.lowercase() == "latest") "latest/download" else "download/v$cleanTag"
+        return sanitizeUrl("https://github.com/$owner/$repo/releases/$tagSegment/$fileName")
+    }
+
+    /**
+     * GitHub Raw dosyaları için doğrudan CDN URL'si oluşturur.
+     * Format: https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{file_name}
+     */
+    fun buildRawFileUrl(owner: String, repo: String, branch: String = "main", fileName: String): String {
+        return sanitizeUrl("https://raw.githubusercontent.com/$owner/$repo/$branch/$fileName")
+    }
+
+    /**
+     * Yönlendirmeleri (301, 302, 303, 307, 308) ve SSL yönlendirmelerini şeffaf şekilde takip eder.
+     * objects.githubusercontent.com CDN geçişlerini sorunsuz halleder.
      */
     fun openFollowRedirectsConnection(
         initialUrl: String,
@@ -66,9 +92,10 @@ object NetworkUtils {
                 val urlObj = URL(currentUrl)
                 connection = urlObj.openConnection() as HttpURLConnection
                 connection.requestMethod = method
-                connection.connectTimeout = 10000
-                connection.readTimeout = 10000
-                connection.instanceFollowRedirects = false // Manuel takip
+                connection.connectTimeout = 12000
+                connection.readTimeout = 12000
+                connection.instanceFollowRedirects = true
+                HttpURLConnection.setFollowRedirects(true)
 
                 // Standard Başlıklar
                 connection.setRequestProperty("User-Agent", DEFAULT_USER_AGENT)
@@ -83,7 +110,7 @@ object NetworkUtils {
 
                 val responseCode = connection.responseCode
 
-                // 3xx Yönlendirme Kontrolü
+                // 3xx Yönlendirme Kontrolü (Cross-Protocol / Cross-Domain Manuel Yönlendirme)
                 if (responseCode in 300..399) {
                     val location = connection.getHeaderField("Location")
                     connection.disconnect()
@@ -92,7 +119,6 @@ object NetworkUtils {
                         val newUrl = if (location.startsWith("http://") || location.startsWith("https://")) {
                             location
                         } else {
-                            // Göreli (Relative) URL çözümleme
                             val base = URL(currentUrl)
                             URL(base, location).toString()
                         }
@@ -104,7 +130,6 @@ object NetworkUtils {
                     }
                 }
 
-                // Yanıt Oku
                 val isSuccess = responseCode in 200..299
                 val inputStream: InputStream? = if (isSuccess) connection.inputStream else connection.errorStream
                 val body = inputStream?.bufferedReader()?.use { it.readText() } ?: ""
@@ -112,7 +137,7 @@ object NetworkUtils {
                 if (!isSuccess) {
                     Log.e(
                         TAG,
-                        "HTTP Hata ($responseCode) | Hedef URL: $currentUrl | Yanıt Gövdesi: ${body.take(300)}"
+                        "HTTP Hata ($responseCode) | Hedef URL: $currentUrl | Body: ${body.take(300)}"
                     )
                 }
 

@@ -229,6 +229,8 @@ class AppUpdateManager {
                         setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                         setDestinationUri(Uri.fromFile(destinationFile))
                         setMimeType("application/vnd.android.package-archive")
+                        addRequestHeader("User-Agent", NetworkUtils.DEFAULT_USER_AGENT)
+                        addRequestHeader("Referer", "https://github.com/liberta09/CloudStreamRepoManager")
                     }
 
                     val downloadManager =
