@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T22:38:53Z",
+  "updatedAt": "2026-09-22T22:40:04Z",
   "repos": [
     {
       "id": "1",
@@ -240,6 +240,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/nik-cloudstream\/master\/repo.json",
       "code": ".",
       "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "31",
+      "name": "mrc",
+      "url": "https:\/\/raw.githubusercontent.com\/lepotane\/MRC-builds\/builds\/repo.json",
+      "code": ".",
+      "category": "Türkçe",
       "favorite": false
     }
   ]
