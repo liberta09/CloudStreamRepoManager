@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T23:45:55Z",
+  "updatedAt": "2026-09-22T12:21:13Z",
   "repos": [
     {
       "id": "1",
@@ -232,6 +232,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/tamersariii\/xcloudstream_tr_repo\/main\/repo.json",
       "code": ".",
       "category": "FİLM",
+      "favorite": false
+    },
+    {
+      "id": "30",
+      "name": "csprefesor",
+      "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/nik-cloudstream\/master\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
       "favorite": false
     }
   ]
