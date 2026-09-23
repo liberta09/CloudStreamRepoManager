@@ -1,17 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-23T22:53:28Z",
+  "updatedAt": "2026-09-24T01:16:47Z",
   "repos": [
     {
       "id": "1",
-      "name": "SafakStream Repository",
-      "url": "https:\/\/raw.githubusercontent.com\/SafakStream\/SafakStream\/builds\/repo.json",
-      "code": "",
-      "category": "Türkçe",
-      "favorite": false
-    },
-    {
-      "id": "2",
       "name": "Manitux Cloudstream Plugins",
       "url": "https:\/\/raw.githubusercontent.com\/manitux-app\/cs-plugins\/refs\/heads\/main\/repo.json",
       "code": "",
@@ -19,7 +11,7 @@
       "favorite": false
     },
     {
-      "id": "3",
+      "id": "2",
       "name": "TurkSinema",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSinema\/main\/repo.json",
       "code": "",
@@ -27,7 +19,7 @@
       "favorite": false
     },
     {
-      "id": "4",
+      "id": "3",
       "name": "cstest",
       "url": "https:\/\/raw.githubusercontent.com\/ctnkyaumt\/cstest\/master\/repo.json",
       "code": "",
@@ -35,7 +27,7 @@
       "favorite": false
     },
     {
-      "id": "5",
+      "id": "4",
       "name": "AllForU",
       "url": "https:\/\/raw.githubusercontent.com\/RVRBEAST76\/allforu-repo\/builds\/repo.json",
       "code": ".",
@@ -43,7 +35,7 @@
       "favorite": false
     },
     {
-      "id": "6",
+      "id": "5",
       "name": "BronzeCloud",
       "url": "https:\/\/raw.githubusercontent.com\/Dr-Octagon\/cloudstream-turkish\/refs\/heads\/builds\/repo_stable.json",
       "code": "",
@@ -51,7 +43,7 @@
       "favorite": false
     },
     {
-      "id": "7",
+      "id": "6",
       "name": "Phisher Repo",
       "url": "https:\/\/raw.githubusercontent.com\/phisher98\/cloudstream-extensions-phisher\/refs\/heads\/builds\/repo.json",
       "code": ".",
@@ -59,7 +51,7 @@
       "favorite": false
     },
     {
-      "id": "8",
+      "id": "7",
       "name": "Mega repository",
       "url": "https:\/\/raw.githubusercontent.com\/self-similarity\/MegaRepo\/builds\/repo.json",
       "code": "",
@@ -67,7 +59,7 @@
       "favorite": false
     },
     {
-      "id": "9",
+      "id": "8",
       "name": "megaturk",
       "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/TurkMegaRepo\/refs\/heads\/master\/repo.json",
       "code": "",
@@ -75,7 +67,7 @@
       "favorite": false
     },
     {
-      "id": "10",
+      "id": "9",
       "name": "Latte - Sinetech.TR",
       "url": "https:\/\/raw.githubusercontent.com\/GitLatte\/Sinetech\/refs\/heads\/main\/repo.json",
       "code": "",
@@ -83,7 +75,7 @@
       "favorite": false
     },
     {
-      "id": "11",
+      "id": "10",
       "name": "Makoto'nun Cloudstream Reposu",
       "url": "https:\/\/raw.githubusercontent.com\/Sertel392\/Makotogecici\/refs\/heads\/main\/repo.json",
       "code": "",
@@ -91,7 +83,7 @@
       "favorite": false
     },
     {
-      "id": "12",
+      "id": "11",
       "name": "Wio Sinema",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSinema\/builds\/repo.json",
       "code": "yok",
@@ -99,7 +91,7 @@
       "favorite": false
     },
     {
-      "id": "13",
+      "id": "12",
       "name": "TurkSpor",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSpor\/main\/repo.json",
       "code": ".",
@@ -107,7 +99,7 @@
       "favorite": false
     },
     {
-      "id": "14",
+      "id": "13",
       "name": "Ripplay",
       "url": "https:\/\/raw.githubusercontent.com\/Ripplay\/cloudstream-repo\/main\/repo.json",
       "code": "yok",
@@ -115,7 +107,7 @@
       "favorite": false
     },
     {
-      "id": "15",
+      "id": "14",
       "name": "Blackhope01",
       "url": "https:\/\/raw.githubusercontent.com\/blackhope01\/cloudstream-plugins\/refs\/heads\/main\/repo.json",
       "code": ".",
@@ -123,7 +115,7 @@
       "favorite": false
     },
     {
-      "id": "16",
+      "id": "15",
       "name": "EmreKahveci",
       "url": "https:\/\/raw.githubusercontent.com\/baristomruk-max\/BTVault\/main\/repo.json",
       "code": ".",
@@ -131,7 +123,7 @@
       "favorite": false
     },
     {
-      "id": "17",
+      "id": "16",
       "name": "wiojelt",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSpor\/main\/repo.json",
       "code": ".",
@@ -139,7 +131,7 @@
       "favorite": false
     },
     {
-      "id": "18",
+      "id": "17",
       "name": "Wiospor",
       "url": "https:\/\/tinyurl.com\/WioSpor",
       "code": ".",
@@ -147,7 +139,7 @@
       "favorite": false
     },
     {
-      "id": "19",
+      "id": "18",
       "name": "cs-karma",
       "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/cs-Karma\/refs\/heads\/master\/repo.json",
       "code": ".",
@@ -155,7 +147,7 @@
       "favorite": false
     },
     {
-      "id": "20",
+      "id": "19",
       "name": "doGior's Had Enough",
       "url": "https:\/\/raw.githubusercontent.com\/doGior\/doGiorsHadEnough\/refs\/heads\/builds\/repo.json",
       "code": ".",
@@ -163,7 +155,7 @@
       "favorite": false
     },
     {
-      "id": "21",
+      "id": "20",
       "name": "German providers repository",
       "url": "https:\/\/raw.githubusercontent.com\/Bnyro\/GermanProviders\/refs\/heads\/master\/repo.json",
       "code": ".",
@@ -171,7 +163,7 @@
       "favorite": false
     },
     {
-      "id": "22",
+      "id": "21",
       "name": "Vietnamese Extension",
       "url": "https:\/\/gitlab.com\/tearrs\/cloudstream-vietnamese\/-\/raw\/main\/repo.json",
       "code": ".",
@@ -179,7 +171,7 @@
       "favorite": false
     },
     {
-      "id": "23",
+      "id": "22",
       "name": "NeO Eklenti Deposu",
       "url": "https:\/\/raw.githubusercontent.com\/neoser1984\/cloudstream-extensions\/main\/repo.json",
       "code": ".",
@@ -187,7 +179,7 @@
       "favorite": false
     },
     {
-      "id": "24",
+      "id": "23",
       "name": "Megix Repo",
       "url": "https:\/\/raw.githubusercontent.com\/SaurabhKaperwan\/CSX\/builds\/CS.json",
       "code": ".",
@@ -195,7 +187,7 @@
       "favorite": false
     },
     {
-      "id": "25",
+      "id": "24",
       "name": "CNC REPO ( ALL LAUNGAGES",
       "url": "https:\/\/raw.githubusercontent.com\/NivinCNC\/CNCVerse-Cloud-Stream-Extension\/refs\/heads\/builds\/CNC.json",
       "code": ".",
@@ -203,7 +195,7 @@
       "favorite": false
     },
     {
-      "id": "26",
+      "id": "25",
       "name": "CDEScript",
       "url": "https:\/\/raw.githubusercontent.com\/GD2021\/CDEScript\/refs\/heads\/main\/repo.json",
       "code": ".",
@@ -211,7 +203,7 @@
       "favorite": false
     },
     {
-      "id": "27",
+      "id": "26",
       "name": "safarxe",
       "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
       "code": ".",
@@ -219,7 +211,7 @@
       "favorite": false
     },
     {
-      "id": "28",
+      "id": "27",
       "name": "ramazansancar",
       "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -227,7 +219,7 @@
       "favorite": false
     },
     {
-      "id": "29",
+      "id": "28",
       "name": "csprefesor",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/nik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -235,7 +227,7 @@
       "favorite": false
     },
     {
-      "id": "30",
+      "id": "29",
       "name": "mrc",
       "url": "https:\/\/raw.githubusercontent.com\/lepotane\/MRC-builds\/builds\/repo.json",
       "code": ".",
@@ -243,7 +235,7 @@
       "favorite": false
     },
     {
-      "id": "31",
+      "id": "30",
       "name": "FRENCH STREAM",
       "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
       "code": ".",
@@ -251,7 +243,7 @@
       "favorite": false
     },
     {
-      "id": "32",
+      "id": "31",
       "name": "kreastream",
       "url": "https:\/\/raw.githubusercontent.com\/kreadir\/kreaStream\/main\/repo.json",
       "code": ".",
