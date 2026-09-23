@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-23T17:31:11Z",
+  "updatedAt": "2026-09-23T17:32:07Z",
   "repos": [
     {
       "id": "1",
@@ -256,14 +256,6 @@
       "url": "https:\/\/raw.githubusercontent.com\/GitLatte\/patr0n\/site\/lists\/power-sinema.m3u",
       "code": ".",
       "category": "TÜRKÇE",
-      "favorite": false
-    },
-    {
-      "id": "33",
-      "name": "French repo",
-      "url": "https:\/\/raw.githubusercontent.com\/zzikozz\/frenchCS\/refs\/heads\/main\/repo.json?utm_source=chatgpt.com",
-      "code": ".",
-      "category": "FRANSIZCA",
       "favorite": false
     }
   ]
