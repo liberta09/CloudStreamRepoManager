@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-23T20:27:20Z",
+  "updatedAt": "2026-09-23T20:27:51Z",
   "repos": [
     {
       "id": "1",
@@ -228,14 +228,6 @@
     },
     {
       "id": "29",
-      "name": "tamersariii",
-      "url": "https:\/\/raw.githubusercontent.com\/tamersariii\/xcloudstream_tr_repo\/main\/repo.json",
-      "code": ".",
-      "category": "FİLM",
-      "favorite": false
-    },
-    {
-      "id": "30",
       "name": "csprefesor",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/nik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -243,7 +235,7 @@
       "favorite": false
     },
     {
-      "id": "31",
+      "id": "30",
       "name": "mrc",
       "url": "https:\/\/raw.githubusercontent.com\/lepotane\/MRC-builds\/builds\/repo.json",
       "code": ".",
@@ -251,7 +243,7 @@
       "favorite": false
     },
     {
-      "id": "32",
+      "id": "31",
       "name": "FRENCH STREAM",
       "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
       "code": ".",
