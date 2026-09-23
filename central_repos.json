@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-23T17:32:07Z",
+  "updatedAt": "2026-09-23T17:41:55Z",
   "repos": [
     {
       "id": "1",
@@ -256,6 +256,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/GitLatte\/patr0n\/site\/lists\/power-sinema.m3u",
       "code": ".",
       "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "33",
+      "name": "FRENCH STREAM",
+      "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
+      "code": ".",
+      "category": "FRANSIZCA",
       "favorite": false
     }
   ]
