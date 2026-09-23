@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-23T01:07:37Z",
+  "updatedAt": "2026-09-23T17:26:06Z",
   "repos": [
     {
       "id": "1",
@@ -254,6 +254,14 @@
       "id": "32",
       "name": "patron",
       "url": "https:\/\/raw.githubusercontent.com\/GitLatte\/patr0n\/site\/lists\/power-sinema.m3u",
+      "code": ".",
+      "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "33",
+      "name": "feroxx",
+      "url": "https:\/\/raw.githubusercontent.com\/feroxx\/Kekik-cloudstream\/refs\/heads\/builds\/repo.json",
       "code": ".",
       "category": "TÜRKÇE",
       "favorite": false
