@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T00:49:04Z",
+  "updatedAt": "2026-09-25T02:06:37Z",
   "repos": [
     {
       "id": "1",
@@ -164,14 +164,6 @@
     },
     {
       "id": "21",
-      "name": "Vietnamese Extension",
-      "url": "https:\/\/gitlab.com\/tearrs\/cloudstream-vietnamese\/-\/raw\/main\/repo.json",
-      "code": ".",
-      "category": "VİETNAMCA",
-      "favorite": false
-    },
-    {
-      "id": "22",
       "name": "NeO Eklenti Deposu",
       "url": "https:\/\/raw.githubusercontent.com\/neoser1984\/cloudstream-extensions\/main\/repo.json",
       "code": ".",
@@ -179,7 +171,7 @@
       "favorite": false
     },
     {
-      "id": "23",
+      "id": "22",
       "name": "Megix Repo",
       "url": "https:\/\/raw.githubusercontent.com\/SaurabhKaperwan\/CSX\/builds\/CS.json",
       "code": ".",
@@ -187,7 +179,7 @@
       "favorite": false
     },
     {
-      "id": "24",
+      "id": "23",
       "name": "CNC REPO ( ALL LAUNGAGES",
       "url": "https:\/\/raw.githubusercontent.com\/NivinCNC\/CNCVerse-Cloud-Stream-Extension\/refs\/heads\/builds\/CNC.json",
       "code": ".",
@@ -195,7 +187,7 @@
       "favorite": false
     },
     {
-      "id": "25",
+      "id": "24",
       "name": "CDEScript",
       "url": "https:\/\/raw.githubusercontent.com\/GD2021\/CDEScript\/refs\/heads\/main\/repo.json",
       "code": ".",
@@ -203,7 +195,7 @@
       "favorite": false
     },
     {
-      "id": "26",
+      "id": "25",
       "name": "safarxe",
       "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
       "code": ".",
@@ -211,7 +203,7 @@
       "favorite": false
     },
     {
-      "id": "27",
+      "id": "26",
       "name": "ramazansancar",
       "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -219,7 +211,7 @@
       "favorite": false
     },
     {
-      "id": "28",
+      "id": "27",
       "name": "csprefesor",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/nik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -227,7 +219,7 @@
       "favorite": false
     },
     {
-      "id": "29",
+      "id": "28",
       "name": "mrc",
       "url": "https:\/\/raw.githubusercontent.com\/lepotane\/MRC-builds\/builds\/repo.json",
       "code": ".",
@@ -235,7 +227,7 @@
       "favorite": false
     },
     {
-      "id": "30",
+      "id": "29",
       "name": "FRENCH STREAM",
       "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
       "code": ".",
@@ -243,7 +235,7 @@
       "favorite": false
     },
     {
-      "id": "31",
+      "id": "30",
       "name": "kreastream",
       "url": "https:\/\/raw.githubusercontent.com\/kreadir\/kreaStream\/main\/repo.json",
       "code": ".",
@@ -251,7 +243,7 @@
       "favorite": false
     },
     {
-      "id": "32",
+      "id": "31",
       "name": "ulgenzade",
       "url": "https:\/\/raw.githubusercontent.com\/ulgenzade\/ulgencs3\/builds\/repo.json",
       "code": ".",
