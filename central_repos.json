@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-24T01:20:08Z",
+  "updatedAt": "2026-09-25T00:48:57Z",
   "repos": [
     {
       "id": "1",
@@ -248,6 +248,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/kreadir\/kreaStream\/main\/repo.json",
       "code": ".",
       "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "32",
+      "name": "ulgenzade",
+      "url": "https:\/\/raw.githubusercontent.com\/ulgenzade\/ulgencs3\/builds\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
       "favorite": false
     }
   ]
