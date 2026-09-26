@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-26T23:17:48Z",
+  "updatedAt": "2026-09-26T23:18:40Z",
   "repos": [
     {
       "id": "1",
@@ -232,6 +232,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/kreadir\/kreaStream\/main\/repo.json",
       "code": ".",
       "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "30",
+      "name": "Wiospor",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojet\/WioSpor\/main\/repo.json\n https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSpor\/main\/repo.json",
+      "code": ".",
+      "category": "SPOR",
       "favorite": false
     }
   ]
