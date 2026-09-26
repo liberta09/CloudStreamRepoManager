@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-26T23:17:31Z",
+  "updatedAt": "2026-09-26T23:17:48Z",
   "repos": [
     {
       "id": "1",
@@ -132,14 +132,6 @@
     },
     {
       "id": "17",
-      "name": "Wiospor",
-      "url": "https:\/\/raw.githubusercontent.com\/Wiojet\/WioSpor\/main\/repo.json",
-      "code": ".",
-      "category": "SPOR",
-      "favorite": false
-    },
-    {
-      "id": "18",
       "name": "cs-karma",
       "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/cs-Karma\/refs\/heads\/master\/repo.json",
       "code": ".",
@@ -147,7 +139,7 @@
       "favorite": false
     },
     {
-      "id": "19",
+      "id": "18",
       "name": "doGior's Had Enough",
       "url": "https:\/\/raw.githubusercontent.com\/doGior\/doGiorsHadEnough\/refs\/heads\/builds\/repo.json",
       "code": ".",
@@ -155,7 +147,7 @@
       "favorite": false
     },
     {
-      "id": "20",
+      "id": "19",
       "name": "German providers repository",
       "url": "https:\/\/raw.githubusercontent.com\/Bnyro\/GermanProviders\/refs\/heads\/master\/repo.json",
       "code": ".",
@@ -163,7 +155,7 @@
       "favorite": false
     },
     {
-      "id": "21",
+      "id": "20",
       "name": "NeO Eklenti Deposu",
       "url": "https:\/\/raw.githubusercontent.com\/neoser1984\/cloudstream-extensions\/main\/repo.json",
       "code": ".",
@@ -171,7 +163,7 @@
       "favorite": false
     },
     {
-      "id": "22",
+      "id": "21",
       "name": "Megix Repo",
       "url": "https:\/\/raw.githubusercontent.com\/SaurabhKaperwan\/CSX\/builds\/CS.json",
       "code": ".",
@@ -179,7 +171,7 @@
       "favorite": false
     },
     {
-      "id": "23",
+      "id": "22",
       "name": "CNC REPO ( ALL LAUNGAGES",
       "url": "https:\/\/raw.githubusercontent.com\/NivinCNC\/CNCVerse-Cloud-Stream-Extension\/refs\/heads\/builds\/CNC.json",
       "code": ".",
@@ -187,7 +179,7 @@
       "favorite": false
     },
     {
-      "id": "24",
+      "id": "23",
       "name": "CDEScript",
       "url": "https:\/\/raw.githubusercontent.com\/GD2021\/CDEScript\/refs\/heads\/main\/repo.json",
       "code": ".",
@@ -195,7 +187,7 @@
       "favorite": false
     },
     {
-      "id": "25",
+      "id": "24",
       "name": "safarxe",
       "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
       "code": ".",
@@ -203,7 +195,7 @@
       "favorite": false
     },
     {
-      "id": "26",
+      "id": "25",
       "name": "ramazansancar",
       "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -211,7 +203,7 @@
       "favorite": false
     },
     {
-      "id": "27",
+      "id": "26",
       "name": "csprefesor",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/nik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -219,7 +211,7 @@
       "favorite": false
     },
     {
-      "id": "28",
+      "id": "27",
       "name": "mrc",
       "url": "https:\/\/raw.githubusercontent.com\/lepotane\/MRC-builds\/builds\/repo.json",
       "code": ".",
@@ -227,7 +219,7 @@
       "favorite": false
     },
     {
-      "id": "29",
+      "id": "28",
       "name": "FRENCH STREAM",
       "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
       "code": ".",
@@ -235,7 +227,7 @@
       "favorite": false
     },
     {
-      "id": "30",
+      "id": "29",
       "name": "kreastream",
       "url": "https:\/\/raw.githubusercontent.com\/kreadir\/kreaStream\/main\/repo.json",
       "code": ".",
