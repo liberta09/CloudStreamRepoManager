@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T02:09:53Z",
+  "updatedAt": "2026-09-26T23:16:28Z",
   "repos": [
     {
       "id": "1",
@@ -133,7 +133,7 @@
     {
       "id": "17",
       "name": "Wiospor",
-      "url": "https:\/\/tinyurl.com\/WioSpor",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojet\/WioSpor\/main\/repo.json",
       "code": ".",
       "category": "SPOR",
       "favorite": false
