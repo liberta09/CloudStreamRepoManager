@@ -232,6 +232,15 @@ val ENABLE_ADMIN_PANEL_FEATURE = BuildConfig.ENABLE_ADMIN_PANEL
 
 // Ayarlar ekranındaki Telegram kanalı bağlantısı
 const val TELEGRAM_CHANNEL_URL = "https://t.me/+o-RFlV4U3UY5NGU8"
+private const val TELEGRAM_INVITE_HIDDEN_KEY = "telegram_invite_hidden"
+
+fun openTelegramChannel(context: Context) {
+    try {
+        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_CHANNEL_URL)))
+    } catch (e: Exception) {
+        Toast.makeText(context, "Bağlantı açılamadı", Toast.LENGTH_SHORT).show()
+    }
+}
 
 /* =========================================================
    ACTIVITY
@@ -915,6 +924,15 @@ fun CloudStreamRepoManager() {
         mutableStateOf(false)
     }
 
+    // Açılışta Telegram daveti (sadece kullanıcı sürümü, "Bir daha gösterme" denmediyse)
+    var showTelegramInvite by remember {
+        mutableStateOf(
+            !ENABLE_ADMIN_PANEL_FEATURE &&
+                !context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                    .getBoolean(TELEGRAM_INVITE_HIDDEN_KEY, false)
+        )
+    }
+
     var selectedRepo by remember {
         mutableStateOf<Repo?>(null)
     }
@@ -1473,6 +1491,21 @@ fun CloudStreamRepoManager() {
     /* =========================================================
        EKLE
        ========================================================= */
+
+    if (showTelegramInvite) {
+        TelegramInviteDialog(
+            onJoin = {
+                showTelegramInvite = false
+                openTelegramChannel(context)
+            },
+            onLater = { showTelegramInvite = false },
+            onNeverShow = {
+                showTelegramInvite = false
+                context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                    .edit().putBoolean(TELEGRAM_INVITE_HIDDEN_KEY, true).apply()
+            }
+        )
+    }
 
     if (showSettingsDialog) {
 
@@ -2532,13 +2565,7 @@ fun SettingsDialog(
                 val telegramContext = LocalContext.current
                 TvOutlinedButton(
                     onClick = {
-                        try {
-                            telegramContext.startActivity(
-                                Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_CHANNEL_URL))
-                            )
-                        } catch (e: Exception) {
-                            Toast.makeText(telegramContext, "Bağlantı açılamadı", Toast.LENGTH_SHORT).show()
-                        }
+                        openTelegramChannel(telegramContext)
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -2563,6 +2590,39 @@ fun SettingsDialog(
                 Text("Kapat")
             }
         }
+    )
+}
+
+/* =========================================================
+   TELEGRAM DAVET DİYALOĞU (açılışta)
+   ========================================================= */
+
+@Composable
+fun TelegramInviteDialog(
+    onJoin: () -> Unit,
+    onLater: () -> Unit,
+    onNeverShow: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onLater,
+        title = {
+            Text("✈️ Telegram Kanalımıza Katılın", fontWeight = FontWeight.Bold)
+        },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Yeni repolar, güncellemeler ve duyurular için Telegram kanalımıza katılın!")
+                TvButton(onClick = onJoin, modifier = Modifier.fillMaxWidth()) {
+                    Text("✈️ Kanala Katıl")
+                }
+                TvOutlinedButton(onClick = onLater, modifier = Modifier.fillMaxWidth()) {
+                    Text("Daha Sonra")
+                }
+                TvOutlinedButton(onClick = onNeverShow, modifier = Modifier.fillMaxWidth()) {
+                    Text("Bir Daha Gösterme")
+                }
+            }
+        },
+        confirmButton = {}
     )
 }
 
