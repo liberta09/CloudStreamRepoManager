@@ -5,6 +5,7 @@
   <img src="https://img.shields.io/badge/Language-Kotlin-blue?style=for-the-badge&logo=kotlin" />
   <img src="https://img.shields.io/badge/UI-Jetpack%20Compose-yellow?style=for-the-badge&logo=jetpackcompose" />
   <img src="https://img.shields.io/badge/Catalog-Verified%20Central%20Sync-purple?style=for-the-badge" />
+  <a href="https://t.me/+o-RFlV4U3UY5NGU8"><img src="https://img.shields.io/badge/Telegram-Kanala%20Katıl-229ED9?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" /></a>
 </p>
 
 **CloudStream Repo Manager**, CloudStream Android uygulaması için geliştirilmiş fütüristik, canlı bulut senkronizasyonlu ve tek tıkla eklenti yükleme destekli güvenli eklenti kataloğu yöneticisidir.
@@ -20,6 +21,12 @@ Kullanıcı sürümünü indirmek için aşağıdaki butona tıklayın:
 <p align="center">
   <a href="https://github.com/liberta09/CloudStreamRepoManager/releases/latest/download/CSRepoManager_User.apk">
     <img src="https://img.shields.io/badge/📥%20APK%20İNDİR-CSRepoManager__User.apk-brightgreen?style=for-the-badge&logo=android&logoColor=white" alt="APK İndir" height="60" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://t.me/+o-RFlV4U3UY5NGU8">
+    <img src="https://img.shields.io/badge/💬%20TELEGRAM-Kanala%20Katıl-229ED9?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram Kanalına Katıl" height="60" />
   </a>
 </p>
 
@@ -64,6 +71,18 @@ Kullanıcı sürümünü indirmek için aşağıdaki butona tıklayın:
 3. Cihazınızdaki **CloudStream** uygulaması otomatik açılacaktır.
 4. Ekrana gelen **"Bu Eklenti Reposu Eklensin mi?"** penceresinde **"Yükle / Onayla"** seçeneğini seçin.
 5. Yayınların açılmaması durumunda ana ekrandaki **`🛠️ OYNATMA / LİNK ÇÖZÜCÜ`** butonunu kullanabilirsiniz.
+
+---
+
+## 💬 Destek ve Duyurular
+
+Yeni eklentiler, güncellemeler ve duyurular için Telegram kanalımıza katılın. Soru, istek ve hata bildirimlerinizi de oradan iletebilirsiniz.
+
+<p align="center">
+  <a href="https://t.me/+o-RFlV4U3UY5NGU8">
+    <img src="https://img.shields.io/badge/Telegram-Kanala%20Katıl-229ED9?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram Kanalına Katıl" />
+  </a>
+</p>
 
 ---
 
