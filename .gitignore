@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Admin sürümü asla depoya yüklenmesin
+app/admin/
+*Admin*.apk
+*admin*.apk
