@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-26T23:29:03Z",
+  "updatedAt": "2026-09-27T04:30:27Z",
   "repos": [
     {
       "id": "1",
@@ -236,14 +236,6 @@
     },
     {
       "id": "30",
-      "name": "Wiospor",
-      "url": "https:\/\/raw.githubusercohttps:\/\/raw.githubusercontent.com\/Wiojelt\/WioSpor\/main\/repo.json\n https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSpor\/main\/repo.json",
-      "code": ".",
-      "category": "SPOR",
-      "favorite": false
-    },
-    {
-      "id": "31",
       "name": "providers",
       "url": "https:\/\/raw.githubusercontent.com\/recloudstream\/extensions\/master\/repo.json",
       "code": ".",
