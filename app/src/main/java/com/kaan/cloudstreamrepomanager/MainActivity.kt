@@ -1267,29 +1267,7 @@ fun CloudStreamRepoManager() {
 
                     Spacer(Modifier.width(6.dp))
 
-                    // 2. MIDDLE: Search Bar (~32dp)
-                    OutlinedTextField(
-                        value = searchText,
-                        onValueChange = { searchText = it },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(36.dp),
-                        placeholder = { Text("Repo ara...", fontSize = 11.sp, color = CyberTextSecondary) },
-                        singleLine = true,
-                        textStyle = TextStyle(fontSize = 11.sp, color = CyberTextPrimary),
-                        shape = RoundedCornerShape(16.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = CyberCyan,
-                            unfocusedBorderColor = CyberBorder,
-                            focusedContainerColor = CyberCardDark,
-                            unfocusedContainerColor = CyberCardDark,
-                        ),
-                        leadingIcon = { Text("🔎", fontSize = 11.sp) }
-                    )
-
-                    Spacer(Modifier.width(6.dp))
-
-                    // 3. RIGHT: Compact Icon Buttons (32x32dp)
+                    // 2. MIDDLE: Compact Icon Buttons (32x32dp)
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(2.dp)
@@ -1385,6 +1363,28 @@ fun CloudStreamRepoManager() {
                             Text("⚙️", fontSize = 14.sp)
                         }
                     }
+
+                    Spacer(Modifier.width(6.dp))
+
+                    // 3. RIGHT: Search Bar (en sağda)
+                    OutlinedTextField(
+                        value = searchText,
+                        onValueChange = { searchText = it },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(36.dp),
+                        placeholder = { Text("Repo ara...", fontSize = 11.sp, color = CyberTextSecondary) },
+                        singleLine = true,
+                        textStyle = TextStyle(fontSize = 11.sp, color = CyberTextPrimary),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = CyberCyan,
+                            unfocusedBorderColor = CyberBorder,
+                            focusedContainerColor = CyberCardDark,
+                            unfocusedContainerColor = CyberCardDark,
+                        ),
+                        leadingIcon = { Text("🔎", fontSize = 11.sp) }
+                    )
                 }
             }
         }
