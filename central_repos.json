@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-27T04:30:33Z",
+  "updatedAt": "2026-09-27T14:01:03Z",
   "repos": [
     {
       "id": "1",
@@ -240,6 +240,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/recloudstream\/extensions\/master\/repo.json",
       "code": ".",
       "category": "İNGİLİZCE",
+      "favorite": false
+    },
+    {
+      "id": "31",
+      "name": "Keyifler olsun",
+      "url": "https:\/\/raw.githubusercontent.com\/keyiflerolsun\/Kekik-cloudstream\/master\/repo.json",
+      "code": ".",
+      "category": "turkçe",
       "favorite": false
     }
   ]
