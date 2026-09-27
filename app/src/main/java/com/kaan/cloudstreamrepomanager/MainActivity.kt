@@ -1301,6 +1301,30 @@ fun CloudStreamRepoManager() {
                             Text(if (showFavoritesOnly) "★" else "⭐", fontSize = 14.sp, color = CyberYellow)
                         }
 
+                        // Kontrol Et
+                        TvIconButton(
+                            onClick = {
+                                if (repos.isEmpty()) {
+                                    Toast.makeText(context, "Kontrol edilecek repo yok", Toast.LENGTH_SHORT).show()
+                                } else if (!checkingAll) {
+                                    checkingAll = true
+                                    checkResults.clear()
+                                    checkAllRepoUrls(
+                                        repos = repos.toList(),
+                                        onStart = { checkingMessage = it },
+                                        onResult = { url, res -> checkResults[url] = res },
+                                        onFinished = {
+                                            checkingAll = false
+                                            Toast.makeText(context, "Tüm linkler kontrol edildi", Toast.LENGTH_SHORT).show()
+                                        }
+                                    )
+                                }
+                            },
+                            enabled = !checkingAll
+                        ) {
+                            Text(if (checkingAll) "⏳" else "🔍", fontSize = 14.sp)
+                        }
+
                         // Yedekle
                         TvIconButton(
                             onClick = { backupLauncher.launch("cloudstream_repos_backup.json") }
@@ -1359,30 +1383,6 @@ fun CloudStreamRepoManager() {
                             onClick = { showSettingsDialog = true }
                         ) {
                             Text("⚙️", fontSize = 14.sp)
-                        }
-
-                        // Kontrol Et (en sağda)
-                        TvIconButton(
-                            onClick = {
-                                if (repos.isEmpty()) {
-                                    Toast.makeText(context, "Kontrol edilecek repo yok", Toast.LENGTH_SHORT).show()
-                                } else if (!checkingAll) {
-                                    checkingAll = true
-                                    checkResults.clear()
-                                    checkAllRepoUrls(
-                                        repos = repos.toList(),
-                                        onStart = { checkingMessage = it },
-                                        onResult = { url, res -> checkResults[url] = res },
-                                        onFinished = {
-                                            checkingAll = false
-                                            Toast.makeText(context, "Tüm linkler kontrol edildi", Toast.LENGTH_SHORT).show()
-                                        }
-                                    )
-                                }
-                            },
-                            enabled = !checkingAll
-                        ) {
-                            Text(if (checkingAll) "⏳" else "🔍", fontSize = 14.sp)
                         }
                     }
                 }
