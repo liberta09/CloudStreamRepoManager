@@ -234,6 +234,16 @@ val ENABLE_ADMIN_PANEL_FEATURE = BuildConfig.ENABLE_ADMIN_PANEL
 const val TELEGRAM_CHANNEL_URL = "https://t.me/+o-RFlV4U3UY5NGU8"
 private const val TELEGRAM_INVITE_HIDDEN_KEY = "telegram_invite_hidden"
 
+fun openLink(context: Context, link: String) {
+    if (link.isBlank()) return
+    val url = if (link.startsWith("http://") || link.startsWith("https://")) link else "https://$link"
+    try {
+        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+    } catch (e: Exception) {
+        Toast.makeText(context, "Bağlantı açılamadı", Toast.LENGTH_SHORT).show()
+    }
+}
+
 fun openTelegramChannel(context: Context) {
     try {
         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_CHANNEL_URL)))
@@ -925,6 +935,13 @@ fun CloudStreamRepoManager() {
     }
 
     // Açılışta Telegram daveti (sadece kullanıcı sürümü, "Bir daha gösterme" denmediyse)
+    // Duyurular
+    val announcements = remember { mutableStateListOf<Announcement>() }
+    var announcementPopup by remember { mutableStateOf<Announcement?>(null) }
+    var showAnnouncementsDialog by remember { mutableStateOf(false) }
+    var showAdminAnnouncementsDialog by remember { mutableStateOf(false) }
+    var publishingAnnouncements by remember { mutableStateOf(false) }
+
     var showTelegramInvite by remember {
         mutableStateOf(
             !ENABLE_ADMIN_PANEL_FEATURE &&
@@ -994,6 +1011,14 @@ fun CloudStreamRepoManager() {
                 repos.clear()
                 repos.addAll(cleanRepos)
                 saveRepos(context, cleanRepos)
+            }
+        }
+
+        AnnouncementManager.fetch(context) { list ->
+            announcements.clear()
+            announcements.addAll(list)
+            if (!ENABLE_ADMIN_PANEL_FEATURE) {
+                announcementPopup = AnnouncementManager.unseenLatest(context, list)
             }
         }
 
@@ -1344,6 +1369,13 @@ fun CloudStreamRepoManager() {
                                     Text("➕", fontSize = 14.sp)
                                 }
 
+                                // Duyuru Yönetimi
+                                TvIconButton(
+                                    onClick = { showAdminAnnouncementsDialog = true }
+                                ) {
+                                    Text("📢", fontSize = 14.sp)
+                                }
+
                                 TvIconButton(
                                     onClick = {
                                         isPublishingToCloud = true
@@ -1507,9 +1539,58 @@ fun CloudStreamRepoManager() {
         )
     }
 
+    // Yeni duyuru penceresi (Telegram daveti kapandıktan sonra gösterilir)
+    val popup = announcementPopup
+    if (popup != null && !showTelegramInvite) {
+        AnnouncementPopupDialog(
+            announcement = popup,
+            onOpenLink = {
+                AnnouncementManager.markSeen(context, popup)
+                announcementPopup = null
+                openLink(context, popup.link)
+            },
+            onDismiss = {
+                AnnouncementManager.markSeen(context, popup)
+                announcementPopup = null
+            }
+        )
+    }
+
+    if (showAnnouncementsDialog) {
+        AnnouncementsListDialog(
+            announcements = announcements.toList(),
+            onOpenLink = { link -> openLink(context, link) },
+            onDismiss = { showAnnouncementsDialog = false }
+        )
+    }
+
+    if (showAdminAnnouncementsDialog) {
+        AdminAnnouncementsDialog(
+            announcements = announcements.toList(),
+            publishing = publishingAnnouncements,
+            onPublish = { newList ->
+                publishingAnnouncements = true
+                AnnouncementManager.publish(context, newList) { ok, msg ->
+                    publishingAnnouncements = false
+                    if (ok) {
+                        announcements.clear()
+                        announcements.addAll(newList)
+                    }
+                    Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+                }
+            },
+            onDismiss = { showAdminAnnouncementsDialog = false }
+        )
+    }
+
     if (showSettingsDialog) {
 
         SettingsDialog(
+
+            onAnnouncements = {
+                showSettingsDialog = false
+                showAnnouncementsDialog = true
+            },
 
             onDismiss = {
                 showSettingsDialog = false
@@ -2497,6 +2578,8 @@ fun SettingsDialog(
 
     onDismiss: () -> Unit,
 
+    onAnnouncements: () -> Unit,
+
     onCheckAll: () -> Unit,
 
     onBackup: () -> Unit,
@@ -2526,6 +2609,13 @@ fun SettingsDialog(
             ) {
 
                 Text("Repo yönetimi ve uygulama işlemleri")
+
+                TvOutlinedButton(
+                    onClick = onAnnouncements,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("📢 Duyurular")
+                }
 
                 TvOutlinedButton(
                     onClick = onCheckAppUpdate,
@@ -2585,6 +2675,208 @@ fun SettingsDialog(
             }
         },
 
+        confirmButton = {
+            TvButton(onClick = onDismiss) {
+                Text("Kapat")
+            }
+        }
+    )
+}
+
+/* =========================================================
+   DUYURU DİYALOGLARI
+   ========================================================= */
+
+@Composable
+fun AnnouncementPopupDialog(
+    announcement: Announcement,
+    onOpenLink: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                "📢 " + announcement.title.ifBlank { "Duyuru" },
+                fontWeight = FontWeight.Bold
+            )
+        },
+        text = {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(announcement.message)
+                if (announcement.date.isNotBlank()) {
+                    Text(announcement.date, fontSize = 12.sp, color = CyberTextSecondary)
+                }
+                if (announcement.link.isNotBlank()) {
+                    TvButton(onClick = onOpenLink, modifier = Modifier.fillMaxWidth()) {
+                        Text("🔗 Bağlantıyı Aç")
+                    }
+                }
+                TvOutlinedButton(onClick = onDismiss, modifier = Modifier.fillMaxWidth()) {
+                    Text("Tamam")
+                }
+            }
+        },
+        confirmButton = {}
+    )
+}
+
+@Composable
+fun AnnouncementsListDialog(
+    announcements: List<Announcement>,
+    onOpenLink: (String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("📢 Duyurular", fontWeight = FontWeight.Bold) },
+        text = {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                if (announcements.isEmpty()) {
+                    Text("Henüz duyuru yok.", color = CyberTextSecondary)
+                }
+                announcements.forEach { a ->
+                    Surface(
+                        color = CyberCardDark,
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(12.dp),
+                            verticalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            if (a.title.isNotBlank()) {
+                                Text(a.title, fontWeight = FontWeight.Bold)
+                            }
+                            Text(a.message)
+                            if (a.date.isNotBlank()) {
+                                Text(a.date, fontSize = 12.sp, color = CyberTextSecondary)
+                            }
+                            if (a.link.isNotBlank()) {
+                                TvOutlinedButton(
+                                    onClick = { onOpenLink(a.link) },
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    Text("🔗 Bağlantıyı Aç")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            TvButton(onClick = onDismiss) {
+                Text("Kapat")
+            }
+        }
+    )
+}
+
+@Composable
+fun AdminAnnouncementsDialog(
+    announcements: List<Announcement>,
+    publishing: Boolean,
+    onPublish: (List<Announcement>) -> Unit,
+    onDismiss: () -> Unit
+) {
+    var title by remember { mutableStateOf("") }
+    var message by remember { mutableStateOf("") }
+    var link by remember { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("📢 Duyuru Yönetimi", fontWeight = FontWeight.Bold) },
+        text = {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Text("Yeni duyuru", fontWeight = FontWeight.Bold)
+
+                OutlinedTextField(
+                    value = title,
+                    onValueChange = { title = it },
+                    label = { Text("Başlık (isteğe bağlı)") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                OutlinedTextField(
+                    value = message,
+                    onValueChange = { message = it },
+                    label = { Text("Mesaj") },
+                    minLines = 3,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                OutlinedTextField(
+                    value = link,
+                    onValueChange = { link = it },
+                    label = { Text("Bağlantı (isteğe bağlı)") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                TvButton(
+                    onClick = {
+                        val newItem = AnnouncementManager.create(title, message, link)
+                        onPublish(listOf(newItem) + announcements)
+                        title = ""
+                        message = ""
+                        link = ""
+                    },
+                    enabled = message.isNotBlank() && !publishing,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(if (publishing) "⏳ Yayınlanıyor..." else "📤 Herkese Yayınla")
+                }
+
+                HorizontalDivider()
+
+                Text("Yayındaki duyurular (${announcements.size})", fontWeight = FontWeight.Bold)
+
+                if (announcements.isEmpty()) {
+                    Text("Henüz duyuru yok.", color = CyberTextSecondary)
+                }
+
+                announcements.forEach { a ->
+                    Surface(
+                        color = CyberCardDark,
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(
+                                modifier = Modifier.weight(1f),
+                                verticalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                if (a.title.isNotBlank()) {
+                                    Text(a.title, fontWeight = FontWeight.Bold)
+                                }
+                                Text(a.message, maxLines = 3)
+                                if (a.date.isNotBlank()) {
+                                    Text(a.date, fontSize = 12.sp, color = CyberTextSecondary)
+                                }
+                            }
+                            TextButton(
+                                onClick = { onPublish(announcements.filter { it.id != a.id }) },
+                                enabled = !publishing
+                            ) {
+                                Text("🗑️ Sil")
+                            }
+                        }
+                    }
+                }
+            }
+        },
         confirmButton = {
             TvButton(onClick = onDismiss) {
                 Text("Kapat")

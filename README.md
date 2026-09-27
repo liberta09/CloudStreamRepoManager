@@ -1,4 +1,4 @@
-# 📱 CloudStream Repo Manager (v1.1.2)
+# 📱 CloudStream Repo Manager (v1.1.3)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Android-brightgreen?style=for-the-badge&logo=android" />
@@ -24,7 +24,7 @@ Kullanıcı sürümünü indirmek için aşağıdaki butona tıklayın:
 </p>
 
 <p align="center">
-  <b>📦 Dosya Adı:</b> <code>CSRepoManager_User.apk</code> | <b>Resmi Sürüm Tag:</b> <a href="https://github.com/liberta09/CloudStreamRepoManager/releases/tag/v1.1.2"><code>v1.1.2</code></a>
+  <b>📦 Dosya Adı:</b> <code>CSRepoManager_User.apk</code> | <b>Resmi Sürüm Tag:</b> <a href="https://github.com/liberta09/CloudStreamRepoManager/releases/tag/v1.1.3"><code>v1.1.3</code></a>
 </p>
 
 ━━━━━━━━━━━━━━━━━━━━
