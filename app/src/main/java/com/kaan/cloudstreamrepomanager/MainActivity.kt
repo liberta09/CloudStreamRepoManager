@@ -231,7 +231,7 @@ private const val REPOS_KEY = "repos"
 val ENABLE_ADMIN_PANEL_FEATURE = BuildConfig.ENABLE_ADMIN_PANEL
 
 // Ayarlar ekranındaki Telegram kanalı bağlantısı
-const val TELEGRAM_CHANNEL_URL = "https://t.me/KANAL_ADINIZ"
+const val TELEGRAM_CHANNEL_URL = "https://t.me/+o-RFlV4U3UY5NGU8"
 
 /* =========================================================
    ACTIVITY
