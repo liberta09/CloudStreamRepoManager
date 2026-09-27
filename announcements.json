@@ -1,12 +1,4 @@
 {
   "version": 1,
-  "announcements": [
-    {
-      "id": "1790473240898",
-      "title": "📢 ÖNEMLİ DUYURU",
-      "message": "Bu uygulamanın gerçek sahibi ve geliştiricisi benim.\nLütfen yalnızca resmî kanaldan yapılan duyurulara güvenin. 🔐",
-      "link": "https:\/\/t.me\/+o-RFlV4U3UY5NGU8",
-      "date": "27.09.2026 04:40"
-    }
-  ]
+  "announcements": []
 }
