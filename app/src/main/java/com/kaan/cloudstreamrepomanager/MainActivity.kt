@@ -230,6 +230,9 @@ private const val REPOS_KEY = "repos"
 // Product Flavors Build Konfigürasyonu (BuildConfig üzerinden otomatik gelir)
 val ENABLE_ADMIN_PANEL_FEATURE = BuildConfig.ENABLE_ADMIN_PANEL
 
+// Ayarlar ekranındaki Telegram kanalı bağlantısı
+const val TELEGRAM_CHANNEL_URL = "https://t.me/KANAL_ADINIZ"
+
 /* =========================================================
    ACTIVITY
    ========================================================= */
@@ -1298,30 +1301,6 @@ fun CloudStreamRepoManager() {
                             Text(if (showFavoritesOnly) "★" else "⭐", fontSize = 14.sp, color = CyberYellow)
                         }
 
-                        // Kontrol Et
-                        TvIconButton(
-                            onClick = {
-                                if (repos.isEmpty()) {
-                                    Toast.makeText(context, "Kontrol edilecek repo yok", Toast.LENGTH_SHORT).show()
-                                } else if (!checkingAll) {
-                                    checkingAll = true
-                                    checkResults.clear()
-                                    checkAllRepoUrls(
-                                        repos = repos.toList(),
-                                        onStart = { checkingMessage = it },
-                                        onResult = { url, res -> checkResults[url] = res },
-                                        onFinished = {
-                                            checkingAll = false
-                                            Toast.makeText(context, "Tüm linkler kontrol edildi", Toast.LENGTH_SHORT).show()
-                                        }
-                                    )
-                                }
-                            },
-                            enabled = !checkingAll
-                        ) {
-                            Text(if (checkingAll) "⏳" else "🔍", fontSize = 14.sp)
-                        }
-
                         // Yedekle
                         TvIconButton(
                             onClick = { backupLauncher.launch("cloudstream_repos_backup.json") }
@@ -1380,6 +1359,30 @@ fun CloudStreamRepoManager() {
                             onClick = { showSettingsDialog = true }
                         ) {
                             Text("⚙️", fontSize = 14.sp)
+                        }
+
+                        // Kontrol Et (en sağda)
+                        TvIconButton(
+                            onClick = {
+                                if (repos.isEmpty()) {
+                                    Toast.makeText(context, "Kontrol edilecek repo yok", Toast.LENGTH_SHORT).show()
+                                } else if (!checkingAll) {
+                                    checkingAll = true
+                                    checkResults.clear()
+                                    checkAllRepoUrls(
+                                        repos = repos.toList(),
+                                        onStart = { checkingMessage = it },
+                                        onResult = { url, res -> checkResults[url] = res },
+                                        onFinished = {
+                                            checkingAll = false
+                                            Toast.makeText(context, "Tüm linkler kontrol edildi", Toast.LENGTH_SHORT).show()
+                                        }
+                                    )
+                                }
+                            },
+                            enabled = !checkingAll
+                        ) {
+                            Text(if (checkingAll) "⏳" else "🔍", fontSize = 14.sp)
                         }
                     }
                 }
@@ -2524,6 +2527,22 @@ fun SettingsDialog(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text("📥 Yedeği Geri Yükle")
+                }
+
+                val telegramContext = LocalContext.current
+                TvOutlinedButton(
+                    onClick = {
+                        try {
+                            telegramContext.startActivity(
+                                Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_CHANNEL_URL))
+                            )
+                        } catch (e: Exception) {
+                            Toast.makeText(telegramContext, "Bağlantı açılamadı", Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("✈️ Telegram Kanalımız")
                 }
 
                 HorizontalDivider()
