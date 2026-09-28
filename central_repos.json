@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-27T23:44:56Z",
+  "updatedAt": "2026-09-28T11:37:23Z",
   "repos": [
     {
       "id": "1",
@@ -256,6 +256,14 @@
       "url": "https:\/\/tv.aethelondev.workers.dev\/cloudstream\/repo.json",
       "code": ".",
       "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "33",
+      "name": "Ayu CloudStream Games",
+      "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
+      "code": ".",
+      "category": "OYUN",
       "favorite": false
     }
   ]
