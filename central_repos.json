@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-28T11:37:29Z",
+  "updatedAt": "2026-09-29T12:48:28Z",
   "repos": [
     {
       "id": "1",
@@ -264,6 +264,14 @@
       "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
       "code": ".",
       "category": "OYUN",
+      "favorite": false
+    },
+    {
+      "id": "34",
+      "name": "gsrepo",
+      "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/gsrepo\/builds\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
       "favorite": false
     }
   ]
