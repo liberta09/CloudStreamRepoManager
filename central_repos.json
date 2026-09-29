@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-29T12:48:47Z",
+  "updatedAt": "2026-09-29T12:49:12Z",
   "repos": [
     {
       "id": "1",
@@ -220,14 +220,6 @@
     },
     {
       "id": "28",
-      "name": "kreastream",
-      "url": "https:\/\/raw.githubusercontent.com\/kreadir\/kreaStream\/main\/repo.json",
-      "code": ".",
-      "category": "Türkçe",
-      "favorite": false
-    },
-    {
-      "id": "29",
       "name": "providers",
       "url": "https:\/\/raw.githubusercontent.com\/recloudstream\/extensions\/master\/repo.json",
       "code": ".",
@@ -235,7 +227,7 @@
       "favorite": false
     },
     {
-      "id": "30",
+      "id": "29",
       "name": "Keyifler olsun",
       "url": "https:\/\/raw.githubusercontent.com\/keyiflerolsun\/Kekik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -243,7 +235,7 @@
       "favorite": false
     },
     {
-      "id": "31",
+      "id": "30",
       "name": "Aethelon",
       "url": "https:\/\/tv.aethelondev.workers.dev\/cloudstream\/repo.json",
       "code": ".",
@@ -251,7 +243,7 @@
       "favorite": false
     },
     {
-      "id": "32",
+      "id": "31",
       "name": "Ayu CloudStream Games",
       "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
       "code": ".",
@@ -259,7 +251,7 @@
       "favorite": false
     },
     {
-      "id": "33",
+      "id": "32",
       "name": "gsrepo",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/gsrepo\/builds\/repo.json",
       "code": ".",
