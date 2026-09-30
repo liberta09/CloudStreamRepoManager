@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-29T12:49:17Z",
+  "updatedAt": "2026-09-30T13:30:43Z",
   "repos": [
     {
       "id": "1",
@@ -110,7 +110,7 @@
       "id": "14",
       "name": "EmreKahveci",
       "url": "https:\/\/raw.githubusercontent.com\/baristomruk-max\/BTVault\/main\/repo.json",
-      "code": ".",
+      "code": "https:\/\/raw.githubusercontent.com\/baristomruk-max\/BTVault\/main\/repo.json",
       "category": "Türkçe",
       "favorite": false
     },
