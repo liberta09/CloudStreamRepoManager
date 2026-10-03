@@ -1,0 +1,262 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-30T14:46:01Z",
+  "repos": [
+    {
+      "id": "1",
+      "name": "Manitux Cloudstream Plugins",
+      "url": "https:\/\/raw.githubusercontent.com\/manitux-app\/cs-plugins\/refs\/heads\/main\/repo.json",
+      "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "2",
+      "name": "TurkSinema",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSinema\/main\/repo.json",
+      "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "3",
+      "name": "cstest",
+      "url": "https:\/\/raw.githubusercontent.com\/ctnkyaumt\/cstest\/master\/repo.json",
+      "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "4",
+      "name": "BronzeCloud",
+      "url": "https:\/\/raw.githubusercontent.com\/Dr-Octagon\/cloudstream-turkish\/refs\/heads\/builds\/repo_stable.json",
+      "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "5",
+      "name": "Phisher Repo",
+      "url": "https:\/\/raw.githubusercontent.com\/phisher98\/cloudstream-extensions-phisher\/refs\/heads\/builds\/repo.json",
+      "code": ".",
+      "category": "HİNT",
+      "favorite": false
+    },
+    {
+      "id": "6",
+      "name": "Mega repository",
+      "url": "https:\/\/raw.githubusercontent.com\/self-similarity\/MegaRepo\/builds\/repo.json",
+      "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "7",
+      "name": "megaturk",
+      "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/TurkMegaRepo\/refs\/heads\/master\/repo.json",
+      "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "8",
+      "name": "Latte - Sinetech.TR",
+      "url": "https:\/\/raw.githubusercontent.com\/GitLatte\/Sinetech\/refs\/heads\/main\/repo.json",
+      "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "9",
+      "name": "Makoto'nun Cloudstream Reposu",
+      "url": "https:\/\/raw.githubusercontent.com\/Sertel392\/Makotogecici\/refs\/heads\/main\/repo.json",
+      "code": "",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "10",
+      "name": "Wio Sinema",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSinema\/builds\/repo.json",
+      "code": "yok",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "11",
+      "name": "TurkSpor",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSpor\/main\/repo.json",
+      "code": ".",
+      "category": "SPOR",
+      "favorite": false
+    },
+    {
+      "id": "12",
+      "name": "Ripplay",
+      "url": "https:\/\/raw.githubusercontent.com\/Ripplay\/cloudstream-repo\/main\/repo.json",
+      "code": "yok",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "13",
+      "name": "Blackhope01",
+      "url": "https:\/\/raw.githubusercontent.com\/blackhope01\/cloudstream-plugins\/refs\/heads\/main\/repo.json",
+      "code": ".",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "14",
+      "name": "EmreKahveci",
+      "url": "https:\/\/raw.githubusercontent.com\/baristomruk-max\/BTVault\/main\/repo.json",
+      "code": ".",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "15",
+      "name": "wiojelt",
+      "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSpor\/main\/repo.json",
+      "code": ".",
+      "category": "spor",
+      "favorite": false
+    },
+    {
+      "id": "16",
+      "name": "cs-karma",
+      "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/cs-Karma\/refs\/heads\/master\/repo.json",
+      "code": ".",
+      "category": "İNGİLİZCE",
+      "favorite": false
+    },
+    {
+      "id": "17",
+      "name": "doGior's Had Enough",
+      "url": "https:\/\/raw.githubusercontent.com\/doGior\/doGiorsHadEnough\/refs\/heads\/builds\/repo.json",
+      "code": ".",
+      "category": "İTALYANCA",
+      "favorite": false
+    },
+    {
+      "id": "18",
+      "name": "German providers repository",
+      "url": "https:\/\/raw.githubusercontent.com\/Bnyro\/GermanProviders\/refs\/heads\/master\/repo.json",
+      "code": ".",
+      "category": "ALMANCA",
+      "favorite": false
+    },
+    {
+      "id": "19",
+      "name": "NeO Eklenti Deposu",
+      "url": "https:\/\/raw.githubusercontent.com\/neoser1984\/cloudstream-extensions\/main\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "20",
+      "name": "Megix Repo",
+      "url": "https:\/\/raw.githubusercontent.com\/SaurabhKaperwan\/CSX\/builds\/CS.json",
+      "code": ".",
+      "category": "HİNTÇE",
+      "favorite": false
+    },
+    {
+      "id": "21",
+      "name": "CNC REPO ( ALL LAUNGAGES",
+      "url": "https:\/\/raw.githubusercontent.com\/NivinCNC\/CNCVerse-Cloud-Stream-Extension\/refs\/heads\/builds\/CNC.json",
+      "code": ".",
+      "category": "HİNT",
+      "favorite": false
+    },
+    {
+      "id": "22",
+      "name": "CDEScript",
+      "url": "https:\/\/raw.githubusercontent.com\/GD2021\/CDEScript\/refs\/heads\/main\/repo.json",
+      "code": ".",
+      "category": "HİNT",
+      "favorite": false
+    },
+    {
+      "id": "23",
+      "name": "safarxe",
+      "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "24",
+      "name": "ramazansancar",
+      "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "25",
+      "name": "csprefesor",
+      "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/nik-cloudstream\/master\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "26",
+      "name": "mrc",
+      "url": "https:\/\/raw.githubusercontent.com\/lepotane\/MRC-builds\/builds\/repo.json",
+      "code": ".",
+      "category": "Türkçe",
+      "favorite": false
+    },
+    {
+      "id": "27",
+      "name": "FRENCH STREAM",
+      "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
+      "code": ".",
+      "category": "FRANSIZCA",
+      "favorite": false
+    },
+    {
+      "id": "28",
+      "name": "providers",
+      "url": "https:\/\/raw.githubusercontent.com\/recloudstream\/extensions\/master\/repo.json",
+      "code": ".",
+      "category": "İNGİLİZCE",
+      "favorite": false
+    },
+    {
+      "id": "29",
+      "name": "Keyifler olsun",
+      "url": "https:\/\/raw.githubusercontent.com\/keyiflerolsun\/Kekik-cloudstream\/master\/repo.json",
+      "code": ".",
+      "category": "turkçe",
+      "favorite": false
+    },
+    {
+      "id": "30",
+      "name": "Aethelon",
+      "url": "https:\/\/tv.aethelondev.workers.dev\/cloudstream\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
+      "favorite": false
+    },
+    {
+      "id": "31",
+      "name": "Ayu CloudStream Games",
+      "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
+      "code": ".",
+      "category": "OYUN",
+      "favorite": false
+    },
+    {
+      "id": "32",
+      "name": "gsrepo",
+      "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/gsrepo\/builds\/repo.json",
+      "code": ".",
+      "category": "TÜRKÇE",
+      "favorite": false
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-label="CloudStream Repo Manager">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B0C10"/>
+      <stop offset="1" stop-color="#10131C"/>
+    </linearGradient>
+    <radialGradient id="glowC" cx="0.22" cy="0.5" r="0.45">
+      <stop offset="0" stop-color="#00F0FF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#00F0FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowP" cx="0.95" cy="0.05" r="0.5">
+      <stop offset="0" stop-color="#FF0055" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#FF0055" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#00F0FF" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="scan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00F0FF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#00F0FF" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#00F0FF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <clipPath id="frame"><rect width="1280" height="440" rx="24"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1280" height="440" fill="url(#bg)"/>
+    <rect width="1280" height="440" fill="url(#grid)"/>
+    <rect width="1280" height="440" fill="url(#glowC)"/>
+    <rect width="1280" height="440" fill="url(#glowP)"/>
+    <rect x="0" y="-120" width="1280" height="120" fill="url(#scan)">
+      <animate attributeName="y" values="-120;440" dur="6s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Icon -->
+    <g transform="translate(110 88) scale(2.45)">
+      <g filter="url(#soft)" opacity="0.55">
+        <path d="M38,32 C30,32 24,38 24,46 C18,46 12,52 12,58 C12,68 20,74 30,74 L96,74 C102,74 106,66 106,58 C106,50 98,44 90,44 C88,36 80,30 70,30 C64,30 58,34 54,38 C50,34 44,32 38,32 Z" fill="#FCEE09"/>
+      </g>
+      <path d="M54,4 L104,28 L104,80 L54,104 L4,80 L4,28 Z" fill="#0B0C10" fill-opacity="0.6" stroke="#00F0FF" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M12,20 L30,10 M78,10 L96,20 M104,36 L104,72 M4,36 L4,72" stroke="#FF0055" stroke-width="3.5" stroke-linecap="square" fill="none"/>
+      <path d="M38,32 C30,32 24,38 24,46 C18,46 12,52 12,58 C12,68 20,74 30,74 L78,74 L96,74 C102,74 106,66 106,58 C106,50 98,44 90,44 C88,36 80,30 70,30 C64,30 58,34 54,38 C50,34 44,32 38,32 Z" fill="#FCEE09"/>
+      <path d="M58,36 L46,52 L54,52 L48,68 L64,48 L56,48 Z" fill="#0B0C10"/>
+      <path d="M54,74 L54,96 M32,74 L20,92 M76,74 L88,92" stroke="#00F0FF" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+      <circle cx="54" cy="97" r="3" fill="#FF0055"/>
+      <circle cx="19.5" cy="93" r="3" fill="#FF0055"/>
+      <circle cx="88.5" cy="93" r="3" fill="#FF0055"/>
+    </g>
+
+    <!-- Text -->
+    <g font-family="'Segoe UI','Helvetica Neue',Roboto,Arial,sans-serif">
+      <text x="500" y="128" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="22" font-weight="700" letter-spacing="7" fill="#00F0FF">CLOUDSTREAM</text>
+      <text x="496" y="214" font-size="84" font-weight="800" letter-spacing="-2" fill="#F4F6FB">Repo Manager</text>
+      <rect x="500" y="236" width="84" height="6" rx="3" fill="#FCEE09"/>
+      <rect x="592" y="236" width="22" height="6" rx="3" fill="#FF0055"/>
+      <text x="500" y="292" font-size="27" font-weight="500" fill="#AEB6C8">Türkçe eklenti kataloğu. Tek dokunuşla CloudStream'e.</text>
+
+      <!-- Chips -->
+      <g font-size="20" font-weight="600">
+        <rect x="500" y="324" width="206" height="46" rx="23" fill="#00F0FF" fill-opacity="0.10" stroke="#00F0FF" stroke-opacity="0.55"/>
+        <text x="603" y="354" text-anchor="middle" fill="#7FF7FF">Tek tıkla aktarım</text>
+        <rect x="720" y="324" width="190" height="46" rx="23" fill="#FCEE09" fill-opacity="0.10" stroke="#FCEE09" stroke-opacity="0.55"/>
+        <text x="815" y="354" text-anchor="middle" fill="#FFF59A">Canlı katalog</text>
+        <rect x="924" y="324" width="246" height="46" rx="23" fill="#FF0055" fill-opacity="0.12" stroke="#FF0055" stroke-opacity="0.6"/>
+        <text x="1047" y="354" text-anchor="middle" fill="#FF8FB0">Telefon ve Android TV</text>
+      </g>
+    </g>
+  </g>
+  <rect x="1" y="1" width="1278" height="438" rx="23" fill="none" stroke="#00F0FF" stroke-opacity="0.25" stroke-width="2"/>
+</svg>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Deep Carbon Background -->
+    <path
+        android:fillColor="#0B0C10"
+        android:pathData="M0,0h108v108h-108z" />
+
+    <!-- Cyber Matrix Grid -->
+    <path
+        android:strokeColor="#3000F0FF"
+        android:strokeWidth="0.8"
+        android:pathData="M18,0V108 M36,0V108 M54,0V108 M72,0V108 M90,0V108" />
+
+    <path
+        android:strokeColor="#3000F0FF"
+        android:strokeWidth="0.8"
+        android:pathData="M0,18H108 M0,36H108 M0,54H108 M0,72H108 M0,90H108" />
+
+    <!-- Glowing Cyber Yellow Corner Flashes -->
+    <path
+        android:fillColor="#FCEE09"
+        android:pathData="M12,12 L28,12 L12,28 Z M96,12 L96,28 L80,12 Z M12,96 L12,80 L28,96 Z M96,96 L80,96 L96,80 Z" />
+</vector>
