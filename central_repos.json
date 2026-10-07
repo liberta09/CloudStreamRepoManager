@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T15:55:08Z",
+  "updatedAt": "2026-10-07T15:55:43Z",
   "repos": [
     {
       "id": "1",
@@ -284,16 +284,6 @@
     },
     {
       "id": "29",
-      "name": "Aethelon",
-      "url": "https:\/\/tv.aethelondev.workers.dev\/cloudstream\/repo.json",
-      "code": ".",
-      "category": "TÜRKÇE",
-      "stars": 0,
-      "type": "cloudstream",
-      "platform": "cloudstream"
-    },
-    {
-      "id": "30",
       "name": "Ayu CloudStream Games",
       "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
       "code": ".",
@@ -303,7 +293,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "31",
+      "id": "30",
       "name": "gsrepo",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/gsrepo\/builds\/repo.json",
       "code": ".",
