@@ -1,0 +1,32 @@
+name: Build v1.2.0 (test)
+
+on:
+  push:
+    branches: [ "birlesik-v1.2.0" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build User + Admin (debug)
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleUserDebug assembleAdminDebug --stacktrace
+
+      - name: Upload APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: CloudStreamRepoManager-v1.2.0-APKs
+          path: app/build/outputs/apk/**/*.apk
