@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-10T19:30:53Z",
+  "updatedAt": "2026-10-10T19:31:24Z",
   "repos": [
     {
       "id": "1",
       "name": "ANTHOLOGY NUVİO",
       "url": "https:\/\/falsisdev.github.io\/anthology\/stremio\/manifest.json",
       "code": "",
-      "category": "TÜRKÇE",
+      "category": "CANLI TV",
       "stars": 0,
       "type": "nuvio",
       "platform": "nuvio"
