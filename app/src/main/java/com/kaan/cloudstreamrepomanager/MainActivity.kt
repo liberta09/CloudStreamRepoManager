@@ -3327,21 +3327,6 @@ fun RepoCard(
                                     modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
                                 )
                             }
-                            if (ENABLE_ADMIN_PANEL_FEATURE && repo.code.isNotBlank()) {
-                                Surface(
-                                    color = CyberSurfaceDark,
-                                    shape = RoundedCornerShape(6.dp),
-                                    border = BorderStroke(0.5.dp, CyberBorder)
-                                ) {
-                                    Text(
-                                        text = "CODE: ${repo.code}",
-                                        color = CyberYellow,
-                                        fontSize = baseTextSize,
-                                        fontWeight = FontWeight.SemiBold,
-                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                                    )
-                                }
-                            }
                         }
                     }
                 }
@@ -3371,7 +3356,19 @@ fun RepoCard(
                     text = repo.url,
                     color = CyberTextSecondary,
                     fontSize = if (isTvOrTablet) 12.sp else 10.sp,
-                    maxLines = 1
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                // Kısa kod satırı her kartta gösterilir (kod yoksa "—"),
+                // böylece yan yana duran kartların yüksekliği eşit kalır.
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    text = "Kod: ${repo.code.ifBlank { "—" }}",
+                    color = if (repo.code.isNotBlank()) CyberYellow else CyberTextSecondary,
+                    fontSize = if (isTvOrTablet) 12.sp else 10.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
 
@@ -3403,7 +3400,7 @@ fun RepoCard(
 
             Spacer(Modifier.height(14.dp))
 
-            // Actions: Transfer (Gradient) + Kontrol Et (Glass) + Admin Actions
+            // Actions: Transfer (Gradient) + Kontrol Et (Glass)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -3418,25 +3415,46 @@ fun RepoCard(
                         fontSize = buttonTextSize,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color.White,
-                        maxLines = 1
+                        maxLines = 1,
+                        softWrap = false,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
-                
+
                 TvOutlinedButton(
                     onClick = onCheck,
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text("🔄 Kontrol Et", fontSize = buttonTextSize, maxLines = 1)
+                    Text(
+                        "🔄 Kontrol Et",
+                        fontSize = buttonTextSize,
+                        maxLines = 1,
+                        softWrap = false,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
+            }
 
-                if (ENABLE_ADMIN_PANEL_FEATURE) {
+            // Admin Actions: ayrı satırda, böylece üstteki butonların yazıları kesilmez
+            if (ENABLE_ADMIN_PANEL_FEATURE) {
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     TvOutlinedButton(
                         onClick = {
                             if (repo.code.isNotBlank()) onCopyCode() else onCopyLink()
                         },
-                        modifier = Modifier.weight(0.7f)
+                        modifier = Modifier.weight(1.3f)
                     ) {
-                        Text(if (repo.code.isNotBlank()) "Kod" else "Link", fontSize = buttonTextSize, maxLines = 1)
+                        Text(
+                            if (repo.code.isNotBlank()) "📋 Kodu Kopyala" else "🔗 Linki Kopyala",
+                            fontSize = buttonTextSize,
+                            maxLines = 1,
+                            softWrap = false,
+                            overflow = TextOverflow.Ellipsis
+                        )
                     }
                     TvOutlinedButton(onClick = onEdit, modifier = Modifier.weight(0.5f)) {
                         Text("✏️", fontSize = buttonTextSize, maxLines = 1)
