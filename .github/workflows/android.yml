@@ -24,19 +24,19 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle (User APK)
-      run: ./gradlew assembleUserDebug
+      run: ./gradlew assembleUserRelease
 
     - name: Build with Gradle (Admin APK)
-      run: ./gradlew assembleAdminDebug
+      run: ./gradlew assembleAdminRelease
 
     - name: Upload User APK
       uses: actions/upload-artifact@v3
       with:
         name: Repo-User-APK
-        path: app/build/outputs/apk/user/debug/app-user-debug.apk
+        path: app/build/outputs/apk/user/release/app-user-release-unsigned.apk
 
     - name: Upload Admin APK
       uses: actions/upload-artifact@v3
       with:
         name: Repo-Admin-APK
-        path: app/build/outputs/apk/admin/debug/app-admin-debug.apk
+        path: app/build/outputs/apk/admin/release/app-admin-release-unsigned.apk
