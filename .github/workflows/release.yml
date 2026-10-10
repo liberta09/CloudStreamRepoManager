@@ -1,0 +1,55 @@
+name: Release (imzali)
+
+on:
+  push:
+    tags: [ "v*" ]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      # Yayinlanmis surumlerin imza sertifikasi (SHA-256). Farkli anahtarla imzalanan APK yayinlanmaz.
+      EXPECTED_CERT_SHA256: 248a2e52a25d84194396d305ec16a802005793e280fc8c3f3d3906dded3245cf
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Imza anahtarini yerlestir
+        env:
+          DEBUG_KEYSTORE_B64: ${{ secrets.DEBUG_KEYSTORE_B64 }}
+        run: |
+          if [ -z "$DEBUG_KEYSTORE_B64" ]; then echo "DEBUG_KEYSTORE_B64 secret'i yok"; exit 1; fi
+          mkdir -p ~/.android
+          echo "$DEBUG_KEYSTORE_B64" | tr -d '\r\n ' | base64 -d > ~/.android/debug.keystore
+
+      - name: Release APK'lari derle
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleUserRelease assembleAdminRelease --stacktrace
+
+      - name: Imzayi dogrula
+        run: |
+          APKSIGNER=$(ls -d $ANDROID_HOME/build-tools/*/ | sort -V | tail -1)apksigner
+          for f in app/build/outputs/apk/user/release/*.apk app/build/outputs/apk/admin/release/*.apk; do
+            SHA=$($APKSIGNER verify --print-certs "$f" | grep -m1 "SHA-256 digest" | awk '{print $NF}')
+            echo "$f -> $SHA"
+            if [ "$SHA" != "$EXPECTED_CERT_SHA256" ]; then echo "IMZA UYUSMUYOR: kullanicilar guncelleyemez, yayin durduruldu"; exit 1; fi
+          done
+          cp app/build/outputs/apk/user/release/*.apk CSRepoManager_User.apk
+          cp app/build/outputs/apk/admin/release/*.apk CSRepoManager_Admin.apk
+
+      - name: GitHub Release olustur
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" CSRepoManager_User.apk CSRepoManager_Admin.apk \
+            --title "$GITHUB_REF_NAME" --notes-file RELEASE_NOTES.md
