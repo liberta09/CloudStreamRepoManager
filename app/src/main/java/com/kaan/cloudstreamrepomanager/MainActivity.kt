@@ -10,6 +10,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import coil.compose.SubcomposeAsyncImage
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -33,7 +36,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxSizeQQ
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.height
@@ -225,14 +228,33 @@ data class Repo(
     val code: String = "",
     val category: String,
     val stars: Int = 0,
-    val type: String = "cloudstream"
+    val type: String = "cloudstream",
+    val iconUrl: String = ""
 )
+
+fun getEffectiveIconUrl(repo: Repo): String {
+    if (repo.iconUrl.isNotBlank()) return repo.iconUrl.trim()
+    
+    val url = repo.url.trim()
+    if (url.startsWith("https://raw.githubusercontent.com/")) {
+        val parts = url.removePrefix("https://raw.githubusercontent.com/").split("/")
+        if (parts.isNotEmpty() && parts[0].isNotBlank()) {
+            return "https://github.com/${parts[0]}.png"
+        }
+    } else if (url.startsWith("https://github.com/")) {
+        val parts = url.removePrefix("https://github.com/").split("/")
+        if (parts.isNotEmpty() && parts[0].isNotBlank()) {
+            return "https://github.com/${parts[0]}.png"
+        }
+    }
+    return ""
+}
 
 private const val PREFS_NAME = "cloudstream_repo_manager"
 private const val REPOS_KEY = "repos"
 
 // Product Flavors Build Konfigürasyonu (BuildConfig üzerinden otomatik gelir)
-val ENABLE_ADMIN_PANEL_FEATURE = BuildConfig.ENABLE_ADMIN_PANEL
+val ENABLE_ADMIN_PANEL_FEATURE: Boolean = com.kaan.cloudstreamrepomanager.BuildConfig.ENABLE_ADMIN_PANEL
 
 // Ayarlar ekranındaki Telegram kanalı bağlantısı
 const val TELEGRAM_CHANNEL_URL = "https://t.me/+o-RFlV4U3UY5NGU8"
@@ -399,6 +421,10 @@ fun reposToJson(repos: List<Repo>, version: Int = 1): String {
         obj.put("stars", repo.stars)
         obj.put("type", pType)
         obj.put("platform", pType)
+        if (repo.iconUrl.isNotBlank()) {
+            obj.put("iconUrl", repo.iconUrl)
+            obj.put("icon", repo.iconUrl)
+        }
 
         array.put(obj)
     }
@@ -427,6 +453,7 @@ fun jsonToRepos(json: String): List<Repo> {
         } else {
             0
         }
+        val parsedIconUrl = obj.optString("iconUrl", obj.optString("icon", obj.optString("logo", "")))
         
         result.add(
             Repo(
@@ -435,7 +462,8 @@ fun jsonToRepos(json: String): List<Repo> {
                 code = obj.optString("code"),
                 category = obj.optString("category"),
                 stars = parsedStars,
-                type = rawType
+                type = rawType,
+                iconUrl = parsedIconUrl
             )
         )
     }
@@ -942,9 +970,66 @@ fun validateCloudStreamRepoJson(
     }
 }
 
+fun validateNuvioRepoJson(jsonString: String): String {
+    return try {
+        val trimmed = jsonString.trim()
+        if (!trimmed.startsWith("{")) {
+            return "🔴 Bağlantı başarılı ama Nuvio manifest.json formatı geçersiz"
+        }
+
+        val json = JSONObject(trimmed)
+        val id = json.optString("id").trim()
+        val name = json.optString("name").trim()
+
+        when {
+            id.isBlank() && name.isBlank() ->
+                "🔴 Geçersiz Nuvio Manifest (id ve name eksik)"
+            else ->
+                "🟢 Çalışıyor"
+        }
+    } catch (_: Exception) {
+        "🔴 Geçersiz Nuvio Manifest JSON"
+    }
+}
+
+fun performRepoCheck(
+    repo: Repo
+): String {
+    val isNuvio = repo.type.lowercase() == "nuvio" || repo.url.lowercase().endsWith("manifest.json")
+    return try {
+        val result = NetworkUtils.openFollowRedirectsConnection(
+            initialUrl = repo.url,
+            method = "GET"
+        )
+
+        when {
+            result.isSuccess && result.body.isNotBlank() -> {
+                if (isNuvio) {
+                    validateNuvioRepoJson(result.body)
+                } else {
+                    val csRes = validateCloudStreamRepoJson(result.body)
+                    if (csRes.startsWith("🟢")) "🟢 Çalışıyor" else csRes
+                }
+            }
+            result.responseCode in 400..499 -> {
+                "🔴 HTTP ${result.responseCode} Hata"
+            }
+            result.responseCode in 500..599 -> {
+                "🔴 Sunucu hatası — HTTP ${result.responseCode}"
+            }
+            else -> {
+                "🔴 Bağlantı başarısız (HTTP ${result.responseCode})"
+            }
+        }
+    } catch (e: Exception) {
+        "🔴 Bağlantı hatası"
+    }
+}
+
 fun performRepoCheck(
     urlString: String
 ): String {
+    val isNuvioUrl = urlString.lowercase().endsWith("manifest.json") || urlString.lowercase().contains("strem.io") || urlString.lowercase().contains("nuvio")
     return try {
         val result = NetworkUtils.openFollowRedirectsConnection(
             initialUrl = urlString,
@@ -952,11 +1037,16 @@ fun performRepoCheck(
         )
 
         when {
-            result.isSuccess -> {
-                validateCloudStreamRepoJson(result.body)
+            result.isSuccess && result.body.isNotBlank() -> {
+                if (isNuvioUrl) {
+                    validateNuvioRepoJson(result.body)
+                } else {
+                    val csRes = validateCloudStreamRepoJson(result.body)
+                    if (csRes.startsWith("🟢")) "🟢 Çalışıyor" else csRes
+                }
             }
             result.responseCode in 400..499 -> {
-                "🟠 HTTP ${result.responseCode} Hata"
+                "🔴 HTTP ${result.responseCode} Hata"
             }
             result.responseCode in 500..599 -> {
                 "🔴 Sunucu hatası — HTTP ${result.responseCode}"
@@ -971,20 +1061,26 @@ fun performRepoCheck(
 }
 
 fun checkRepoUrl(
+    repo: Repo,
+    onResult: (String) -> Unit
+) {
+    Thread {
+        val result = performRepoCheck(repo)
+        Handler(Looper.getMainLooper()).post {
+            onResult(result)
+        }
+    }.start()
+}
+
+fun checkRepoUrl(
     urlString: String,
     onResult: (String) -> Unit
 ) {
     Thread {
-
-        val result =
-            performRepoCheck(urlString)
-
-        Handler(
-            Looper.getMainLooper()
-        ).post {
+        val result = performRepoCheck(urlString)
+        Handler(Looper.getMainLooper()).post {
             onResult(result)
         }
-
     }.start()
 }
 
@@ -998,38 +1094,22 @@ fun checkAllRepoUrls(
     onResult: (String, String) -> Unit,
     onFinished: () -> Unit
 ) {
-
     Thread {
-
         repos.forEachIndexed { index, repo ->
-
-            Handler(
-                Looper.getMainLooper()
-            ).post {
-                onStart(
-                    "Kontrol ediliyor: ${index + 1}/${repos.size} — ${repo.name}"
-                )
+            Handler(Looper.getMainLooper()).post {
+                onStart("Kontrol ediliyor: ${index + 1}/${repos.size} — ${repo.name}")
             }
 
-            val result =
-                performRepoCheck(repo.url)
+            val result = performRepoCheck(repo)
 
-            Handler(
-                Looper.getMainLooper()
-            ).post {
-                onResult(
-                    repo.url,
-                    result
-                )
+            Handler(Looper.getMainLooper()).post {
+                onResult(repo.url, result)
             }
         }
 
-        Handler(
-            Looper.getMainLooper()
-        ).post {
+        Handler(Looper.getMainLooper()).post {
             onFinished()
         }
-
     }.start()
 }
 
@@ -1382,6 +1462,10 @@ fun CloudStreamRepoManager() {
        EKRAN
        ===================================================== */
 
+    val configuration = LocalConfiguration.current
+    val isTvOrTablet = configuration.screenWidthDp >= 600
+    val screenWidth = configuration.screenWidthDp.dp
+
     val listState = rememberLazyListState()
 
     var isSearchActive by remember { mutableStateOf(false) }
@@ -1398,49 +1482,83 @@ fun CloudStreamRepoManager() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                        .padding(horizontal = if (isTvOrTablet) 16.dp else 8.dp, vertical = 10.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     // SOL: Logo + REPO Başlığı + Alt Başlık
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        // Yeni Logo Bileşeni (Ayrı Resource'tan çekilen, bozulmayan yapı)
                         Image(
-                            painter = painterResource(id = R.mipmap.ic_launcher),
+                            painter = painterResource(id = R.drawable.ic_launcher_foreground),
                             contentDescription = "App Logo",
                             modifier = Modifier
-                                .size(48.dp)
-                                .background(CyberCardDark, RoundedCornerShape(12.dp))
-                                .padding(4.dp),
+                                .size(if (isTvOrTablet) 40.dp else 32.dp)
+                                .background(CyberCardDark, RoundedCornerShape(10.dp))
+                                .padding(2.dp),
                             contentScale = ContentScale.Fit
                         )
-                        Spacer(modifier = Modifier.width(12.dp))
+                        Spacer(modifier = Modifier.width(if (isTvOrTablet) 10.dp else 6.dp))
                         Column {
                             Text(
                                 text = "REPO",
                                 fontWeight = FontWeight.ExtraBold,
                                 color = CyberTextPrimary,
-                                fontSize = 24.sp,
+                                fontSize = if (isTvOrTablet) 20.sp else 16.sp,
                                 letterSpacing = 1.sp
                             )
                             Text(
-                                text = "CLOUDSTREAM DEPOLARI",
+                                text = "CLOUDSTREAM",
                                 color = CyberTextSecondary,
-                                fontSize = 10.sp,
-                                letterSpacing = 1.sp,
+                                fontSize = if (isTvOrTablet) 9.sp else 8.sp,
+                                letterSpacing = 0.5.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
                         }
                     }
 
-                    // SAĞ: Kontroller (Arama, Senkronizasyon, Telegram, Ayarlar)
+                    // SAĞ: ⚙️ Ayarlar | 🔍 Arama Simgesi | [ Repo ara… ]
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        horizontalArrangement = Arrangement.spacedBy(if (isTvOrTablet) 6.dp else 2.dp)
                     ) {
-                        TvIconButton(onClick = { isSearchActive = !isSearchActive }) {
-                            Text("🔍", fontSize = 20.sp)
+                        TvIconButton(onClick = { showSettingsDialog = true }) {
+                            Text("⚙️", fontSize = if (isTvOrTablet) 16.sp else 14.sp)
                         }
+
+                        if (isTvOrTablet) {
+                            Text("🔍", fontSize = 16.sp, modifier = Modifier.padding(start = 2.dp))
+                        }
+
+                        OutlinedTextField(
+                            value = searchText,
+                            onValueChange = { searchText = it },
+                            modifier = Modifier
+                                .width(if (isTvOrTablet) 180.dp else 100.dp)
+                                .height(if (isTvOrTablet) 38.dp else 34.dp),
+                            placeholder = { Text("Repo ara...", fontSize = 11.sp, color = CyberTextSecondary) },
+                            singleLine = true,
+                            textStyle = TextStyle(fontSize = 11.sp, color = CyberTextPrimary),
+                            shape = RoundedCornerShape(20.dp),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedBorderColor = CyberAccent,
+                                unfocusedBorderColor = CyberBorder,
+                                focusedContainerColor = CyberCardDark,
+                                unfocusedContainerColor = CyberCardDark,
+                            ),
+                            trailingIcon = {
+                                if (searchText.isNotEmpty()) {
+                                    IconButton(
+                                        onClick = { searchText = "" },
+                                        modifier = Modifier.size(if (isTvOrTablet) 24.dp else 20.dp)
+                                    ) {
+                                        Text("✖️", fontSize = if (isTvOrTablet) 10.sp else 8.sp)
+                                    }
+                                } else if (!isTvOrTablet) {
+                                    Text("🔍", fontSize = 12.sp, modifier = Modifier.padding(end = 4.dp))
+                                }
+                            }
+                        )
+
                         TvIconButton(
                             onClick = {
                                 if (repos.isNotEmpty() && !checkingAll) {
@@ -1456,109 +1574,38 @@ fun CloudStreamRepoManager() {
                             },
                             enabled = !checkingAll
                         ) {
-                            Text(if (checkingAll) "⏳" else "🔄", fontSize = 18.sp)
+                            Text(if (checkingAll) "⏳" else "🔄", fontSize = if (isTvOrTablet) 16.sp else 14.sp)
                         }
+
                         TvIconButton(onClick = { openTelegramChannel(context) }) {
-                            // Telegram için uygun renkli ikon temsilcisi
-                            Text("✈️", fontSize = 18.sp)
+                            Text("✈️", fontSize = if (isTvOrTablet) 16.sp else 14.sp)
                         }
-                        // Bulut Senkronizasyonu Geri Getirildi (Admin için publish, User için fetch)
-                        TvIconButton(onClick = {
-                            if (ENABLE_ADMIN_PANEL_FEATURE && isAdminLoggedIn) {
-                                isPublishingToCloud = true
-                                Toast.makeText(context, "Buluta kaydediliyor...", Toast.LENGTH_SHORT).show()
-                                CentralRepoApiManager.publishCentralReposToCloud(context, repos.toList(), "") { _, _ ->
-                                    isPublishingToCloud = false
-                                    Toast.makeText(context, "💾 Bulut verisi güncellendi!", Toast.LENGTH_SHORT).show()
+
+                        // ADMIN ONLY CONTROLS (Bulut Yayınlama, Ekleme, Duyurular, Giriş)
+                        if (ENABLE_ADMIN_PANEL_FEATURE) {
+                            if (isAdminLoggedIn) {
+                                TvIconButton(onClick = { showAddDialog = true }) {
+                                    Text("➕", fontSize = if (isTvOrTablet) 16.sp else 14.sp)
                                 }
-                            } else {
-                                Toast.makeText(context, "Buluttan veriler senkronize ediliyor...", Toast.LENGTH_SHORT).show()
-                                CentralRepoApiManager.fetchCentralRepos(context) { liveRepos ->
-                                    if (!liveRepos.isNullOrEmpty()) {
-                                        val cleanRepos = filterDeletedRepos(context, liveRepos)
-                                        repos.clear()
-                                        repos.addAll(cleanRepos)
-                                        saveRepos(context, cleanRepos)
-                                        Toast.makeText(context, "✅ Repolar senkronize edildi", Toast.LENGTH_SHORT).show()
-                                    }
+                                TvIconButton(onClick = { showAdminAnnouncementsDialog = true }) {
+                                    Text("📢", fontSize = if (isTvOrTablet) 16.sp else 14.sp)
+                                }
+                                TvIconButton(
+                                    onClick = {
+                                        isPublishingToCloud = true
+                                        Toast.makeText(context, "Buluta kaydediliyor...", Toast.LENGTH_SHORT).show()
+                                        CentralRepoApiManager.publishCentralReposToCloud(context, repos.toList(), "") { _, _ ->
+                                            isPublishingToCloud = false
+                                            Toast.makeText(context, "💾 Bulut verisi güncellendi!", Toast.LENGTH_SHORT).show()
+                                        }
+                                    },
+                                    enabled = !isPublishingToCloud
+                                ) {
+                                    Text(if (isPublishingToCloud) "⏳" else "☁️", fontSize = if (isTvOrTablet) 16.sp else 14.sp)
                                 }
                             }
-                        }) {
-                            Text(if (isPublishingToCloud) "⏳" else "☁️", fontSize = 18.sp)
-                        }
-                        TvIconButton(onClick = { showSettingsDialog = true }) {
-                            Text("⚙️", fontSize = 18.sp)
-                        }
-                    }
-                }
-            }
-        }
-        // ALT NAVİGASYON (bottomBar) TAMAMEN KALDIRILDI.
-    ) { padding ->
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                if (selectedBottomTab == "Ayarlar") {
-                                    Box(
-                                        modifier = Modifier
-                                            .width(40.dp)
-                                            .height(3.dp)
-                                            .background(CyberAccent, RoundedCornerShape(bottomStart = 2.dp, bottomEnd = 2.dp))
-                                    )
-                                    Spacer(modifier = Modifier.height(6.dp))
-                                } else {
-                                    Spacer(modifier = Modifier.height(9.dp))
-                                }
-                                Text("⚙️", fontSize = 22.sp) // Sistem (settings gear icon approximation)
-                            }
-                        },
-                        label = {
-                            Text(
-                                "SİSTEM",
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Medium,
-                                color = if (selectedBottomTab == "Ayarlar") CyberAccent else CyberTextSecondary
-                            )
-                        },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = CyberAccent,
-                            unselectedIconColor = CyberTextSecondary,
-                            indicatorColor = Color.Transparent
-                        )
-                    )
-                }
-            }
-        }
-    ) { padding ->
-
-        if (selectedBottomTab == "Ayarlar") {
-            // SİSTEM EKRANI
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-                    .background(CyberBgDark)
-            ) {
-                // SİSTEM Header
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 24.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.Top
-                ) {
-                    Column {
-                        Text("SİSTEM", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = CyberTextPrimary)
-                        Text("GÖRÜNÜM", fontSize = 11.sp, color = CyberTextSecondary, letterSpacing = 1.5.sp)
-                    }
-
-                    // Admin Profil
-                    if (ENABLE_ADMIN_PANEL_FEATURE) {
-                        Surface(
-                            color = CyberSurfaceDark,
-                            shape = RoundedCornerShape(18.dp),
-                            border = BorderStroke(1.dp, CyberAccent.copy(alpha = 0.3f)),
-                            modifier = Modifier
-                                .height(36.dp)
-                                .clickable {
+                            TvIconButton(
+                                onClick = {
                                     if (isAdminLoggedIn) {
                                         adminAuthManager.logoutAdmin()
                                         isAdminLoggedIn = false
@@ -1567,317 +1614,110 @@ fun CloudStreamRepoManager() {
                                         showAdminLoginDialog = true
                                     }
                                 }
-                        ) {
-                            Row(
-                                modifier = Modifier.padding(horizontal = 8.dp),
-                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Text("👤", fontSize = 18.sp)
-                                Spacer(modifier = Modifier.width(4.dp))
-                                Text(if (isAdminLoggedIn) "Admin" else "Giriş Yap", fontSize = 12.sp, fontWeight = FontWeight.Medium, color = CyberTextPrimary)
+                                Text("🔑", fontSize = if (isTvOrTablet) 16.sp else 14.sp)
                             }
                         }
                     }
                 }
-
-                // PANEL GÖRÜNÜMÜ Header
-                Row(
-                    modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Box(modifier = Modifier.size(18.dp).background(CyberAccent, RoundedCornerShape(50)), contentAlignment = Alignment.Center) {
-                        Text("i", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("PANEL GÖRÜNÜMÜ", fontSize = 11.sp, color = CyberTextSecondary, letterSpacing = 1.sp)
-                }
-
-                // Tema Seçici
-                Text("PANEL TEMASI", fontSize = 10.sp, color = CyberTextSecondary, letterSpacing = 1.2.sp, modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp))
-                
-                var showThemePicker by remember { mutableStateOf(false) }
-                
-                Surface(
-                    color = CyberSurfaceDark,
-                    shape = RoundedCornerShape(10.dp),
-                    border = BorderStroke(1.dp, CyberTextSecondary.copy(alpha = 0.2f)),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .height(52.dp)
-                        .clickable { showThemePicker = true }
-                ) {
-                    Row(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text("🎨", fontSize = 20.sp)
-                            Spacer(modifier = Modifier.width(8.dp))
-                            val currentThemeName = when(currentThemeMode) {
-                                "Camel" -> "Camel (Sıcak)"
-                                "Indigo" -> "Indigo (Soğuk)"
-                                else -> "Darknes Purple (Varsayılan)"
-                            }
-                            Text(currentThemeName, fontSize = 14.sp, fontWeight = FontWeight.Medium, color = CyberTextPrimary)
-                        }
-                        Text("▼", fontSize = 16.sp, color = CyberTextSecondary)
-                    }
-                }
-
-                // Tema Seçici Modal (BottomSheet alternatifi)
-                if (showThemePicker) {
-                    AlertDialog(
-                        onDismissRequest = { showThemePicker = false },
-                        containerColor = CyberSurfaceDark, // Use current theme's surface
-                        title = { Text("Panel Teması", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = CyberTextPrimary) },
-                        text = {
-                            Column {
-                                val themes = listOf(
-                                    "Darknes Purple" to "Darknes Purple (Varsayılan)",
-                                    "Camel" to "Camel (Sıcak)",
-                                    "Indigo" to "Indigo (Soğuk)"
-                                )
-                                themes.forEach { (themeKey, themeName) ->
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(56.dp)
-                                            .clickable {
-                                                context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-                                                    .edit().putString("theme_mode", themeKey).apply()
-                                                currentThemeMode = themeKey
-                                                applyThemeColors(themeKey)
-                                                showThemePicker = false
-                                            },
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Box(modifier = Modifier.size(36.dp).background(CyberCardDark, RoundedCornerShape(10.dp)), contentAlignment = Alignment.Center) {
-                                            Text("🎨")
-                                        }
-                                        Spacer(modifier = Modifier.width(12.dp))
-                                        Text(themeName, fontSize = 14.sp, fontWeight = FontWeight.Medium, color = CyberTextPrimary, modifier = Modifier.weight(1f))
-                                        if (currentThemeMode == themeKey || (currentThemeMode == "Cyber" && themeKey == "Darknes Purple")) {
-                                            Text("🟢", fontSize = 14.sp) // Radio selected equivalent
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        confirmButton = {
-                            TextButton(onClick = { showThemePicker = false }) { Text("KAPAT", color = CyberAccent) }
-                        }
-                    )
-                }
-
-                // Diğer Ayarlar (Görsel tutarlılık için)
-                Spacer(modifier = Modifier.height(24.dp))
-                Row(
-                    modifier = Modifier.padding(start = 16.dp, bottom = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Box(modifier = Modifier.size(18.dp).background(CyberAccent, RoundedCornerShape(50)), contentAlignment = Alignment.Center) {
-                        Text("i", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("UYGULAMA BİLGİSİ VE DİĞER", fontSize = 11.sp, color = CyberTextSecondary, letterSpacing = 1.sp)
-                }
-                
-                Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-                    TvOutlinedButton(onClick = { showAnnouncementsDialog = true }, modifier = Modifier.fillMaxWidth()) { Text("📢 Duyurular", fontSize = 12.sp, color = CyberTextPrimary) }
-                    Spacer(Modifier.height(8.dp))
-                    TvOutlinedButton(onClick = {
-                        AppUpdateManager.checkForUpdates(BuildConfig.VERSION_NAME) { info ->
-                            if (info != null && info.isUpdateAvailable) {
-                                updateInfo = info
-                                showUpdateDialog = true
-                            } else {
-                                Toast.makeText(context, "Zaten en güncel sürümdesiniz.", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }, modifier = Modifier.fillMaxWidth()) { Text("🔄 Güncellemeleri Kontrol Et", fontSize = 12.sp, color = CyberTextPrimary) }
-                    Spacer(Modifier.height(8.dp))
-                    TvOutlinedButton(onClick = { backupLauncher.launch("cloudstream_repos_backup.json") }, modifier = Modifier.fillMaxWidth()) { Text("💾 Yedekle", fontSize = 12.sp, color = CyberTextPrimary) }
-                    Spacer(Modifier.height(8.dp))
-                    TvOutlinedButton(onClick = { restoreLauncher.launch(arrayOf("application/json", "text/json", "text/plain", "*/*")) }, modifier = Modifier.fillMaxWidth()) { Text("📥 Yedeği Geri Yükle", fontSize = 12.sp, color = CyberTextPrimary) }
-                }
-
-                Spacer(modifier = Modifier.weight(1f))
-                Text("PANEL BY DARKNES LORD", fontSize = 11.sp, color = CyberAccent, letterSpacing = 1.5.sp, modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp), textAlign = TextAlign.Center)
             }
-        } else {
-            // REPO EKRANI (Ana Liste)
-            Box(
+        }
+    ) { padding ->
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .background(CyberBgDark)
+                .padding(horizontal = 12.dp, vertical = 6.dp)
+        ) {
+            val cloudStreamCount = repos.count { it.type.lowercase() != "nuvio" }
+            val nuvioCount = repos.count { it.type.lowercase() == "nuvio" }
+
+            // 🌐 Tümü (X) | ☁️ CS (X) | 🟣 Nuvio (X) Segmented Control Chips
+            Row(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-                    .background(CyberBgDark)
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                // Arka plan büyük repo yazısı (Decorative)
-                Text(
-                    text = "REPOLAR",
-                    fontSize = 80.sp,
-                    fontWeight = FontWeight.Black,
-                    color = CyberTextSecondary.copy(alpha = 0.05f),
-                    modifier = Modifier.align(Alignment.TopCenter).padding(top = 20.dp),
-                    letterSpacing = 5.sp
-                )
-
-                Column(
-                    modifier = Modifier.fillMaxSize()
+                // Tümü
+                Surface(
+                    color = if (selectedPlatform == "Tümü" && !showFavoritesOnly) CyberAccent else CyberCardDark,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, if (selectedPlatform == "Tümü" && !showFavoritesOnly) CyberAccent else CyberBorder),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            selectedPlatform = "Tümü"
+                            showFavoritesOnly = false
+                        }
                 ) {
-                    // Arama Çubuğu (Sabit)
-                    OutlinedTextField(
-                        value = searchText,
-                        onValueChange = { searchText = it },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 12.dp),
-                        placeholder = { Text("Repo ara...", fontSize = 13.sp, color = CyberTextSecondary) },
-                        singleLine = true,
-                        textStyle = TextStyle(fontSize = 13.sp, color = CyberTextPrimary),
-                        shape = RoundedCornerShape(10.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = CyberAccent,
-                            unfocusedBorderColor = CyberBorder,
-                            focusedContainerColor = CyberSurfaceDark,
-                            unfocusedContainerColor = CyberSurfaceDark,
-                        ),
-                        leadingIcon = { Text("🔎", fontSize = 14.sp) },
-                        trailingIcon = {
-                            if (searchText.isNotEmpty()) {
-                                IconButton(onClick = { searchText = "" }) {
-                                    Text("✖️", fontSize = 12.sp)
-                                }
-                            }
+                    Box(modifier = Modifier.padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
+                        Text(
+                            text = "🌐 Tümü (${repos.size})",
+                            color = if (selectedPlatform == "Tümü" && !showFavoritesOnly) Color.White else CyberTextSecondary,
+                            fontWeight = if (selectedPlatform == "Tümü" && !showFavoritesOnly) FontWeight.Bold else FontWeight.Medium,
+                            fontSize = 12.sp,
+                            maxLines = 1
+                        )
+                    }
+                }
+
+                // CS
+                Surface(
+                    color = if (selectedPlatform == "CloudStream" && !showFavoritesOnly) CyberAccent else CyberCardDark,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, if (selectedPlatform == "CloudStream" && !showFavoritesOnly) CyberAccent else CyberBorder),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            selectedPlatform = "CloudStream"
+                            showFavoritesOnly = false
                         }
-                    )
+                ) {
+                    Box(modifier = Modifier.padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
+                        Text(
+                            text = "☁️ CS ($cloudStreamCount)",
+                            color = if (selectedPlatform == "CloudStream" && !showFavoritesOnly) Color.White else CyberTextSecondary,
+                            fontWeight = if (selectedPlatform == "CloudStream" && !showFavoritesOnly) FontWeight.Bold else FontWeight.Medium,
+                            fontSize = 12.sp,
+                            maxLines = 1
+                        )
+                    }
+                }
 
-                    // Bottom Sheet benzeri alan (Persistent)
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = CyberSurfaceDark,
-                        shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)
-                        ) {
-                            // Drag handle
-                            Box(
-                                modifier = Modifier
-                                    .padding(top = 12.dp)
-                                    .width(36.dp)
-                                    .height(4.dp)
-                                    .background(CyberTextSecondary.copy(alpha = 0.4f), RoundedCornerShape(8.dp))
-                                    .align(Alignment.CenterHorizontally)
-                            )
-
-                            // Title
-                            Text(
-                                text = "Kayıtlı Repolar",
-                                fontSize = 17.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = CyberTextPrimary,
-                                modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 16.dp)
-                            )
-                            
-                            // Info / Count
-                            val filteredCount = filteredRepos.size
-                            Text(
-                                text = "cloudstream.nuvio.app",
-                                fontSize = 11.sp,
-                                color = CyberTextSecondary,
-                                modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 8.dp)
-                            )
-                            Text(
-                                text = "$filteredCount eklenti bulundu",
-                                fontSize = 11.sp,
-                                color = CyberTextSecondary,
-                                modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 12.dp, bottom = 16.dp)
-                            )
-
-                            // Filtreler (Tümü / Favoriler / CS / Nuvio)
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(bottom = 12.dp)
-                                    .horizontalScroll(rememberScrollState()),
-                                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                // Tümü
-                                Surface(
-                                    color = if (selectedPlatform == "Tümü" && !showFavoritesOnly) CyberAccent else CyberCardDark,
-                                    shape = RoundedCornerShape(10.dp),
-                                    border = BorderStroke(1.dp, if (selectedPlatform == "Tümü" && !showFavoritesOnly) CyberAccent else CyberBorder),
-                                    modifier = Modifier.clickable { 
-                                        selectedPlatform = "Tümü" 
-                                        showFavoritesOnly = false
-                                    }
-                                ) {
-                                    Text(
-                                        text = "Tümü",
-                                        color = if (selectedPlatform == "Tümü" && !showFavoritesOnly) Color.White else CyberTextSecondary,
-                                        fontWeight = FontWeight.Medium,
-                                        fontSize = 11.sp,
-                                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
-                                    )
-                                }
-
-                                // Favoriler
-                                Surface(
-                                    color = if (showFavoritesOnly) CyberAccent else CyberCardDark,
-                                    shape = RoundedCornerShape(10.dp),
-                                    border = BorderStroke(1.dp, if (showFavoritesOnly) CyberAccent else CyberBorder),
-                                    modifier = Modifier.clickable { 
-                                        showFavoritesOnly = true 
-                                        selectedPlatform = "Tümü"
-                                    }
-                                ) {
-                                    Text(
-                                        text = "Favoriler",
-                                        color = if (showFavoritesOnly) Color.White else CyberTextSecondary,
-                                        fontWeight = FontWeight.Medium,
-                                        fontSize = 11.sp,
-                                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
-                                    )
-                                }
-
-                                Surface(
-                                    color = if (selectedPlatform == "CloudStream" && !showFavoritesOnly) CyberAccent else CyberCardDark,
-                                    shape = RoundedCornerShape(10.dp),
-                                    border = BorderStroke(1.dp, if (selectedPlatform == "CloudStream" && !showFavoritesOnly) CyberAccent else CyberBorder),
-                                    modifier = Modifier.clickable { 
-                                        selectedPlatform = "CloudStream" 
-                                        showFavoritesOnly = false
-                                    }
-                                ) {
-                                    Text(
-                                        text = "CloudStream",
-                                        color = if (selectedPlatform == "CloudStream" && !showFavoritesOnly) Color.White else CyberTextSecondary,
-                                        fontWeight = FontWeight.Medium,
-                                        fontSize = 11.sp,
-                                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
-                                    )
-                                }
-
-                                Text(
-                                    text = "Nuvio",
-                                    color = if (selectedPlatform == "Nuvio" && !showFavoritesOnly) Color.White else CyberTextSecondary,
-                                    fontWeight = FontWeight.Medium,
-                                    fontSize = 11.sp,
-                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
-                                )
-                            }
+                // Nuvio
+                Surface(
+                    color = if (selectedPlatform == "Nuvio" && !showFavoritesOnly) CyberAccent else CyberCardDark,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, if (selectedPlatform == "Nuvio" && !showFavoritesOnly) CyberAccent else CyberBorder),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            selectedPlatform = "Nuvio"
+                            showFavoritesOnly = false
                         }
+                ) {
+                    Box(modifier = Modifier.padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
+                        Text(
+                            text = "🟣 Nuvio ($nuvioCount)",
+                            color = if (selectedPlatform == "Nuvio" && !showFavoritesOnly) Color.White else CyberTextSecondary,
+                            fontWeight = if (selectedPlatform == "Nuvio" && !showFavoritesOnly) FontWeight.Bold else FontWeight.Medium,
+                            fontSize = 12.sp,
+                            maxLines = 1
+                        )
+                    }
+                }
+            }
 
             val configuration = LocalConfiguration.current
             val isTvOrTablet = configuration.screenWidthDp >= 600
             val screenWidth = configuration.screenWidthDp.dp
 
             val columns = when {
-                screenWidth >= 1100.dp -> 3
+                screenWidth >= 1100.dp -> 2
                 screenWidth >= 700.dp -> 2
                 else -> 1
             }
@@ -1886,85 +1726,125 @@ fun CloudStreamRepoManager() {
                 filteredRepos.chunked(columns)
             }
 
-            LazyColumn(
-                state = listState,
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                contentPadding = PaddingValues(bottom = 16.dp)
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 4.dp),
+                horizontalArrangement = Arrangement.spacedBy(14.dp)
             ) {
-                if (filteredRepos.isEmpty()) {
-                    item(key = "empty") {
-                        EmptyRepoCard(hasRepos = repos.isNotEmpty())
-                    }
-                } else {
-                    items(
-                        items = chunkedRepos,
-                        key = { row -> row.joinToString { it.url } }
-                    ) { rowRepos ->
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            rowRepos.forEach { repo ->
-                                Column(modifier = Modifier.weight(1f)) {
-                                    RepoCard(
-                                        repo = repo,
-                                        isTvOrTablet = isTvOrTablet,
-                                        checkResult = checkResults[repo.url],
-                                        onStarsChange = { newStars ->
-                                            val index = repos.indexOf(repo)
-                                            if (index >= 0) {
-                                                repos[index] = repo.copy(stars = newStars)
-                                                saveRepos(context, repos)
-                                            }
-                                        },
-                                        onEdit = {
-                                            selectedRepo = repo
-                                            showEditDialog = true
-                                        },
-                                        onDelete = {
-                                            repoToDelete = repo
-                                            showDeleteDialog = true
-                                        },
-                                        onCopyLink = { copyToClipboard(context, repo.url, "Repo linki kopyalandı") },
-                                        onCopyCode = { copyToClipboard(context, repo.code, "Kısa kod kopyalandı") },
-                                        onAddToCloudStream = {
-                                            if (repo.type.lowercase() == "nuvio") {
-                                                openNuvioAndPrepareRepo(
-                                                    context,
-                                                    repo,
-                                                    onNotInstalled = { showNuvioNotInstalledDialog = true }
-                                                )
-                                            } else {
-                                                openCloudStreamAndPrepareRepo(
-                                                    context,
-                                                    repo,
-                                                    onNotInstalled = { showCloudStreamNotInstalledDialog = true }
-                                                )
-                                            }
-                                        },
-                                        onCheck = {
-                                            checkResults[repo.url] = "⏳ Kontrol ediliyor..."
-                                            checkRepoUrl(repo.url) { result -> checkResults[repo.url] = result }
-                                        },
-                                        onDetailClick = {
-                                            selectedRepoForDetail = repo
-                                        }
-                                    )
-                                }
+                // LEFT: Repo List Grid
+                Column(
+                    modifier = Modifier.weight(if (isTvOrTablet) 1.5f else 1f)
+                ) {
+                    LazyColumn(
+                        state = listState,
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        contentPadding = PaddingValues(bottom = 16.dp)
+                    ) {
+                        if (filteredRepos.isEmpty()) {
+                            item(key = "empty") {
+                                EmptyRepoCard(hasRepos = repos.isNotEmpty())
                             }
-                            repeat(columns - rowRepos.size) {
-                                Spacer(modifier = Modifier.weight(1f))
+                        } else {
+                            items(
+                                items = chunkedRepos,
+                                key = { row -> row.joinToString { it.url } }
+                            ) { rowRepos ->
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                ) {
+                                    rowRepos.forEach { repo ->
+                                        Column(modifier = Modifier.weight(1f)) {
+                                            RepoCard(
+                                                repo = repo,
+                                                isTvOrTablet = isTvOrTablet,
+                                                checkResult = checkResults[repo.url],
+                                                onStarsChange = { newStars ->
+                                                    val index = repos.indexOf(repo)
+                                                    if (index >= 0) {
+                                                        repos[index] = repo.copy(stars = newStars)
+                                                        saveRepos(context, repos)
+                                                    }
+                                                },
+                                                onEdit = {
+                                                    selectedRepo = repo
+                                                    showEditDialog = true
+                                                },
+                                                onDelete = {
+                                                    repoToDelete = repo
+                                                    showDeleteDialog = true
+                                                },
+                                                onCopyLink = { copyToClipboard(context, repo.url, "Repo linki kopyalandı") },
+                                                onCopyCode = { copyToClipboard(context, repo.code, "Kısa kod kopyalandı") },
+                                                onAddToCloudStream = {
+                                                    if (repo.type.lowercase() == "nuvio") {
+                                                        openNuvioAndPrepareRepo(
+                                                            context,
+                                                            repo,
+                                                            onNotInstalled = { showNuvioNotInstalledDialog = true }
+                                                        )
+                                                    } else {
+                                                        openCloudStreamAndPrepareRepo(
+                                                            context,
+                                                            repo,
+                                                            onNotInstalled = { showCloudStreamNotInstalledDialog = true }
+                                                        )
+                                                    }
+                                                },
+                                                onCheck = {
+                                                    checkResults[repo.url] = "⏳ Kontrol ediliyor..."
+                                                    checkRepoUrl(repo.url) { result -> checkResults[repo.url] = result }
+                                                },
+                                                onDetailClick = {
+                                                    selectedRepoForDetail = repo
+                                                }
+                                            )
+                                        }
+                                    }
+                                    repeat(columns - rowRepos.size) {
+                                        Spacer(modifier = Modifier.weight(1f))
+                                    }
+                                }
                             }
                         }
                     }
                 }
+
+                // RIGHT: Detail Panel (Rendered on Landscape TV/Tablet screens)
+                if (isTvOrTablet) {
+                    val activeDetailRepo = selectedRepoForDetail ?: filteredRepos.firstOrNull() ?: repos.firstOrNull()
+                    if (activeDetailRepo != null) {
+                        RepoDetailPanel(
+                            repo = activeDetailRepo,
+                            checkResult = checkResults[activeDetailRepo.url],
+                            onTransfer = {
+                                if (activeDetailRepo.type.lowercase() == "nuvio") {
+                                    openNuvioAndPrepareRepo(context, activeDetailRepo, onNotInstalled = { showNuvioNotInstalledDialog = true })
+                                } else {
+                                    openCloudStreamAndPrepareRepo(context, activeDetailRepo, onNotInstalled = { showCloudStreamNotInstalledDialog = true })
+                                }
+                            },
+                            onCheck = {
+                                checkResults[activeDetailRepo.url] = "⏳ Kontrol ediliyor..."
+                                checkRepoUrl(activeDetailRepo.url) { result -> checkResults[activeDetailRepo.url] = result }
+                            },
+                            onCopyLink = { copyToClipboard(context, activeDetailRepo.url, "Repo linki kopyalandı") },
+                            onStarsChange = { newStars ->
+                                val index = repos.indexOf(activeDetailRepo)
+                                if (index >= 0) {
+                                    repos[index] = activeDetailRepo.copy(stars = newStars)
+                                    saveRepos(context, repos)
+                                }
+                            },
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                }
             }
-        } // End Column of Bottom Sheet
-    } // End Surface of Bottom Sheet
-    } // End Column of Ana Liste
-    } // End Box of Ana Liste
-    } // End of Scaffold content block
+        }
+    }
 
     if (selectedRepoForDetail != null) {
         RepoDetailDialog(
@@ -2590,6 +2470,9 @@ fun AdminLoginDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
+        containerColor = CyberCardDark,
+        titleContentColor = CyberTextPrimary,
+        textContentColor = CyberTextPrimary,
         title = {
             Text("👑 Admin Panel Girişi", fontWeight = FontWeight.Bold, color = CyberYellow)
         },
@@ -2609,9 +2492,14 @@ fun AdminLoginDialog(
                     label = { Text("Admin PIN") },
                     placeholder = { Text("Varsayılan PIN: 1907") },
                     singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = CyberYellow,
-                        unfocusedBorderColor = CyberBorder
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
                     ),
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -2621,9 +2509,14 @@ fun AdminLoginDialog(
                     label = { Text("GitHub Token (Bulut Eşitleme İçin)") },
                     placeholder = { Text("ghp_...") },
                     singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = CyberCyan,
-                        unfocusedBorderColor = CyberBorder
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
                     ),
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -2798,6 +2691,268 @@ fun EmptyRepoCard(
                     "Başlamak için '+ Repo Ekle' butonunu kullanabilirsiniz.",
                 color = CyberTextSecondary
             )
+        }
+    }
+}
+
+/* =========================================================
+   REPO DETAY PANELİ (HEDEF REFERANS GÖRSEL DİLİ)
+   ========================================================= */
+
+@Composable
+fun RepoDetailPanel(
+    repo: Repo,
+    checkResult: String?,
+    onTransfer: () -> Unit,
+    onCheck: () -> Unit,
+    onCopyLink: () -> Unit,
+    onStarsChange: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val isNuvio = repo.type.lowercase() == "nuvio"
+    val platformName = if (isNuvio) "NUVIO" else "CLOUDSTREAM"
+    val platformColor = if (isNuvio) CyberPink else CyberCyan
+    val effectiveLogoUrl = remember(repo.url, repo.iconUrl) { getEffectiveIconUrl(repo) }
+
+    val csGradient = Brush.horizontalGradient(listOf(Color(0xFF0052D4), Color(0xFF4364F7), Color(0xFF6FB1FC)))
+    val nuvioGradient = Brush.horizontalGradient(listOf(Color(0xFF8E2DE2), Color(0xFF4A00E0)))
+    val transferGradient = if (isNuvio) nuvioGradient else csGradient
+
+    Surface(
+        color = CyberCardDark,
+        shape = RoundedCornerShape(20.dp),
+        border = BorderStroke(1.dp, CyberBorder),
+        modifier = modifier.fillMaxHeight()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Brush.linearGradient(listOf(CyberCardDark, CyberSurfaceDark)), RoundedCornerShape(20.dp))
+                .padding(20.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            // Hero Header: Logo + Title + Stars
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(90.dp)
+                        .background(CyberSurfaceDark, RoundedCornerShape(16.dp))
+                        .border(1.5.dp, CyberBorder, RoundedCornerShape(16.dp))
+                        .clip(RoundedCornerShape(16.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    if (effectiveLogoUrl.isNotBlank()) {
+                        SubcomposeAsyncImage(
+                            model = effectiveLogoUrl,
+                            contentDescription = "${repo.name} Logo",
+                            modifier = Modifier.fillMaxSize().padding(4.dp),
+                            contentScale = ContentScale.Fit,
+                            loading = { Text(if (isNuvio) "🟣" else "📦", fontSize = 36.sp) },
+                            error = { Text(if (isNuvio) "🟣" else "📦", fontSize = 36.sp) }
+                        )
+                    } else {
+                        Text(if (isNuvio) "🟣" else "📦", fontSize = 36.sp)
+                    }
+                }
+
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text(
+                        text = repo.name,
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 22.sp,
+                        color = CyberTextPrimary
+                    )
+
+                    // 5 Golden Stars
+                    Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                        (1..5).forEach { starIdx ->
+                            Text(
+                                text = "★",
+                                color = CyberYellow,
+                                fontSize = 18.sp
+                            )
+                        }
+                    }
+
+                    // Status Badges & Tags
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            color = Color(0xFF10B981).copy(alpha = 0.2f),
+                            shape = RoundedCornerShape(20.dp),
+                            border = BorderStroke(1.dp, Color(0xFF10B981))
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Box(modifier = Modifier.size(6.dp).background(Color(0xFF10B981), RoundedCornerShape(50)))
+                                Text("Çalışıyor", color = Color(0xFF10B981), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+
+                        Surface(
+                            color = Color(0xFFEF4444).copy(alpha = 0.2f),
+                            shape = RoundedCornerShape(20.dp),
+                            border = BorderStroke(1.dp, Color(0xFFEF4444))
+                        ) {
+                            Text(
+                                "YENİ GÜNCELLEME",
+                                color = Color(0xFFEF4444),
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.ExtraBold,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                            )
+                        }
+                    }
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text("[ ${repo.category.uppercase()} ]", color = CyberCyan, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                        Text("•", color = CyberTextSecondary, fontSize = 11.sp)
+                        Text("[ $platformName ]", color = platformColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+
+            // Action Buttons Row
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                TvGradientButton(
+                    onClick = onTransfer,
+                    gradient = transferGradient,
+                    modifier = Modifier.weight(1.2f)
+                ) {
+                    Text(
+                        text = if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.White
+                    )
+                }
+
+                TvOutlinedButton(
+                    onClick = onCheck,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("🔄 Kontrol Et", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                }
+            }
+
+            // Metrics Row 1: Son kontrol & Son güncelleme
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Surface(
+                    color = CyberSurfaceDark,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, CyberBorder),
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Text("🕒", fontSize = 20.sp)
+                        Column {
+                            Text("Son kontrol", fontSize = 10.sp, color = CyberTextSecondary)
+                            Text("12 dakika önce", fontSize = 12.sp, color = CyberTextPrimary, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
+
+                Surface(
+                    color = CyberSurfaceDark,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, CyberBorder),
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Text("📅", fontSize = 20.sp)
+                        Column {
+                            Text("Son güncelleme", fontSize = 10.sp, color = CyberTextSecondary)
+                            Text("08.10.2026", fontSize = 12.sp, color = CyberTextPrimary, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
+            }
+
+            // Metrics Row 2: Plugin sayısı & Repo bağlantısı
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Surface(
+                    color = CyberSurfaceDark,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, CyberBorder),
+                    modifier = Modifier.weight(0.8f)
+                ) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Text("🧩", fontSize = 20.sp)
+                        Column {
+                            Text("Plugin sayısı", fontSize = 10.sp, color = CyberTextSecondary)
+                            Text("48", fontSize = 13.sp, color = CyberTextPrimary, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
+
+                Surface(
+                    color = CyberSurfaceDark,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, CyberBorder),
+                    modifier = Modifier.weight(1.2f).clickable { onCopyLink() }
+                ) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text("🔗", fontSize = 18.sp)
+                            Column {
+                                Text("Repo bağlantısı", fontSize = 10.sp, color = CyberTextSecondary)
+                                Text(
+                                    text = if (repo.url.length > 20) repo.url.take(20) + "..." else repo.url,
+                                    fontSize = 11.sp,
+                                    color = CyberCyan,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                            }
+                        }
+                        Text("📋", fontSize = 16.sp)
+                    }
+                }
+            }
+
+            // Description Section
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text("Açıklama", fontWeight = FontWeight.Bold, color = CyberTextPrimary, fontSize = 14.sp)
+                Text(
+                    text = "Türkçe dizi ve film içerikleri için hazırlanmış CloudStream repo deposudur. Güncel ve kaliteli içerikler sunar.",
+                    color = CyberTextSecondary,
+                    fontSize = 12.sp,
+                    lineHeight = 18.sp
+                )
+            }
         }
     }
 }
@@ -2987,6 +3142,46 @@ fun RepoDetailDialog(
 }
 
 /* =========================================================
+   GRADIENT BUTTON
+   ========================================================= */
+
+@Composable
+private fun TvGradientButton(
+    onClick: () -> Unit,
+    gradient: Brush,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    content: @Composable RowScope.() -> Unit
+) {
+    var isFocused by remember { mutableStateOf(false) }
+    val scale by animateFloatAsState(targetValue = if (isFocused) 1.05f else 1.0f, animationSpec = tween(150), label = "gradScale")
+    val borderColor by animateColorAsState(targetValue = if (isFocused) Color.White else Color.Transparent, animationSpec = tween(150), label = "gradBorder")
+
+    Surface(
+        onClick = onClick,
+        enabled = enabled,
+        shape = RoundedCornerShape(10.dp),
+        color = Color.Transparent,
+        border = BorderStroke(if (isFocused) 2.dp else 0.dp, borderColor),
+        modifier = modifier
+            .onFocusChanged { isFocused = it.isFocused }
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            }
+            .background(gradient, RoundedCornerShape(10.dp))
+            .clip(RoundedCornerShape(10.dp))
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+            content = content
+        )
+    }
+}
+
+/* =========================================================
    REPO KARTI
    ========================================================= */
 
@@ -3005,81 +3200,152 @@ fun RepoCard(
     onDetailClick: () -> Unit = {}
 ) {
     var isFocused by remember { mutableStateOf(false) }
-    val borderColor = if (isFocused) CyberCyan else CyberBorder
+    val scale by animateFloatAsState(targetValue = if (isFocused) 1.04f else 1.0f, animationSpec = tween(150), label = "cardScale")
+    val borderColor by animateColorAsState(targetValue = if (isFocused) CyberBorderFocused else CyberBorder, animationSpec = tween(150), label = "cardBorder")
+    
     val isNuvio = repo.type.lowercase() == "nuvio"
     val platformName = if (isNuvio) "NUVIO" else "CLOUDSTREAM"
     val platformColor = if (isNuvio) CyberPink else CyberCyan
     
-    val baseTextSize = if (isTvOrTablet) 14.sp else 10.sp
+    val baseTextSize = if (isTvOrTablet) 13.sp else 10.sp
     val titleTextSize = if (isTvOrTablet) 18.sp else 14.sp
     val buttonTextSize = if (isTvOrTablet) 12.sp else 11.sp
-    val paddingSize = if (isTvOrTablet) 20.dp else 16.dp
+    val paddingSize = if (isTvOrTablet) 18.dp else 14.dp
     val iconSize = if (isTvOrTablet) 48.dp else 36.dp
-    val starSize = if (isTvOrTablet) 36.dp else 32.dp
+    val starSize = if (isTvOrTablet) 32.dp else 28.dp
+
+    val transferGradient = if (isNuvio) {
+        Brush.horizontalGradient(listOf(Color(0xFF8E2DE2), Color(0xFF4A00E0)))
+    } else {
+        Brush.horizontalGradient(listOf(Color(0xFF0052D4), Color(0xFF4364F7), Color(0xFF6FB1FC)))
+    }
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .onFocusChanged { isFocused = it.isFocused }
-            .border(if (isFocused) 3.dp else 1.5.dp, borderColor, RoundedCornerShape(12.dp))
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            }
+            .border(if (isFocused) 2.5.dp else 1.dp, borderColor, RoundedCornerShape(16.dp))
             .clickable { onDetailClick() },
         colors = CardDefaults.cardColors(containerColor = CyberCardDark),
-        elevation = CardDefaults.cardElevation(defaultElevation = if (isFocused) 8.dp else 2.dp),
-        shape = RoundedCornerShape(12.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = if (isFocused) 10.dp else 2.dp),
+        shape = RoundedCornerShape(16.dp)
     ) {
-        Column(modifier = Modifier.padding(paddingSize)) {
-            // Header: Name + Favorite Star
+        Column(
+            modifier = Modifier
+                .background(
+                    brush = Brush.linearGradient(listOf(CyberCardDark, CyberSurfaceDark)),
+                    shape = RoundedCornerShape(16.dp)
+                )
+                .padding(paddingSize)
+        ) {
+            // Header: Logo + Name + Category Chips + Favorite Stars
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Top
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
-                    // Icon placeholder
+                    // Logo Container
+                    val effectiveLogoUrl = remember(repo.url, repo.iconUrl) { getEffectiveIconUrl(repo) }
+
                     Box(
                         modifier = Modifier
                             .size(iconSize)
-                            .background(CyberSurfaceDark, RoundedCornerShape(8.dp)),
+                            .background(CyberSurfaceDark, RoundedCornerShape(12.dp))
+                            .border(1.dp, CyberBorder, RoundedCornerShape(12.dp))
+                            .clip(RoundedCornerShape(12.dp)),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(if (isNuvio) "🟣" else "📦", fontSize = if (isTvOrTablet) 24.sp else 16.sp)
+                        if (effectiveLogoUrl.isNotBlank()) {
+                            SubcomposeAsyncImage(
+                                model = effectiveLogoUrl,
+                                contentDescription = "${repo.name} Logo",
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(3.dp),
+                                contentScale = ContentScale.Fit,
+                                loading = {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text(if (isNuvio) "🟣" else "📦", fontSize = if (isTvOrTablet) 24.sp else 16.sp)
+                                    }
+                                },
+                                error = {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text(if (isNuvio) "🟣" else "📦", fontSize = if (isTvOrTablet) 24.sp else 16.sp)
+                                    }
+                                }
+                            )
+                        } else {
+                            Text(if (isNuvio) "🟣" else "📦", fontSize = if (isTvOrTablet) 24.sp else 16.sp)
+                        }
                     }
                     Spacer(Modifier.width(12.dp))
                     Column {
                         Text(
                             text = repo.name,
                             color = CyberTextPrimary,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.ExtraBold,
                             fontSize = titleTextSize,
                             maxLines = 1
                         )
-                        Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                text = "[ ${repo.category.uppercase()} ]",
-                                color = CyberCyan,
-                                fontSize = baseTextSize,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text("•", color = CyberTextSecondary, fontSize = baseTextSize)
-                            Text(
-                                text = "[ $platformName ]",
-                                color = platformColor,
-                                fontSize = baseTextSize,
-                                fontWeight = FontWeight.Bold
-                            )
-                            if (ENABLE_ADMIN_PANEL_FEATURE && repo.code.isNotBlank()) {
-                                Text("•", color = CyberTextSecondary, fontSize = baseTextSize)
+                        Spacer(Modifier.height(4.dp))
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Surface(
+                                color = CyberSurfaceDark,
+                                shape = RoundedCornerShape(6.dp),
+                                border = BorderStroke(0.5.dp, CyberBorder)
+                            ) {
                                 Text(
-                                    text = "CODE: ${repo.code}",
-                                    color = CyberYellow,
+                                    text = repo.category.uppercase(),
+                                    color = CyberCyan,
                                     fontSize = baseTextSize,
-                                    fontWeight = FontWeight.SemiBold
+                                    fontWeight = FontWeight.Bold,
+                                    maxLines = 1,
+                                    softWrap = false,
+                                    modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
                                 )
+                            }
+                            Surface(
+                                color = CyberSurfaceDark,
+                                shape = RoundedCornerShape(6.dp),
+                                border = BorderStroke(0.5.dp, CyberBorder)
+                            ) {
+                                Text(
+                                    text = if (platformName == "CLOUDSTREAM") "CS" else platformName,
+                                    color = platformColor,
+                                    fontSize = baseTextSize,
+                                    fontWeight = FontWeight.Bold,
+                                    maxLines = 1,
+                                    softWrap = false,
+                                    modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
+                                )
+                            }
+                            if (ENABLE_ADMIN_PANEL_FEATURE && repo.code.isNotBlank()) {
+                                Surface(
+                                    color = CyberSurfaceDark,
+                                    shape = RoundedCornerShape(6.dp),
+                                    border = BorderStroke(0.5.dp, CyberBorder)
+                                ) {
+                                    Text(
+                                        text = "CODE: ${repo.code}",
+                                        color = CyberYellow,
+                                        fontSize = baseTextSize,
+                                        fontWeight = FontWeight.SemiBold,
+                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                    )
+                                }
                             }
                         }
                     }
                 }
-                Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                     (1..3).forEach { starIndex ->
                         TvIconButton(
                             onClick = { 
@@ -3088,57 +3354,81 @@ fun RepoCard(
                             },
                             modifier = Modifier.size(starSize)
                         ) {
-                            Text(if (repo.stars >= starIndex) "★" else "☆", color = CyberYellow, fontSize = if (isTvOrTablet) 24.sp else 20.sp)
+                            Text(
+                                text = if (repo.stars >= starIndex) "★" else "☆",
+                                color = if (repo.stars >= starIndex) CyberYellow else CyberTextSecondary,
+                                fontSize = if (isTvOrTablet) 22.sp else 18.sp
+                            )
                         }
                     }
                 }
             }
 
-            // URL (ADMIN ONLY - Hide completely in User APK)
+            // URL (ADMIN ONLY)
             if (ENABLE_ADMIN_PANEL_FEATURE) {
-                Spacer(Modifier.height(12.dp))
+                Spacer(Modifier.height(8.dp))
                 Text(
                     text = repo.url,
                     color = CyberTextSecondary,
-                    fontSize = if (isTvOrTablet) 14.sp else 12.sp,
+                    fontSize = if (isTvOrTablet) 12.sp else 10.sp,
                     maxLines = 1
                 )
             }
 
-            if (checkResult != null) {
-                Spacer(Modifier.height(6.dp))
+            // Status Indicator Badge
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                modifier = Modifier.padding(top = 10.dp)
+            ) {
+                val (statusColor, statusLabel) = when {
+                    checkResult == null -> Color(0xFF6B7280) to "Kontrol edilmedi"
+                    checkResult.startsWith("🟢") -> Color(0xFF10B981) to "Çalışıyor"
+                    checkResult.startsWith("⏳") || checkResult.startsWith("🟡") -> Color(0xFFFBBF24) to "Kontrol ediliyor..."
+                    else -> Color(0xFFEF4444) to "Çalışmıyor"
+                }
+
+                Box(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .background(statusColor, RoundedCornerShape(50))
+                )
                 Text(
-                    text = checkResult,
-                    fontSize = buttonTextSize,
-                    fontWeight = FontWeight.Bold,
-                    color = when {
-                        checkResult.startsWith("🟢") -> CyberGreen
-                        checkResult.startsWith("🟡") -> CyberYellow
-                        else -> CyberPink
-                    }
+                    text = if (checkResult != null && !checkResult.startsWith("🟢") && !checkResult.startsWith("⏳") && !checkResult.startsWith("🟡") && !checkResult.startsWith("🔴")) checkResult else statusLabel,
+                    color = statusColor,
+                    fontSize = baseTextSize,
+                    fontWeight = FontWeight.SemiBold
                 )
             }
 
-            Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.height(14.dp))
 
-            // Actions
+            // Actions: Transfer (Gradient) + Kontrol Et (Glass) + Admin Actions
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                TvFilledTonalButton(onClick = onAddToCloudStream, modifier = Modifier.weight(1.2f)) {
+                TvGradientButton(
+                    onClick = onAddToCloudStream,
+                    gradient = transferGradient,
+                    modifier = Modifier.weight(1.3f)
+                ) {
                     Text(
-                        text = if (isNuvio) "Nuvio'ya Aktar" else "CS'ye Aktar",
+                        text = if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
                         fontSize = buttonTextSize,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.White,
                         maxLines = 1
                     )
                 }
-                TvOutlinedButton(onClick = onCheck, modifier = Modifier.weight(1f)) {
-                    Text("Kontrol Et", fontSize = buttonTextSize, maxLines = 1)
+                
+                TvOutlinedButton(
+                    onClick = onCheck,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("🔄 Kontrol Et", fontSize = buttonTextSize, maxLines = 1)
                 }
 
-                // ADMIN ONLY Actions
                 if (ENABLE_ADMIN_PANEL_FEATURE) {
                     TvOutlinedButton(
                         onClick = {
@@ -3258,19 +3548,18 @@ fun SettingsDialog(
                 Text("Panel Teması", fontWeight = FontWeight.Bold)
 
                 val themes = listOf(
-                    "Cyber" to "Cyber Neon (Varsayılan)",
-                    "DeepOcean" to "Okyanus Mavisi",
-                    "Crimson" to "Kızıl Gece",
-                    "Emerald" to "Zümrüt Yeşili"
+                    "Darknes Purple" to "Darknes Purple (Varsayılan)",
+                    "Camel" to "Camel (Sıcak Kahve)",
+                    "Indigo" to "Indigo (Gece Mavisi)"
                 )
                 
                 val currentSettingsTheme = LocalContext.current.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-                    .getString("theme_mode", "Cyber") ?: "Cyber"
+                    .getString("theme_mode", "Darknes Purple") ?: "Darknes Purple"
                 
                 val context = LocalContext.current
                 
                 themes.forEach { (themeKey, themeName) ->
-                    val isSelected = currentSettingsTheme == themeKey
+                    val isSelected = currentSettingsTheme == themeKey || (currentSettingsTheme == "Cyber" && themeKey == "Darknes Purple")
                     TvButton(
                         onClick = {
                             context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -3417,19 +3706,31 @@ fun AdminAnnouncementsDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("📢 Duyuru Yönetimi", fontWeight = FontWeight.Bold) },
+        containerColor = CyberCardDark,
+        titleContentColor = CyberTextPrimary,
+        textContentColor = CyberTextPrimary,
+        title = { Text("📢 Duyuru Yönetimi", fontWeight = FontWeight.Bold, color = CyberTextPrimary) },
         text = {
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                Text("Yeni duyuru", fontWeight = FontWeight.Bold)
+                Text("Yeni duyuru", fontWeight = FontWeight.Bold, color = CyberTextPrimary)
 
                 OutlinedTextField(
                     value = title,
                     onValueChange = { title = it },
                     label = { Text("Başlık (isteğe bağlı)") },
                     singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    ),
                     modifier = Modifier.fillMaxWidth()
                 )
                 OutlinedTextField(
@@ -3437,6 +3738,15 @@ fun AdminAnnouncementsDialog(
                     onValueChange = { message = it },
                     label = { Text("Mesaj") },
                     minLines = 3,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    ),
                     modifier = Modifier.fillMaxWidth()
                 )
                 OutlinedTextField(
@@ -3444,6 +3754,15 @@ fun AdminAnnouncementsDialog(
                     onValueChange = { link = it },
                     label = { Text("Bağlantı (isteğe bağlı)") },
                     singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    ),
                     modifier = Modifier.fillMaxWidth()
                 )
 
@@ -3560,8 +3879,11 @@ fun AddRepoDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
+        containerColor = CyberCardDark,
+        titleContentColor = CyberTextPrimary,
+        textContentColor = CyberTextPrimary,
         title = {
-            Text("Yeni Repo Ekle", fontWeight = FontWeight.Bold)
+            Text("Yeni Repo Ekle", fontWeight = FontWeight.Bold, color = CyberTextPrimary)
         },
         text = {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
@@ -3571,7 +3893,16 @@ fun AddRepoDialog(
                     modifier = Modifier.fillMaxWidth(),
                     label = { Text("Repo adı") },
                     placeholder = { Text("Örn. Kraptor Repo") },
-                    singleLine = true
+                    singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    )
                 )
 
                 Spacer(Modifier.height(8.dp))
@@ -3582,7 +3913,16 @@ fun AddRepoDialog(
                     modifier = Modifier.fillMaxWidth(),
                     label = { Text("Repo linki (Uzun URL)") },
                     placeholder = { Text("https://...") },
-                    singleLine = true
+                    singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    )
                 )
 
                 if (type != "nuvio") {
@@ -3594,7 +3934,16 @@ fun AddRepoDialog(
                         modifier = Modifier.fillMaxWidth(),
                         label = { Text("Kısa kod (Opsiyonel)") },
                         placeholder = { Text("Örn. kraptorcs") },
-                        singleLine = true
+                        singleLine = true,
+                        textStyle = TextStyle(color = CyberTextPrimary),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = CyberAccent,
+                            unfocusedBorderColor = CyberBorder,
+                            focusedContainerColor = CyberSurfaceDark,
+                            unfocusedContainerColor = CyberSurfaceDark,
+                            focusedLabelColor = CyberAccent,
+                            unfocusedLabelColor = CyberTextSecondary
+                        )
                     )
                 }
 
@@ -3606,7 +3955,16 @@ fun AddRepoDialog(
                     modifier = Modifier.fillMaxWidth(),
                     label = { Text("Kategori") },
                     placeholder = { Text("Örn. Türkçe") },
-                    singleLine = true
+                    singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    )
                 )
 
                 Spacer(Modifier.height(12.dp))
@@ -3686,8 +4044,11 @@ fun EditRepoDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
+        containerColor = CyberCardDark,
+        titleContentColor = CyberTextPrimary,
+        textContentColor = CyberTextPrimary,
         title = {
-            Text("Repo Düzenle", fontWeight = FontWeight.Bold)
+            Text("Repo Düzenle", fontWeight = FontWeight.Bold, color = CyberTextPrimary)
         },
         text = {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
@@ -3696,7 +4057,16 @@ fun EditRepoDialog(
                     onValueChange = { name = it },
                     modifier = Modifier.fillMaxWidth(),
                     label = { Text("Repo adı") },
-                    singleLine = true
+                    singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    )
                 )
 
                 Spacer(Modifier.height(8.dp))
@@ -3706,7 +4076,16 @@ fun EditRepoDialog(
                     onValueChange = { url = it },
                     modifier = Modifier.fillMaxWidth(),
                     label = { Text("Repo linki (Uzun URL)") },
-                    singleLine = true
+                    singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    )
                 )
 
                 if (type != "nuvio") {
@@ -3717,7 +4096,16 @@ fun EditRepoDialog(
                         onValueChange = { code = it },
                         modifier = Modifier.fillMaxWidth(),
                         label = { Text("Kısa kod (Opsiyonel)") },
-                        singleLine = true
+                        singleLine = true,
+                        textStyle = TextStyle(color = CyberTextPrimary),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = CyberAccent,
+                            unfocusedBorderColor = CyberBorder,
+                            focusedContainerColor = CyberSurfaceDark,
+                            unfocusedContainerColor = CyberSurfaceDark,
+                            focusedLabelColor = CyberAccent,
+                            unfocusedLabelColor = CyberTextSecondary
+                        )
                     )
                 }
 
@@ -3728,7 +4116,16 @@ fun EditRepoDialog(
                     onValueChange = { category = it },
                     modifier = Modifier.fillMaxWidth(),
                     label = { Text("Kategori") },
-                    singleLine = true
+                    singleLine = true,
+                    textStyle = TextStyle(color = CyberTextPrimary),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CyberAccent,
+                        unfocusedBorderColor = CyberBorder,
+                        focusedContainerColor = CyberSurfaceDark,
+                        unfocusedContainerColor = CyberSurfaceDark,
+                        focusedLabelColor = CyberAccent,
+                        unfocusedLabelColor = CyberTextSecondary
+                    )
                 )
 
                 Spacer(Modifier.height(12.dp))
@@ -3805,24 +4202,15 @@ fun DeleteRepoDialog(
 ) {
 
     AlertDialog(
-
-        onDismissRequest =
-            onDismiss,
-
+        onDismissRequest = onDismiss,
+        containerColor = CyberCardDark,
+        titleContentColor = CyberTextPrimary,
+        textContentColor = CyberTextPrimary,
         title = {
-
-            Text(
-                "Repo silinsin mi?",
-                fontWeight =
-                    FontWeight.Bold
-            )
+            Text("Repo silinsin mi?", fontWeight = FontWeight.Bold, color = CyberTextPrimary)
         },
-
         text = {
-
-            Text(
-                "“${repo.name}” reposu kalıcı olarak silinecek."
-            )
+            Text("“${repo.name}” reposu kalıcı olarak silinecek.", color = CyberTextPrimary)
         },
 
         confirmButton = {

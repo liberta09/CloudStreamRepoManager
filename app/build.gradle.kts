@@ -22,13 +22,13 @@ android {
         create("user") {
             dimension = "version"
             applicationId = "com.kaan.cloudstreamrepomanager.user"
-            manifestPlaceholders["appName"] = "Repo"
+            manifestPlaceholders["appName"] = "Repo USER"
             buildConfigField("Boolean", "ENABLE_ADMIN_PANEL", "false")
         }
         create("admin") {
             dimension = "version"
             applicationId = "com.kaan.cloudstreamrepomanager.admin"
-            manifestPlaceholders["appName"] = "Repo"
+            manifestPlaceholders["appName"] = "Repo ADMIN"
             buildConfigField("Boolean", "ENABLE_ADMIN_PANEL", "true")
         }
     }
@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation("io.coil-kt:coil-compose:2.6.0")
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

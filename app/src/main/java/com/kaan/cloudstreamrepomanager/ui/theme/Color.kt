@@ -1,8 +1,11 @@
 package com.kaan.cloudstreamrepomanager.ui.theme
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
-// Modern Material 3 Dark Theme Palette (Professional & Clean)
+// Modern Material 3 Dark Theme Palette
 val md_theme_dark_primary = Color(0xFFAEC6FF)
 val md_theme_dark_onPrimary = Color(0xFF002E69)
 val md_theme_dark_primaryContainer = Color(0xFF194483)
@@ -23,7 +26,7 @@ val md_theme_dark_errorContainer = Color(0xFF93000A)
 val md_theme_dark_onError = Color(0xFF690005)
 val md_theme_dark_onErrorContainer = Color(0xFFFFDAD6)
 
-val md_theme_dark_background = Color(0xFF0A0B10) // Very dark navy/purple
+val md_theme_dark_background = Color(0xFF0A0B10)
 val md_theme_dark_onBackground = Color(0xFFE2E2E9)
 val md_theme_dark_surface = Color(0xFF0A0B10)
 val md_theme_dark_onSurface = Color(0xFFE2E2E9)
@@ -37,69 +40,73 @@ val md_theme_dark_surfaceTint = Color(0xFFAEC6FF)
 val md_theme_dark_outlineVariant = Color(0xFF44474E)
 val md_theme_dark_scrim = Color(0xFF000000)
 
-// Semantic Accents
-val successGreen = Color(0xFF4CAF50)
-val errorRed = Color(0xFFF44336)
-val warningYellow = Color(0xFFFFD54F)
+// Semantic Accents & Status Colors
+val successGreen = Color(0xFF10B981) // Neon Emerald
+val errorRed = Color(0xFFEF4444)     // Neon Red
+val warningYellow = Color(0xFFFBBF24) // Bright Yellow
 
-var CyberYellow = warningYellow
-var CyberCyan = Color(0xFF8B5CF6)
-var CyberPink = errorRed
-var CyberPurple = Color(0xFF8B5CF6)
-var CyberBlue = Color(0xFF8B5CF6)
-var CyberOrange = warningYellow
-var CyberGreen = successGreen
+// Reactive Theme Palette Variables (Tracked by Compose State Engine)
+var CyberYellow by mutableStateOf(warningYellow)
+var CyberCyan by mutableStateOf(Color(0xFF00E5FF))
+var CyberPink by mutableStateOf(Color(0xFFA855F7))
+var CyberPurple by mutableStateOf(Color(0xFF8B5CF6))
+var CyberBlue by mutableStateOf(Color(0xFF0072FF))
+var CyberOrange by mutableStateOf(warningYellow)
+var CyberGreen by mutableStateOf(successGreen)
 
-var CyberBgDark = Color(0xFF1C1428)       
-var CyberSurfaceDark = Color(0xFF1C1428)  
-var CyberCardDark = Color(0xFF2A1F3D)     
-var CyberBorder = Color(0x337C6B9E)       
-var CyberBorderFocused = Color(0xFF8B5CF6) 
-var CyberTextPrimary = Color(0xFFF0E8FF)
-var CyberTextSecondary = Color(0xFF7C6B9E) 
-var CyberAccent = Color(0xFF8B5CF6)       
+var CyberBgDark by mutableStateOf(Color(0xFF0C0E1A))       // Deep Cyber Navy
+var CyberSurfaceDark by mutableStateOf(Color(0xFF131627))  // Cyber Glass Surface
+var CyberCardDark by mutableStateOf(Color(0xFF181C30))     // Cyber Card Surface
+var CyberBorder by mutableStateOf(Color(0x3300E5FF))       // Cyan Glass Border
+var CyberBorderFocused by mutableStateOf(Color(0xFF00E5FF)) // Electric Cyan Focus
+var CyberTextPrimary by mutableStateOf(Color(0xFFF1F5F9))   // Crisp White
+var CyberTextSecondary by mutableStateOf(Color(0xFF94A3B8)) // Slate Grey
+var CyberAccent by mutableStateOf(Color(0xFF8B5CF6))       // Vivid Purple Accent
 
 // Theme Applicator
 fun applyThemeColors(themeName: String) {
     when (themeName) {
         "Camel" -> {
-            CyberBgDark = Color(0xFF2C2416)
-            CyberSurfaceDark = Color(0xFF2C2416)
-            CyberCardDark = Color(0xFF3A3020)
-            CyberAccent = Color(0xFFC8A84B)
-            CyberTextPrimary = Color(0xFFF5ECD7)
-            CyberTextSecondary = Color(0xFF9E8E6A)
-            CyberBorder = Color(0x339E8E6A)
+            CyberBgDark = Color(0xFF1C1917)       // Deep Warm Stone
+            CyberSurfaceDark = Color(0xFF292524)  // Warm Dark Glass
+            CyberCardDark = Color(0xFF322D2B)     // Lighter Warm Card
+            CyberAccent = Color(0xFFF59E0B)       // Golden Amber
+            CyberTextPrimary = Color(0xFFFAFAF9)   // Off-white
+            CyberTextSecondary = Color(0xFFA8A29E) // Muted warm grey
+            CyberBorder = Color(0x33F59E0B)
+            CyberBorderFocused = Color(0xFFF59E0B)
             
-            CyberCyan = CyberAccent
-            CyberPurple = CyberAccent
-            CyberBorderFocused = CyberAccent
+            CyberCyan = Color(0xFFF59E0B)
+            CyberPurple = Color(0xFFD97706)
+            CyberYellow = Color(0xFFFBBF24)
         }
         "Indigo" -> {
-            CyberBgDark = Color(0xFF1A1B2E)
-            CyberSurfaceDark = Color(0xFF1A1B2E)
-            CyberCardDark = Color(0xFF252640)
-            CyberAccent = Color(0xFF6C7BFF)
-            CyberTextPrimary = Color(0xFFE8E8FF)
-            CyberTextSecondary = Color(0xFF7B7CA0)
-            CyberBorder = Color(0x337B7CA0)
+            CyberBgDark = Color(0xFF0B132B)       // Deep Navy Midnight
+            CyberSurfaceDark = Color(0xFF1C2541)  // Dark Navy Surface
+            CyberCardDark = Color(0xFF232D4F)     // Navy Glass Card
+            CyberAccent = Color(0xFF48CAE4)       // Electric Cyan
+            CyberTextPrimary = Color(0xFFF8FAFC)   // Crisp White
+            CyberTextSecondary = Color(0xFF7B7CA0) // Muted blue-grey
+            CyberBorder = Color(0x3348CAE4)
+            CyberBorderFocused = Color(0xFF48CAE4)
             
-            CyberCyan = CyberAccent
-            CyberPurple = CyberAccent
-            CyberBorderFocused = CyberAccent
+            CyberCyan = Color(0xFF00B4D8)
+            CyberPurple = Color(0xFF5390D9)
+            CyberYellow = warningYellow
         }
-        else -> { // Default "Darknes Purple"
-            CyberBgDark = Color(0xFF1C1428)       
-            CyberSurfaceDark = Color(0xFF1C1428)  
-            CyberCardDark = Color(0xFF2A1F3D)     
-            CyberAccent = Color(0xFF8B5CF6)       
-            CyberTextPrimary = Color(0xFFF0E8FF)
-            CyberTextSecondary = Color(0xFF7C6B9E) 
-            CyberBorder = Color(0x337C6B9E)       
+        else -> { // Default "Darknes Purple / Cyber Neon"
+            CyberBgDark = Color(0xFF0C0E1A)       // Deep Cyber Navy
+            CyberSurfaceDark = Color(0xFF131627)  // Cyber Glass Surface
+            CyberCardDark = Color(0xFF181C30)     // Cyber Card Surface
+            CyberAccent = Color(0xFF8B5CF6)       // Vivid Purple/Neon
+            CyberTextPrimary = Color(0xFFF1F5F9)   // Crisp White
+            CyberTextSecondary = Color(0xFF94A3B8) // Slate Grey
+            CyberBorder = Color(0x3300E5FF)       // Cyan Glass Border
+            CyberBorderFocused = Color(0xFF00E5FF) // Electric Cyan Focus
             
-            CyberCyan = CyberAccent
-            CyberPurple = CyberAccent
-            CyberBorderFocused = CyberAccent
+            CyberCyan = Color(0xFF00E5FF)
+            CyberPurple = Color(0xFF8B5CF6)
+            CyberYellow = warningYellow
         }
     }
 }
