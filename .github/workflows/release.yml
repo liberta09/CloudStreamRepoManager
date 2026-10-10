@@ -2,7 +2,11 @@ name: Release (imzali)
 
 on:
   push:
-    tags: [ "v*" ]
+    branches: [ "main" ]
+    paths:
+      - "app/build.gradle.kts"
+      - ".github/workflows/release.yml"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,14 +20,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Surum numarasini oku, zaten yayinlandiysa dur
+        id: ver
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V=$(grep -m1 'versionName' app/build.gradle.kts | sed -E 's/.*"([^"]+)".*/\1/')
+          echo "tag=v$V" >> "$GITHUB_OUTPUT"
+          if gh release view "v$V" >/dev/null 2>&1; then
+            echo "v$V zaten yayinlanmis, atlaniyor"; echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-java@v4
+        if: steps.ver.outputs.skip != 'true'
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - uses: gradle/actions/setup-gradle@v4
+        if: steps.ver.outputs.skip != 'true'
 
       - name: Imza anahtarini yerlestir
+        if: steps.ver.outputs.skip != 'true'
         env:
           DEBUG_KEYSTORE_B64: ${{ secrets.DEBUG_KEYSTORE_B64 }}
         run: |
@@ -32,11 +52,13 @@ jobs:
           echo "$DEBUG_KEYSTORE_B64" | tr -d '\r\n ' | base64 -d > ~/.android/debug.keystore
 
       - name: Release APK'lari derle
+        if: steps.ver.outputs.skip != 'true'
         run: |
           chmod +x gradlew
           ./gradlew assembleUserRelease assembleAdminRelease --stacktrace
 
       - name: Imzayi dogrula
+        if: steps.ver.outputs.skip != 'true'
         run: |
           APKSIGNER=$(ls -d $ANDROID_HOME/build-tools/*/ | sort -V | tail -1)apksigner
           for f in app/build/outputs/apk/user/release/*.apk app/build/outputs/apk/admin/release/*.apk; do
@@ -48,8 +70,10 @@ jobs:
           cp app/build/outputs/apk/admin/release/*.apk CSRepoManager_Admin.apk
 
       - name: GitHub Release olustur
+        if: steps.ver.outputs.skip != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" CSRepoManager_User.apk CSRepoManager_Admin.apk \
-            --title "$GITHUB_REF_NAME" --notes-file RELEASE_NOTES.md
+          TAG="${{ steps.ver.outputs.tag }}"
+          gh release create "$TAG" CSRepoManager_User.apk CSRepoManager_Admin.apk \
+            --target "$GITHUB_SHA" --title "$TAG" --notes-file RELEASE_NOTES.md
