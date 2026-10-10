@@ -22,13 +22,13 @@ android {
         create("user") {
             dimension = "version"
             applicationId = "com.kaan.cloudstreamrepomanager.user"
-            manifestPlaceholders["appName"] = "Repo USER"
+            manifestPlaceholders["appName"] = "Repo"
             buildConfigField("Boolean", "ENABLE_ADMIN_PANEL", "false")
         }
         create("admin") {
             dimension = "version"
             applicationId = "com.kaan.cloudstreamrepomanager.admin"
-            manifestPlaceholders["appName"] = "Repo ADMIN"
+            manifestPlaceholders["appName"] = "Repo"
             buildConfigField("Boolean", "ENABLE_ADMIN_PANEL", "true")
         }
     }
