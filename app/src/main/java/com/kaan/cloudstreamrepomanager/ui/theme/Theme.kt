@@ -61,23 +61,19 @@ private val AppShapes = Shapes(
 @Composable
 fun CloudStreamRepoManagerTheme(
     darkTheme: Boolean = true,
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    themeMode: String = "Cyber",
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        else -> DarkColorScheme
-    }
+    // Apply our global vars based on themeMode
+    applyThemeColors(themeMode)
+
+    val colorScheme = DarkColorScheme // Default fallback for Material components, we rely on custom Cyber* colors mostly
     
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.background.toArgb()
+            window.statusBarColor = CyberBgDark.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }

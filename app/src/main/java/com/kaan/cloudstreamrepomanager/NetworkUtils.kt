@@ -92,8 +92,8 @@ object NetworkUtils {
                 val urlObj = URL(currentUrl)
                 connection = urlObj.openConnection() as HttpURLConnection
                 connection.requestMethod = method
-                connection.connectTimeout = 12000
-                connection.readTimeout = 12000
+                connection.connectTimeout = 5000
+                connection.readTimeout = 5000
                 connection.instanceFollowRedirects = true
                 HttpURLConnection.setFollowRedirects(true)
 

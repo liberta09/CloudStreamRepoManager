@@ -25,10 +25,26 @@
         <package android:name="com.lagradost.cloudstream3.prerelease.debug" />
         <package android:name="com.lagradost.cloudstream3.debug" />
 
-        <!-- CloudStream özel derin bağlantı (deep link) şeması -->
+        <!-- Nuvio uygulama paket adları -->
+        <package android:name="com.nuvio.app" />
+        <package android:name="com.nuvio" />
+        <package android:name="app.nuvio" />
+        <package android:name="com.nuvio.android" />
+        <package android:name="tv.nuvio.app" />
+        <package android:name="com.nuvio.tv" />
+
+        <!-- CloudStream ve Nuvio özel derin bağlantı (deep link) şemaları -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="cloudstreamrepo" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="nuviorepo" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="nuvio" />
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW" />

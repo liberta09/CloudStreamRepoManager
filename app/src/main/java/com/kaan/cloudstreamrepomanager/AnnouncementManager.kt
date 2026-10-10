@@ -49,7 +49,7 @@ object AnnouncementManager {
      * Duyuruları çeker. Önce GitHub Contents API (önbelleksiz), olmazsa raw CDN,
      * o da olmazsa en son başarıyla çekilen kopya kullanılır.
      */
-    fun fetch(context: Context, onResult: (List<Announcement>) -> Unit) {
+    fun fetch(context: Context, onResult: (List<Announcement>, Announcement?) -> Unit) {
         Thread {
             val list = try {
                 fetchFromContentsApi() ?: fetchFromRaw()
@@ -61,7 +61,8 @@ object AnnouncementManager {
                 saveCache(context, list)
             }
             val result = list ?: loadCache(context)
-            mainHandler.post { onResult(result) }
+            val unseen = unseenLatest(context, result)
+            mainHandler.post { onResult(result, unseen) }
         }.start()
     }
 
@@ -171,7 +172,11 @@ object AnnouncementManager {
     }
 
     fun markSeen(context: Context, announcement: Announcement) {
-        prefs(context).edit().putString(LAST_SEEN_KEY, announcement.id).apply()
+        Thread {
+            try {
+                prefs(context).edit().putString(LAST_SEEN_KEY, announcement.id).apply()
+            } catch (_: Exception) {}
+        }.start()
     }
 
     /* ---------------- JSON ---------------- */

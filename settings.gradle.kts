@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CloudStream Repo Manager"
+rootProject.name = "Repo"
 include(":app")
