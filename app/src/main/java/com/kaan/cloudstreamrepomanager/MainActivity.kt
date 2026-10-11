@@ -627,6 +627,15 @@ fun addDeletedUrl(context: Context, url: String) {
     prefs.edit().putStringSet(DELETED_REPOS_KEY, currentSet).apply()
 }
 
+/** Silinen bir link tekrar eklendiğinde "silinenler" listesinden çıkarılır; aksi halde bir sonraki açılışta yine gizlenir. */
+fun removeDeletedUrl(context: Context, url: String) {
+    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    val currentSet = getDeletedUrls(context).toMutableSet()
+    if (currentSet.remove(url.trim().lowercase())) {
+        prefs.edit().putStringSet(DELETED_REPOS_KEY, currentSet).apply()
+    }
+}
+
 fun clearDeletedUrls(context: Context) {
     val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     prefs.edit().remove(DELETED_REPOS_KEY).apply()
@@ -2242,6 +2251,7 @@ fun CloudStreamRepoManager() {
                         )
 
                         val commitAdd = {
+                            removeDeletedUrl(context, newRepo.url)
                             repos.add(0, newRepo)
                             saveRepos(context, repos)
 
@@ -2325,6 +2335,7 @@ fun CloudStreamRepoManager() {
                             )
 
                             val commitEdit = {
+                                removeDeletedUrl(context, updatedRepo.url)
                                 val index = repos.indexOf(oldRepo)
                                 if (index >= 0) {
                                     checkResults.remove(oldRepo.url)
