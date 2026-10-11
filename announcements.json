@@ -2,18 +2,25 @@
   "version": 1,
   "announcements": [
     {
+      "id": "1791753484360",
+      "title": "ÖNEMLİ DUYURU\n✨ ÖNEMLİ GÜNCELLEME DUYURUSU ✨",
+      "message": "uygulamamıza nuvio desteği de eklenmiştir. eski güncellemenizi acil güncellemenizi tavsiye ederim çünkü entegre entegresinden dolayı eski güncellemede karışıklık olabilir. eğer güncellemede de problem yaşarsanız telegram kanalında güncel apk'mız mevcuttur.",
+      "link": "https:\/\/t.me\/+o-RFlV4U3UY5NGU8",
+      "date": "12.10.2026 00:18"
+    },
+    {
       "id": "1790768675421",
       "title": "📢 YENİ VİDEOMUZ YAYINDA! 🎬",
       "message": "📱➡️📺 Cepten Televizyona CloudStream Repo Manager Aktarımı\nUygulamalı anlatım kanalımızda, telefondan televizyona CloudStream Repo Manager aktarımını adım adım anlattığımız yeni videomuz yayında! 🚀\n🎥 Videoyu izleyerek siz de işlemi kolayca uygulayabilirsiniz.\n👉 İyi seyirler! 🍿",
       "link": "https:\/\/t.me\/+o-RFlV4U3UY5NGU8",
       "date": "30.09.2026 14:44"
-        },
-        {
-          "id": "1790790000000",
-          "title": "🚨 v1.1.5 Güncellemesi Hakkında",
-          "message": "Güncelleme hatası düzeltildi! Uygulama içi güncelleme şu an çalışmıyorsa, yeni sürümü aşağıdaki linkten indirip kurun. Bu işlemi sadece bir kez yapmanız yeterli, sonraki güncellemeler otomatik gelecek.",
-          "link": "https://github.com/liberta09/CloudStreamRepoManager/releases/download/v1.1.5/CSRepoManager_User.apk",
-          "date": "30.09.2026 21:00"
-        }
-      ]
+    },
+    {
+      "id": "1790790000000",
+      "title": "🚨 v1.1.5 Güncellemesi Hakkında",
+      "message": "Güncelleme hatası düzeltildi! Uygulama içi güncelleme şu an çalışmıyorsa, yeni sürümü aşağıdaki linkten indirip kurun. Bu işlemi sadece bir kez yapmanız yeterli, sonraki güncellemeler otomatik gelecek.",
+      "link": "https:\/\/github.com\/liberta09\/CloudStreamRepoManager\/releases\/download\/v1.1.5\/CSRepoManager_User.apk",
+      "date": "30.09.2026 21:00"
     }
+  ]
+}
