@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-12T00:37:20Z",
+  "updatedAt": "2026-10-12T01:39:36Z",
   "repos": [
     {
       "id": "1",
@@ -10,7 +10,8 @@
       "category": "FİLM ALTYAZILI",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "2",
@@ -20,7 +21,8 @@
       "category": "FİLM",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "3",
@@ -30,7 +32,8 @@
       "category": "İNGİLİZCE",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "4",
@@ -40,7 +43,8 @@
       "category": "Torrent FİLM 2",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "5",
@@ -50,7 +54,8 @@
       "category": "Genel",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "6",
@@ -60,7 +65,8 @@
       "category": "TÜRKÇE",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "7",
@@ -70,7 +76,8 @@
       "category": "TORRENT FİLM",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "8",
@@ -80,7 +87,8 @@
       "category": "TÜRKÇE",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "9",
@@ -90,7 +98,8 @@
       "category": "SPOR",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "10",
@@ -100,7 +109,8 @@
       "category": "TÜRKÇE",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "11",
@@ -110,7 +120,8 @@
       "category": "SPORT",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "12",
@@ -120,7 +131,8 @@
       "category": "ALTYAZI",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "13",
@@ -130,7 +142,8 @@
       "category": "KATALOG",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "14",
@@ -140,7 +153,8 @@
       "category": "CANLI TV",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "15",
@@ -160,7 +174,8 @@
       "category": "ALTYAZI",
       "stars": 0,
       "type": "nuvio",
-      "platform": "nuvio"
+      "platform": "nuvio",
+      "nuvioKind": "addon"
     },
     {
       "id": "17",
