@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-11T23:53:33Z",
+  "updatedAt": "2026-10-11T23:59:43Z",
   "repos": [
     {
       "id": "1",
@@ -64,7 +64,7 @@
     },
     {
       "id": "7",
-      "name": "DİNEWİX",
+      "name": "sİNEWİX",
       "url": "https:\/\/sine-wix.vercel.app\/manifest.json",
       "code": "",
       "category": "TÜRKÇE",
