@@ -224,7 +224,7 @@ class AppUpdateManager {
                     } catch (_: Exception) {}
 
                     val request = DownloadManager.Request(Uri.parse(downloadUrl)).apply {
-                        setTitle("CloudStream Repo Manager Güncellemesi")
+                        setTitle("Repo Güncellemesi")
                         setDescription("Yeni sürüm indiriliyor...")
                         setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                         setDestinationUri(Uri.fromFile(destinationFile))

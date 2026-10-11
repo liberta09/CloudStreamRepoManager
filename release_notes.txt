@@ -1,0 +1,6 @@
+﻿# 🎉 Yeni Sürüm: v1.1.5
+
+### 🛠️ Düzeltmeler
+* Uygulama içi güncelleme indirme hatası (404) giderildi
+
+Not: v1.1.3 veya v1.1.4 kullanıyorsanız, bu sürümü bir kereliğine aşağıdaki APK dosyasından elle kurmanız gerekmektedir.

@@ -32,26 +32,6 @@ class CentralRepoApiManager {
         ) {
             Thread {
                 try {
-                    // 1. Öncelik: DİREKT GITHUB CONTENTS API (0 Saniye CDN Gecikmesi)
-                    val apiRepos = fetchFromGitHubApiDirect(token)
-                    if (apiRepos != null && apiRepos.isNotEmpty()) {
-                        saveSharedLocalRepos(context, apiRepos)
-                        Handler(Looper.getMainLooper()).post {
-                            onResult(apiRepos)
-                        }
-                        return@Thread
-                    }
-
-                    // 2. Öncelik: YEREL ORTAK SENKRON DOSYASI (Aynı cihazda Admin <-> Kullanıcı testleri için)
-                    val sharedLocalRepos = loadSharedLocalRepos(context)
-                    if (sharedLocalRepos != null && sharedLocalRepos.isNotEmpty()) {
-                        Handler(Looper.getMainLooper()).post {
-                            onResult(sharedLocalRepos)
-                        }
-                        return@Thread
-                    }
-
-                    // 3. Öncelik: RAW GITHUB CDN
                     val cacheBustUrl = "$CENTRAL_REPO_URL?nocache=${System.currentTimeMillis()}"
                     val headers = mutableMapOf(
                         "Cache-Control" to "no-cache, no-store, must-revalidate",
@@ -72,15 +52,24 @@ class CentralRepoApiManager {
                         Handler(Looper.getMainLooper()).post {
                             onResult(repos)
                         }
-                    } else {
-                        val fallbackRepos = loadReposFromAssets(context)
+                        return@Thread
+                    }
+
+                    val apiRepos = fetchFromGitHubApiDirect(token)
+                    if (!apiRepos.isNullOrEmpty()) {
+                        saveSharedLocalRepos(context, apiRepos)
                         Handler(Looper.getMainLooper()).post {
-                            onResult(fallbackRepos)
+                            onResult(apiRepos)
                         }
+                        return@Thread
+                    }
+
+                    val fallbackRepos = loadReposFromAssets(context)
+                    Handler(Looper.getMainLooper()).post {
+                        onResult(fallbackRepos)
                     }
                 } catch (_: Exception) {
-                    val sharedLocalRepos = loadSharedLocalRepos(context)
-                    val fallbackRepos = sharedLocalRepos ?: loadReposFromAssets(context)
+                    val fallbackRepos = loadReposFromAssets(context)
                     Handler(Looper.getMainLooper()).post {
                         onResult(fallbackRepos)
                     }
@@ -263,13 +252,15 @@ class CentralRepoApiManager {
         }
 
         fun saveSharedLocalRepos(context: Context, repos: List<Repo>) {
-            try {
-                val sharedDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                if (!sharedDir.exists()) sharedDir.mkdirs()
-                val sharedFile = File(sharedDir, "cs_repo_manager_shared_catalog.json")
-                val json = reposToJson(repos)
-                sharedFile.writeText(json, Charsets.UTF_8)
-            } catch (_: Exception) {}
+            Thread {
+                try {
+                    val sharedDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                    if (!sharedDir.exists()) sharedDir.mkdirs()
+                    val sharedFile = File(sharedDir, "cs_repo_manager_shared_catalog.json")
+                    val json = reposToJson(repos)
+                    sharedFile.writeText(json, Charsets.UTF_8)
+                } catch (_: Exception) {}
+            }.start()
         }
 
         fun loadSharedLocalRepos(context: Context): List<Repo>? {
