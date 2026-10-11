@@ -230,8 +230,17 @@ data class Repo(
     val category: String,
     val stars: Int = 0,
     val type: String = "cloudstream",
-    val iconUrl: String = ""
+    val iconUrl: String = "",
+    // Sadece Nuvio kayıtları için: "addon" (Eklenti) veya "plugin" (Plugin reposu)
+    val nuvioKind: String = NUVIO_KIND_ADDON
 )
+
+const val NUVIO_KIND_ADDON = "addon"
+const val NUVIO_KIND_PLUGIN = "plugin"
+
+/** Nuvio Plugin reposu mu? (Eklentilerden farklı olarak Nuvio → Ayarlar → Pluginler'e eklenir) */
+fun Repo.isNuvioPlugin(): Boolean =
+    type.lowercase() == "nuvio" && nuvioKind.lowercase() == NUVIO_KIND_PLUGIN
 
 fun getEffectiveIconUrl(repo: Repo): String {
     if (repo.iconUrl.isNotBlank()) return repo.iconUrl.trim()
@@ -426,6 +435,9 @@ fun reposToJson(repos: List<Repo>, version: Int = 1): String {
             obj.put("iconUrl", repo.iconUrl)
             obj.put("icon", repo.iconUrl)
         }
+        if (pType.lowercase() == "nuvio") {
+            obj.put("nuvioKind", if (repo.nuvioKind.lowercase() == NUVIO_KIND_PLUGIN) NUVIO_KIND_PLUGIN else NUVIO_KIND_ADDON)
+        }
 
         array.put(obj)
     }
@@ -455,7 +467,9 @@ fun jsonToRepos(json: String): List<Repo> {
             0
         }
         val parsedIconUrl = obj.optString("iconUrl", obj.optString("icon", obj.optString("logo", "")))
-        
+        // Eski kayıtlarda alan yok → Eklenti kabul edilir (geriye uyumluluk)
+        val parsedNuvioKind = if (obj.optString("nuvioKind", "").lowercase() == NUVIO_KIND_PLUGIN) NUVIO_KIND_PLUGIN else NUVIO_KIND_ADDON
+
         result.add(
             Repo(
                 name = obj.optString("name"),
@@ -464,7 +478,8 @@ fun jsonToRepos(json: String): List<Repo> {
                 category = obj.optString("category"),
                 stars = parsedStars,
                 type = rawType,
-                iconUrl = parsedIconUrl
+                iconUrl = parsedIconUrl,
+                nuvioKind = parsedNuvioKind
             )
         )
     }
@@ -971,7 +986,104 @@ fun validateCloudStreamRepoJson(
     }
 }
 
+/* =========================================================
+   NUVIO PLUGIN DESTEĞİ
+   ========================================================= */
+
+/**
+ * Nuvio plugin manifestindeki sağlayıcı (scraper) listesini döndürür.
+ * Desteklenen biçimler:
+ *  - Nuvio standardı: { "name", "version", "scrapers": [ {...} ] }
+ *  - Eski/şablon biçimi: [ {...}, {...} ] (doğrudan sağlayıcı dizisi)
+ * Plugin manifesti değilse null döner.
+ */
+fun extractNuvioPluginScrapers(jsonString: String): JSONArray? {
+    return try {
+        val trimmed = jsonString.trim()
+        when {
+            trimmed.startsWith("{") -> JSONObject(trimmed).optJSONArray("scrapers")
+            trimmed.startsWith("[") -> JSONArray(trimmed)
+            else -> null
+        }
+    } catch (_: Exception) {
+        null
+    }
+}
+
+/** Plugin manifestini doğrular. Geçerliyse null, değilse hata mesajı döner. */
+fun validateNuvioPluginManifest(jsonString: String): String? {
+    val scrapers = extractNuvioPluginScrapers(jsonString)
+        ?: return "Bu link bir Nuvio plugin manifesti değil (\"scrapers\" listesi bulunamadı). Eklenti linki ise türü 🧩 Eklenti seçin."
+    if (scrapers.length() == 0) return "Plugin manifesti boş (hiç sağlayıcı yok)."
+    var validCount = 0
+    for (i in 0 until scrapers.length()) {
+        val s = scrapers.optJSONObject(i) ?: continue
+        if (s.optString("id").isNotBlank() && s.optString("filename").isNotBlank()) validCount++
+    }
+    return if (validCount == 0) "Plugin manifestindeki sağlayıcılarda \"id\" / \"filename\" eksik." else null
+}
+
+/** Plugin manifestini ağdan indirip doğrular (arka planda). Sonuç ana iş parçacığına döner: null = geçerli. */
+fun fetchAndValidateNuvioPlugin(url: String, onResult: (String?) -> Unit) {
+    Thread {
+        val error = try {
+            val result = NetworkUtils.openFollowRedirectsConnection(initialUrl = url.trim(), method = "GET")
+            if (result.isSuccess && result.body.isNotBlank()) {
+                validateNuvioPluginManifest(result.body)
+            } else {
+                "Plugin linkine ulaşılamadı (HTTP ${result.responseCode})."
+            }
+        } catch (_: Exception) {
+            "Plugin linkine ulaşılamadı (bağlantı hatası)."
+        }
+        Handler(Looper.getMainLooper()).post { onResult(error) }
+    }.start()
+}
+
+private val NUVIO_PACKAGE_NAMES = listOf(
+    "com.nuvio.app",
+    "com.nuvio",
+    "app.nuvio",
+    "com.nuvio.android",
+    "tv.nuvio.app",
+    "com.nuvio.tv"
+)
+
+/** Nuvio uygulamasını başlatır. Yüklü değilse false döner. */
+fun launchNuvioApp(context: Context): Boolean {
+    for (packageName in NUVIO_PACKAGE_NAMES) {
+        val launchIntent = context.packageManager.getLaunchIntentForPackage(packageName)
+            ?: context.packageManager.getLeanbackLaunchIntentForPackage(packageName)
+        if (launchIntent != null) {
+            try {
+                launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(launchIntent)
+                return true
+            } catch (_: Exception) {
+                // Sıradaki paketi dene
+            }
+        }
+    }
+    return false
+}
+
+private const val NUVIO_PLUGIN_BUNDLE_INSTALLED_KEY = "nuvio_plugin_bundle_installed"
+
+fun isNuvioPluginBundleInstalled(context: Context): Boolean =
+    context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        .getBoolean(NUVIO_PLUGIN_BUNDLE_INSTALLED_KEY, false)
+
+fun setNuvioPluginBundleInstalled(context: Context, installed: Boolean) {
+    context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        .edit().putBoolean(NUVIO_PLUGIN_BUNDLE_INSTALLED_KEY, installed).apply()
+}
+
 fun validateNuvioRepoJson(jsonString: String): String {
+    // Plugin manifesti ise plugin kurallarına göre doğrula
+    if (extractNuvioPluginScrapers(jsonString) != null) {
+        val pluginError = validateNuvioPluginManifest(jsonString)
+        return if (pluginError == null) "🟢 Çalışıyor" else "🔴 $pluginError"
+    }
     return try {
         val trimmed = jsonString.trim()
         if (!trimmed.startsWith("{")) {
@@ -1220,6 +1332,31 @@ fun CloudStreamRepoManager() {
 
     var showNuvioNotInstalledDialog by remember {
         mutableStateOf(false)
+    }
+
+    // 🔌 Nuvio Plugin paketi (tek seferlik kurulum) diyaloğu
+    var showPluginBundleDialog by remember { mutableStateOf(false) }
+    var pluginDialogRepo by remember { mutableStateOf<Repo?>(null) }
+    var pluginBundleInstalled by remember { mutableStateOf(isNuvioPluginBundleInstalled(context)) }
+
+    // Tüm "Aktar" butonları buradan geçer: CS → CloudStream, Nuvio Eklenti → doğrudan kurulum (değişmedi),
+    // Nuvio Plugin → ortak plugin paketi diyaloğu
+    val transferRepo: (Repo) -> Unit = { target ->
+        when {
+            target.isNuvioPlugin() -> {
+                if (!pluginBundleInstalled) {
+                    copyToClipboard(context, CentralRepoApiManager.NUVIO_PLUGIN_BUNDLE_URL, "Plugin paketi linki kopyalandı")
+                }
+                pluginDialogRepo = target
+                showPluginBundleDialog = true
+            }
+            target.type.lowercase() == "nuvio" -> {
+                openNuvioAndPrepareRepo(context, target, onNotInstalled = { showNuvioNotInstalledDialog = true })
+            }
+            else -> {
+                openCloudStreamAndPrepareRepo(context, target, onNotInstalled = { showCloudStreamNotInstalledDialog = true })
+            }
+        }
     }
 
     var updateInfo by remember {
@@ -1713,6 +1850,36 @@ fun CloudStreamRepoManager() {
                 }
             }
 
+            // 🔌 Nuvio sekmesinde: Plugin paketi kurulum şeridi
+            if (selectedPlatform == "Nuvio" && !showFavoritesOnly) {
+                val pluginRepoCount = repos.count { it.isNuvioPlugin() }
+                TvOutlinedButton(
+                    onClick = {
+                        if (!pluginBundleInstalled) {
+                            copyToClipboard(context, CentralRepoApiManager.NUVIO_PLUGIN_BUNDLE_URL, "Plugin paketi linki kopyalandı")
+                        }
+                        pluginDialogRepo = null
+                        showPluginBundleDialog = true
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp)
+                ) {
+                    Text(
+                        text = if (pluginBundleInstalled) {
+                            "🔌 Nuvio Plugin Paketi: Kurulu ✅  •  $pluginRepoCount plugin reposu otomatik güncelleniyor"
+                        } else {
+                            "🔌 Nuvio Plugin Paketi: Kurulmadı  •  Tek seferlik kurulum için dokun"
+                        },
+                        color = if (pluginBundleInstalled) CyberGreen else CyberYellow,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+
             val configuration = LocalConfiguration.current
             val isTvOrTablet = configuration.screenWidthDp >= 600
             val screenWidth = configuration.screenWidthDp.dp
@@ -1779,21 +1946,7 @@ fun CloudStreamRepoManager() {
                                                 },
                                                 onCopyLink = { copyToClipboard(context, repo.url, "Repo linki kopyalandı") },
                                                 onCopyCode = { copyToClipboard(context, repo.code, "Kısa kod kopyalandı") },
-                                                onAddToCloudStream = {
-                                                    if (repo.type.lowercase() == "nuvio") {
-                                                        openNuvioAndPrepareRepo(
-                                                            context,
-                                                            repo,
-                                                            onNotInstalled = { showNuvioNotInstalledDialog = true }
-                                                        )
-                                                    } else {
-                                                        openCloudStreamAndPrepareRepo(
-                                                            context,
-                                                            repo,
-                                                            onNotInstalled = { showCloudStreamNotInstalledDialog = true }
-                                                        )
-                                                    }
-                                                },
+                                                onAddToCloudStream = { transferRepo(repo) },
                                                 onCheck = {
                                                     checkResults[repo.url] = "⏳ Kontrol ediliyor..."
                                                     checkRepoUrl(repo.url) { result -> checkResults[repo.url] = result }
@@ -1820,13 +1973,7 @@ fun CloudStreamRepoManager() {
                         RepoDetailPanel(
                             repo = activeDetailRepo,
                             checkResult = checkResults[activeDetailRepo.url],
-                            onTransfer = {
-                                if (activeDetailRepo.type.lowercase() == "nuvio") {
-                                    openNuvioAndPrepareRepo(context, activeDetailRepo, onNotInstalled = { showNuvioNotInstalledDialog = true })
-                                } else {
-                                    openCloudStreamAndPrepareRepo(context, activeDetailRepo, onNotInstalled = { showCloudStreamNotInstalledDialog = true })
-                                }
-                            },
+                            onTransfer = { transferRepo(activeDetailRepo) },
                             onCheck = {
                                 checkResults[activeDetailRepo.url] = "⏳ Kontrol ediliyor..."
                                 checkRepoUrl(activeDetailRepo.url) { result -> checkResults[activeDetailRepo.url] = result }
@@ -1860,14 +2007,7 @@ fun CloudStreamRepoManager() {
                     saveRepos(context, repos)
                 }
             },
-            onTransfer = {
-                val repo = selectedRepoForDetail!!
-                if (repo.type.lowercase() == "nuvio") {
-                    openNuvioAndPrepareRepo(context, repo, onNotInstalled = { showNuvioNotInstalledDialog = true })
-                } else {
-                    openCloudStreamAndPrepareRepo(context, repo, onNotInstalled = { showCloudStreamNotInstalledDialog = true })
-                }
-            },
+            onTransfer = { transferRepo(selectedRepoForDetail!!) },
             onCheck = {
                 val repo = selectedRepoForDetail!!
                 checkResults[repo.url] = "⏳ Kontrol ediliyor..."
@@ -2070,7 +2210,7 @@ fun CloudStreamRepoManager() {
             onDismiss = {
                 showAddDialog = false
             },
-            onAdd = { name, url, code, category, type ->
+            onAdd = { name, url, code, category, type, nuvioKind ->
                 val cleanName = name.trim()
                 val cleanUrl = url.trim()
                 val cleanCode = code.trim()
@@ -2091,31 +2231,49 @@ fun CloudStreamRepoManager() {
                         Toast.makeText(context, "Bu repo linki zaten kayıtlı", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
+                        val cleanKind = if (cleanType.lowercase() == "nuvio" && nuvioKind == NUVIO_KIND_PLUGIN) NUVIO_KIND_PLUGIN else NUVIO_KIND_ADDON
                         val newRepo = Repo(
                             name = cleanName,
                             url = cleanUrl,
                             code = cleanCode,
                             category = cleanCategory,
-                            type = cleanType
+                            type = cleanType,
+                            nuvioKind = cleanKind
                         )
 
-                        repos.add(0, newRepo)
-                        saveRepos(context, repos)
+                        val commitAdd = {
+                            repos.add(0, newRepo)
+                            saveRepos(context, repos)
 
-                        if (isAdminLoggedIn) {
-                            Toast.makeText(context, "Repo eklendi, GitHub'a senkronize ediliyor...", Toast.LENGTH_SHORT).show()
-                            CentralRepoApiManager.publishCentralReposToCloud(
-                                context,
-                                repos.toList()
-                            ) { success, msg -> 
-                                val statusMsg = if (success) "✅ GitHub senkronizasyonu başarılı!" else "❌ Senkronizasyon hatası: $msg"
-                                Toast.makeText(context, statusMsg, Toast.LENGTH_LONG).show()
+                            if (isAdminLoggedIn) {
+                                Toast.makeText(context, "Repo eklendi, GitHub'a senkronize ediliyor...", Toast.LENGTH_SHORT).show()
+                                CentralRepoApiManager.publishCentralReposToCloud(
+                                    context,
+                                    repos.toList()
+                                ) { success, msg ->
+                                    val statusMsg = if (success) "✅ GitHub senkronizasyonu başarılı!" else "❌ Senkronizasyon hatası: $msg"
+                                    Toast.makeText(context, statusMsg, Toast.LENGTH_LONG).show()
+                                }
+                            } else {
+                                Toast.makeText(context, "Repo eklendi", Toast.LENGTH_SHORT).show()
                             }
-                        } else {
-                            Toast.makeText(context, "Repo eklendi", Toast.LENGTH_SHORT).show()
+
+                            showAddDialog = false
                         }
 
-                        showAddDialog = false
+                        if (newRepo.isNuvioPlugin()) {
+                            // Plugin linki gerçekten Nuvio plugin manifesti mi? Önce doğrula.
+                            Toast.makeText(context, "Plugin manifesti kontrol ediliyor...", Toast.LENGTH_SHORT).show()
+                            fetchAndValidateNuvioPlugin(cleanUrl) { error ->
+                                if (error == null) {
+                                    commitAdd()
+                                } else {
+                                    Toast.makeText(context, "❌ $error", Toast.LENGTH_LONG).show()
+                                }
+                            }
+                        } else {
+                            commitAdd()
+                        }
                     }
                 }
             }
@@ -2133,7 +2291,7 @@ fun CloudStreamRepoManager() {
                 showEditDialog = false
                 selectedRepo = null
             },
-            onSave = { name, url, code, category, type ->
+            onSave = { name, url, code, category, type, nuvioKind ->
                 val oldRepo = selectedRepo
                 if (oldRepo != null) {
                     val cleanName = name.trim()
@@ -2156,34 +2314,54 @@ fun CloudStreamRepoManager() {
                             Toast.makeText(context, "Bu repo linki başka bir kayıtta kullanılıyor", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            val index = repos.indexOf(oldRepo)
-                            if (index >= 0) {
-                                checkResults.remove(oldRepo.url)
-                                val updatedRepo = oldRepo.copy(
-                                    name = cleanName,
-                                    url = cleanUrl,
-                                    code = cleanCode,
-                                    category = cleanCategory,
-                                    type = cleanType
-                                )
-                                repos[index] = updatedRepo
-                                saveRepos(context, repos)
+                            val cleanKind = if (cleanType.lowercase() == "nuvio" && nuvioKind == NUVIO_KIND_PLUGIN) NUVIO_KIND_PLUGIN else NUVIO_KIND_ADDON
+                            val updatedRepo = oldRepo.copy(
+                                name = cleanName,
+                                url = cleanUrl,
+                                code = cleanCode,
+                                category = cleanCategory,
+                                type = cleanType,
+                                nuvioKind = cleanKind
+                            )
 
-                                if (isAdminLoggedIn) {
-                                    Toast.makeText(context, "Repo güncellendi, GitHub'a senkronize ediliyor...", Toast.LENGTH_SHORT).show()
-                                    CentralRepoApiManager.publishCentralReposToCloud(
-                                        context,
-                                        repos.toList()
-                                    ) { success, msg -> 
-                                        val statusMsg = if (success) "✅ GitHub senkronizasyonu başarılı!" else "❌ Senkronizasyon hatası: $msg"
-                                        Toast.makeText(context, statusMsg, Toast.LENGTH_LONG).show()
+                            val commitEdit = {
+                                val index = repos.indexOf(oldRepo)
+                                if (index >= 0) {
+                                    checkResults.remove(oldRepo.url)
+                                    repos[index] = updatedRepo
+                                    saveRepos(context, repos)
+
+                                    if (isAdminLoggedIn) {
+                                        Toast.makeText(context, "Repo güncellendi, GitHub'a senkronize ediliyor...", Toast.LENGTH_SHORT).show()
+                                        CentralRepoApiManager.publishCentralReposToCloud(
+                                            context,
+                                            repos.toList()
+                                        ) { success, msg ->
+                                            val statusMsg = if (success) "✅ GitHub senkronizasyonu başarılı!" else "❌ Senkronizasyon hatası: $msg"
+                                            Toast.makeText(context, statusMsg, Toast.LENGTH_LONG).show()
+                                        }
+                                    } else {
+                                        Toast.makeText(context, "Repo güncellendi", Toast.LENGTH_SHORT).show()
                                     }
-                                } else {
-                                    Toast.makeText(context, "Repo güncellendi", Toast.LENGTH_SHORT).show()
                                 }
+                                showEditDialog = false
+                                selectedRepo = null
                             }
-                            showEditDialog = false
-                            selectedRepo = null
+
+                            val needsPluginCheck = updatedRepo.isNuvioPlugin() &&
+                                    (!oldRepo.isNuvioPlugin() || !oldRepo.url.equals(cleanUrl, ignoreCase = true))
+                            if (needsPluginCheck) {
+                                Toast.makeText(context, "Plugin manifesti kontrol ediliyor...", Toast.LENGTH_SHORT).show()
+                                fetchAndValidateNuvioPlugin(cleanUrl) { error ->
+                                    if (error == null) {
+                                        commitEdit()
+                                    } else {
+                                        Toast.makeText(context, "❌ $error", Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                            } else {
+                                commitEdit()
+                            }
                         }
                     }
                 }
@@ -2335,6 +2513,113 @@ fun CloudStreamRepoManager() {
                     }
                 ) {
                     Text("Tamam")
+                }
+            }
+        )
+    }
+
+    /* =========================================================
+       🔌 NUVIO PLUGIN PAKETİ (TEK SEFERLİK KURULUM)
+       ========================================================= */
+
+    if (showPluginBundleDialog) {
+        val dialogRepo = pluginDialogRepo
+        val closePluginDialog = {
+            showPluginBundleDialog = false
+            pluginDialogRepo = null
+        }
+        val openNuvio = {
+            if (!launchNuvioApp(context)) {
+                Toast.makeText(context, "Nuvio yüklü değil. Link panoda; Nuvio'yu kurunca yapıştırabilirsin.", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        AlertDialog(
+            onDismissRequest = closePluginDialog,
+            containerColor = CyberCardDark,
+            titleContentColor = CyberTextPrimary,
+            textContentColor = CyberTextPrimary,
+            title = {
+                Text(
+                    text = if (pluginBundleInstalled) "🔌 Plugin Paketi Kurulu" else "🔌 Plugin Paketi – Tek Seferlik Kurulum",
+                    fontWeight = FontWeight.Bold,
+                    color = CyberTextPrimary
+                )
+            },
+            text = {
+                Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                    if (dialogRepo != null) {
+                        Text(
+                            text = "Plugin: ${dialogRepo.name}",
+                            color = CyberAccent,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 13.sp
+                        )
+                        Spacer(Modifier.height(8.dp))
+                    }
+                    if (pluginBundleInstalled) {
+                        Text(
+                            "Bu plugin ortak paketin içinde ✅\n\n" +
+                                    "Nuvio'da ayrıca bir şey yapmana gerek yok; paket kendini otomatik günceller " +
+                                    "(en geç 6 saat). Hemen görmek için: Nuvio → Ayarlar → İçerik ve Keşif → Pluginler → Yenile.",
+                            color = CyberTextPrimary,
+                            fontSize = 13.sp
+                        )
+                    } else {
+                        Text(
+                            "Paket linki panoya kopyalandı 📋\n\n" +
+                                    "1. \"Nuvio'yu Aç\"a bas.\n" +
+                                    "2. Ayarlar → İçerik ve Keşif → Pluginler bölümüne gir.\n" +
+                                    "3. Linki yapıştırıp ekle.\n\n" +
+                                    "Bunu sadece BİR KEZ yapman yeterli. Bu ve bundan sonra eklenecek tüm pluginler otomatik gelir. " +
+                                    "Ekledikten sonra \"Ekledim ✅\" butonuna bas.",
+                            color = CyberTextPrimary,
+                            fontSize = 13.sp
+                        )
+                    }
+                    Spacer(Modifier.height(10.dp))
+                    Text(
+                        text = CentralRepoApiManager.NUVIO_PLUGIN_BUNDLE_URL,
+                        color = CyberTextSecondary,
+                        fontSize = 10.sp
+                    )
+                    if (pluginBundleInstalled) {
+                        Spacer(Modifier.height(10.dp))
+                        TvOutlinedButton(
+                            onClick = {
+                                setNuvioPluginBundleInstalled(context, false)
+                                pluginBundleInstalled = false
+                                copyToClipboard(context, CentralRepoApiManager.NUVIO_PLUGIN_BUNDLE_URL, "Plugin paketi linki kopyalandı")
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text("📋 Linki tekrar kopyala (yeni cihaza kur)", fontSize = 11.sp, color = CyberTextSecondary)
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    TvButton(onClick = { openNuvio() }) {
+                        Text("🟣 Nuvio'yu Aç")
+                    }
+                    if (!pluginBundleInstalled) {
+                        TvButton(
+                            onClick = {
+                                setNuvioPluginBundleInstalled(context, true)
+                                pluginBundleInstalled = true
+                                Toast.makeText(context, "Harika! Pluginler artık otomatik gelecek.", Toast.LENGTH_SHORT).show()
+                                closePluginDialog()
+                            }
+                        ) {
+                            Text("Ekledim ✅")
+                        }
+                    }
+                }
+            },
+            dismissButton = {
+                TvOutlinedButton(onClick = closePluginDialog) {
+                    Text(if (pluginBundleInstalled) "Tamam" else "İptal")
                 }
             }
         )
@@ -2711,13 +2996,15 @@ fun RepoDetailPanel(
     modifier: Modifier = Modifier
 ) {
     val isNuvio = repo.type.lowercase() == "nuvio"
-    val platformName = if (isNuvio) "NUVIO" else "CLOUDSTREAM"
-    val platformColor = if (isNuvio) CyberPink else CyberCyan
+    val isPlugin = repo.isNuvioPlugin()
+    val platformName = if (isPlugin) "NUVIO PLUGİN" else if (isNuvio) "NUVIO" else "CLOUDSTREAM"
+    val platformColor = if (isPlugin) CyberGreen else if (isNuvio) CyberPink else CyberCyan
     val effectiveLogoUrl = remember(repo.url, repo.iconUrl) { getEffectiveIconUrl(repo) }
 
     val csGradient = Brush.horizontalGradient(listOf(Color(0xFF0052D4), Color(0xFF4364F7), Color(0xFF6FB1FC)))
     val nuvioGradient = Brush.horizontalGradient(listOf(Color(0xFF8E2DE2), Color(0xFF4A00E0)))
-    val transferGradient = if (isNuvio) nuvioGradient else csGradient
+    val pluginGradient = Brush.horizontalGradient(listOf(Color(0xFF0F9B8E), Color(0xFF1FA2FF)))
+    val transferGradient = if (isPlugin) pluginGradient else if (isNuvio) nuvioGradient else csGradient
 
     Surface(
         color = CyberCardDark,
@@ -2833,7 +3120,7 @@ fun RepoDetailPanel(
                     modifier = Modifier.weight(1.2f)
                 ) {
                     Text(
-                        text = if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
+                        text = if (isPlugin) "🔌 Plugin'e Aktar" else if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
                         fontSize = 13.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color.White
@@ -2974,8 +3261,9 @@ fun RepoDetailDialog(
     onDelete: (() -> Unit)? = null
 ) {
     val isNuvio = repo.type.lowercase() == "nuvio"
-    val platformName = if (isNuvio) "NUVIO" else "CLOUDSTREAM"
-    val platformColor = if (isNuvio) CyberPink else CyberCyan
+    val isPlugin = repo.isNuvioPlugin()
+    val platformName = if (isPlugin) "NUVIO PLUGİN" else if (isNuvio) "NUVIO" else "CLOUDSTREAM"
+    val platformColor = if (isPlugin) CyberGreen else if (isNuvio) CyberPink else CyberCyan
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -3054,7 +3342,7 @@ fun RepoDetailDialog(
                         modifier = Modifier.weight(1f)
                     ) {
                         Text(
-                            text = if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
+                            text = if (isPlugin) "🔌 Plugin'e Aktar" else if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
                             fontWeight = FontWeight.Bold,
                             fontSize = 12.sp
                         )
@@ -3205,8 +3493,9 @@ fun RepoCard(
     val borderColor by animateColorAsState(targetValue = if (isFocused) CyberBorderFocused else CyberBorder, animationSpec = tween(150), label = "cardBorder")
     
     val isNuvio = repo.type.lowercase() == "nuvio"
-    val platformName = if (isNuvio) "NUVIO" else "CLOUDSTREAM"
-    val platformColor = if (isNuvio) CyberPink else CyberCyan
+    val isPlugin = repo.isNuvioPlugin()
+    val platformName = if (isPlugin) "NUVIO PLUGİN" else if (isNuvio) "NUVIO" else "CLOUDSTREAM"
+    val platformColor = if (isPlugin) CyberGreen else if (isNuvio) CyberPink else CyberCyan
     
     val baseTextSize = if (isTvOrTablet) 13.sp else 10.sp
     val titleTextSize = if (isTvOrTablet) 18.sp else 14.sp
@@ -3215,7 +3504,9 @@ fun RepoCard(
     val iconSize = if (isTvOrTablet) 48.dp else 36.dp
     val starSize = if (isTvOrTablet) 32.dp else 28.dp
 
-    val transferGradient = if (isNuvio) {
+    val transferGradient = if (isPlugin) {
+        Brush.horizontalGradient(listOf(Color(0xFF0F9B8E), Color(0xFF1FA2FF)))
+    } else if (isNuvio) {
         Brush.horizontalGradient(listOf(Color(0xFF8E2DE2), Color(0xFF4A00E0)))
     } else {
         Brush.horizontalGradient(listOf(Color(0xFF0052D4), Color(0xFF4364F7), Color(0xFF6FB1FC)))
@@ -3319,7 +3610,7 @@ fun RepoCard(
                                 border = BorderStroke(0.5.dp, CyberBorder)
                             ) {
                                 Text(
-                                    text = if (platformName == "CLOUDSTREAM") "CS" else platformName,
+                                    text = if (platformName == "CLOUDSTREAM") "CS" else if (isPlugin) "PLUGİN" else platformName,
                                     color = platformColor,
                                     fontSize = baseTextSize,
                                     fontWeight = FontWeight.Bold,
@@ -3412,7 +3703,7 @@ fun RepoCard(
                     modifier = Modifier.weight(1.3f)
                 ) {
                     Text(
-                        text = if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
+                        text = if (isPlugin) "🔌 Plugin'e Aktar" else if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
                         fontSize = buttonTextSize,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color.White,
@@ -3888,13 +4179,14 @@ fun TelegramInviteDialog(
 @Composable
 fun AddRepoDialog(
     onDismiss: () -> Unit,
-    onAdd: (String, String, String, String, String) -> Unit
+    onAdd: (String, String, String, String, String, String) -> Unit
 ) {
     var name by remember { mutableStateOf("") }
     var url by remember { mutableStateOf("") }
     var code by remember { mutableStateOf("") }
     var category by remember { mutableStateOf("Genel") }
     var type by remember { mutableStateOf("cloudstream") }
+    var nuvioKind by remember { mutableStateOf(NUVIO_KIND_ADDON) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -3930,7 +4222,7 @@ fun AddRepoDialog(
                     value = url,
                     onValueChange = { url = it },
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text("Repo linki (Uzun URL)") },
+                    label = { Text(if (type == "nuvio" && nuvioKind == NUVIO_KIND_PLUGIN) "Plugin repo linki (…/manifest.json)" else "Repo linki (Uzun URL)") },
                     placeholder = { Text("https://...") },
                     singleLine = true,
                     textStyle = TextStyle(color = CyberTextPrimary),
@@ -4026,12 +4318,52 @@ fun AddRepoDialog(
                         }
                     }
                 }
+
+                // Nuvio seçiliyken: Eklenti mi, Plugin mi?
+                if (type == "nuvio") {
+                    Spacer(Modifier.height(10.dp))
+                    Text("Nuvio Türü:", fontSize = 12.sp, color = CyberTextSecondary, fontWeight = FontWeight.SemiBold)
+                    Spacer(Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        if (nuvioKind == NUVIO_KIND_ADDON) {
+                            TvButton(onClick = { nuvioKind = NUVIO_KIND_ADDON }, modifier = Modifier.weight(1f)) {
+                                Text("🧩 Eklenti", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        } else {
+                            TvOutlinedButton(onClick = { nuvioKind = NUVIO_KIND_ADDON }, modifier = Modifier.weight(1f)) {
+                                Text("🧩 Eklenti", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+
+                        if (nuvioKind == NUVIO_KIND_PLUGIN) {
+                            TvButton(onClick = { nuvioKind = NUVIO_KIND_PLUGIN }, modifier = Modifier.weight(1f)) {
+                                Text("🔌 Plugin", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        } else {
+                            TvOutlinedButton(onClick = { nuvioKind = NUVIO_KIND_PLUGIN }, modifier = Modifier.weight(1f)) {
+                                Text("🔌 Plugin", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = if (nuvioKind == NUVIO_KIND_PLUGIN)
+                            "Plugin: Nuvio → Ayarlar → İçerik ve Keşif → Pluginler'e gider (ortak plugin paketine eklenir)."
+                        else
+                            "Eklenti: Nuvio'ya \"Nuvio'ya Aktar\" ile doğrudan kurulur.",
+                        fontSize = 10.sp,
+                        color = CyberTextSecondary
+                    )
+                }
             }
         },
         confirmButton = {
             TvButton(
                 onClick = {
-                    onAdd(name, url, if (type == "nuvio") "" else code, category, type)
+                    onAdd(name, url, if (type == "nuvio") "" else code, category, type, nuvioKind)
                 }
             ) {
                 Text("Ekle")
@@ -4053,13 +4385,14 @@ fun AddRepoDialog(
 fun EditRepoDialog(
     repo: Repo,
     onDismiss: () -> Unit,
-    onSave: (String, String, String, String, String) -> Unit
+    onSave: (String, String, String, String, String, String) -> Unit
 ) {
     var name by remember(repo) { mutableStateOf(repo.name) }
     var url by remember(repo) { mutableStateOf(repo.url) }
     var code by remember(repo) { mutableStateOf(repo.code) }
     var category by remember(repo) { mutableStateOf(repo.category) }
     var type by remember(repo) { mutableStateOf(repo.type.ifBlank { "cloudstream" }) }
+    var nuvioKind by remember(repo) { mutableStateOf(if (repo.isNuvioPlugin()) NUVIO_KIND_PLUGIN else NUVIO_KIND_ADDON) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -4094,7 +4427,7 @@ fun EditRepoDialog(
                     value = url,
                     onValueChange = { url = it },
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text("Repo linki (Uzun URL)") },
+                    label = { Text(if (type == "nuvio" && nuvioKind == NUVIO_KIND_PLUGIN) "Plugin repo linki (…/manifest.json)" else "Repo linki (Uzun URL)") },
                     singleLine = true,
                     textStyle = TextStyle(color = CyberTextPrimary),
                     colors = OutlinedTextFieldDefaults.colors(
@@ -4187,12 +4520,52 @@ fun EditRepoDialog(
                         }
                     }
                 }
+
+                // Nuvio seçiliyken: Eklenti mi, Plugin mi?
+                if (type == "nuvio") {
+                    Spacer(Modifier.height(10.dp))
+                    Text("Nuvio Türü:", fontSize = 12.sp, color = CyberTextSecondary, fontWeight = FontWeight.SemiBold)
+                    Spacer(Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        if (nuvioKind == NUVIO_KIND_ADDON) {
+                            TvButton(onClick = { nuvioKind = NUVIO_KIND_ADDON }, modifier = Modifier.weight(1f)) {
+                                Text("🧩 Eklenti", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        } else {
+                            TvOutlinedButton(onClick = { nuvioKind = NUVIO_KIND_ADDON }, modifier = Modifier.weight(1f)) {
+                                Text("🧩 Eklenti", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+
+                        if (nuvioKind == NUVIO_KIND_PLUGIN) {
+                            TvButton(onClick = { nuvioKind = NUVIO_KIND_PLUGIN }, modifier = Modifier.weight(1f)) {
+                                Text("🔌 Plugin", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        } else {
+                            TvOutlinedButton(onClick = { nuvioKind = NUVIO_KIND_PLUGIN }, modifier = Modifier.weight(1f)) {
+                                Text("🔌 Plugin", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = if (nuvioKind == NUVIO_KIND_PLUGIN)
+                            "Plugin: Nuvio → Ayarlar → İçerik ve Keşif → Pluginler'e gider (ortak plugin paketine eklenir)."
+                        else
+                            "Eklenti: Nuvio'ya \"Nuvio'ya Aktar\" ile doğrudan kurulur.",
+                        fontSize = 10.sp,
+                        color = CyberTextSecondary
+                    )
+                }
             }
         },
         confirmButton = {
             TvButton(
                 onClick = {
-                    onSave(name, url, if (type == "nuvio") "" else code, category, type)
+                    onSave(name, url, if (type == "nuvio") "" else code, category, type, nuvioKind)
                 }
             ) {
                 Text("Kaydet")
