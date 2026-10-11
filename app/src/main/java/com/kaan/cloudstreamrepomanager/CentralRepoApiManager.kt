@@ -5,7 +5,13 @@ import android.os.Build
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
+import org.json.JSONArray
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
@@ -19,6 +25,18 @@ class CentralRepoApiManager {
 
         private const val GITHUB_CONTENTS_API =
             "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/central_repos.json"
+
+        /**
+         * 🔌 Nuvio ortak plugin paketi.
+         * Kullanıcı bu linki Nuvio → Ayarlar → İçerik ve Keşif → Pluginler'e BİR KEZ ekler;
+         * Admin'in eklediği tüm plugin repoları bu tek manifestte toplanır ve Nuvio onu kendiliğinden yeniler.
+         * Not: Nuvio linkin ".../manifest.json" ile bitmesini bekler.
+         */
+        const val NUVIO_PLUGIN_BUNDLE_URL =
+            "https://raw.githubusercontent.com/liberta09/CloudStreamRepoManager/main/nuvio/manifest.json"
+
+        private const val NUVIO_PLUGIN_BUNDLE_CONTENTS_API =
+            "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/nuvio/manifest.json"
 
         /**
          * GitHub üzerindeki merkezi repo.json dosyasından canlı kataloğu çeker.
@@ -205,6 +223,21 @@ class CentralRepoApiManager {
                         Handler(Looper.getMainLooper()).post {
                             onResult(true, "✅ Değişiklikler GitHub repository dosyasına (central_repos.json) başarıyla yayınlandı! SHA: ${sha.take(7)}")
                         }
+
+                        // 🔌 Katalog yayınlandıktan sonra Nuvio ortak plugin paketini güncelle.
+                        // Bu adım başarısız olsa bile katalog yayını başarılı sayılır.
+                        if (repos.any { it.isNuvioPlugin() }) {
+                            val bundleMessage = try {
+                                publishNuvioPluginBundle(repos, activeToken)
+                            } catch (e: Exception) {
+                                "⚠️ Plugin paketi güncellenemedi: ${e.localizedMessage}"
+                            }
+                            if (bundleMessage.isNotBlank()) {
+                                Handler(Looper.getMainLooper()).post {
+                                    Toast.makeText(context, bundleMessage, Toast.LENGTH_LONG).show()
+                                }
+                            }
+                        }
                     } else if (responseCode == 409) {
                         Handler(Looper.getMainLooper()).post {
                             onResult(false, "⚠️ SHA Çakışması! Lütfen güncelleyip tekrar deneyin.")
@@ -228,6 +261,157 @@ class CentralRepoApiManager {
                     connection?.disconnect()
                 }
             }.start()
+        }
+
+        /**
+         * Tüm Nuvio plugin kayıtlarının manifestlerini indirir, tek bir Nuvio plugin manifestinde birleştirir
+         * ve GitHub'a nuvio/manifest.json olarak yazar. (Arka plan iş parçacığında çağrılmalıdır.)
+         *
+         * - Göreli "filename" değerleri mutlak URL'ye çevrilir (Nuvio http(s) ile başlayan filename'i doğrudan indirir).
+         * - Sağlayıcı kimlikleri "<repo-adı>__<id>" yapılır; böylece farklı repolardaki aynı id'ler çakışmaz.
+         * - İçerik değişmediyse GitHub'a gereksiz commit atılmaz.
+         *
+         * @return Admin'e gösterilecek kısa sonuç mesajı (boşsa gösterilmez).
+         */
+        fun publishNuvioPluginBundle(repos: List<Repo>, token: String): String {
+            if (token.isBlank()) return ""
+            val pluginRepos = repos.filter { it.isNuvioPlugin() }
+            if (pluginRepos.isEmpty()) return ""
+
+            val scrapers = JSONArray()
+            val usedIds = mutableSetOf<String>()
+            var okRepoCount = 0
+            val skippedRepos = mutableListOf<String>()
+
+            for (repo in pluginRepos) {
+                val manifestUrl = repo.url.trim()
+                val result = try {
+                    NetworkUtils.openFollowRedirectsConnection(initialUrl = manifestUrl, method = "GET")
+                } catch (_: Exception) {
+                    null
+                }
+                val repoScrapers = if (result != null && result.isSuccess) extractNuvioPluginScrapers(result.body) else null
+                if (repoScrapers == null || repoScrapers.length() == 0) {
+                    skippedRepos.add(repo.name)
+                    continue
+                }
+
+                val baseUrl = manifestUrl.substringBefore("?").substringBeforeLast("/")
+                val slug = repo.name.lowercase()
+                    .replace(Regex("[^a-z0-9]+"), "-")
+                    .trim('-')
+                    .ifBlank { "repo" }
+
+                var added = 0
+                for (i in 0 until repoScrapers.length()) {
+                    val src = repoScrapers.optJSONObject(i) ?: continue
+                    val originalId = src.optString("id").trim()
+                    val filename = src.optString("filename").trim()
+                    if (originalId.isBlank() || filename.isBlank()) continue
+
+                    val newId = "${slug}__${originalId}"
+                    if (!usedIds.add(newId)) continue
+
+                    // Orijinal nesneyi kopyala, sadece gereken alanları düzelt
+                    val scraper = JSONObject(src.toString())
+                    scraper.put("id", newId)
+                    scraper.put(
+                        "filename",
+                        if (filename.startsWith("http://") || filename.startsWith("https://")) filename
+                        else "$baseUrl/${filename.trimStart('/')}"
+                    )
+                    if (scraper.optString("name").isBlank()) scraper.put("name", originalId)
+                    if (scraper.optString("version").isBlank()) scraper.put("version", "1.0.0")
+                    scrapers.put(scraper)
+                    added++
+                }
+
+                if (added > 0) okRepoCount++ else skippedRepos.add(repo.name)
+            }
+
+            if (scrapers.length() == 0) {
+                return "⚠️ Plugin paketi yazılmadı: plugin repolarından hiç sağlayıcı alınamadı."
+            }
+
+            // Mevcut dosyayı oku (SHA + içerik karşılaştırması)
+            var existingSha = ""
+            var existingScrapers = ""
+            try {
+                val existing = NetworkUtils.openFollowRedirectsConnection(
+                    initialUrl = NUVIO_PLUGIN_BUNDLE_CONTENTS_API,
+                    headers = mapOf("Authorization" to "Bearer $token")
+                )
+                if (existing.isSuccess && existing.body.isNotBlank()) {
+                    val json = JSONObject(existing.body)
+                    existingSha = json.optString("sha", "")
+                    val b64 = json.optString("content", "").replace("\n", "").replace("\r", "").trim()
+                    if (b64.isNotBlank()) {
+                        val decoded = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            String(Base64.getDecoder().decode(b64), Charsets.UTF_8)
+                        } else {
+                            String(android.util.Base64.decode(b64, android.util.Base64.DEFAULT), Charsets.UTF_8)
+                        }
+                        existingScrapers = JSONObject(decoded).optJSONArray("scrapers")?.toString() ?: ""
+                    }
+                }
+            } catch (_: Exception) {
+                // Dosya henüz yoksa ilk kez oluşturulacak
+            }
+
+            val skippedNote = if (skippedRepos.isNotEmpty()) " (${skippedRepos.size} repo atlandı: ${skippedRepos.joinToString()})" else ""
+
+            if (existingScrapers.isNotBlank() && existingScrapers == scrapers.toString()) {
+                return "🔌 Plugin paketi zaten güncel: ${scrapers.length()} plugin$skippedNote"
+            }
+
+            val version = SimpleDateFormat("yyyy.MM.dd.HHmm", Locale.US).apply {
+                timeZone = TimeZone.getTimeZone("UTC")
+            }.format(Date())
+
+            val bundle = JSONObject().apply {
+                put("name", "Repo Pluginleri")
+                put("version", version)
+                put("description", "Repo Manager ortak Nuvio plugin paketi ($okRepoCount repo, ${scrapers.length()} plugin)")
+                put("author", "liberta09")
+                put("scrapers", scrapers)
+            }
+
+            val content = bundle.toString(2)
+            val encoded = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Base64.getEncoder().encodeToString(content.toByteArray(Charsets.UTF_8))
+            } else {
+                android.util.Base64.encodeToString(content.toByteArray(Charsets.UTF_8), android.util.Base64.NO_WRAP)
+            }
+
+            val payload = JSONObject().apply {
+                put("message", "🔌 Admin: Updated Nuvio plugin bundle (${scrapers.length()} plugins)")
+                put("content", encoded)
+                if (existingSha.isNotBlank()) put("sha", existingSha)
+                put("branch", "main")
+            }
+
+            var connection: HttpURLConnection? = null
+            return try {
+                connection = URL(NUVIO_PLUGIN_BUNDLE_CONTENTS_API).openConnection() as HttpURLConnection
+                connection.requestMethod = "PUT"
+                connection.connectTimeout = 10000
+                connection.readTimeout = 10000
+                connection.doOutput = true
+                connection.setRequestProperty("User-Agent", NetworkUtils.DEFAULT_USER_AGENT)
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("Accept", "application/vnd.github.v3+json")
+                connection.setRequestProperty("Authorization", "Bearer $token")
+                connection.outputStream.use { os -> os.write(payload.toString().toByteArray(Charsets.UTF_8)) }
+
+                val code = connection.responseCode
+                if (code in 200..299) {
+                    "🔌 Plugin paketi yayınlandı: $okRepoCount repodan ${scrapers.length()} plugin$skippedNote"
+                } else {
+                    "⚠️ Plugin paketi yayınlanamadı (HTTP $code)$skippedNote"
+                }
+            } finally {
+                connection?.disconnect()
+            }
         }
 
         private fun getGitHubFileSha(token: String): String {
