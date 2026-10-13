@@ -246,6 +246,9 @@ fun Repo.isNuvioPlugin(): Boolean =
 
 const val PLAY_PACKAGE = "com.kaan.play"
 
+/** Play sekmesindeki "Play'e Aktar" düğmelerinin ortak rengi (kart, detay paneli, detay penceresi). */
+val PlayGradient = Brush.horizontalGradient(listOf(Color(0xFF0F9B8E), Color(0xFF2DD4BF)))
+
 /** Play uygulamasının ekleme bağlantısı: CS deposu → repo, Nuvio addon → nuvio, Nuvio plugin → nuvio_plugin. */
 fun Repo.playDeepLink(): String {
     val param = when {
@@ -2018,7 +2021,9 @@ fun CloudStreamRepoManager() {
                         RepoDetailPanel(
                             repo = activeDetailRepo,
                             checkResult = checkResults[activeDetailRepo.url],
-                            onTransfer = { transferRepo(activeDetailRepo) },
+                            onTransfer = {
+                                if (selectedPlatform == "Play") openInPlay(context, activeDetailRepo) else transferRepo(activeDetailRepo)
+                            },
                             onCheck = {
                                 checkResults[activeDetailRepo.url] = "⏳ Kontrol ediliyor..."
                                 checkRepoUrl(activeDetailRepo.url) { result -> checkResults[activeDetailRepo.url] = result }
@@ -2031,7 +2036,8 @@ fun CloudStreamRepoManager() {
                                     saveRepos(context, repos)
                                 }
                             },
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
+                            playMode = selectedPlatform == "Play"
                         )
                     }
                 }
@@ -2052,7 +2058,11 @@ fun CloudStreamRepoManager() {
                     saveRepos(context, repos)
                 }
             },
-            onTransfer = { transferRepo(selectedRepoForDetail!!) },
+            onTransfer = {
+                val repo = selectedRepoForDetail!!
+                if (selectedPlatform == "Play") openInPlay(context, repo) else transferRepo(repo)
+            },
+            playMode = selectedPlatform == "Play",
             onCheck = {
                 val repo = selectedRepoForDetail!!
                 checkResults[repo.url] = "⏳ Kontrol ediliyor..."
@@ -3040,7 +3050,8 @@ fun RepoDetailPanel(
     onCheck: () -> Unit,
     onCopyLink: () -> Unit,
     onStarsChange: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    playMode: Boolean = false
 ) {
     val isNuvio = repo.type.lowercase() == "nuvio"
     val isPlugin = repo.isNuvioPlugin()
@@ -3051,7 +3062,7 @@ fun RepoDetailPanel(
     val csGradient = Brush.horizontalGradient(listOf(Color(0xFF0052D4), Color(0xFF4364F7), Color(0xFF6FB1FC)))
     val nuvioGradient = Brush.horizontalGradient(listOf(Color(0xFF8E2DE2), Color(0xFF4A00E0)))
     val pluginGradient = Brush.horizontalGradient(listOf(Color(0xFF0F9B8E), Color(0xFF1FA2FF)))
-    val transferGradient = if (isPlugin) pluginGradient else if (isNuvio) nuvioGradient else csGradient
+    val transferGradient = if (playMode) PlayGradient else if (isPlugin) pluginGradient else if (isNuvio) nuvioGradient else csGradient
 
     Surface(
         color = CyberCardDark,
@@ -3167,7 +3178,7 @@ fun RepoDetailPanel(
                     modifier = Modifier.weight(1.2f)
                 ) {
                     Text(
-                        text = if (isPlugin) "🔌 Plugin'e Aktar" else if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
+                        text = if (playMode) stringResource(R.string.export_to_play) else if (isPlugin) "🔌 Plugin'e Aktar" else if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
                         fontSize = 13.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color.White
@@ -3305,7 +3316,8 @@ fun RepoDetailDialog(
     onTransfer: () -> Unit,
     onCheck: () -> Unit,
     onCopyLink: () -> Unit,
-    onDelete: (() -> Unit)? = null
+    onDelete: (() -> Unit)? = null,
+    playMode: Boolean = false
 ) {
     val isNuvio = repo.type.lowercase() == "nuvio"
     val isPlugin = repo.isNuvioPlugin()
@@ -3389,7 +3401,7 @@ fun RepoDetailDialog(
                         modifier = Modifier.weight(1f)
                     ) {
                         Text(
-                            text = if (isPlugin) "🔌 Plugin'e Aktar" else if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
+                            text = if (playMode) stringResource(R.string.export_to_play) else if (isPlugin) "🔌 Plugin'e Aktar" else if (isNuvio) "🟣 Nuvio'ya Aktar" else "☁️ CS'ye Aktar",
                             fontWeight = FontWeight.Bold,
                             fontSize = 12.sp
                         )
@@ -3746,7 +3758,7 @@ fun RepoCard(
                 // Play sekmesi: tek buton
                 TvGradientButton(
                     onClick = onExportToPlay,
-                    gradient = Brush.horizontalGradient(listOf(Color(0xFF0F9B8E), Color(0xFF2DD4BF))),
+                    gradient = PlayGradient,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
