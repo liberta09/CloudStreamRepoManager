@@ -1,0 +1,8 @@
+<resources>
+    <string name="tab_cs">☁️ CS (%1$d)</string>
+    <string name="tab_nuvio">🩷 Nuvio (%1$d)</string>
+    <string name="tab_play">▶️ Play (%1$d)</string>
+    <string name="total_repos">Toplam: %1$d repo</string>
+    <string name="export_to_play">▶️ Play\'e Aktar</string>
+    <string name="play_not_found">Play uygulaması bulunamadı</string>
+</resources>

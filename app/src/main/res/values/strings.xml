@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CloudStream Repo Manager</string>
+    <string name="tab_cs">☁️ CS (%1$d)</string>
+    <string name="tab_nuvio">🩷 Nuvio (%1$d)</string>
+    <string name="tab_play">▶️ Play (%1$d)</string>
+    <string name="total_repos">Total: %1$d repos</string>
+    <string name="export_to_play">▶️ Export to Play</string>
+    <string name="play_not_found">Play app not found</string>
 </resources>

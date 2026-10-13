@@ -4,6 +4,7 @@ package com.kaan.cloudstreamrepomanager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -97,6 +98,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.delay
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.snapshotFlow
@@ -241,6 +243,30 @@ const val NUVIO_KIND_PLUGIN = "plugin"
 /** Nuvio Plugin reposu mu? (Eklentilerden farklı olarak Nuvio → Ayarlar → Pluginler'e eklenir) */
 fun Repo.isNuvioPlugin(): Boolean =
     type.lowercase() == "nuvio" && nuvioKind.lowercase() == NUVIO_KIND_PLUGIN
+
+const val PLAY_PACKAGE = "com.kaan.play"
+
+/** Play uygulamasının ekleme bağlantısı: CS deposu → repo, Nuvio addon → nuvio, Nuvio plugin → nuvio_plugin. */
+fun Repo.playDeepLink(): String {
+    val param = when {
+        isNuvioPlugin() -> "nuvio_plugin"
+        type.lowercase() == "nuvio" -> "nuvio"
+        else -> "repo"
+    }
+    return "play://add?$param=" + java.net.URLEncoder.encode(url.trim(), "UTF-8")
+}
+
+/** Repoyu Play'e gönderir; Play yüklü değilse kısa bir uyarı gösterir. */
+fun openInPlay(context: Context, repo: Repo) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(repo.playDeepLink()))
+        .setPackage(PLAY_PACKAGE)
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    try {
+        context.startActivity(intent)
+    } catch (_: ActivityNotFoundException) {
+        Toast.makeText(context, context.getString(R.string.play_not_found), Toast.LENGTH_SHORT).show()
+    }
+}
 
 fun getEffectiveIconUrl(repo: Repo): String {
     if (repo.iconUrl.isNotBlank()) return repo.iconUrl.trim()
@@ -1302,7 +1328,7 @@ fun CloudStreamRepoManager() {
     }
 
     var selectedPlatform by remember {
-        mutableStateOf("Tümü")
+        mutableStateOf("CloudStream")
     }
 
     var showFavoritesOnly by remember {
@@ -1565,7 +1591,7 @@ fun CloudStreamRepoManager() {
             val platformMatch = when (selectedPlatform) {
                 "CloudStream" -> repo.type.lowercase() != "nuvio"
                 "Nuvio" -> repo.type.lowercase() == "nuvio"
-                else -> true
+                else -> true // "Play": CS + Nuvio birlikte
             }
 
             searchMatch &&
@@ -1781,7 +1807,15 @@ fun CloudStreamRepoManager() {
             val cloudStreamCount = repos.count { it.type.lowercase() != "nuvio" }
             val nuvioCount = repos.count { it.type.lowercase() == "nuvio" }
 
-            // 🌐 Tümü (X) | ☁️ CS (X) | 🟣 Nuvio (X) Segmented Control Chips
+            // Toplam repo sayısı (tıklanamaz bilgi satırı)
+            Text(
+                text = stringResource(R.string.total_repos, repos.size),
+                color = CyberTextSecondary,
+                fontSize = 11.sp,
+                modifier = Modifier.padding(start = 4.dp, bottom = 4.dp)
+            )
+
+            // ☁️ CS (X) | 🩷 Nuvio (X) | ▶️ Play (X) Segmented Control Chips
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -1789,29 +1823,6 @@ fun CloudStreamRepoManager() {
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Tümü
-                Surface(
-                    color = if (selectedPlatform == "Tümü" && !showFavoritesOnly) CyberAccent else CyberCardDark,
-                    shape = RoundedCornerShape(12.dp),
-                    border = BorderStroke(1.dp, if (selectedPlatform == "Tümü" && !showFavoritesOnly) CyberAccent else CyberBorder),
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable {
-                            selectedPlatform = "Tümü"
-                            showFavoritesOnly = false
-                        }
-                ) {
-                    Box(modifier = Modifier.padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
-                        Text(
-                            text = "🌐 Tümü (${repos.size})",
-                            color = if (selectedPlatform == "Tümü" && !showFavoritesOnly) Color.White else CyberTextSecondary,
-                            fontWeight = if (selectedPlatform == "Tümü" && !showFavoritesOnly) FontWeight.Bold else FontWeight.Medium,
-                            fontSize = 12.sp,
-                            maxLines = 1
-                        )
-                    }
-                }
-
                 // CS
                 Surface(
                     color = if (selectedPlatform == "CloudStream" && !showFavoritesOnly) CyberAccent else CyberCardDark,
@@ -1826,7 +1837,7 @@ fun CloudStreamRepoManager() {
                 ) {
                     Box(modifier = Modifier.padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
                         Text(
-                            text = "☁️ CS ($cloudStreamCount)",
+                            text = stringResource(R.string.tab_cs, cloudStreamCount),
                             color = if (selectedPlatform == "CloudStream" && !showFavoritesOnly) Color.White else CyberTextSecondary,
                             fontWeight = if (selectedPlatform == "CloudStream" && !showFavoritesOnly) FontWeight.Bold else FontWeight.Medium,
                             fontSize = 12.sp,
@@ -1849,9 +1860,32 @@ fun CloudStreamRepoManager() {
                 ) {
                     Box(modifier = Modifier.padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
                         Text(
-                            text = "🟣 Nuvio ($nuvioCount)",
+                            text = stringResource(R.string.tab_nuvio, nuvioCount),
                             color = if (selectedPlatform == "Nuvio" && !showFavoritesOnly) Color.White else CyberTextSecondary,
                             fontWeight = if (selectedPlatform == "Nuvio" && !showFavoritesOnly) FontWeight.Bold else FontWeight.Medium,
+                            fontSize = 12.sp,
+                            maxLines = 1
+                        )
+                    }
+                }
+
+                // Play
+                Surface(
+                    color = if (selectedPlatform == "Play" && !showFavoritesOnly) CyberAccent else CyberCardDark,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, if (selectedPlatform == "Play" && !showFavoritesOnly) CyberAccent else CyberBorder),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            selectedPlatform = "Play"
+                            showFavoritesOnly = false
+                        }
+                ) {
+                    Box(modifier = Modifier.padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
+                        Text(
+                            text = stringResource(R.string.tab_play, repos.size),
+                            color = if (selectedPlatform == "Play" && !showFavoritesOnly) Color.White else CyberTextSecondary,
+                            fontWeight = if (selectedPlatform == "Play" && !showFavoritesOnly) FontWeight.Bold else FontWeight.Medium,
                             fontSize = 12.sp,
                             maxLines = 1
                         )
@@ -1956,6 +1990,8 @@ fun CloudStreamRepoManager() {
                                                 onCopyLink = { copyToClipboard(context, repo.url, "Repo linki kopyalandı") },
                                                 onCopyCode = { copyToClipboard(context, repo.code, "Kısa kod kopyalandı") },
                                                 onAddToCloudStream = { transferRepo(repo) },
+                                                playMode = selectedPlatform == "Play",
+                                                onExportToPlay = { openInPlay(context, repo) },
                                                 onCheck = {
                                                     checkResults[repo.url] = "⏳ Kontrol ediliyor..."
                                                     checkRepoUrl(repo.url) { result -> checkResults[repo.url] = result }
@@ -3497,6 +3533,8 @@ fun RepoCard(
     onCopyCode: () -> Unit,
     onAddToCloudStream: () -> Unit,
     onCheck: () -> Unit,
+    playMode: Boolean = false,
+    onExportToPlay: () -> Unit = {},
     onDetailClick: () -> Unit = {}
 ) {
     var isFocused by remember { mutableStateOf(false) }
@@ -3704,6 +3742,24 @@ fun RepoCard(
             Spacer(Modifier.height(14.dp))
 
             // Actions: Transfer (Gradient) + Kontrol Et (Glass)
+            if (playMode) {
+                // Play sekmesi: tek buton
+                TvGradientButton(
+                    onClick = onExportToPlay,
+                    gradient = Brush.horizontalGradient(listOf(Color(0xFF0F9B8E), Color(0xFF2DD4BF))),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = stringResource(R.string.export_to_play),
+                        fontSize = buttonTextSize,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.White,
+                        maxLines = 1,
+                        softWrap = false,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            } else {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -3736,6 +3792,7 @@ fun RepoCard(
                         overflow = TextOverflow.Ellipsis
                     )
                 }
+            }
             }
 
             // Admin Actions: ayrı satırda, böylece üstteki butonların yazıları kesilmez
