@@ -75,5 +75,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="${{ steps.ver.outputs.tag }}"
-          gh release create "$TAG" CSRepoManager_User.apk CSRepoManager_Admin.apk \
+          # Admin APK herkese acik release'e KONMAZ (sadece sahibi kullanir); asagida ozel artifact olarak saklanir.
+          gh release create "$TAG" CSRepoManager_User.apk \
             --target "$GITHUB_SHA" --title "$TAG" --notes-file RELEASE_NOTES.md
+
+      - name: Admin APK'yi ozel artifact olarak sakla (release'e eklenmez)
+        if: steps.ver.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CSRepoManager_Admin-${{ steps.ver.outputs.tag }}
+          path: CSRepoManager_Admin.apk
+          retention-days: 90

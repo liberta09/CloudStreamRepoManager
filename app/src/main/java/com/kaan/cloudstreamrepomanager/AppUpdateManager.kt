@@ -62,6 +62,8 @@ class AppUpdateManager {
                         val htmlUrl = json.optString("html_url", "https://github.com/liberta09/CloudStreamRepoManager/releases")
 
                         var downloadUrl = ""
+                        // Admin APK herkese acik release'te yayinlanmaz; admin surumu guncelleme onermez.
+                        val adminBuild = BuildConfig.ENABLE_ADMIN_PANEL
                         val assets = json.optJSONArray("assets")
                         if (assets != null && assets.length() > 0) {
                             val isAdminMode = BuildConfig.ENABLE_ADMIN_PANEL
@@ -91,7 +93,7 @@ class AppUpdateManager {
                             downloadUrl = htmlUrl
                         }
 
-                        val isUpdate = isVersionGreater(latestTag, currentVersion)
+                        val isUpdate = !adminBuild && isVersionGreater(latestTag, currentVersion)
 
                         val info = AppUpdateInfo(
                             isUpdateAvailable = isUpdate,
