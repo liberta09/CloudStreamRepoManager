@@ -1,9 +1,35 @@
 {
   "name": "Repo Pluginleri",
-  "version": "2026.10.16.1031",
-  "description": "Repo Manager ortak Nuvio plugin paketi (3 repo, 167 plugin)",
+  "version": "2026.10.16.1256",
+  "description": "Repo Manager ortak Nuvio plugin paketi (4 repo, 195 plugin)",
   "author": "liberta09",
   "scrapers": [
+    {
+      "id": "hdfilmcehennemi__hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Movie and TV playback sources from hdfilmcehennemi.nl, with alternative players and available subtitles.",
+      "version": "1.0.0",
+      "filename": "https:\/\/raw.githubusercontent.com\/kratoskrator\/hdfilmcehennemi-nuvio\/main\/hdfilmcehennemi.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "mpd",
+        "webm",
+        "mov",
+        "m4v"
+      ],
+      "enabled": true,
+      "hasSettings": true,
+      "supportsExternalPlayer": true
+    },
     {
       "id": "patron__patron-asya-animeleri",
       "name": "PatronAsyaAnimeleri",
@@ -1378,6 +1404,581 @@
       "limited": false,
       "disabledPlatforms": [],
       "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-asya-animeleri",
+      "name": "PatronAsyaAnimeleri",
+      "description": "AsyaAnimeleri.top uzerinden Turkce dublajli ve altyazili Asya animeleri. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronAsyaAnimeleri.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=asyaanimeleri.top&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-film-makinesi",
+      "name": "PatronFilmMakinesi",
+      "description": "FilmMakinesi.to uzerinden Turkce dublajli ve altyazili filmler. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.4",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronFilmMakinesi.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=filmmakinesi.film&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-multi",
+      "name": "PatronMulti",
+      "description": "Birden fazla kaynaktan film ve dizi stream linkleri. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronMulti.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": [
+        "en",
+        "tr"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-dort-khd",
+      "name": "PatronDortKHD",
+      "description": "4KHDHub tabanli film ve dizi stream linkleri. @patr0n tarafindan gelistirildi.",
+      "version": "2.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patrondortkhd.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": [
+        "en",
+        "hi"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-hdf-cehennemi",
+      "name": "PatronHDFCehennemi",
+      "description": "HDFilmCehennemi tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.1",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronhdfcehennemi.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=hdfilmcehennemi.com&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-sinewix",
+      "name": "patronSineWix",
+      "description": "SineWix tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.1.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronSinewix.js",
+      "enabled": true,
+      "logo": "https:\/\/ydfvfdizipanel.ru\/favicon.ico",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-dizipal",
+      "name": "patronDizipal",
+      "description": "Dizipal tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.10",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronDizipal.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizipal2063.com&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-diziyou",
+      "name": "patronDiziyou",
+      "description": "Diziyou tabanli dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronDiziyou.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=diziyou.one&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-fullhd-filmizlesene",
+      "name": "patronFullHDFilmizlesene",
+      "description": "FullHDFilmizlesene.now üzerinden Türkçe dublajlı ve altyazılı filmler. @patr0n tarafından geliştirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronFullHDFilmizlesene.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=fullhdfilmizlesene.now&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-jet-filmizle",
+      "name": "patronJetFilmizle",
+      "description": "JetFilmizle.com üzerinden Türkçe dublajlı ve altyazılı filmler. @patr0n tarafından geliştirildi.",
+      "version": "1.0.1",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronJetFilmizle.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=jetfilmizle.com&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-selcukflix",
+      "name": "patronSelcukFlix",
+      "description": "SelcukFlix tabanlı film ve dizi sağlayıcısı. @patr0n tarafından geliştirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronSelcukFlix.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=selcukflix.app&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmmodu",
+      "name": "FilmModu",
+      "description": "Türkçe dublaj ve altyazılı full HD filmler. filmmodu.ws üzerinden stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @keyiflerolsun \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/filmmodu.js",
+      "enabled": true,
+      "logo": "https:\/\/filmmodu.rip\/wp-content\/uploads\/2023\/07\/logo.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmmakinesi",
+      "name": "FilmMakinesi",
+      "description": "FilmMakinesi.to uzerinden Turkce dublajli ve altyazili filmler.",
+      "version": "1.0.1",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/filmmakinesi.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=filmmakinesi.film&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Türkçe dublaj ve altyazılı full HD film ve diziler. hdfilmcehennemi üzerinden stream sağlar.",
+      "version": "1.0.0",
+      "author": "Wekmed",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/hdfilmcehennemi.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmekseni",
+      "name": "Film Ekseni",
+      "description": "Türkçe film ve diziler - filmekseni.cc",
+      "version": "1.0.0",
+      "author": "",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/filmekseni.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "logo": "https:\/\/filmekseni.cc\/favicon.ico",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__patron-setfilm",
+      "name": "patronSetFilmIzle",
+      "description": "SetFilmIzle tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/Setfilm.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=setfilmizle.uk&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__m3u_provider",
+      "name": "M3U Birleşik",
+      "description": "birlesik.m3u dosyasından TMDB eşleştirmeli stream. Vidmody, m3u8 ve direkt linkler desteklenir.",
+      "version": "1.0.0",
+      "author": "Wekmed",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/m3u_provider.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__jetfilmizle",
+      "name": "JetFilmizle",
+      "description": "Türkçe dublaj full HD filmler. jetfilmizle.net üzerinden Pixeldrain mp4 stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @keyiflerolsun \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/jetfilmizle.js",
+      "enabled": true,
+      "logo": "https:\/\/jetfilmizle.net\/public\/icons\/apple-touch-icon.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__webteizle",
+      "name": "WebteIzle",
+      "description": "Türkçe dublaj ve altyazılı filmler ve diziler. webteizle3.xyz üzerinden VidMoly\/Sibnet\/FileMoon\/Dzen stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @kerimmkirac \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/webteizle.js",
+      "enabled": true,
+      "logo": "https:\/\/webteizle3.xyz\/images\/logo.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__sezonlukdizi",
+      "name": "SezonlukDizi",
+      "description": "Türkçe dublaj ve altyazılı diziler. sezonlukdizi8.com üzerinden VidMoly\/Sibnet stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @keyiflerolsun \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/sezonlukdizi.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__diziyo",
+      "name": "Diziyo",
+      "description": "Türkçe dublaj ve altyazılı diziler.",
+      "version": "1.0.0",
+      "author": "nuvio: Wekmed",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/diziyo.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__fullhdfilmizlesene",
+      "name": "FullHDFilmizlesene",
+      "description": "Türkçe dublaj ve altyazılı full HD filmler. fullhdfilmizlesene.live üzerinden stream sağlar.",
+      "version": "1.0.0",
+      "author": " nuvio: Wekmed",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/fullhdfilmizlesene.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__cizgimax",
+      "name": "CizgiMax",
+      "description": "Türkçe çizgi film ve animasyon dizileri. cizgimax.online üzerinden 500+ içerikle full HD stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @keyiflerolsun \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/cizgimax.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=cizgimax.online&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__cizgivedizi",
+      "name": "ÇizgiVeDizi",
+      "description": "Türkçe çizgi film, animasyon dizi ve filmler. cizgivedizi.com üzerinden Sibnet\/MailRu\/MP4Upload stream sağlar.",
+      "version": "1.1.0",
+      "author": "Wekmed",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/cizgivedizi.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=cizgivedizi.com&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__sinewix",
+      "name": "SineWix",
+      "description": "Türkçe dublaj ve altyazılı film ve diziler. SineWix üzerinden stream sağlar.",
+      "version": "1.0.0",
+      "author": "nuvio: Wekmed",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/sinewix.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__dizilife",
+      "name": "DiziLife",
+      "description": "Türk dizi ve filmler — Türkçe & İngilizce ses + altyazı",
+      "version": "1.0.0",
+      "author": "Wekmed",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/dizilife.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizi62.life&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__diziyou",
+      "name": "DiziYou",
+      "description": "Türkce dizi ve filmler — Türkçe altyazı & dublaj desteği",
+      "version": "1.0.0",
+      "author": "Nuvio uyarlaması",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/diziyou.js",
+      "enabled": true,
+      "logo": "https:\/\/raw.githubusercontent.com\/Kraptor123\/domainListesi\/refs\/heads\/main\/diziyou.png"
     },
     {
       "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmmodu",
