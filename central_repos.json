@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-16T13:01:11Z",
+  "updatedAt": "2026-10-16T13:31:48Z",
   "repos": [
     {
       "id": "1",
-      "name": "Bronzcloud",
+      "name": "BRONZE CLOUD",
       "url": "https:\/\/raw.githubusercontent.com\/dr-octagon\/Nuvio\/main\/manifest.json",
       "code": "",
-      "category": "TÜRKÇE",
+      "category": "Genel",
       "stars": 0,
       "type": "nuvio",
       "platform": "nuvio",
