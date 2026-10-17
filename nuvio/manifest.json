@@ -1,14 +1,1594 @@
 {
   "name": "Repo Pluginleri",
-  "version": "2026.10.17.1737",
-  "description": "Repo Manager ortak Nuvio plugin paketi (7 repo, 440 plugin)",
+  "version": "2026.10.17.1849",
+  "description": "Repo Manager ortak Nuvio plugin paketi (8 repo, 581 plugin)",
   "author": "liberta09",
   "scrapers": [
+    {
+      "id": "anthology-plugi-n__anthology_m3u",
+      "name": "Anthology M3U",
+      "description": "Binlerce yerli ve yabancı film ve dizi arşivi doğrudan HD HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv",
+        "series"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anthology_m3u.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8",
+        "mp4"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/logo_1_transparent.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__liderfilmizle",
+      "name": "LiderFilm",
+      "description": "LiderFilm.vip - Yerli & yabancı film ve dizi arşivi, 1080p doğrudan HLS akışları.",
+      "version": "1.8.28",
+      "author": "metemel",
+      "supportedTypes": [
+        "movie",
+        "tv",
+        "series"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/liderfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/liderfilmizle.vip\/icons\/icon-192.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "movie",
+          "id": "anthology_liderfilm_movies",
+          "name": "LiderFilm — Popüler Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "type": "tv",
+          "id": "anthology_liderfilm_series",
+          "name": "LiderFilm — Popüler Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__youtube_dizifilm",
+      "name": "YouTube Dizi & Film",
+      "description": "YouTube resmi yapımcı kanalları, yerli dizi ve Yeşilçam film arşivleri, 1080p resmi akışlar.",
+      "version": "1.8.28",
+      "author": "metemel",
+      "supportedTypes": [
+        "movie",
+        "tv",
+        "series"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/youtube_dizifilm.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8",
+        "mp4"
+      ],
+      "logo": "https:\/\/www.youtube.com\/s\/desktop\/f4ff17dc\/img\/favicon_144x144.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "series",
+          "id": "anthology_youtube_diziler",
+          "name": "YouTube — Popüler Yerli Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "type": "movie",
+          "id": "anthology_youtube_filmler",
+          "name": "YouTube — Klasik & Yerli Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__sinewix",
+      "name": "SineWix",
+      "description": "5000+ HD film, dizi ve anime - Türkçe dublaj & altyazı, 1080p çift ses direct MKV.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/sinewix.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "mkv"
+      ],
+      "logo": "https:\/\/play-lh.googleusercontent.com\/brwGNmr7IjA_MKk_TTPs0va10hdKE_bD_a1lnKoiMuCayW98EHpRv55edA6aEoJlmwfX=w240-h480",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "movie",
+          "id": "anthology_sinewix_movies",
+          "name": "SineWix — Popüler Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "type": "tv",
+          "id": "anthology_sinewix_series",
+          "name": "SineWix — Popüler Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__vidlink",
+      "name": "Vidlink",
+      "description": "TMDB entegrasyonlu global film ve dizi akış sağlayıcısı (4K\/1080p direct MP4).",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/vidlink.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "logo": "https:\/\/vidlink.pro\/favicon.ico",
+      "contentLanguage": [
+        "en",
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__dizibak",
+      "name": "DiziBak",
+      "description": "Yabancı dizi arşivi, güncel bölümler kataloğu ve doğrudan d1iz-b0ok.xyz 1080p HLS master akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/dizibak.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizibak.net&sz=128",
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_dizibak",
+          "name": "DiziBak — Popüler Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__m3u.anthology.addon",
+      "name": "Anthology Canlı TV",
+      "description": "138 canlı TV kanalı — Ulusal, Spor, Haber, Belgesel & Çocuk, Müzik ve Sinema (7 vitrin kataloğu) + M3U kataloğu.",
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/logo_1_transparent.png",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "channel"
+      ],
+      "idPrefixes": [
+        "tv:",
+        "tv_",
+        "tmdb_",
+        "iptv_",
+        "nv_"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_m3u_list",
+          "name": "Anthology Canlı TV",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            },
+            {
+              "name": "genre",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/M3U\/ListM3u.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "mkv",
+        "hls",
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__filmmodu",
+      "name": "FilmModu",
+      "description": "Türkçe dublaj ve altyazılı 4K\/1080p full HD film akışları (ImgsAPI).",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/filmmodu.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=filmmodu.one&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "movie",
+          "id": "anthology_filmmodu",
+          "name": "FilmModu — Son Eklenen Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Binlerce HD film - Türkçe dublaj & altyazı, 1080p CloseLoad adaptif HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/hdfilmcehennemi.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/logo_1_transparent.png",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "catalogs": [
+        {
+          "type": "movie",
+          "id": "anthology_hdfilmcehennemi",
+          "name": "HDFilmCehennemi — Popüler Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__diziyou",
+      "name": "DiziYou",
+      "description": "DiziYou doğrudan depolama akışları ve Türkçe altyazı desteği.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/diziyou.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=diziyou.one&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__dizipod",
+      "name": "DiziPod",
+      "description": "Popüler yabancı ve yerli dizi\/film arşivi — Doğrudan HLS master akışları ve Türkçe altyazı desteği.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/dizipod.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizipod.com&sz=128",
+      "catalogs": [
+        {
+          "id": "anthology_dizipod",
+          "name": "DiziPod Popüler Diziler",
+          "type": "series"
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__sinemacx",
+      "name": "SinemaCX",
+      "description": "Sinema.gg arşivi üzerinden doğrudan 1080p Filmizle HLS master akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/sinemacx.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=sinema.gg&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__animecix",
+      "name": "AnimeciX",
+      "description": "TauVideo altyapısıyla binlerce anime bölümü (1080p, 720p, 480p direct MP4).",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/animecix.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=animecix.tv&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_animecix",
+          "name": "AnimeciX — Popüler Animeler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__anizm",
+      "name": "Anizm",
+      "description": "AnizmPlayer (FirePlayer HLS), OK.ru ve Sibnet üzerinden Türkçe anime akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie",
+        "anime"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anizm.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "hls"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=anizm.net&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_anizm",
+          "name": "Anizm — Popüler Animeler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__animom",
+      "name": "AniMOM",
+      "description": "HDPlayer HLS, Sibnet ve YourUpload üzerinden Türkçe anime akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie",
+        "anime"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/animom.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "hls"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=animom.org&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_animom",
+          "name": "AniMOM — Popüler Animeler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__animeprax",
+      "name": "AnimePraX",
+      "description": "Sibnet, OK.ru ve Dailymotion üzerinden Türkçe anime akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie",
+        "anime"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/animeprax.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "hls"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=animeprax.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_animeprax",
+          "name": "AnimePraX — Popüler Animeler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__anizium",
+      "name": "Anizium",
+      "description": "4K & 1080p Türkçe Dublaj ve Altyazılı Anime Kaynağı (Doğrudan MP4 + WebVTT).",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie",
+        "anime"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anizium.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/anizium.png",
+      "contentLanguage": [
+        "tr",
+        "ja"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_anizium",
+          "name": "Anizium — Popüler Animeler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream",
+        "subtitles"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__asyaanimeleri",
+      "name": "AsyaAnimeleri",
+      "description": "Anime ve donghua arşivi — Sibnet, Ok.ru, Mail.ru ve Rumble üzerinden 1080p doğrudan MP4 ve HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/asyaanimeleri.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=asyaanimeleri.top&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_asyaanimeleri",
+          "name": "AsyaAnimeleri — Popüler Animeler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__sonanime",
+      "name": "SonAnime",
+      "description": "SonAnime Türkçe anime arşivi — Doğrudan Backblaze B2 ve Cloudflare CDN üzerinden 1080p, 720p ve 480p Türkçe altyazılı MP4 akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/sonanime.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=sonanime.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_sonanime",
+          "name": "SonAnime — Popüler Animeler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__diziboxizle",
+      "name": "DiziBoxİzle",
+      "description": "Güncel yabancı dizi arşivi — VidMoly ve Ok.ru üzerinden 1080p doğrudan HLS ve MP4 akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/diziboxizle.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=diziboxizle.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_diziboxizle",
+          "name": "DiziBoxİzle — Yabancı Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__anthology_spor",
+      "name": "Anthology Canlı Spor",
+      "description": "B-In Sports 1-5, Es Sport 1-2, TV-Bu Spor, Eksen Spor, Tab11 Spor ve 55 canlı spor kanalı (Çok kaynaklı canlı spor ve maç yayınları altyapısı). Taraftarium24 canlı maç ve spor yayınları motoru dahil.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "channel"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anthology_spor.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/canli\/aspor.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "idPrefixes": [
+        "tv:",
+        "tv_"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_spor_list",
+          "name": "Anthology Canlı Spor",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__anthology_haber",
+      "name": "Anthology Canlı Haber",
+      "description": "NTV, Habertürk, TRT Haber, A Haber, CNBC-e, TBMM TV ve 27 canlı haber kanalı.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "channel"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anthology_haber.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/canli\/ntv.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "idPrefixes": [
+        "tv:",
+        "tv_"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_haber_list",
+          "name": "Anthology Canlı Haber",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__anthology_ulusal",
+      "name": "Anthology Ulusal Kanallar",
+      "description": "TRT 1, ATV, Kanal D, Show TV, Star TV, NOW TV, TV8, TRT Genç, Euro D, TV4 ve 25 ulusal televizyon kanalı.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "channel"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anthology_ulusal.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/canli\/trt1.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "idPrefixes": [
+        "tv:",
+        "tv_"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_ulusal_list",
+          "name": "Anthology Ulusal Kanallar",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__ddizi",
+      "name": "DDizi",
+      "description": "Yerli dizi arşivi, güncel bölümler kataloğu ve doğrudan Ciner\/Yandex CDN MP4\/HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/ddizi.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=ddizi.im&sz=128",
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_ddizi",
+          "name": "DDizi — Popüler Yerli Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__dizimom",
+      "name": "DiziMom",
+      "description": "Popüler yabancı diziler arşivi, güncel bölümler kataloğu ve doğrudan 1080p Fire HLS master akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/dizimom.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizimom.diy&sz=128",
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_dizimom",
+          "name": "DiziMom — Popüler Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__vidmody",
+      "name": "Vidmody",
+      "description": "Doğrudan çoklu dil ve altyazı destekli HLS film ve dizi akış sağlayıcısı (1080p).",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/vidmody.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=vidmody.com&sz=128",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__webteizle",
+      "name": "Webteİzle",
+      "description": "Webteİzle arşivi üzerinden Türkçe Dublaj ve Altyazılı VidMoly 1080p master HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/webteizle.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=webteizle.info&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__yabancidizi",
+      "name": "YabancıDizi",
+      "description": "YabancıDizi arşivi üzerinden Türkçe Dublaj ve Altyazılı VidMoly 1080p master HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/yabancidizi.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=yabancidizi.news&sz=128",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__tvdiziler",
+      "name": "TvDiziler",
+      "description": "TvDiziler.tv yerli dizi arşivi üzerinden 1080p HLS (Twitter Amplify), doğrudan MP4 (Ciner\/CDN) ve YouTube akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/tvdiziler.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8",
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=tvdiziler.tv&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_tvdiziler_series",
+          "name": "TvDiziler — Popüler Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__setfilmizle",
+      "name": "SetFilmIzle",
+      "description": "SetFilmIzle arşivi üzerinden FastPlay 1080p HLS master akışları ve TR\/EN altyazılar (film + dizi).",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/setfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=setfilmizle.ltd&sz=128",
+      "catalogs": [
+        {
+          "type": "movie",
+          "id": "anthology_setfilmizle_movies",
+          "name": "SetFilmIzle — Popüler Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "type": "tv",
+          "id": "anthology_setfilmizle_series",
+          "name": "SetFilmIzle — Popüler Diziler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__kultfilmler",
+      "name": "KultFilmler",
+      "description": "KultFilmler arşivi üzerinden VidMoly\/Vidpapi HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/kultfilmler.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=kultfilmler.net&sz=128",
+      "catalogs": [
+        {
+          "type": "movie",
+          "id": "anthology_kultfilmler_movies",
+          "name": "KultFilmler — Popüler Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__hdfilmdelisi",
+      "name": "HDFilmDelisi",
+      "description": "HDFilmDelisi JSON API arşivi üzerinden VidMody 1080p HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/hdfilmdelisi.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=hdfilmdelisi.one&sz=128",
+      "catalogs": [
+        {
+          "type": "movie",
+          "id": "anthology_hdfilmdelisi_movies",
+          "name": "HDFilmDelisi — Son Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__hdfilmizle",
+      "name": "HDFilmIzle",
+      "description": "HDFilmIzle (Ink\/Vip) arşivi üzerinden FastPlay 1080p HLS master akışları ve TR\/EN altyazılar.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/hdfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=hdfilmizle.ink&sz=128",
+      "catalogs": [
+        {
+          "type": "movie",
+          "id": "anthology_hdfilmizle_movies",
+          "name": "HDFilmIzle — Popüler Filmler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__anthology_belgesel_cocuk",
+      "name": "Anthology Belgesel & Çocuk",
+      "description": "TRT Belgesel, TRT Çocuk, Minika, TRT Diyanet Çocuk, Çiftçi TV, TLC, DMAX, Travelxp ve 12 canlı belgesel & çocuk kanalı.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "channel"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anthology_belgesel_cocuk.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/canli\/trtbelgesel.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "idPrefixes": [
+        "tv:",
+        "tv_"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_belgesel_cocuk_list",
+          "name": "Anthology Belgesel & Çocuk",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__anthology_muzik",
+      "name": "Anthology Müzik & Eğlence",
+      "description": "Kral Pop, Power, Number 1, Dream Türk, TMB TV, Show Max ve 16 canlı müzik & eğlence kanalı.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "channel"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anthology_muzik.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/canli\/kralpop.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "idPrefixes": [
+        "tv:",
+        "tv_"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_muzik_list",
+          "name": "Anthology Müzik & Eğlence",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__anthology_sinema",
+      "name": "Anthology Sinema Kanalları",
+      "description": "Cine 1, FX, TRT Nostalji ve canli.m3u SİNEMA KANALLARI grubundaki tüm canlı sinema yayınları (Türkçe + İngilizce ses).",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "channel"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anthology_sinema.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/canli\/cine1.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "idPrefixes": [
+        "tv:",
+        "tv_"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_sinema_list",
+          "name": "Anthology Sinema",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__diziwatch",
+      "name": "DiziWatch",
+      "description": "diziwatch.ac arşivi üzerinden güncel anime ve yabancı dizi akışları sunar.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "movie",
+        "tv",
+        "series",
+        "anime"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/diziwatch.js",
+      "enabled": true,
+      "formats": [
+        "hls",
+        "mp4",
+        "m3u8"
+      ],
+      "logo": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/assets\/logo_1_transparent.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "anthology-plugi-n__seicode",
+      "name": "SeiCode",
+      "description": "SeiCode anime platformu — TauVideo, Ok.ru, Sibnet, VidMoly ve MP4Upload üzerinden 1080p doğrudan MP4 ve HLS akışları.",
+      "version": "1.8.28",
+      "author": "falsisdev",
+      "supportedTypes": [
+        "tv",
+        "movie",
+        "anime"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/seicode.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=seicode.net&sz=128",
+      "contentLanguage": [
+        "tr"
+      ],
+      "catalogs": [
+        {
+          "type": "tv",
+          "id": "anthology_seicode",
+          "name": "SeiCode — Popüler Animeler",
+          "extra": [
+            {
+              "name": "search",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "supportsExternalPlayer": true
+    },
+    {
+      "author": "falsisdev",
+      "version": "1.8.28",
+      "enabled": true,
+      "supportsExternalPlayer": true,
+      "id": "anthology-plugi-n__anthology_diziler",
+      "name": "Anthology Dizi",
+      "description": "NOW \/ Show TV \/ KanalD \/ Star TV \/ ATV \/ TRT1 resmi yayın arşivlerinden dinamik bölüm akışları — TMDB eşleştirmeli, sabit harita yok.",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/anthology_diziler.js",
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=nowtv.com.tr&sz=128",
+      "catalogs": [
+        {
+          "id": "anthology_diziler",
+          "name": "Anthology Dizi (TV Ağları)",
+          "type": "series"
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "author": "falsisdev",
+      "version": "1.8.28",
+      "enabled": true,
+      "supportsExternalPlayer": true,
+      "id": "anthology-plugi-n__puhutv",
+      "name": "PuhuTV",
+      "description": "puhutv.com arşivi — DYG video_info üzerinden mncdn 1080p HLS ve Türkçe altyazı.",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/puhutv.js",
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=puhutv.com&sz=128",
+      "catalogs": [
+        {
+          "id": "anthology_puhutv",
+          "name": "PuhuTV Yerli Diziler & Filmler",
+          "type": "series"
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "author": "falsisdev",
+      "version": "1.8.28",
+      "enabled": true,
+      "supportsExternalPlayer": true,
+      "id": "anthology-plugi-n__trdiziizle",
+      "name": "TR Dizi İzle",
+      "description": "trdiziizle.xyz yerli dizi arşivi (Cloudflare koruması varsa boş döner).",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/providers\/trdiziizle.js",
+      "formats": [
+        "hls",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=trdiziizle.xyz&sz=128",
+      "catalogs": [
+        {
+          "id": "anthology_trdiziizle",
+          "name": "TR Dizi İzle Yerli Diziler",
+          "type": "series"
+        }
+      ],
+      "resources": [
+        "catalog",
+        "meta",
+        "stream"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
     {
       "id": "izlelan__imu",
       "name": "Imu",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -21,7 +1601,7 @@
       "id": "izlelan__joyboy",
       "name": "JoyBoy",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -34,7 +1614,7 @@
       "id": "izlelan__enel",
       "name": "Enel",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -47,7 +1627,7 @@
       "id": "izlelan__crocodile",
       "name": "Crocodile",
       "description": "Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "tv"
@@ -59,7 +1639,7 @@
       "id": "izlelan__xebec",
       "name": "Xebec",
       "description": "Film",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
@@ -71,7 +1651,7 @@
       "id": "izlelan__kidd",
       "name": "Kidd",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -84,7 +1664,7 @@
       "id": "izlelan__shiki",
       "name": "Shiki",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -97,7 +1677,7 @@
       "id": "izlelan__garp",
       "name": "Garp",
       "description": "Film",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
@@ -109,7 +1689,7 @@
       "id": "izlelan__ryuma",
       "name": "Ryuma",
       "description": "Film",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
@@ -121,7 +1701,7 @@
       "id": "izlelan__rouge",
       "name": "Rouge",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -135,7 +1715,7 @@
       "id": "izlelan__turkdizi",
       "name": "TurkDizi",
       "description": "Test Aşamasında",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -149,7 +1729,7 @@
       "id": "izlelan__kalgara",
       "name": "Kalgara",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -162,7 +1742,7 @@
       "id": "izlelan__sakazuki",
       "name": "Sakazuki",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -175,7 +1755,7 @@
       "id": "izlelan__shanks",
       "name": "Shanks",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -188,7 +1768,7 @@
       "id": "izlelan__bogard",
       "name": "Bogard",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -201,7 +1781,7 @@
       "id": "izlelan__sengoku",
       "name": "Sengoku",
       "description": "Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "tv"
@@ -213,7 +1793,7 @@
       "id": "izlelan__katakuri",
       "name": "Katakuri",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -226,7 +1806,7 @@
       "id": "izlelan__mihawk",
       "name": "Mihawk",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -239,7 +1819,7 @@
       "id": "izlelan__kizaru",
       "name": "Kizaru",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -252,7 +1832,7 @@
       "id": "izlelan__smoker",
       "name": "Smoker",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -265,7 +1845,7 @@
       "id": "izlelan__noland",
       "name": "Noland",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -278,7 +1858,7 @@
       "id": "izlelan__zunesha",
       "name": "Zunesha",
       "description": "Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "tv"
@@ -290,7 +1870,7 @@
       "id": "izlelan__oden",
       "name": "Oden",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -303,7 +1883,7 @@
       "id": "izlelan__clover",
       "name": "Clover",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -316,7 +1896,7 @@
       "id": "izlelan__doflamingo",
       "name": "Doflamingo",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -329,7 +1909,7 @@
       "id": "izlelan__roger",
       "name": "Roger",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -342,7 +1922,7 @@
       "id": "izlelan__teach",
       "name": "Teach",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -355,7 +1935,7 @@
       "id": "izlelan__kuzan",
       "name": "Kuzan",
       "description": "Film",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
@@ -367,7 +1947,7 @@
       "id": "izlelan__garling",
       "name": "Garling",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -380,7 +1960,7 @@
       "id": "izlelan__dragon",
       "name": "Dragon",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -393,7 +1973,7 @@
       "id": "izlelan__toki",
       "name": "Toki",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -406,7 +1986,7 @@
       "id": "izlelan__fujitora",
       "name": "Fujitora",
       "description": "Anime",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -419,7 +1999,7 @@
       "id": "izlelan__lili",
       "name": "Lili",
       "description": "Anime",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -432,7 +2012,7 @@
       "id": "izlelan__sabo",
       "name": "Sabo",
       "description": "Anime",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -445,7 +2025,7 @@
       "id": "izlelan__shamrock",
       "name": "Shamrock",
       "description": "Anime",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -458,7 +2038,7 @@
       "id": "izlelan__beckman",
       "name": "Beckman",
       "description": "Anime",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -471,7 +2051,7 @@
       "id": "izlelan__rayleigh",
       "name": "Rayleigh",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -484,7 +2064,7 @@
       "id": "izlelan__gorosei",
       "name": "Gorosei",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -497,7 +2077,7 @@
       "id": "izlelan__ace",
       "name": "Ace",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -510,7 +2090,7 @@
       "id": "izlelan__hiriluk",
       "name": "Hiriluk",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -523,7 +2103,7 @@
       "id": "izlelan__urouge",
       "name": "Urouge",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -536,7 +2116,7 @@
       "id": "izlelan__gaban",
       "name": "Gaban",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -549,7 +2129,7 @@
       "id": "izlelan__jinbe",
       "name": "Jinbe",
       "description": "Film • Dizi",
-      "version": "1.14.621",
+      "version": "1.14.622",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -1440,50 +3020,564 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizimom",
-      "name": "DiziMom",
-      "description": "DiziMom Türkçe dizi ve film kaynakları",
-      "version": "1.0.6",
-      "author": "gs",
+      "id": "mooncrown__izlelan__imu",
+      "name": "Imu",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
       "supportedTypes": [
-        "tv",
-        "movie"
+        "movie",
+        "tv"
       ],
-      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizimom.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
+      "filename": "https:\/\/izlelan.com\/providers\/imu.js",
+      "enabled": true
     },
     {
-      "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizipal",
-      "name": "DiziPal",
-      "description": "DiziPal Türkçe dizi ve film kaynakları",
-      "version": "1.0.6",
-      "author": "gs",
+      "id": "mooncrown__izlelan__joyboy",
+      "name": "JoyBoy",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
       "supportedTypes": [
-        "tv",
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/joyboy.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__enel",
+      "name": "Enel",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/enel.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__crocodile",
+      "name": "Crocodile",
+      "description": "Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/crocodile.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__xebec",
+      "name": "Xebec",
+      "description": "Film",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
         "movie"
       ],
-      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizipal.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
+      "filename": "https:\/\/izlelan.com\/providers\/xebec.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__kidd",
+      "name": "Kidd",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
       ],
-      "contentLanguage": [
-        "tr"
-      ]
+      "filename": "https:\/\/izlelan.com\/providers\/kidd.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__shiki",
+      "name": "Shiki",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/shiki.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__garp",
+      "name": "Garp",
+      "description": "Film",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/garp.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__ryuma",
+      "name": "Ryuma",
+      "description": "Film",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/ryuma.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__rouge",
+      "name": "Rouge",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/rouge.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__turkdizi",
+      "name": "TurkDizi",
+      "description": "Test Aşamasında",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/turkdizi.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__kalgara",
+      "name": "Kalgara",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/kalgara.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__sakazuki",
+      "name": "Sakazuki",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/sakazuki.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__shanks",
+      "name": "Shanks",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/shanks.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__bogard",
+      "name": "Bogard",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/bogard.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__sengoku",
+      "name": "Sengoku",
+      "description": "Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/sengoku.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__katakuri",
+      "name": "Katakuri",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/katakuri.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__mihawk",
+      "name": "Mihawk",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/mihawk.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__kizaru",
+      "name": "Kizaru",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/kizaru.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__smoker",
+      "name": "Smoker",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/smoker.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__noland",
+      "name": "Noland",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/noland.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__zunesha",
+      "name": "Zunesha",
+      "description": "Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/zunesha.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__oden",
+      "name": "Oden",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/oden.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__clover",
+      "name": "Clover",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/clover.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__doflamingo",
+      "name": "Doflamingo",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/doflamingo.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__roger",
+      "name": "Roger",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/roger.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__teach",
+      "name": "Teach",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/teach.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__kuzan",
+      "name": "Kuzan",
+      "description": "Film",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/kuzan.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__garling",
+      "name": "Garling",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/garling.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__dragon",
+      "name": "Dragon",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/dragon.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__toki",
+      "name": "Toki",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/toki.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__fujitora",
+      "name": "Fujitora",
+      "description": "Anime",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/fujitora.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__lili",
+      "name": "Lili",
+      "description": "Anime",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/lili.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__sabo",
+      "name": "Sabo",
+      "description": "Anime",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/sabo.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__shamrock",
+      "name": "Shamrock",
+      "description": "Anime",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/shamrock.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__beckman",
+      "name": "Beckman",
+      "description": "Anime",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/beckman.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__rayleigh",
+      "name": "Rayleigh",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/rayleigh.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__gorosei",
+      "name": "Gorosei",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/gorosei.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__ace",
+      "name": "Ace",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/ace.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__hiriluk",
+      "name": "Hiriluk",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/hiriluk.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__urouge",
+      "name": "Urouge",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/urouge.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__gaban",
+      "name": "Gaban",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/gaban.js",
+      "enabled": true
+    },
+    {
+      "id": "mooncrown__izlelan__jinbe",
+      "name": "Jinbe",
+      "description": "Film • Dizi",
+      "version": "1.14.621",
+      "author": "izlelan",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/izlelan.com\/providers\/jinbe.js",
+      "enabled": true
     },
     {
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "HDFilmCehennemi Türkçe film ve dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
         "movie",
@@ -1500,13 +3594,54 @@
       ]
     },
     {
+      "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizimom",
+      "name": "DiziMom",
+      "description": "DiziMom Türkçe dizi ve film kaynakları",
+      "version": "1.0.9",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizimom.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizipal",
+      "name": "DiziPal",
+      "description": "DiziPal Türkçe dizi ve film kaynakları",
+      "version": "1.0.9",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizipal.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-filmmodu",
       "name": "FilmModu",
       "description": "FilmModu Türkçe film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/filmmodu.js",
       "enabled": true,
@@ -1522,7 +3657,7 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-filmmakinesi",
       "name": "FilmMakinesi",
       "description": "FilmMakinesi Türkçe film ve dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
         "movie",
@@ -1542,10 +3677,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-filmkovasi",
       "name": "FilmKovası",
       "description": "FilmKovası Türkçe film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/filmkovasi.js",
       "enabled": true,
@@ -1561,7 +3697,7 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-setfilmizle",
       "name": "SetFilmİzle",
       "description": "SetFilmİzle Türkçe film ve dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
         "movie",
@@ -1581,7 +3717,7 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-fullhdfilm",
       "name": "FullHDFilm",
       "description": "FullHDFilm Türkçe film ve dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
         "movie",
@@ -1601,10 +3737,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-jetfilmizle",
       "name": "JetFilmizle",
       "description": "JetFilmizle Türkçe film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/jetfilmizle.js",
       "enabled": true,
@@ -1620,10 +3757,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-webteizle",
       "name": "Webteİzle",
       "description": "Webteİzle Türkçe film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/webteizle.js",
       "enabled": true,
@@ -1639,10 +3777,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-kultfilmler",
       "name": "KültFilmler",
       "description": "KültFilmler Türkçe film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/kultfilmler.js",
       "enabled": true,
@@ -1658,10 +3797,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-tavsiyefilmizle",
       "name": "TavsiyeFilmİzle",
       "description": "TavsiyeFilmİzle Türkçe film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/tavsiyefilmizle.js",
       "enabled": true,
@@ -1677,10 +3817,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-sinemacx",
       "name": "SinemaCX",
       "description": "SinemaCX Türkçe film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/sinemacx.js",
       "enabled": true,
@@ -1696,10 +3837,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-hintfilmizle",
       "name": "HintFilmİzle",
       "description": "HintFilmİzle Hint ve yabancı film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/hintfilmizle.js",
       "enabled": true,
@@ -1715,9 +3857,10 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizibox",
       "name": "DiziBox",
       "description": "DiziBox Türkçe yabancı dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
+        "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizibox.js",
@@ -1734,9 +3877,10 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizilla",
       "name": "Dizilla",
       "description": "Dizilla Türkçe yabancı dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
+        "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizilla.js",
@@ -1753,11 +3897,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizigom",
       "name": "DiziGom",
       "description": "DiziGom Türkçe dizi ve film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "tv",
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizigom.js",
       "enabled": true,
@@ -1773,9 +3917,10 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-sezonlukdizi",
       "name": "SezonlukDizi",
       "description": "SezonlukDizi Türkçe yabancı dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
+        "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/sezonlukdizi.js",
@@ -1792,11 +3937,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-yabancidizi",
       "name": "YabancıDizi",
       "description": "YabancıDizi Türkçe dizi ve film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "tv",
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/yabancidizi.js",
       "enabled": true,
@@ -1812,9 +3957,10 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-ddizi",
       "name": "DDizi",
       "description": "DDizi yerli ve yabancı dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
+        "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/ddizi.js",
@@ -1831,11 +3977,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizikorea",
       "name": "DiziKorea",
       "description": "DiziKorea Asya ve Kore dizileri kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "tv",
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizikorea.js",
       "enabled": true,
@@ -1851,11 +3997,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizimag",
       "name": "DiziMag",
       "description": "DiziMag Türkçe dizi ve film kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "tv",
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizimag.js",
       "enabled": true,
@@ -1871,7 +4017,7 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-selcukflix",
       "name": "SelçukFlix",
       "description": "SelçukFlix film ve dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
         "movie",
@@ -1891,7 +4037,7 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-sinewix",
       "name": "SineWix",
       "description": "SineWix film, dizi ve anime kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
         "movie",
@@ -1911,7 +4057,7 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-sinematv",
       "name": "SinemaTV",
       "description": "SinemaTV film ve dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
         "movie",
@@ -1931,11 +4077,11 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-animecix",
       "name": "AnimeciX",
       "description": "AnimeciX Türkçe anime kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "tv",
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/animecix.js",
       "enabled": true,
@@ -1951,33 +4097,13 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-anizm",
       "name": "Anizm",
       "description": "Anizm Türkçe anime kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
-        "tv",
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/anizm.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-belgeselx",
-      "name": "BelgeselX",
-      "description": "BelgeselX Türkçe belgesel ve dizi kaynakları",
-      "version": "1.0.6",
-      "author": "gs",
-      "supportedTypes": [
-        "tv",
-        "movie"
-      ],
-      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/belgeselx.js",
       "enabled": true,
       "formats": [
         "m3u8",
@@ -1991,7 +4117,7 @@
       "id": "mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-watch2movies",
       "name": "Watch2Movies",
       "description": "Watch2Movies İngilizce film ve dizi kaynakları",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "author": "gs",
       "supportedTypes": [
         "movie",
@@ -2329,7 +4455,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizimom",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizimom",
       "name": "DiziMom",
       "description": "DiziMom Türkçe dizi ve film kaynakları",
       "version": "1.0.6",
@@ -2349,7 +4475,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizipal",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizipal",
       "name": "DiziPal",
       "description": "DiziPal Türkçe dizi ve film kaynakları",
       "version": "1.0.6",
@@ -2369,7 +4495,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-hdfilmcehennemi",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "HDFilmCehennemi Türkçe film ve dizi kaynakları",
       "version": "1.0.6",
@@ -2389,7 +4515,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-filmmodu",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-filmmodu",
       "name": "FilmModu",
       "description": "FilmModu Türkçe film kaynakları",
       "version": "1.0.6",
@@ -2408,7 +4534,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-filmmakinesi",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-filmmakinesi",
       "name": "FilmMakinesi",
       "description": "FilmMakinesi Türkçe film ve dizi kaynakları",
       "version": "1.0.6",
@@ -2428,7 +4554,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-filmkovasi",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-filmkovasi",
       "name": "FilmKovası",
       "description": "FilmKovası Türkçe film kaynakları",
       "version": "1.0.6",
@@ -2447,7 +4573,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-setfilmizle",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-setfilmizle",
       "name": "SetFilmİzle",
       "description": "SetFilmİzle Türkçe film ve dizi kaynakları",
       "version": "1.0.6",
@@ -2467,7 +4593,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-fullhdfilm",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-fullhdfilm",
       "name": "FullHDFilm",
       "description": "FullHDFilm Türkçe film ve dizi kaynakları",
       "version": "1.0.6",
@@ -2487,7 +4613,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-jetfilmizle",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-jetfilmizle",
       "name": "JetFilmizle",
       "description": "JetFilmizle Türkçe film kaynakları",
       "version": "1.0.6",
@@ -2506,7 +4632,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-webteizle",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-webteizle",
       "name": "Webteİzle",
       "description": "Webteİzle Türkçe film kaynakları",
       "version": "1.0.6",
@@ -2525,7 +4651,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-kultfilmler",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-kultfilmler",
       "name": "KültFilmler",
       "description": "KültFilmler Türkçe film kaynakları",
       "version": "1.0.6",
@@ -2544,7 +4670,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-tavsiyefilmizle",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-tavsiyefilmizle",
       "name": "TavsiyeFilmİzle",
       "description": "TavsiyeFilmİzle Türkçe film kaynakları",
       "version": "1.0.6",
@@ -2563,7 +4689,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-sinemacx",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-sinemacx",
       "name": "SinemaCX",
       "description": "SinemaCX Türkçe film kaynakları",
       "version": "1.0.6",
@@ -2582,7 +4708,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-hintfilmizle",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-hintfilmizle",
       "name": "HintFilmİzle",
       "description": "HintFilmİzle Hint ve yabancı film kaynakları",
       "version": "1.0.6",
@@ -2601,7 +4727,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizibox",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizibox",
       "name": "DiziBox",
       "description": "DiziBox Türkçe yabancı dizi kaynakları",
       "version": "1.0.6",
@@ -2620,7 +4746,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizilla",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizilla",
       "name": "Dizilla",
       "description": "Dizilla Türkçe yabancı dizi kaynakları",
       "version": "1.0.6",
@@ -2639,7 +4765,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizigom",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizigom",
       "name": "DiziGom",
       "description": "DiziGom Türkçe dizi ve film kaynakları",
       "version": "1.0.6",
@@ -2659,7 +4785,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-sezonlukdizi",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-sezonlukdizi",
       "name": "SezonlukDizi",
       "description": "SezonlukDizi Türkçe yabancı dizi kaynakları",
       "version": "1.0.6",
@@ -2678,7 +4804,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-yabancidizi",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-yabancidizi",
       "name": "YabancıDizi",
       "description": "YabancıDizi Türkçe dizi ve film kaynakları",
       "version": "1.0.6",
@@ -2698,7 +4824,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-ddizi",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-ddizi",
       "name": "DDizi",
       "description": "DDizi yerli ve yabancı dizi kaynakları",
       "version": "1.0.6",
@@ -2717,7 +4843,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizikorea",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizikorea",
       "name": "DiziKorea",
       "description": "DiziKorea Asya ve Kore dizileri kaynakları",
       "version": "1.0.6",
@@ -2737,7 +4863,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizimag",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-dizimag",
       "name": "DiziMag",
       "description": "DiziMag Türkçe dizi ve film kaynakları",
       "version": "1.0.6",
@@ -2757,7 +4883,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-selcukflix",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-selcukflix",
       "name": "SelçukFlix",
       "description": "SelçukFlix film ve dizi kaynakları",
       "version": "1.0.6",
@@ -2777,7 +4903,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-sinewix",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-sinewix",
       "name": "SineWix",
       "description": "SineWix film, dizi ve anime kaynakları",
       "version": "1.0.6",
@@ -2797,7 +4923,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-sinematv",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-sinematv",
       "name": "SinemaTV",
       "description": "SinemaTV film ve dizi kaynakları",
       "version": "1.0.6",
@@ -2817,7 +4943,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-animecix",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-animecix",
       "name": "AnimeciX",
       "description": "AnimeciX Türkçe anime kaynakları",
       "version": "1.0.6",
@@ -2837,7 +4963,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-anizm",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-anizm",
       "name": "Anizm",
       "description": "Anizm Türkçe anime kaynakları",
       "version": "1.0.6",
@@ -2857,7 +4983,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-belgeselx",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-belgeselx",
       "name": "BelgeselX",
       "description": "BelgeselX Türkçe belgesel ve dizi kaynakları",
       "version": "1.0.6",
@@ -2877,7 +5003,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-watch2movies",
+      "id": "mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-watch2movies",
       "name": "Watch2Movies",
       "description": "Watch2Movies İngilizce film ve dizi kaynakları",
       "version": "1.0.6",
@@ -3218,6 +5344,574 @@
       "supportsExternalPlayer": true
     },
     {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizimom",
+      "name": "DiziMom",
+      "description": "DiziMom Türkçe dizi ve film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizimom.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizipal",
+      "name": "DiziPal",
+      "description": "DiziPal Türkçe dizi ve film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizipal.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "HDFilmCehennemi Türkçe film ve dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/hdfilmcehennemi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-filmmodu",
+      "name": "FilmModu",
+      "description": "FilmModu Türkçe film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/filmmodu.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-filmmakinesi",
+      "name": "FilmMakinesi",
+      "description": "FilmMakinesi Türkçe film ve dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/filmmakinesi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-filmkovasi",
+      "name": "FilmKovası",
+      "description": "FilmKovası Türkçe film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/filmkovasi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-setfilmizle",
+      "name": "SetFilmİzle",
+      "description": "SetFilmİzle Türkçe film ve dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/setfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-fullhdfilm",
+      "name": "FullHDFilm",
+      "description": "FullHDFilm Türkçe film ve dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/fullhdfilm.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-jetfilmizle",
+      "name": "JetFilmizle",
+      "description": "JetFilmizle Türkçe film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/jetfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-webteizle",
+      "name": "Webteİzle",
+      "description": "Webteİzle Türkçe film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/webteizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-kultfilmler",
+      "name": "KültFilmler",
+      "description": "KültFilmler Türkçe film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/kultfilmler.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-tavsiyefilmizle",
+      "name": "TavsiyeFilmİzle",
+      "description": "TavsiyeFilmİzle Türkçe film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/tavsiyefilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-sinemacx",
+      "name": "SinemaCX",
+      "description": "SinemaCX Türkçe film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/sinemacx.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-hintfilmizle",
+      "name": "HintFilmİzle",
+      "description": "HintFilmİzle Hint ve yabancı film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/hintfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizibox",
+      "name": "DiziBox",
+      "description": "DiziBox Türkçe yabancı dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizibox.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizilla",
+      "name": "Dizilla",
+      "description": "Dizilla Türkçe yabancı dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizilla.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizigom",
+      "name": "DiziGom",
+      "description": "DiziGom Türkçe dizi ve film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizigom.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-sezonlukdizi",
+      "name": "SezonlukDizi",
+      "description": "SezonlukDizi Türkçe yabancı dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/sezonlukdizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-yabancidizi",
+      "name": "YabancıDizi",
+      "description": "YabancıDizi Türkçe dizi ve film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/yabancidizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-ddizi",
+      "name": "DDizi",
+      "description": "DDizi yerli ve yabancı dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/ddizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizikorea",
+      "name": "DiziKorea",
+      "description": "DiziKorea Asya ve Kore dizileri kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizikorea.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-dizimag",
+      "name": "DiziMag",
+      "description": "DiziMag Türkçe dizi ve film kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/dizimag.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-selcukflix",
+      "name": "SelçukFlix",
+      "description": "SelçukFlix film ve dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/selcukflix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-sinewix",
+      "name": "SineWix",
+      "description": "SineWix film, dizi ve anime kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/sinewix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-sinematv",
+      "name": "SinemaTV",
+      "description": "SinemaTV film ve dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/sinematv.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-animecix",
+      "name": "AnimeciX",
+      "description": "AnimeciX Türkçe anime kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/animecix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-anizm",
+      "name": "Anizm",
+      "description": "Anizm Türkçe anime kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/anizm.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-belgeselx",
+      "name": "BelgeselX",
+      "description": "BelgeselX Türkçe belgesel ve dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/belgeselx.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o__csnuvio-watch2movies",
+      "name": "Watch2Movies",
+      "description": "Watch2Movies İngilizce film ve dizi kaynakları",
+      "version": "1.0.6",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/providers\/watch2movies.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
       "id": "mooncrown__mooncrown__mooncrown__di-zi-box__dizibox-tv",
       "name": "DiziBOX TV",
       "description": "Series from Dizibox's public directory, with direct player resolution and checked HLS playlists.",
@@ -3539,10 +6233,30 @@
       "supportsExternalPlayer": true
     },
     {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__di-zi-box__dizibox-tv",
+      "name": "DiziBOX TV",
+      "description": "Series from Dizibox's public directory, with direct player resolution and checked HLS playlists.",
+      "version": "1.0.0",
+      "filename": "https:\/\/raw.githubusercontent.com\/kratoskrator\/dizibox-nuvio\/main\/dizibox.js",
+      "supportedTypes": [
+        "tv",
+        "series"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "enabled": true,
+      "hasSettings": true,
+      "supportsExternalPlayer": true
+    },
+    {
       "id": "mooncrown__mooncrown__mooncrown__mooncrown__hdfilmcehennemi__hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "Movie and TV playback sources from hdfilmcehennemi.nl, with alternative players and available subtitles.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "filename": "https:\/\/raw.githubusercontent.com\/kratoskrator\/hdfilmcehennemi-nuvio\/main\/hdfilmcehennemi.js",
       "supportedTypes": [
         "movie",
@@ -3837,6 +6551,32 @@
       ],
       "limited": false,
       "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__hdfilmcehennemi__hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Movie and TV playback sources from hdfilmcehennemi.nl, with alternative players and available subtitles.",
+      "version": "1.0.0",
+      "filename": "https:\/\/raw.githubusercontent.com\/kratoskrator\/hdfilmcehennemi-nuvio\/main\/hdfilmcehennemi.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "mpd",
+        "webm",
+        "mov",
+        "m4v"
+      ],
+      "enabled": true,
+      "hasSettings": true,
       "supportsExternalPlayer": true
     },
     {
@@ -5213,6 +7953,581 @@
       "limited": false,
       "disabledPlatforms": [],
       "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-asya-animeleri",
+      "name": "PatronAsyaAnimeleri",
+      "description": "AsyaAnimeleri.top uzerinden Turkce dublajli ve altyazili Asya animeleri. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronAsyaAnimeleri.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=asyaanimeleri.top&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-film-makinesi",
+      "name": "PatronFilmMakinesi",
+      "description": "FilmMakinesi.to uzerinden Turkce dublajli ve altyazili filmler. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.4",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronFilmMakinesi.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=filmmakinesi.film&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-multi",
+      "name": "PatronMulti",
+      "description": "Birden fazla kaynaktan film ve dizi stream linkleri. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronMulti.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": [
+        "en",
+        "tr"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-dort-khd",
+      "name": "PatronDortKHD",
+      "description": "4KHDHub tabanli film ve dizi stream linkleri. @patr0n tarafindan gelistirildi.",
+      "version": "2.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patrondortkhd.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": [
+        "en",
+        "hi"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-hdf-cehennemi",
+      "name": "PatronHDFCehennemi",
+      "description": "HDFilmCehennemi tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.1",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronhdfcehennemi.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=hdfilmcehennemi.com&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-sinewix",
+      "name": "patronSineWix",
+      "description": "SineWix tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.1.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronSinewix.js",
+      "enabled": true,
+      "logo": "https:\/\/ydfvfdizipanel.ru\/favicon.ico",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-dizipal",
+      "name": "patronDizipal",
+      "description": "Dizipal tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.10",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronDizipal.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizipal2063.com&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-diziyou",
+      "name": "patronDiziyou",
+      "description": "Diziyou tabanli dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronDiziyou.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=diziyou.one&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-fullhd-filmizlesene",
+      "name": "patronFullHDFilmizlesene",
+      "description": "FullHDFilmizlesene.now üzerinden Türkçe dublajlı ve altyazılı filmler. @patr0n tarafından geliştirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronFullHDFilmizlesene.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=fullhdfilmizlesene.now&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-jet-filmizle",
+      "name": "patronJetFilmizle",
+      "description": "JetFilmizle.com üzerinden Türkçe dublajlı ve altyazılı filmler. @patr0n tarafından geliştirildi.",
+      "version": "1.0.1",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronJetFilmizle.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=jetfilmizle.com&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__patron__patron-selcukflix",
+      "name": "patronSelcukFlix",
+      "description": "SelcukFlix tabanlı film ve dizi sağlayıcısı. @patr0n tarafından geliştirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/providers\/patronSelcukFlix.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=selcukflix.app&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmmodu",
+      "name": "FilmModu",
+      "description": "Türkçe dublaj ve altyazılı full HD filmler. filmmodu.ws üzerinden stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @keyiflerolsun \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/filmmodu.js",
+      "enabled": true,
+      "logo": "https:\/\/filmmodu.rip\/wp-content\/uploads\/2023\/07\/logo.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmmakinesi",
+      "name": "FilmMakinesi",
+      "description": "FilmMakinesi.to uzerinden Turkce dublajli ve altyazili filmler.",
+      "version": "1.0.1",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/filmmakinesi.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=filmmakinesi.film&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Türkçe dublaj ve altyazılı full HD film ve diziler. hdfilmcehennemi üzerinden stream sağlar.",
+      "version": "1.0.0",
+      "author": "Wekmed",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/hdfilmcehennemi.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmekseni",
+      "name": "Film Ekseni",
+      "description": "Türkçe film ve diziler - filmekseni.cc",
+      "version": "1.0.0",
+      "author": "",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/filmekseni.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "logo": "https:\/\/filmekseni.cc\/favicon.ico",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__patron-setfilm",
+      "name": "patronSetFilmIzle",
+      "description": "SetFilmIzle tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/Setfilm.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=setfilmizle.uk&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__m3u_provider",
+      "name": "M3U Birleşik",
+      "description": "birlesik.m3u dosyasından TMDB eşleştirmeli stream. Vidmody, m3u8 ve direkt linkler desteklenir.",
+      "version": "1.0.0",
+      "author": "Wekmed",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/m3u_provider.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__jetfilmizle",
+      "name": "JetFilmizle",
+      "description": "Türkçe dublaj full HD filmler. jetfilmizle.net üzerinden Pixeldrain mp4 stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @keyiflerolsun \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/jetfilmizle.js",
+      "enabled": true,
+      "logo": "https:\/\/jetfilmizle.net\/public\/icons\/apple-touch-icon.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__webteizle",
+      "name": "WebteIzle",
+      "description": "Türkçe dublaj ve altyazılı filmler ve diziler. webteizle3.xyz üzerinden VidMoly\/Sibnet\/FileMoon\/Dzen stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @kerimmkirac \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/webteizle.js",
+      "enabled": true,
+      "logo": "https:\/\/webteizle3.xyz\/images\/logo.png",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__sezonlukdizi",
+      "name": "SezonlukDizi",
+      "description": "Türkçe dublaj ve altyazılı diziler. sezonlukdizi8.com üzerinden VidMoly\/Sibnet stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @keyiflerolsun \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/sezonlukdizi.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__diziyo",
+      "name": "Diziyo",
+      "description": "Türkçe dublaj ve altyazılı diziler.",
+      "version": "1.0.0",
+      "author": "nuvio: Wekmed",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/diziyo.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__fullhdfilmizlesene",
+      "name": "FullHDFilmizlesene",
+      "description": "Türkçe dublaj ve altyazılı full HD filmler. fullhdfilmizlesene.live üzerinden stream sağlar.",
+      "version": "1.0.0",
+      "author": " nuvio: Wekmed",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/fullhdfilmizlesene.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__cizgimax",
+      "name": "CizgiMax",
+      "description": "Türkçe çizgi film ve animasyon dizileri. cizgimax.online üzerinden 500+ içerikle full HD stream sağlar.",
+      "version": "1.0.0",
+      "author": "port: @keyiflerolsun \/ nuvio: Wekmed",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/cizgimax.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=cizgimax.online&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__cizgivedizi",
+      "name": "ÇizgiVeDizi",
+      "description": "Türkçe çizgi film, animasyon dizi ve filmler. cizgivedizi.com üzerinden Sibnet\/MailRu\/MP4Upload stream sağlar.",
+      "version": "1.1.0",
+      "author": "Wekmed",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/cizgivedizi.js",
+      "enabled": true,
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=cizgivedizi.com&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__sinewix",
+      "name": "SineWix",
+      "description": "Türkçe dublaj ve altyazılı film ve diziler. SineWix üzerinden stream sağlar.",
+      "version": "1.0.0",
+      "author": "nuvio: Wekmed",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/sinewix.js",
+      "enabled": true,
+      "contentLanguage": [
+        "tr"
+      ],
+      "limited": false,
+      "disabledPlatforms": []
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__dizilife",
+      "name": "DiziLife",
+      "description": "Türk dizi ve filmler — Türkçe & İngilizce ses + altyazı",
+      "version": "1.0.0",
+      "author": "Wekmed",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/dizilife.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizi62.life&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__diziyou",
+      "name": "DiziYou",
+      "description": "Türkce dizi ve filmler — Türkçe altyazı & dublaj desteği",
+      "version": "1.0.0",
+      "author": "Nuvio uyarlaması",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/providers\/diziyou.js",
+      "enabled": true,
+      "logo": "https:\/\/raw.githubusercontent.com\/Kraptor123\/domainListesi\/refs\/heads\/main\/diziyou.png"
     },
     {
       "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmmodu",
