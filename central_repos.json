@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-19T19:32:10Z",
+  "updatedAt": "2026-10-20T03:10:56Z",
   "repos": [
     {
       "id": "1",
@@ -26,7 +26,7 @@
     },
     {
       "id": "3",
-      "name": "jaoleys",
+      "name": "jasoleys",
       "url": "https:\/\/nuvio.jasoelys.workers.dev\/manifest.json",
       "code": "",
       "category": "plugin",
