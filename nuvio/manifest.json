@@ -1,1910 +1,9 @@
 {
   "name": "Repo Pluginleri (Global)",
-  "version": "2026.10.22.2032",
+  "version": "2026.10.22.2039",
   "description": "Repo Manager ortak Nuvio plugin paketi (11 repo, 223 tekil plugin)",
   "author": "liberta09",
   "scrapers": [
-    {
-      "id": "wio-sinema-plugin__wiosinema-dizibox",
-      "name": "WioSinema • DiziBox",
-      "description": "DiziBox yerel HTML/JS dizi sağlayıcısı.",
-      "version": "1.0.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-dizibox.js",
-      "enabled": true,
-      "hasSettings": true,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr"
-      ],
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-vidup",
-      "name": "WioSinema • Vidup",
-      "description": "CineStream Vidup doğrudan TMDB sağlayıcısı.",
-      "version": "0.2.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidup.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-hexa",
-      "name": "WioSinema • Hexa",
-      "description": "CineStream Hexa doğrudan TMDB sağlayıcısı.",
-      "version": "0.2.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-hexa.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-vidfastpro",
-      "name": "WioSinema • VidFastPro",
-      "description": "CineStream VidFastPro doğrudan TMDB sağlayıcısı.",
-      "version": "0.1.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidfastpro.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-vidcore",
-      "name": "WioSinema • Vidcore",
-      "description": "CineStream Vidcore doğrudan TMDB sağlayıcısı.",
-      "version": "0.1.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidcore.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-xpass",
-      "name": "WioSinema • Xpass",
-      "description": "CineStream Xpass doğrudan TMDB sağlayıcısı.",
-      "version": "0.1.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-xpass.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-filmmodu",
-      "name": "WioSinema • FilmModu",
-      "description": "FilmModu yerel HTML/JS film kazıyıcısı.",
-      "version": "0.1.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-filmmodu.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "m3u8"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-dizimom",
-      "name": "WioSinema • DiziMom",
-      "description": "DiziMom yerel HTML/JS dizi kazıyıcısı.",
-      "version": "0.1.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-dizimom.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "m3u8"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-setfilmizle",
-      "name": "WioSinema • SetFilmIzle",
-      "description": "SetFilmIzle yerel HTML/JS film ve dizi kazıyıcısı.",
-      "version": "0.1.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-setfilmizle.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-filmmakinesi",
-      "name": "WioSinema • FilmMakinesi",
-      "description": "FilmMakinesi yerel HTML/JS film ve dizi kazıyıcısı.",
-      "version": "0.1.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-filmmakinesi.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "video"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "wio-sinema-plugin__wiosinema-hdfilmcehennemi",
-      "name": "WioSinema • HDFilmCehennemi",
-      "description": "HDFilmCehennemi yerel HTML/JS film ve dizi kazıyıcısı.",
-      "version": "0.1.0",
-      "author": "Wiojelt",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-hdfilmcehennemi.js",
-      "enabled": true,
-      "hasSettings": false,
-      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
-      "contentLanguage": [
-        "tr",
-        "en"
-      ],
-      "formats": [
-        "video"
-      ],
-      "limited": false,
-      "disabledPlatforms": [],
-      "supportsExternalPlayer": true
-    },
-    {
-      "id": "justemi-r84-plugin__dexterpw",
-      "name": "Dexter.pw",
-      "version": "1.0.11",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/dexterpw.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false
-    },
-    {
-      "id": "justemi-r84-plugin__kmmovies",
-      "name": "KMMovies",
-      "version": "1.2.0",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/kmmovies.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "mkv",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "en",
-        "hi"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__yts",
-      "name": "YTS",
-      "version": "1.0.7",
-      "description": "YTS torrent provider (magnet, debrid gerektirir)",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/yts.js",
-      "supportedTypes": [
-        "movie"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "mp4"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__vidcloud",
-      "name": "VidCloud",
-      "version": "1.0.2",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidcloud.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__mapple",
-      "name": "Mapple",
-      "version": "1.0.6",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/mapple.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en",
-        "hi"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__atlantic",
-      "name": "Atlantic",
-      "version": "1.0.6",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/atlantic.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__vaplayer",
-      "name": "VAplayer",
-      "version": "1.0.2",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vaplayer.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__moviesapi",
-      "name": "MoviesAPI",
-      "version": "1.0.2",
-      "description": "VidSpark backend; film + dizi, çok dilli VTT altyazı",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/moviesapi.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__popwatch",
-      "name": "PopWatch",
-      "version": "1.0.4",
-      "description": "Kendi scraper ağı (7 kaynak); film + dizi, SRT altyazı",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/popwatch.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__vidlove",
-      "name": "Vidlove",
-      "version": "1.0.0",
-      "description": "moviebox2/vidapi kaynak ağı; 4K'ya kadar, çok dilli VTT altyazı",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidlove.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__vidrift",
-      "name": "VidRift",
-      "version": "1.0.2",
-      "description": "Orion altyapısı; HEVC HLS, çok dilli dublaj seçenekleri",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidrift.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__vidbolt",
-      "name": "VidBolt",
-      "version": "1.0.1",
-      "description": "1080p HLS; HLS içinde 10 dilde ses + 5 altyazı",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidbolt.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__thugtv",
-      "name": "ThugTV",
-      "version": "1.0.2",
-      "description": "Castle/Bishop/Knight sunucuları; HLS + MP4, çok dilli altyazı",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/thugtv.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__aoneroom",
-      "name": "123Movies",
-      "version": "1.0.0",
-      "description": "aoneroom altyapısı; 1080p'ye kadar MP4, SRT altyazı",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/aoneroom.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "mp4"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__vixsrc",
-      "name": "VixSrc",
-      "version": "1.0.1",
-      "description": "İtalyanca/İngilizce çift sesli HLS; 6+ dilde VTT altyazı",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vixsrc.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en",
-        "it"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__vidrock",
-      "name": "VidRock",
-      "version": "1.0.1",
-      "description": "9 sunucu (Luna/Orion/…); 1080p'ye kadar HLS",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidrock.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__4khdhub",
-      "name": "4KHDHub",
-      "version": "1.0.4",
-      "description": "4K/UHD film ve dizi stream'leri",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/4khdhub.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "en",
-        "hi"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__moviesdrive",
-      "name": "MoviesDrive",
-      "version": "1.0.1",
-      "description": "MoviesDrive arşivi; HubCloud üzerinden R2 doğrudan MKV, film + dizi",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/moviesdrive.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "mkv",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "hi",
-        "en"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__uhdmovies",
-      "name": "UHDMovies",
-      "version": "1.1.0",
-      "description": "UHDMovies.us.org; thenaukriadda/driveseed zincirini çözüp doğrudan Google video (MKV) linki verir. Film + dizi.",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/uhdmovies.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": true,
-      "formats": [
-        "mp4",
-        "mkv"
-      ],
-      "contentLanguage": [
-        "en",
-        "hi"
-      ]
-    },
-    {
-      "id": "justemi-r84-plugin__febbox",
-      "name": "Febbox",
-      "version": "1.0.0",
-      "description": "Febbox / SuperStream kaynakları; Febbox token gerekir.",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/febbox.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": true,
-      "formats": [
-        "mp4",
-        "mkv"
-      ]
-    },
-    {
-      "id": "jasoleys__animecix",
-      "name": "AnimeCix",
-      "description": "Anime",
-      "version": "1.0.1",
-      "author": "jasoelysss",
-      "supportedTypes": [
-        "series",
-        "tv"
-      ],
-      "filename": "https://nuvio.jasoelys.workers.dev/providers/animecix.js",
-      "enabled": true,
-      "formats": [
-        "mp4"
-      ]
-    },
-    {
-      "id": "jasoleys__fullhdfilmizlesene",
-      "name": "FullHDFilmizlesene",
-      "description": "Film",
-      "version": "1.0.1",
-      "author": "jasoelysss",
-      "supportedTypes": [
-        "movie"
-      ],
-      "filename": "https://nuvio.jasoelys.workers.dev/providers/fullhdfilmizlesene.js",
-      "enabled": true,
-      "formats": [
-        "m3u8"
-      ]
-    },
-    {
-      "id": "jasoleys__anizium",
-      "name": "Anizium",
-      "description": "Anime 4K",
-      "version": "1.0.1",
-      "author": "jasoelysss",
-      "supportedTypes": [
-        "series",
-        "tv"
-      ],
-      "filename": "https://nuvio.jasoelys.workers.dev/providers/anizium.js",
-      "enabled": true,
-      "formats": [
-        "mp4"
-      ]
-    },
-    {
-      "id": "jasoleys__selcukflix",
-      "name": "SelcukFlix",
-      "description": "Film - Dizi",
-      "version": "1.0.1",
-      "author": "jasoelysss",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://nuvio.jasoelys.workers.dev/providers/selcukflix.js",
-      "enabled": true,
-      "formats": [
-        "m3u8"
-      ]
-    },
-    {
-      "id": "jasoleys__dizilla",
-      "name": "Dizilla",
-      "description": "Dizi",
-      "version": "1.0.1",
-      "author": "jasoelysss",
-      "supportedTypes": [
-        "tv",
-        "series"
-      ],
-      "filename": "https://nuvio.jasoelys.workers.dev/providers/dizilla.js",
-      "enabled": true,
-      "formats": [
-        "m3u8"
-      ]
-    },
-    {
-      "id": "jasoleys__hdfilmcehennemi",
-      "name": "HDFilmCehennemi",
-      "description": "Film - Dizi",
-      "version": "1.0.1",
-      "author": "jasoelysss",
-      "supportedTypes": [
-        "movie",
-        "series",
-        "tv"
-      ],
-      "filename": "https://nuvio.jasoelys.workers.dev/providers/hdfilmcehennemi.js",
-      "enabled": true,
-      "formats": [
-        "m3u8"
-      ]
-    },
-    {
-      "id": "jasoleys__yabancidizi",
-      "name": "Yabancı Dizi",
-      "description": "Film • Dizi",
-      "version": "1.0.1",
-      "author": "jasoelysss",
-      "supportedTypes": [
-        "movie",
-        "series",
-        "tv"
-      ],
-      "filename": "https://nuvio.jasoelys.workers.dev/providers/yabancidizi.js",
-      "enabled": true,
-      "formats": [
-        "m3u8"
-      ]
-    },
-    {
-      "id": "hans-mega__hans-1",
-      "name": "han's 1",
-      "description": "han's 1 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-1.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-2",
-      "name": "han's 2",
-      "description": "han's 2 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-2.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-3",
-      "name": "han's 3",
-      "description": "han's 3 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-3.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-4",
-      "name": "han's 4",
-      "description": "han's 4 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-4.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-5",
-      "name": "han's 5",
-      "description": "han's 5 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-5.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-6",
-      "name": "han's 6",
-      "description": "han's 6 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-6.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-7",
-      "name": "han's 7",
-      "description": "han's 7 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-7.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-8",
-      "name": "han's 8",
-      "description": "han's 8 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-8.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-9",
-      "name": "han's 9",
-      "description": "han's 9 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-9.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-10",
-      "name": "han's 10",
-      "description": "han's 10 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "series",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-10.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-11",
-      "name": "han's 11",
-      "description": "han's 11 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "series",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-11.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-12",
-      "name": "han's 12",
-      "description": "han's 12 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-12.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-13",
-      "name": "han's 13",
-      "description": "han's 13 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-13.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-14",
-      "name": "han's 14",
-      "description": "han's 14 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-14.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-15",
-      "name": "han's 15",
-      "description": "han's 15 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-15.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-16",
-      "name": "han's 16",
-      "description": "han's 16 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-16.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-17",
-      "name": "han's 17",
-      "description": "han's 17 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-17.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-18",
-      "name": "han's 18",
-      "description": "han's 18 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-18.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-19",
-      "name": "han's 19",
-      "description": "han's 19 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-19.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-20",
-      "name": "han's 20",
-      "description": "han's 20 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-20.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-21",
-      "name": "han's 21",
-      "description": "han's 21 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-21.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-22",
-      "name": "han's 22",
-      "description": "han's 22 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-22.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-23",
-      "name": "han's 23",
-      "description": "han's 23 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-23.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-24",
-      "name": "han's 24",
-      "description": "han's 24 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-24.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-25",
-      "name": "han's 25",
-      "description": "han's 25 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-25.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-26",
-      "name": "han's 26",
-      "description": "han's 26 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-26.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-27",
-      "name": "han's 27",
-      "description": "han's 27 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-27.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-28",
-      "name": "han's 28",
-      "description": "han's 28 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-28.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-29",
-      "name": "han's 29",
-      "description": "han's 29 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-29.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-30",
-      "name": "han's 30",
-      "description": "han's 30 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-30.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-31",
-      "name": "han's 31",
-      "description": "han's 31 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-31.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-32",
-      "name": "han's 32",
-      "description": "han's 32 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-32.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-33",
-      "name": "han's 33",
-      "description": "han's 33 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-33.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-34",
-      "name": "han's 34",
-      "description": "han's 34 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-34.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-35",
-      "name": "han's 35",
-      "description": "han's 35 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-35.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-36",
-      "name": "han's 36",
-      "description": "han's 36 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-36.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-37",
-      "name": "han's 37",
-      "description": "han's 37 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-37.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-38",
-      "name": "han's 38",
-      "description": "han's 38 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-38.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-39",
-      "name": "han's 39",
-      "description": "han's 39 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-39.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-40",
-      "name": "han's 40",
-      "description": "han's 40 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-40.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-41",
-      "name": "han's 41",
-      "description": "han's 41 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-41.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-42",
-      "name": "han's 42",
-      "description": "han's 42 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-42.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-43",
-      "name": "han's 43",
-      "description": "han's 43 provider",
-      "version": "1.14.623",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-43.js",
-      "enabled": true
-    },
-    {
-      "id": "gsrepo__csnuvio-catalog",
-      "name": "CSNuvio Ana Sayfa Kataloğu",
-      "description": "CSNuvio birleşik film, dizi ve anime ana sayfa kataloğu",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/catalog.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-hdfilmcehennemi",
-      "name": "HDFilmCehennemi",
-      "description": "HDFilmCehennemi Türkçe film ve dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/hdfilmcehennemi.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-selcukflix",
-      "name": "SelçukFlix",
-      "description": "SelçukFlix film ve dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/selcukflix.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-dizilla",
-      "name": "Dizilla",
-      "description": "Dizilla Türkçe yabancı dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizilla.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-dizipal",
-      "name": "DiziPal",
-      "description": "DiziPal Türkçe dizi ve film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizipal.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-animecix",
-      "name": "AnimeciX",
-      "description": "AnimeciX Türkçe anime kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/animecix.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-fullhdfilm",
-      "name": "FullHDFilm",
-      "description": "FullHDFilm Türkçe film ve dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/fullhdfilm.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-filmmakinesi",
-      "name": "FilmMakinesi",
-      "description": "FilmMakinesi Türkçe film ve dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/filmmakinesi.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-filmkovasi",
-      "name": "FilmKovası",
-      "description": "FilmKovası Türkçe film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/filmkovasi.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-jetfilmizle",
-      "name": "JetFilmizle",
-      "description": "JetFilmizle Türkçe film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/jetfilmizle.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-setfilmizle",
-      "name": "SetFilmİzle",
-      "description": "SetFilmİzle Türkçe film ve dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/setfilmizle.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-kultfilmler",
-      "name": "KültFilmler",
-      "description": "KültFilmler Türkçe film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/kultfilmler.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-dizigom",
-      "name": "DiziGom",
-      "description": "DiziGom Türkçe dizi ve film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizigom.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-dizimom",
-      "name": "DiziMom",
-      "description": "DiziMom Türkçe dizi ve film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizimom.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-dizikorea",
-      "name": "DiziKorea",
-      "description": "DiziKorea Asya ve Kore dizileri kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizikorea.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-sinemacx",
-      "name": "SinemaCX",
-      "description": "SinemaCX Türkçe film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/sinemacx.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-filmmodu",
-      "name": "FilmModu",
-      "description": "FilmModu Türkçe film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/filmmodu.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-dizimag",
-      "name": "DiziMag",
-      "description": "DiziMag Türkçe dizi ve film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizimag.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-webteizle",
-      "name": "Webteİzle",
-      "description": "Webteİzle Türkçe film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/webteizle.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-tavsiyefilmizle",
-      "name": "TavsiyeFilmİzle",
-      "description": "TavsiyeFilmİzle Türkçe film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/tavsiyefilmizle.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-hintfilmizle",
-      "name": "HintFilmİzle",
-      "description": "HintFilmİzle Hint ve yabancı film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/hintfilmizle.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-dizibox",
-      "name": "DiziBox",
-      "description": "DiziBox Türkçe yabancı dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizibox.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-sezonlukdizi",
-      "name": "SezonlukDizi",
-      "description": "SezonlukDizi Türkçe yabancı dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/sezonlukdizi.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-yabancidizi",
-      "name": "YabancıDizi",
-      "description": "YabancıDizi Türkçe dizi ve film kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/yabancidizi.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-ddizi",
-      "name": "DDizi",
-      "description": "DDizi yerli ve yabancı dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/ddizi.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-sinewix",
-      "name": "SineWix",
-      "description": "SineWix film, dizi ve anime kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/sinewix.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-sinematv",
-      "name": "SinemaTV",
-      "description": "SinemaTV film ve dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/sinematv.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-anizm",
-      "name": "Anizm",
-      "description": "Anizm Türkçe anime kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/anizm.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "gsrepo__csnuvio-watch2movies",
-      "name": "Watch2Movies",
-      "description": "Watch2Movies İngilizce film ve dizi kaynakları",
-      "version": "1.0.16",
-      "author": "gs",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/watch2movies.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
     {
       "id": "anthology-plugi-n__anthology_m3u",
       "name": "Anthology M3U",
@@ -3486,6 +1585,1186 @@
       ]
     },
     {
+      "id": "di-zi-box__dizibox-tv",
+      "name": "DiziBOX TV",
+      "description": "Series from Dizibox's public directory, with direct player resolution and checked HLS playlists.",
+      "version": "1.0.0",
+      "filename": "https://raw.githubusercontent.com/kratoskrator/dizibox-nuvio/main/dizibox.js",
+      "supportedTypes": [
+        "tv",
+        "series"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "enabled": true,
+      "hasSettings": true,
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "gsrepo__csnuvio-catalog",
+      "name": "CSNuvio Ana Sayfa Kataloğu",
+      "description": "CSNuvio birleşik film, dizi ve anime ana sayfa kataloğu",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/catalog.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "HDFilmCehennemi Türkçe film ve dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/hdfilmcehennemi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-selcukflix",
+      "name": "SelçukFlix",
+      "description": "SelçukFlix film ve dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/selcukflix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-dizilla",
+      "name": "Dizilla",
+      "description": "Dizilla Türkçe yabancı dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizilla.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-dizipal",
+      "name": "DiziPal",
+      "description": "DiziPal Türkçe dizi ve film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizipal.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-animecix",
+      "name": "AnimeciX",
+      "description": "AnimeciX Türkçe anime kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/animecix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-fullhdfilm",
+      "name": "FullHDFilm",
+      "description": "FullHDFilm Türkçe film ve dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/fullhdfilm.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-filmmakinesi",
+      "name": "FilmMakinesi",
+      "description": "FilmMakinesi Türkçe film ve dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/filmmakinesi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-filmkovasi",
+      "name": "FilmKovası",
+      "description": "FilmKovası Türkçe film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/filmkovasi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-jetfilmizle",
+      "name": "JetFilmizle",
+      "description": "JetFilmizle Türkçe film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/jetfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-setfilmizle",
+      "name": "SetFilmİzle",
+      "description": "SetFilmİzle Türkçe film ve dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/setfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-kultfilmler",
+      "name": "KültFilmler",
+      "description": "KültFilmler Türkçe film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/kultfilmler.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-dizigom",
+      "name": "DiziGom",
+      "description": "DiziGom Türkçe dizi ve film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizigom.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-dizimom",
+      "name": "DiziMom",
+      "description": "DiziMom Türkçe dizi ve film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizimom.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-dizikorea",
+      "name": "DiziKorea",
+      "description": "DiziKorea Asya ve Kore dizileri kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizikorea.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-sinemacx",
+      "name": "SinemaCX",
+      "description": "SinemaCX Türkçe film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/sinemacx.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-filmmodu",
+      "name": "FilmModu",
+      "description": "FilmModu Türkçe film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/filmmodu.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-dizimag",
+      "name": "DiziMag",
+      "description": "DiziMag Türkçe dizi ve film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizimag.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-webteizle",
+      "name": "Webteİzle",
+      "description": "Webteİzle Türkçe film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/webteizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-tavsiyefilmizle",
+      "name": "TavsiyeFilmİzle",
+      "description": "TavsiyeFilmİzle Türkçe film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/tavsiyefilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-hintfilmizle",
+      "name": "HintFilmİzle",
+      "description": "HintFilmİzle Hint ve yabancı film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/hintfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-dizibox",
+      "name": "DiziBox",
+      "description": "DiziBox Türkçe yabancı dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/dizibox.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-sezonlukdizi",
+      "name": "SezonlukDizi",
+      "description": "SezonlukDizi Türkçe yabancı dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/sezonlukdizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-yabancidizi",
+      "name": "YabancıDizi",
+      "description": "YabancıDizi Türkçe dizi ve film kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/yabancidizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-ddizi",
+      "name": "DDizi",
+      "description": "DDizi yerli ve yabancı dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/ddizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-sinewix",
+      "name": "SineWix",
+      "description": "SineWix film, dizi ve anime kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/sinewix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-sinematv",
+      "name": "SinemaTV",
+      "description": "SinemaTV film ve dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/sinematv.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-anizm",
+      "name": "Anizm",
+      "description": "Anizm Türkçe anime kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/anizm.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "gsrepo__csnuvio-watch2movies",
+      "name": "Watch2Movies",
+      "description": "Watch2Movies İngilizce film ve dizi kaynakları",
+      "version": "1.0.16",
+      "author": "gs",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/watch2movies.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "hans-mega__hans-1",
+      "name": "han's 1",
+      "description": "han's 1 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-1.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-2",
+      "name": "han's 2",
+      "description": "han's 2 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-2.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-3",
+      "name": "han's 3",
+      "description": "han's 3 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-3.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-4",
+      "name": "han's 4",
+      "description": "han's 4 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-4.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-5",
+      "name": "han's 5",
+      "description": "han's 5 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-5.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-6",
+      "name": "han's 6",
+      "description": "han's 6 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-6.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-7",
+      "name": "han's 7",
+      "description": "han's 7 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-7.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-8",
+      "name": "han's 8",
+      "description": "han's 8 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-8.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-9",
+      "name": "han's 9",
+      "description": "han's 9 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-9.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-10",
+      "name": "han's 10",
+      "description": "han's 10 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-10.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-11",
+      "name": "han's 11",
+      "description": "han's 11 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-11.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-12",
+      "name": "han's 12",
+      "description": "han's 12 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-12.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-13",
+      "name": "han's 13",
+      "description": "han's 13 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-13.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-14",
+      "name": "han's 14",
+      "description": "han's 14 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-14.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-15",
+      "name": "han's 15",
+      "description": "han's 15 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-15.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-16",
+      "name": "han's 16",
+      "description": "han's 16 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-16.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-17",
+      "name": "han's 17",
+      "description": "han's 17 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-17.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-18",
+      "name": "han's 18",
+      "description": "han's 18 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-18.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-19",
+      "name": "han's 19",
+      "description": "han's 19 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-19.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-20",
+      "name": "han's 20",
+      "description": "han's 20 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-20.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-21",
+      "name": "han's 21",
+      "description": "han's 21 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-21.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-22",
+      "name": "han's 22",
+      "description": "han's 22 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-22.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-23",
+      "name": "han's 23",
+      "description": "han's 23 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-23.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-24",
+      "name": "han's 24",
+      "description": "han's 24 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-24.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-25",
+      "name": "han's 25",
+      "description": "han's 25 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-25.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-26",
+      "name": "han's 26",
+      "description": "han's 26 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-26.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-27",
+      "name": "han's 27",
+      "description": "han's 27 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-27.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-28",
+      "name": "han's 28",
+      "description": "han's 28 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-28.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-29",
+      "name": "han's 29",
+      "description": "han's 29 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-29.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-30",
+      "name": "han's 30",
+      "description": "han's 30 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-30.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-31",
+      "name": "han's 31",
+      "description": "han's 31 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-31.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-32",
+      "name": "han's 32",
+      "description": "han's 32 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-32.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-33",
+      "name": "han's 33",
+      "description": "han's 33 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-33.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-34",
+      "name": "han's 34",
+      "description": "han's 34 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-34.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-35",
+      "name": "han's 35",
+      "description": "han's 35 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-35.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-36",
+      "name": "han's 36",
+      "description": "han's 36 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-36.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-37",
+      "name": "han's 37",
+      "description": "han's 37 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-37.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-38",
+      "name": "han's 38",
+      "description": "han's 38 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-38.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-39",
+      "name": "han's 39",
+      "description": "han's 39 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-39.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-40",
+      "name": "han's 40",
+      "description": "han's 40 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-40.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-41",
+      "name": "han's 41",
+      "description": "han's 41 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-41.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-42",
+      "name": "han's 42",
+      "description": "han's 42 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-42.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-mega__hans-43",
+      "name": "han's 43",
+      "description": "han's 43 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-43.js",
+      "enabled": true
+    },
+    {
+      "id": "hdfilmcehennemi__hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Movie and TV playback sources from hdfilmcehennemi.nl, with alternative players and available subtitles.",
+      "version": "1.0.1",
+      "filename": "https://raw.githubusercontent.com/kratoskrator/hdfilmcehennemi-nuvio/main/hdfilmcehennemi.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "mpd",
+        "webm",
+        "mov",
+        "m4v"
+      ],
+      "enabled": true,
+      "hasSettings": true,
+      "supportsExternalPlayer": true
+    },
+    {
       "id": "izlelan__imu",
       "name": "Imu",
       "description": "Film • Dizi",
@@ -4040,50 +3319,493 @@
       "enabled": true
     },
     {
-      "id": "di-zi-box__dizibox-tv",
-      "name": "DiziBOX TV",
-      "description": "Series from Dizibox's public directory, with direct player resolution and checked HLS playlists.",
-      "version": "1.0.0",
-      "filename": "https://raw.githubusercontent.com/kratoskrator/dizibox-nuvio/main/dizibox.js",
+      "id": "jasoleys__animecix",
+      "name": "AnimeCix",
+      "description": "Anime",
+      "version": "1.0.1",
+      "author": "jasoelysss",
       "supportedTypes": [
-        "tv",
-        "series"
+        "series",
+        "tv"
       ],
-      "contentLanguage": [
-        "tr"
-      ],
-      "formats": [
-        "m3u8"
-      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/animecix.js",
       "enabled": true,
-      "hasSettings": true,
-      "supportsExternalPlayer": true
+      "formats": [
+        "mp4"
+      ]
     },
     {
-      "id": "hdfilmcehennemi__hdfilmcehennemi",
-      "name": "HDFilmCehennemi",
-      "description": "Movie and TV playback sources from hdfilmcehennemi.nl, with alternative players and available subtitles.",
+      "id": "jasoleys__fullhdfilmizlesene",
+      "name": "FullHDFilmizlesene",
+      "description": "Film",
       "version": "1.0.1",
-      "filename": "https://raw.githubusercontent.com/kratoskrator/hdfilmcehennemi-nuvio/main/hdfilmcehennemi.js",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/fullhdfilmizlesene.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "jasoleys__anizium",
+      "name": "Anizium",
+      "description": "Anime 4K",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "series",
+        "tv"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/anizium.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ]
+    },
+    {
+      "id": "jasoleys__selcukflix",
+      "name": "SelcukFlix",
+      "description": "Film - Dizi",
+      "version": "1.0.1",
+      "author": "jasoelysss",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "contentLanguage": [
-        "tr"
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/selcukflix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "jasoleys__dizilla",
+      "name": "Dizilla",
+      "description": "Dizi",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "tv",
+        "series"
       ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/dizilla.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "jasoleys__hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Film - Dizi",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/hdfilmcehennemi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "jasoleys__yabancidizi",
+      "name": "Yabancı Dizi",
+      "description": "Film • Dizi",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/yabancidizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__dexterpw",
+      "name": "Dexter.pw",
+      "version": "1.0.11",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/dexterpw.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false
+    },
+    {
+      "id": "justemi-r84-plugin__kmmovies",
+      "name": "KMMovies",
+      "version": "1.2.0",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/kmmovies.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "mkv",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "en",
+        "hi"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__yts",
+      "name": "YTS",
+      "version": "1.0.7",
+      "description": "YTS torrent provider (magnet, debrid gerektirir)",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/yts.js",
+      "supportedTypes": [
+        "movie"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "mp4"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__vidcloud",
+      "name": "VidCloud",
+      "version": "1.0.2",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidcloud.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__mapple",
+      "name": "Mapple",
+      "version": "1.0.6",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/mapple.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en",
+        "hi"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__atlantic",
+      "name": "Atlantic",
+      "version": "1.0.6",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/atlantic.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__vaplayer",
+      "name": "VAplayer",
+      "version": "1.0.2",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vaplayer.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__moviesapi",
+      "name": "MoviesAPI",
+      "version": "1.0.2",
+      "description": "VidSpark backend; film + dizi, çok dilli VTT altyazı",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/moviesapi.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__popwatch",
+      "name": "PopWatch",
+      "version": "1.0.4",
+      "description": "Kendi scraper ağı (7 kaynak); film + dizi, SRT altyazı",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/popwatch.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__vidlove",
+      "name": "Vidlove",
+      "version": "1.0.0",
+      "description": "moviebox2/vidapi kaynak ağı; 4K'ya kadar, çok dilli VTT altyazı",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidlove.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__vidrift",
+      "name": "VidRift",
+      "version": "1.0.2",
+      "description": "Orion altyapısı; HEVC HLS, çok dilli dublaj seçenekleri",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidrift.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__vidbolt",
+      "name": "VidBolt",
+      "version": "1.0.1",
+      "description": "1080p HLS; HLS içinde 10 dilde ses + 5 altyazı",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidbolt.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__thugtv",
+      "name": "ThugTV",
+      "version": "1.0.2",
+      "description": "Castle/Bishop/Knight sunucuları; HLS + MP4, çok dilli altyazı",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/thugtv.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
       "formats": [
         "m3u8",
-        "mp4",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__aoneroom",
+      "name": "123Movies",
+      "version": "1.0.0",
+      "description": "aoneroom altyapısı; 1080p'ye kadar MP4, SRT altyazı",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/aoneroom.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "mp4"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__vixsrc",
+      "name": "VixSrc",
+      "version": "1.0.1",
+      "description": "İtalyanca/İngilizce çift sesli HLS; 6+ dilde VTT altyazı",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vixsrc.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en",
+        "it"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__vidrock",
+      "name": "VidRock",
+      "version": "1.0.1",
+      "description": "9 sunucu (Luna/Orion/…); 1080p'ye kadar HLS",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidrock.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8"
+      ],
+      "contentLanguage": [
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__4khdhub",
+      "name": "4KHDHub",
+      "version": "1.0.4",
+      "description": "4K/UHD film ve dizi stream'leri",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/4khdhub.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "contentLanguage": [
+        "en",
+        "hi"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__moviesdrive",
+      "name": "MoviesDrive",
+      "version": "1.0.1",
+      "description": "MoviesDrive arşivi; HubCloud üzerinden R2 doğrudan MKV, film + dizi",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/moviesdrive.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": false,
+      "formats": [
         "mkv",
-        "mpd",
-        "webm",
-        "mov",
-        "m4v"
+        "mp4"
+      ],
+      "contentLanguage": [
+        "hi",
+        "en"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__uhdmovies",
+      "name": "UHDMovies",
+      "version": "1.1.0",
+      "description": "UHDMovies.us.org; thenaukriadda/driveseed zincirini çözüp doğrudan Google video (MKV) linki verir. Film + dizi.",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/uhdmovies.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
       ],
       "enabled": true,
       "hasSettings": true,
-      "supportsExternalPlayer": true
+      "formats": [
+        "mp4",
+        "mkv"
+      ],
+      "contentLanguage": [
+        "en",
+        "hi"
+      ]
+    },
+    {
+      "id": "justemi-r84-plugin__febbox",
+      "name": "Febbox",
+      "version": "1.0.0",
+      "description": "Febbox / SuperStream kaynakları; Febbox token gerekir.",
+      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/febbox.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "enabled": true,
+      "hasSettings": true,
+      "formats": [
+        "mp4",
+        "mkv"
+      ]
     },
     {
       "id": "patron__patron-asya-animeleri",
@@ -4659,6 +4381,284 @@
       "filename": "https://raw.githubusercontent.com/Wekmed/nuvio/refs/heads/main/providers/diziyou.js",
       "enabled": true,
       "logo": "https://raw.githubusercontent.com/Kraptor123/domainListesi/refs/heads/main/diziyou.png"
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-dizibox",
+      "name": "WioSinema • DiziBox",
+      "description": "DiziBox yerel HTML/JS dizi sağlayıcısı.",
+      "version": "1.0.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-dizibox.js",
+      "enabled": true,
+      "hasSettings": true,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-vidup",
+      "name": "WioSinema • Vidup",
+      "description": "CineStream Vidup doğrudan TMDB sağlayıcısı.",
+      "version": "0.2.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidup.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-hexa",
+      "name": "WioSinema • Hexa",
+      "description": "CineStream Hexa doğrudan TMDB sağlayıcısı.",
+      "version": "0.2.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-hexa.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-vidfastpro",
+      "name": "WioSinema • VidFastPro",
+      "description": "CineStream VidFastPro doğrudan TMDB sağlayıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidfastpro.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-vidcore",
+      "name": "WioSinema • Vidcore",
+      "description": "CineStream Vidcore doğrudan TMDB sağlayıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidcore.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-xpass",
+      "name": "WioSinema • Xpass",
+      "description": "CineStream Xpass doğrudan TMDB sağlayıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-xpass.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-filmmodu",
+      "name": "WioSinema • FilmModu",
+      "description": "FilmModu yerel HTML/JS film kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-filmmodu.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-dizimom",
+      "name": "WioSinema • DiziMom",
+      "description": "DiziMom yerel HTML/JS dizi kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-dizimom.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-setfilmizle",
+      "name": "WioSinema • SetFilmIzle",
+      "description": "SetFilmIzle yerel HTML/JS film ve dizi kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-setfilmizle.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-filmmakinesi",
+      "name": "WioSinema • FilmMakinesi",
+      "description": "FilmMakinesi yerel HTML/JS film ve dizi kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-filmmakinesi.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "video"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wio-sinema-plugin__wiosinema-hdfilmcehennemi",
+      "name": "WioSinema • HDFilmCehennemi",
+      "description": "HDFilmCehennemi yerel HTML/JS film ve dizi kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-hdfilmcehennemi.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "video"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
     }
   ]
 }
