@@ -298,6 +298,14 @@ class CentralRepoApiManager {
 
             for (repo in pluginRepos) {
                 val manifestUrl = repo.url.trim()
+                
+                // 1. Kendi ürettiğimiz manifestleri içeri almayı engelle (Self-reference Guard)
+                if (manifestUrl.contains("/liberta09/cloudstreamrepomanager/", ignoreCase = true) && 
+                    manifestUrl.contains("/nuvio/", ignoreCase = true)) {
+                    skippedRepos.add(repo.name)
+                    continue
+                }
+                
                 val result = try {
                     NetworkUtils.openFollowRedirectsConnection(initialUrl = manifestUrl, method = "GET")
                 } catch (_: Exception) {
@@ -330,12 +338,15 @@ class CentralRepoApiManager {
                         "$baseUrl/${rawFilename.trimStart('/')}"
                     }
 
-                    val newId = "${slug}__${originalId}"
+                    // 2. Normalize ID (Gereksiz "slug__" öneklerini kaldır)
+                    val baseId = if (originalId.contains("__")) originalId.substringAfterLast("__") else originalId
+                    val newId = "${slug}__${baseId}"
                     
                     // Repo'ya özel manifest için
                     val repoScraper = JSONObject(src.toString())
+                    repoScraper.put("id", newId)
                     repoScraper.put("filename", absoluteFilename)
-                    if (repoScraper.optString("name").isBlank()) repoScraper.put("name", originalId)
+                    if (repoScraper.optString("name").isBlank()) repoScraper.put("name", baseId)
                     if (repoScraper.optString("version").isBlank()) repoScraper.put("version", "1.0.0")
                     repoSpecificScrapers.put(repoScraper)
 
@@ -353,7 +364,7 @@ class CentralRepoApiManager {
                         
                         globalScraper.put("id", finalId)
                         globalScraper.put("filename", absoluteFilename)
-                        if (globalScraper.optString("name").isBlank()) globalScraper.put("name", originalId)
+                        if (globalScraper.optString("name").isBlank()) globalScraper.put("name", baseId)
                         if (globalScraper.optString("version").isBlank()) globalScraper.put("version", "1.0.0")
                         globalScrapers.put(globalScraper)
                         addedToGlobal++
