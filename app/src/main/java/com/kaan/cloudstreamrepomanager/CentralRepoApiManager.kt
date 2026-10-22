@@ -42,7 +42,11 @@ class CentralRepoApiManager {
             return "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/nuvio/$slug/manifest.json"
         }
 
-        fun getRepoNuvioManifestUrl(repoName: String): String {
+        fun getRepoNuvioManifestUrl(repoName: String, repoUrl: String): String {
+            if (repoUrl.contains("/liberta09/cloudstreamrepomanager/", ignoreCase = true) &&
+                repoUrl.contains("/nuvio/", ignoreCase = true)) {
+                return repoUrl.trim()
+            }
             val slug = repoName.lowercase()
                 .replace(Regex("[^a-z0-9]+"), "-")
                 .trim('-')
