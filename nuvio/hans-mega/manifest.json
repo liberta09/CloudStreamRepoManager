@@ -1,0 +1,562 @@
+{
+  "name": "HANS.MEGA Pluginleri",
+  "version": "2026.10.22.2027",
+  "description": "Repo Manager - HANS.MEGA Nuvio plugin paketi (43 plugin)",
+  "author": "liberta09",
+  "scrapers": [
+    {
+      "id": "hans-1",
+      "name": "han's 1",
+      "description": "han's 1 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-1.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-2",
+      "name": "han's 2",
+      "description": "han's 2 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-2.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-3",
+      "name": "han's 3",
+      "description": "han's 3 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-3.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-4",
+      "name": "han's 4",
+      "description": "han's 4 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-4.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-5",
+      "name": "han's 5",
+      "description": "han's 5 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-5.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-6",
+      "name": "han's 6",
+      "description": "han's 6 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-6.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-7",
+      "name": "han's 7",
+      "description": "han's 7 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-7.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-8",
+      "name": "han's 8",
+      "description": "han's 8 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-8.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-9",
+      "name": "han's 9",
+      "description": "han's 9 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-9.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-10",
+      "name": "han's 10",
+      "description": "han's 10 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-10.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-11",
+      "name": "han's 11",
+      "description": "han's 11 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-11.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-12",
+      "name": "han's 12",
+      "description": "han's 12 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-12.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-13",
+      "name": "han's 13",
+      "description": "han's 13 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-13.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-14",
+      "name": "han's 14",
+      "description": "han's 14 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-14.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-15",
+      "name": "han's 15",
+      "description": "han's 15 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-15.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-16",
+      "name": "han's 16",
+      "description": "han's 16 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-16.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-17",
+      "name": "han's 17",
+      "description": "han's 17 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-17.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-18",
+      "name": "han's 18",
+      "description": "han's 18 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-18.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-19",
+      "name": "han's 19",
+      "description": "han's 19 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-19.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-20",
+      "name": "han's 20",
+      "description": "han's 20 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-20.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-21",
+      "name": "han's 21",
+      "description": "han's 21 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-21.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-22",
+      "name": "han's 22",
+      "description": "han's 22 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-22.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-23",
+      "name": "han's 23",
+      "description": "han's 23 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-23.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-24",
+      "name": "han's 24",
+      "description": "han's 24 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-24.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-25",
+      "name": "han's 25",
+      "description": "han's 25 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-25.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-26",
+      "name": "han's 26",
+      "description": "han's 26 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-26.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-27",
+      "name": "han's 27",
+      "description": "han's 27 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-27.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-28",
+      "name": "han's 28",
+      "description": "han's 28 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-28.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-29",
+      "name": "han's 29",
+      "description": "han's 29 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-29.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-30",
+      "name": "han's 30",
+      "description": "han's 30 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-30.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-31",
+      "name": "han's 31",
+      "description": "han's 31 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-31.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-32",
+      "name": "han's 32",
+      "description": "han's 32 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-32.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-33",
+      "name": "han's 33",
+      "description": "han's 33 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-33.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-34",
+      "name": "han's 34",
+      "description": "han's 34 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-34.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-35",
+      "name": "han's 35",
+      "description": "han's 35 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-35.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-36",
+      "name": "han's 36",
+      "description": "han's 36 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-36.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-37",
+      "name": "han's 37",
+      "description": "han's 37 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-37.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-38",
+      "name": "han's 38",
+      "description": "han's 38 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-38.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-39",
+      "name": "han's 39",
+      "description": "han's 39 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-39.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-40",
+      "name": "han's 40",
+      "description": "han's 40 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-40.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-41",
+      "name": "han's 41",
+      "description": "han's 41 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-41.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-42",
+      "name": "han's 42",
+      "description": "han's 42 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-42.js",
+      "enabled": true
+    },
+    {
+      "id": "hans-43",
+      "name": "han's 43",
+      "description": "han's 43 provider",
+      "version": "1.14.623",
+      "author": "han",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/pnthancyb/hans-mega/main/providers/hans-43.js",
+      "enabled": true
+    }
+  ]
+}

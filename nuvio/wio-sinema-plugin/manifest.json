@@ -1,0 +1,286 @@
+{
+  "name": "wio sinema plugin Pluginleri",
+  "version": "2026.10.22.2027",
+  "description": "Repo Manager - wio sinema plugin Nuvio plugin paketi (11 plugin)",
+  "author": "liberta09",
+  "scrapers": [
+    {
+      "id": "wiosinema-dizibox",
+      "name": "WioSinema • DiziBox",
+      "description": "DiziBox yerel HTML/JS dizi sağlayıcısı.",
+      "version": "1.0.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-dizibox.js",
+      "enabled": true,
+      "hasSettings": true,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-vidup",
+      "name": "WioSinema • Vidup",
+      "description": "CineStream Vidup doğrudan TMDB sağlayıcısı.",
+      "version": "0.2.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidup.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-hexa",
+      "name": "WioSinema • Hexa",
+      "description": "CineStream Hexa doğrudan TMDB sağlayıcısı.",
+      "version": "0.2.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-hexa.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-vidfastpro",
+      "name": "WioSinema • VidFastPro",
+      "description": "CineStream VidFastPro doğrudan TMDB sağlayıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidfastpro.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-vidcore",
+      "name": "WioSinema • Vidcore",
+      "description": "CineStream Vidcore doğrudan TMDB sağlayıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-vidcore.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-xpass",
+      "name": "WioSinema • Xpass",
+      "description": "CineStream Xpass doğrudan TMDB sağlayıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-xpass.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-filmmodu",
+      "name": "WioSinema • FilmModu",
+      "description": "FilmModu yerel HTML/JS film kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-filmmodu.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-dizimom",
+      "name": "WioSinema • DiziMom",
+      "description": "DiziMom yerel HTML/JS dizi kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-dizimom.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-setfilmizle",
+      "name": "WioSinema • SetFilmIzle",
+      "description": "SetFilmIzle yerel HTML/JS film ve dizi kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-setfilmizle.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-filmmakinesi",
+      "name": "WioSinema • FilmMakinesi",
+      "description": "FilmMakinesi yerel HTML/JS film ve dizi kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-filmmakinesi.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "video"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "wiosinema-hdfilmcehennemi",
+      "name": "WioSinema • HDFilmCehennemi",
+      "description": "HDFilmCehennemi yerel HTML/JS film ve dizi kazıyıcısı.",
+      "version": "0.1.0",
+      "author": "Wiojelt",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/Wiojelt/Nuvio-Addons/main/providers/wiosinema-hdfilmcehennemi.js",
+      "enabled": true,
+      "hasSettings": false,
+      "logo": "https://raw.githubusercontent.com/Wiojelt/WioSinema/main/assets/logo-20261004.png?rev=2",
+      "contentLanguage": [
+        "tr",
+        "en"
+      ],
+      "formats": [
+        "video"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    }
+  ]
+}

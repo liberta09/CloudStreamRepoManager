@@ -1,0 +1,34 @@
+{
+  "name": "hdfilmcehennemi Pluginleri",
+  "version": "2026.10.22.2027",
+  "description": "Repo Manager - hdfilmcehennemi Nuvio plugin paketi (1 plugin)",
+  "author": "liberta09",
+  "scrapers": [
+    {
+      "id": "hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Movie and TV playback sources from hdfilmcehennemi.nl, with alternative players and available subtitles.",
+      "version": "1.0.1",
+      "filename": "https://raw.githubusercontent.com/kratoskrator/hdfilmcehennemi-nuvio/main/hdfilmcehennemi.js",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "mpd",
+        "webm",
+        "mov",
+        "m4v"
+      ],
+      "enabled": true,
+      "hasSettings": true,
+      "supportsExternalPlayer": true
+    }
+  ]
+}

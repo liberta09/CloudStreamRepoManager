@@ -1,0 +1,121 @@
+{
+  "name": "jasoleys Pluginleri",
+  "version": "2026.10.22.2027",
+  "description": "Repo Manager - jasoleys Nuvio plugin paketi (7 plugin)",
+  "author": "liberta09",
+  "scrapers": [
+    {
+      "id": "animecix",
+      "name": "AnimeCix",
+      "description": "Anime",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "series",
+        "tv"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/animecix.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ]
+    },
+    {
+      "id": "fullhdfilmizlesene",
+      "name": "FullHDFilmizlesene",
+      "description": "Film",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/fullhdfilmizlesene.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "anizium",
+      "name": "Anizium",
+      "description": "Anime 4K",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "series",
+        "tv"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/anizium.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ]
+    },
+    {
+      "id": "selcukflix",
+      "name": "SelcukFlix",
+      "description": "Film - Dizi",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/selcukflix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "dizilla",
+      "name": "Dizilla",
+      "description": "Dizi",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "tv",
+        "series"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/dizilla.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "Film - Dizi",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/hdfilmcehennemi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    },
+    {
+      "id": "yabancidizi",
+      "name": "Yabancı Dizi",
+      "description": "Film • Dizi",
+      "version": "1.0.1",
+      "author": "jasoelysss",
+      "supportedTypes": [
+        "movie",
+        "series",
+        "tv"
+      ],
+      "filename": "https://nuvio.jasoelys.workers.dev/providers/yabancidizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ]
+    }
+  ]
+}

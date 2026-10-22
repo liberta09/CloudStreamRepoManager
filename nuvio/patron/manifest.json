@@ -1,0 +1,283 @@
+{
+  "name": "PATRON Pluginleri",
+  "version": "2026.10.22.2027",
+  "description": "Repo Manager - PATRON Nuvio plugin paketi (11 plugin)",
+  "author": "liberta09",
+  "scrapers": [
+    {
+      "id": "patron-asya-animeleri",
+      "name": "PatronAsyaAnimeleri",
+      "description": "AsyaAnimeleri.top uzerinden Turkce dublajli ve altyazili Asya animeleri. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronAsyaAnimeleri.js",
+      "enabled": true,
+      "logo": "https://www.google.com/s2/favicons?domain=asyaanimeleri.top&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-film-makinesi",
+      "name": "PatronFilmMakinesi",
+      "description": "FilmMakinesi.to uzerinden Turkce dublajli ve altyazili filmler. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.4",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronFilmMakinesi.js",
+      "enabled": true,
+      "logo": "https://www.google.com/s2/favicons?domain=filmmakinesi.film&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-multi",
+      "name": "PatronMulti",
+      "description": "Birden fazla kaynaktan film ve dizi stream linkleri. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronMulti.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": [
+        "en",
+        "tr"
+      ],
+      "formats": [
+        "m3u8"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-dort-khd",
+      "name": "PatronDortKHD",
+      "description": "4KHDHub tabanli film ve dizi stream linkleri. @patr0n tarafindan gelistirildi.",
+      "version": "2.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patrondortkhd.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": [
+        "en",
+        "hi"
+      ],
+      "formats": [
+        "mp4",
+        "m3u8",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-hdf-cehennemi",
+      "name": "PatronHDFCehennemi",
+      "description": "HDFilmCehennemi tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.1",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronhdfcehennemi.js",
+      "enabled": true,
+      "logo": "https://www.google.com/s2/favicons?domain=hdfilmcehennemi.com&sz=%size%",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-sinewix",
+      "name": "patronSineWix",
+      "description": "SineWix tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.1.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronSinewix.js",
+      "enabled": true,
+      "logo": "https://ydfvfdizipanel.ru/favicon.ico",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-dizipal",
+      "name": "patronDizipal",
+      "description": "Dizipal tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.10",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronDizipal.js",
+      "enabled": true,
+      "logo": "https://www.google.com/s2/favicons?domain=dizipal2063.com&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-diziyou",
+      "name": "patronDiziyou",
+      "description": "Diziyou tabanli dizi saglayicisi. @patr0n tarafindan gelistirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronDiziyou.js",
+      "enabled": true,
+      "logo": "https://www.google.com/s2/favicons?domain=diziyou.one&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-fullhd-filmizlesene",
+      "name": "patronFullHDFilmizlesene",
+      "description": "FullHDFilmizlesene.now üzerinden Türkçe dublajlı ve altyazılı filmler. @patr0n tarafından geliştirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronFullHDFilmizlesene.js",
+      "enabled": true,
+      "logo": "https://www.google.com/s2/favicons?domain=fullhdfilmizlesene.now&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-jet-filmizle",
+      "name": "patronJetFilmizle",
+      "description": "JetFilmizle.com üzerinden Türkçe dublajlı ve altyazılı filmler. @patr0n tarafından geliştirildi.",
+      "version": "1.0.1",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronJetFilmizle.js",
+      "enabled": true,
+      "logo": "https://www.google.com/s2/favicons?domain=jetfilmizle.com&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    },
+    {
+      "id": "patron-selcukflix",
+      "name": "patronSelcukFlix",
+      "description": "SelcukFlix tabanlı film ve dizi sağlayıcısı. @patr0n tarafından geliştirildi.",
+      "version": "1.0.0",
+      "author": "patr0n",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https://raw.githubusercontent.com/patr0nq/nuvioaddons/main/providers/patronSelcukFlix.js",
+      "enabled": true,
+      "logo": "https://www.google.com/s2/favicons?domain=selcukflix.app&sz=64",
+      "contentLanguage": [
+        "tr"
+      ],
+      "formats": [
+        "m3u8",
+        "mp4",
+        "mkv",
+        "hls"
+      ],
+      "limited": false,
+      "disabledPlatforms": [],
+      "supportsExternalPlayer": true
+    }
+  ]
+}
