@@ -854,8 +854,33 @@ fun openNuvioAndPrepareRepo(
     repo: Repo,
     onNotInstalled: () -> Unit
 ) {
+    val rawUrl = repo.url.trim()
+
+    // 🚨 KRİTİK DÜZELTME: Nuvio Plugin'leri için güvenli çözüm
+    // Nuvio'nun varsayılan eklenti deep linkleri (nuviorepo://), Plugin formatındaki JSON'u
+    // normal eklenti deposu gibi ayrıştırmaya çalıştığında uygulamanın donmasına (ANR) yol açar.
+    // Şimdilik plugin deep link'i göndermiyoruz; sadece kopyalayıp Nuvio'yu düz başlatıyoruz.
+    if (repo.isNuvioPlugin()) {
+        copyToClipboard(
+            context,
+            rawUrl,
+            "Plugin URL kopyalandı"
+        )
+        
+        Toast.makeText(
+            context,
+            "Plugin URL'si kopyalandı.\nLütfen Nuvio > Ayarlar > Pluginler > Depo Ekle bölümüne yapıştırın.",
+            Toast.LENGTH_LONG
+        ).show()
+        
+        if (!launchNuvioApp(context)) {
+            onNotInstalled()
+        }
+        return
+    }
+
     /*
-     * Nuvio eklenti deposu yönlendirmesi
+     * Normal Nuvio eklenti (addon) deposu yönlendirmesi
      *
      * 1. Doğrudan repo URL'sini panoya kopyalar.
      * 2. nuviorepo:// ve nuvio:// derin bağlantılarını (deep link) Intent ile çağırır.
@@ -864,7 +889,6 @@ fun openNuvioAndPrepareRepo(
      * 5. Cihazda Nuvio yüklü değilse bilgilendirme diyaloğunu tetikler.
      */
 
-    val rawUrl = repo.url.trim()
     val cleanUrl = rawUrl
         .removePrefix("https://")
         .removePrefix("http://")
