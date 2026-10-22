@@ -1,3 +1,8 @@
+## v1.3.2
+- 🛠️ Nuvio plugin aktarımında donma sorunu giderildi (plugin paketi küçültüldü, tekrarlı kayıtlar temizlendi)
+- 📋 Plugin kartlarında "Nuvio'ya Aktar" artık plugin adresini kopyalıyor; Nuvio > Ayarlar > Pluginler > Depo Ekle bölümüne yapıştırılır
+- 🔧 Mooncrown kartı düzeltildi
+
 ## v1.3.0
 
 - ▶️ **Play sekmesi:** CS ve Nuvio repoları artık **Play** sekmesinde birlikte listeleniyor. "Tümü" sekmesi kalktı, yerine üstte **Toplam: N repo** yazısı geldi.
