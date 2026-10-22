@@ -38,6 +38,18 @@ class CentralRepoApiManager {
         private const val NUVIO_PLUGIN_BUNDLE_CONTENTS_API =
             "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/nuvio/manifest.json"
 
+        private fun getRepoNuvioContentsApi(slug: String): String {
+            return "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/nuvio/$slug/manifest.json"
+        }
+
+        fun getRepoNuvioManifestUrl(repoName: String): String {
+            val slug = repoName.lowercase()
+                .replace(Regex("[^a-z0-9]+"), "-")
+                .trim('-')
+                .ifBlank { "repo" }
+            return "https://raw.githubusercontent.com/liberta09/CloudStreamRepoManager/main/nuvio/$slug/manifest.json"
+        }
+
         /**
          * GitHub üzerindeki merkezi repo.json dosyasından canlı kataloğu çeker.
          * CDN önbellek (Cache) gecikmesini 0 saniyeye indirmek için doğrudan GitHub REST Contents API
@@ -278,7 +290,8 @@ class CentralRepoApiManager {
             val pluginRepos = repos.filter { it.isNuvioPlugin() }
             if (pluginRepos.isEmpty()) return ""
 
-            val scrapers = JSONArray()
+            val globalScrapers = JSONArray()
+            val usedFilenames = mutableSetOf<String>()
             val usedIds = mutableSetOf<String>()
             var okRepoCount = 0
             val skippedRepos = mutableListOf<String>()
@@ -302,38 +315,65 @@ class CentralRepoApiManager {
                     .trim('-')
                     .ifBlank { "repo" }
 
-                var added = 0
+                var addedToGlobal = 0
+                val repoSpecificScrapers = JSONArray()
+
                 for (i in 0 until repoScrapers.length()) {
                     val src = repoScrapers.optJSONObject(i) ?: continue
                     val originalId = src.optString("id").trim()
-                    val filename = src.optString("filename").trim()
-                    if (originalId.isBlank() || filename.isBlank()) continue
+                    val rawFilename = src.optString("filename").trim()
+                    if (originalId.isBlank() || rawFilename.isBlank()) continue
+
+                    val absoluteFilename = if (rawFilename.startsWith("http://") || rawFilename.startsWith("https://")) {
+                        rawFilename
+                    } else {
+                        "$baseUrl/${rawFilename.trimStart('/')}"
+                    }
 
                     val newId = "${slug}__${originalId}"
-                    if (!usedIds.add(newId)) continue
+                    
+                    // Repo'ya özel manifest için
+                    val repoScraper = JSONObject(src.toString())
+                    repoScraper.put("filename", absoluteFilename)
+                    if (repoScraper.optString("name").isBlank()) repoScraper.put("name", originalId)
+                    if (repoScraper.optString("version").isBlank()) repoScraper.put("version", "1.0.0")
+                    repoSpecificScrapers.put(repoScraper)
 
-                    // Orijinal nesneyi kopyala, sadece gereken alanları düzelt
-                    val scraper = JSONObject(src.toString())
-                    scraper.put("id", newId)
-                    scraper.put(
-                        "filename",
-                        if (filename.startsWith("http://") || filename.startsWith("https://")) filename
-                        else "$baseUrl/${filename.trimStart('/')}"
-                    )
-                    if (scraper.optString("name").isBlank()) scraper.put("name", originalId)
-                    if (scraper.optString("version").isBlank()) scraper.put("version", "1.0.0")
-                    scrapers.put(scraper)
-                    added++
+                    // Global manifest için deduplication (filename bazlı)
+                    if (usedFilenames.add(absoluteFilename.lowercase())) {
+                        val globalScraper = JSONObject(src.toString())
+                        
+                        // ID çakışmasını önle
+                        var finalId = newId
+                        var counter = 1
+                        while (!usedIds.add(finalId)) {
+                            finalId = "${newId}_$counter"
+                            counter++
+                        }
+                        
+                        globalScraper.put("id", finalId)
+                        globalScraper.put("filename", absoluteFilename)
+                        if (globalScraper.optString("name").isBlank()) globalScraper.put("name", originalId)
+                        if (globalScraper.optString("version").isBlank()) globalScraper.put("version", "1.0.0")
+                        globalScrapers.put(globalScraper)
+                        addedToGlobal++
+                    }
                 }
 
-                if (added > 0) okRepoCount++ else skippedRepos.add(repo.name)
+                if (repoSpecificScrapers.length() > 0) {
+                    okRepoCount++
+                    // Her repo için kendi manifestini asenkron olarak GitHub'a kaydet
+                    publishSingleRepoManifest(slug, repo.name, repoSpecificScrapers, token)
+                } else {
+                    skippedRepos.add(repo.name)
+                }
             }
 
-            if (scrapers.length() == 0) {
+            if (globalScrapers.length() == 0) {
                 return "⚠️ Plugin paketi yazılmadı: plugin repolarından hiç sağlayıcı alınamadı."
             }
 
-            // Mevcut dosyayı oku (SHA + içerik karşılaştırması)
+            // Mevcut global dosyayı oku (SHA + içerik karşılaştırması)
             var existingSha = ""
             var existingScrapers = ""
             try {
@@ -360,8 +400,8 @@ class CentralRepoApiManager {
 
             val skippedNote = if (skippedRepos.isNotEmpty()) " (${skippedRepos.size} repo atlandı: ${skippedRepos.joinToString()})" else ""
 
-            if (existingScrapers.isNotBlank() && existingScrapers == scrapers.toString()) {
-                return "🔌 Plugin paketi zaten güncel: ${scrapers.length()} plugin$skippedNote"
+            if (existingScrapers.isNotBlank() && existingScrapers == globalScrapers.toString()) {
+                return "🔌 Plugin paketi zaten güncel: ${globalScrapers.length()} plugin$skippedNote"
             }
 
             val version = SimpleDateFormat("yyyy.MM.dd.HHmm", Locale.US).apply {
@@ -369,11 +409,11 @@ class CentralRepoApiManager {
             }.format(Date())
 
             val bundle = JSONObject().apply {
-                put("name", "Repo Pluginleri")
+                put("name", "Repo Pluginleri (Global)")
                 put("version", version)
-                put("description", "Repo Manager ortak Nuvio plugin paketi ($okRepoCount repo, ${scrapers.length()} plugin)")
+                put("description", "Repo Manager ortak Nuvio plugin paketi ($okRepoCount repo, ${globalScrapers.length()} tekil plugin)")
                 put("author", "liberta09")
-                put("scrapers", scrapers)
+                put("scrapers", globalScrapers)
             }
 
             val content = bundle.toString(2)
@@ -384,7 +424,7 @@ class CentralRepoApiManager {
             }
 
             val payload = JSONObject().apply {
-                put("message", "🔌 Admin: Updated Nuvio plugin bundle (${scrapers.length()} plugins)")
+                put("message", "🔌 Admin: Updated global Nuvio plugin bundle (${globalScrapers.length()} unique plugins)")
                 put("content", encoded)
                 if (existingSha.isNotBlank()) put("sha", existingSha)
                 put("branch", "main")
@@ -405,13 +445,87 @@ class CentralRepoApiManager {
 
                 val code = connection.responseCode
                 if (code in 200..299) {
-                    "🔌 Plugin paketi yayınlandı: $okRepoCount repodan ${scrapers.length()} plugin$skippedNote"
+                    "🔌 Plugin paketi yayınlandı: $okRepoCount repodan ${globalScrapers.length()} tekil plugin$skippedNote"
                 } else {
                     "⚠️ Plugin paketi yayınlanamadı (HTTP $code)$skippedNote"
                 }
             } finally {
                 connection?.disconnect()
             }
+        }
+
+        private fun publishSingleRepoManifest(slug: String, repoName: String, scrapers: JSONArray, token: String) {
+            val apiUrl = "https://api.github.com/repos/liberta09/CloudStreamRepoManager/contents/nuvio/$slug/manifest.json"
+            
+            Thread {
+                var existingSha = ""
+                var existingScrapers = ""
+                try {
+                    val existing = NetworkUtils.openFollowRedirectsConnection(
+                        initialUrl = apiUrl,
+                        headers = mapOf("Authorization" to "Bearer $token")
+                    )
+                    if (existing.isSuccess && existing.body.isNotBlank()) {
+                        val json = JSONObject(existing.body)
+                        existingSha = json.optString("sha", "")
+                        val b64 = json.optString("content", "").replace("\n", "").replace("\r", "").trim()
+                        if (b64.isNotBlank()) {
+                            val decoded = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                String(Base64.getDecoder().decode(b64), Charsets.UTF_8)
+                            } else {
+                                String(android.util.Base64.decode(b64, android.util.Base64.DEFAULT), Charsets.UTF_8)
+                            }
+                            existingScrapers = JSONObject(decoded).optJSONArray("scrapers")?.toString() ?: ""
+                        }
+                    }
+                } catch (_: Exception) {}
+
+                if (existingScrapers.isNotBlank() && existingScrapers == scrapers.toString()) {
+                    return@Thread // Zaten güncel
+                }
+
+                val version = SimpleDateFormat("yyyy.MM.dd.HHmm", Locale.US).apply {
+                    timeZone = TimeZone.getTimeZone("UTC")
+                }.format(Date())
+
+                val bundle = JSONObject().apply {
+                    put("name", "$repoName Pluginleri")
+                    put("version", version)
+                    put("description", "Repo Manager - $repoName Nuvio plugin paketi (${scrapers.length()} plugin)")
+                    put("author", "liberta09")
+                    put("scrapers", scrapers)
+                }
+
+                val content = bundle.toString(2)
+                val encoded = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    Base64.getEncoder().encodeToString(content.toByteArray(Charsets.UTF_8))
+                } else {
+                    android.util.Base64.encodeToString(content.toByteArray(Charsets.UTF_8), android.util.Base64.NO_WRAP)
+                }
+
+                val payload = JSONObject().apply {
+                    put("message", "🔌 Admin: Updated Nuvio plugin manifest for $slug (${scrapers.length()} plugins)")
+                    put("content", encoded)
+                    if (existingSha.isNotBlank()) put("sha", existingSha)
+                    put("branch", "main")
+                }
+
+                var connection: HttpURLConnection? = null
+                try {
+                    connection = URL(apiUrl).openConnection() as HttpURLConnection
+                    connection.requestMethod = "PUT"
+                    connection.connectTimeout = 10000
+                    connection.readTimeout = 10000
+                    connection.doOutput = true
+                    connection.setRequestProperty("User-Agent", NetworkUtils.DEFAULT_USER_AGENT)
+                    connection.setRequestProperty("Content-Type", "application/json")
+                    connection.setRequestProperty("Accept", "application/vnd.github.v3+json")
+                    connection.setRequestProperty("Authorization", "Bearer $token")
+                    connection.outputStream.use { os -> os.write(payload.toString().toByteArray(Charsets.UTF_8)) }
+                    connection.responseCode // execute
+                } catch (_: Exception) {}
+                finally { connection?.disconnect() }
+            }.start()
         }
 
         private fun getGitHubFileSha(token: String): String {

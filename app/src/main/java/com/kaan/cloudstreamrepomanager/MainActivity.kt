@@ -861,9 +861,10 @@ fun openNuvioAndPrepareRepo(
     // normal eklenti deposu gibi ayrıştırmaya çalıştığında uygulamanın donmasına (ANR) yol açar.
     // Şimdilik plugin deep link'i göndermiyoruz; sadece kopyalayıp Nuvio'yu düz başlatıyoruz.
     if (repo.isNuvioPlugin()) {
+        val pluginManifestUrl = CentralRepoApiManager.getRepoNuvioManifestUrl(repo.name)
         copyToClipboard(
             context,
-            rawUrl,
+            pluginManifestUrl,
             "Plugin URL kopyalandı"
         )
         
