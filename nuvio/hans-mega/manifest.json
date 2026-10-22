@@ -1,11 +1,11 @@
 {
   "name": "HANS.MEGA Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - HANS.MEGA Nuvio plugin paketi (43 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "hans-1",
+      "id": "hans-mega__hans-1",
       "name": "han's 1",
       "description": "han's 1 provider",
       "version": "1.14.623",
@@ -18,7 +18,7 @@
       "enabled": true
     },
     {
-      "id": "hans-2",
+      "id": "hans-mega__hans-2",
       "name": "han's 2",
       "description": "han's 2 provider",
       "version": "1.14.623",
@@ -31,7 +31,7 @@
       "enabled": true
     },
     {
-      "id": "hans-3",
+      "id": "hans-mega__hans-3",
       "name": "han's 3",
       "description": "han's 3 provider",
       "version": "1.14.623",
@@ -44,7 +44,7 @@
       "enabled": true
     },
     {
-      "id": "hans-4",
+      "id": "hans-mega__hans-4",
       "name": "han's 4",
       "description": "han's 4 provider",
       "version": "1.14.623",
@@ -56,7 +56,7 @@
       "enabled": true
     },
     {
-      "id": "hans-5",
+      "id": "hans-mega__hans-5",
       "name": "han's 5",
       "description": "han's 5 provider",
       "version": "1.14.623",
@@ -68,7 +68,7 @@
       "enabled": true
     },
     {
-      "id": "hans-6",
+      "id": "hans-mega__hans-6",
       "name": "han's 6",
       "description": "han's 6 provider",
       "version": "1.14.623",
@@ -81,7 +81,7 @@
       "enabled": true
     },
     {
-      "id": "hans-7",
+      "id": "hans-mega__hans-7",
       "name": "han's 7",
       "description": "han's 7 provider",
       "version": "1.14.623",
@@ -94,7 +94,7 @@
       "enabled": true
     },
     {
-      "id": "hans-8",
+      "id": "hans-mega__hans-8",
       "name": "han's 8",
       "description": "han's 8 provider",
       "version": "1.14.623",
@@ -106,7 +106,7 @@
       "enabled": true
     },
     {
-      "id": "hans-9",
+      "id": "hans-mega__hans-9",
       "name": "han's 9",
       "description": "han's 9 provider",
       "version": "1.14.623",
@@ -118,7 +118,7 @@
       "enabled": true
     },
     {
-      "id": "hans-10",
+      "id": "hans-mega__hans-10",
       "name": "han's 10",
       "description": "han's 10 provider",
       "version": "1.14.623",
@@ -132,7 +132,7 @@
       "enabled": true
     },
     {
-      "id": "hans-11",
+      "id": "hans-mega__hans-11",
       "name": "han's 11",
       "description": "han's 11 provider",
       "version": "1.14.623",
@@ -146,7 +146,7 @@
       "enabled": true
     },
     {
-      "id": "hans-12",
+      "id": "hans-mega__hans-12",
       "name": "han's 12",
       "description": "han's 12 provider",
       "version": "1.14.623",
@@ -159,7 +159,7 @@
       "enabled": true
     },
     {
-      "id": "hans-13",
+      "id": "hans-mega__hans-13",
       "name": "han's 13",
       "description": "han's 13 provider",
       "version": "1.14.623",
@@ -172,7 +172,7 @@
       "enabled": true
     },
     {
-      "id": "hans-14",
+      "id": "hans-mega__hans-14",
       "name": "han's 14",
       "description": "han's 14 provider",
       "version": "1.14.623",
@@ -185,7 +185,7 @@
       "enabled": true
     },
     {
-      "id": "hans-15",
+      "id": "hans-mega__hans-15",
       "name": "han's 15",
       "description": "han's 15 provider",
       "version": "1.14.623",
@@ -198,7 +198,7 @@
       "enabled": true
     },
     {
-      "id": "hans-16",
+      "id": "hans-mega__hans-16",
       "name": "han's 16",
       "description": "han's 16 provider",
       "version": "1.14.623",
@@ -210,7 +210,7 @@
       "enabled": true
     },
     {
-      "id": "hans-17",
+      "id": "hans-mega__hans-17",
       "name": "han's 17",
       "description": "han's 17 provider",
       "version": "1.14.623",
@@ -223,7 +223,7 @@
       "enabled": true
     },
     {
-      "id": "hans-18",
+      "id": "hans-mega__hans-18",
       "name": "han's 18",
       "description": "han's 18 provider",
       "version": "1.14.623",
@@ -236,7 +236,7 @@
       "enabled": true
     },
     {
-      "id": "hans-19",
+      "id": "hans-mega__hans-19",
       "name": "han's 19",
       "description": "han's 19 provider",
       "version": "1.14.623",
@@ -249,7 +249,7 @@
       "enabled": true
     },
     {
-      "id": "hans-20",
+      "id": "hans-mega__hans-20",
       "name": "han's 20",
       "description": "han's 20 provider",
       "version": "1.14.623",
@@ -262,7 +262,7 @@
       "enabled": true
     },
     {
-      "id": "hans-21",
+      "id": "hans-mega__hans-21",
       "name": "han's 21",
       "description": "han's 21 provider",
       "version": "1.14.623",
@@ -275,7 +275,7 @@
       "enabled": true
     },
     {
-      "id": "hans-22",
+      "id": "hans-mega__hans-22",
       "name": "han's 22",
       "description": "han's 22 provider",
       "version": "1.14.623",
@@ -287,7 +287,7 @@
       "enabled": true
     },
     {
-      "id": "hans-23",
+      "id": "hans-mega__hans-23",
       "name": "han's 23",
       "description": "han's 23 provider",
       "version": "1.14.623",
@@ -300,7 +300,7 @@
       "enabled": true
     },
     {
-      "id": "hans-24",
+      "id": "hans-mega__hans-24",
       "name": "han's 24",
       "description": "han's 24 provider",
       "version": "1.14.623",
@@ -313,7 +313,7 @@
       "enabled": true
     },
     {
-      "id": "hans-25",
+      "id": "hans-mega__hans-25",
       "name": "han's 25",
       "description": "han's 25 provider",
       "version": "1.14.623",
@@ -326,7 +326,7 @@
       "enabled": true
     },
     {
-      "id": "hans-26",
+      "id": "hans-mega__hans-26",
       "name": "han's 26",
       "description": "han's 26 provider",
       "version": "1.14.623",
@@ -339,7 +339,7 @@
       "enabled": true
     },
     {
-      "id": "hans-27",
+      "id": "hans-mega__hans-27",
       "name": "han's 27",
       "description": "han's 27 provider",
       "version": "1.14.623",
@@ -352,7 +352,7 @@
       "enabled": true
     },
     {
-      "id": "hans-28",
+      "id": "hans-mega__hans-28",
       "name": "han's 28",
       "description": "han's 28 provider",
       "version": "1.14.623",
@@ -364,7 +364,7 @@
       "enabled": true
     },
     {
-      "id": "hans-29",
+      "id": "hans-mega__hans-29",
       "name": "han's 29",
       "description": "han's 29 provider",
       "version": "1.14.623",
@@ -377,7 +377,7 @@
       "enabled": true
     },
     {
-      "id": "hans-30",
+      "id": "hans-mega__hans-30",
       "name": "han's 30",
       "description": "han's 30 provider",
       "version": "1.14.623",
@@ -390,7 +390,7 @@
       "enabled": true
     },
     {
-      "id": "hans-31",
+      "id": "hans-mega__hans-31",
       "name": "han's 31",
       "description": "han's 31 provider",
       "version": "1.14.623",
@@ -403,7 +403,7 @@
       "enabled": true
     },
     {
-      "id": "hans-32",
+      "id": "hans-mega__hans-32",
       "name": "han's 32",
       "description": "han's 32 provider",
       "version": "1.14.623",
@@ -416,7 +416,7 @@
       "enabled": true
     },
     {
-      "id": "hans-33",
+      "id": "hans-mega__hans-33",
       "name": "han's 33",
       "description": "han's 33 provider",
       "version": "1.14.623",
@@ -429,7 +429,7 @@
       "enabled": true
     },
     {
-      "id": "hans-34",
+      "id": "hans-mega__hans-34",
       "name": "han's 34",
       "description": "han's 34 provider",
       "version": "1.14.623",
@@ -442,7 +442,7 @@
       "enabled": true
     },
     {
-      "id": "hans-35",
+      "id": "hans-mega__hans-35",
       "name": "han's 35",
       "description": "han's 35 provider",
       "version": "1.14.623",
@@ -455,7 +455,7 @@
       "enabled": true
     },
     {
-      "id": "hans-36",
+      "id": "hans-mega__hans-36",
       "name": "han's 36",
       "description": "han's 36 provider",
       "version": "1.14.623",
@@ -468,7 +468,7 @@
       "enabled": true
     },
     {
-      "id": "hans-37",
+      "id": "hans-mega__hans-37",
       "name": "han's 37",
       "description": "han's 37 provider",
       "version": "1.14.623",
@@ -481,7 +481,7 @@
       "enabled": true
     },
     {
-      "id": "hans-38",
+      "id": "hans-mega__hans-38",
       "name": "han's 38",
       "description": "han's 38 provider",
       "version": "1.14.623",
@@ -494,7 +494,7 @@
       "enabled": true
     },
     {
-      "id": "hans-39",
+      "id": "hans-mega__hans-39",
       "name": "han's 39",
       "description": "han's 39 provider",
       "version": "1.14.623",
@@ -507,7 +507,7 @@
       "enabled": true
     },
     {
-      "id": "hans-40",
+      "id": "hans-mega__hans-40",
       "name": "han's 40",
       "description": "han's 40 provider",
       "version": "1.14.623",
@@ -520,7 +520,7 @@
       "enabled": true
     },
     {
-      "id": "hans-41",
+      "id": "hans-mega__hans-41",
       "name": "han's 41",
       "description": "han's 41 provider",
       "version": "1.14.623",
@@ -533,7 +533,7 @@
       "enabled": true
     },
     {
-      "id": "hans-42",
+      "id": "hans-mega__hans-42",
       "name": "han's 42",
       "description": "han's 42 provider",
       "version": "1.14.623",
@@ -546,7 +546,7 @@
       "enabled": true
     },
     {
-      "id": "hans-43",
+      "id": "hans-mega__hans-43",
       "name": "han's 43",
       "description": "han's 43 provider",
       "version": "1.14.623",

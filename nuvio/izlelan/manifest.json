@@ -1,11 +1,11 @@
 {
   "name": "izlelan Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - izlelan Nuvio plugin paketi (43 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "imu",
+      "id": "izlelan__imu",
       "name": "Imu",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -18,7 +18,7 @@
       "enabled": true
     },
     {
-      "id": "joyboy",
+      "id": "izlelan__joyboy",
       "name": "JoyBoy",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -31,7 +31,7 @@
       "enabled": true
     },
     {
-      "id": "enel",
+      "id": "izlelan__enel",
       "name": "Enel",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -44,7 +44,7 @@
       "enabled": true
     },
     {
-      "id": "crocodile",
+      "id": "izlelan__crocodile",
       "name": "Crocodile",
       "description": "Dizi",
       "version": "1.14.623",
@@ -56,7 +56,7 @@
       "enabled": true
     },
     {
-      "id": "xebec",
+      "id": "izlelan__xebec",
       "name": "Xebec",
       "description": "Film",
       "version": "1.14.623",
@@ -68,7 +68,7 @@
       "enabled": true
     },
     {
-      "id": "kidd",
+      "id": "izlelan__kidd",
       "name": "Kidd",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -81,7 +81,7 @@
       "enabled": true
     },
     {
-      "id": "shiki",
+      "id": "izlelan__shiki",
       "name": "Shiki",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -94,7 +94,7 @@
       "enabled": true
     },
     {
-      "id": "garp",
+      "id": "izlelan__garp",
       "name": "Garp",
       "description": "Film",
       "version": "1.14.623",
@@ -106,7 +106,7 @@
       "enabled": true
     },
     {
-      "id": "ryuma",
+      "id": "izlelan__ryuma",
       "name": "Ryuma",
       "description": "Film",
       "version": "1.14.623",
@@ -118,7 +118,7 @@
       "enabled": true
     },
     {
-      "id": "rouge",
+      "id": "izlelan__rouge",
       "name": "Rouge",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -132,7 +132,7 @@
       "enabled": true
     },
     {
-      "id": "turkdizi",
+      "id": "izlelan__turkdizi",
       "name": "TurkDizi",
       "description": "Test Aşamasında",
       "version": "1.14.623",
@@ -146,7 +146,7 @@
       "enabled": true
     },
     {
-      "id": "kalgara",
+      "id": "izlelan__kalgara",
       "name": "Kalgara",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -159,7 +159,7 @@
       "enabled": true
     },
     {
-      "id": "sakazuki",
+      "id": "izlelan__sakazuki",
       "name": "Sakazuki",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -172,7 +172,7 @@
       "enabled": true
     },
     {
-      "id": "shanks",
+      "id": "izlelan__shanks",
       "name": "Shanks",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -185,7 +185,7 @@
       "enabled": true
     },
     {
-      "id": "bogard",
+      "id": "izlelan__bogard",
       "name": "Bogard",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -198,7 +198,7 @@
       "enabled": true
     },
     {
-      "id": "sengoku",
+      "id": "izlelan__sengoku",
       "name": "Sengoku",
       "description": "Dizi",
       "version": "1.14.623",
@@ -210,7 +210,7 @@
       "enabled": true
     },
     {
-      "id": "katakuri",
+      "id": "izlelan__katakuri",
       "name": "Katakuri",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -223,7 +223,7 @@
       "enabled": true
     },
     {
-      "id": "mihawk",
+      "id": "izlelan__mihawk",
       "name": "Mihawk",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -236,7 +236,7 @@
       "enabled": true
     },
     {
-      "id": "kizaru",
+      "id": "izlelan__kizaru",
       "name": "Kizaru",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -249,7 +249,7 @@
       "enabled": true
     },
     {
-      "id": "smoker",
+      "id": "izlelan__smoker",
       "name": "Smoker",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -262,7 +262,7 @@
       "enabled": true
     },
     {
-      "id": "noland",
+      "id": "izlelan__noland",
       "name": "Noland",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -275,7 +275,7 @@
       "enabled": true
     },
     {
-      "id": "zunesha",
+      "id": "izlelan__zunesha",
       "name": "Zunesha",
       "description": "Dizi",
       "version": "1.14.623",
@@ -287,7 +287,7 @@
       "enabled": true
     },
     {
-      "id": "oden",
+      "id": "izlelan__oden",
       "name": "Oden",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -300,7 +300,7 @@
       "enabled": true
     },
     {
-      "id": "clover",
+      "id": "izlelan__clover",
       "name": "Clover",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -313,7 +313,7 @@
       "enabled": true
     },
     {
-      "id": "doflamingo",
+      "id": "izlelan__doflamingo",
       "name": "Doflamingo",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -326,7 +326,7 @@
       "enabled": true
     },
     {
-      "id": "roger",
+      "id": "izlelan__roger",
       "name": "Roger",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -339,7 +339,7 @@
       "enabled": true
     },
     {
-      "id": "teach",
+      "id": "izlelan__teach",
       "name": "Teach",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -352,7 +352,7 @@
       "enabled": true
     },
     {
-      "id": "kuzan",
+      "id": "izlelan__kuzan",
       "name": "Kuzan",
       "description": "Film",
       "version": "1.14.623",
@@ -364,7 +364,7 @@
       "enabled": true
     },
     {
-      "id": "garling",
+      "id": "izlelan__garling",
       "name": "Garling",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -377,7 +377,7 @@
       "enabled": true
     },
     {
-      "id": "dragon",
+      "id": "izlelan__dragon",
       "name": "Dragon",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -390,7 +390,7 @@
       "enabled": true
     },
     {
-      "id": "toki",
+      "id": "izlelan__toki",
       "name": "Toki",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -403,7 +403,7 @@
       "enabled": true
     },
     {
-      "id": "fujitora",
+      "id": "izlelan__fujitora",
       "name": "Fujitora",
       "description": "Anime",
       "version": "1.14.623",
@@ -416,7 +416,7 @@
       "enabled": true
     },
     {
-      "id": "lili",
+      "id": "izlelan__lili",
       "name": "Lili",
       "description": "Anime",
       "version": "1.14.623",
@@ -429,7 +429,7 @@
       "enabled": true
     },
     {
-      "id": "sabo",
+      "id": "izlelan__sabo",
       "name": "Sabo",
       "description": "Anime",
       "version": "1.14.623",
@@ -442,7 +442,7 @@
       "enabled": true
     },
     {
-      "id": "shamrock",
+      "id": "izlelan__shamrock",
       "name": "Shamrock",
       "description": "Anime",
       "version": "1.14.623",
@@ -455,7 +455,7 @@
       "enabled": true
     },
     {
-      "id": "beckman",
+      "id": "izlelan__beckman",
       "name": "Beckman",
       "description": "Anime",
       "version": "1.14.623",
@@ -468,7 +468,7 @@
       "enabled": true
     },
     {
-      "id": "rayleigh",
+      "id": "izlelan__rayleigh",
       "name": "Rayleigh",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -481,7 +481,7 @@
       "enabled": true
     },
     {
-      "id": "gorosei",
+      "id": "izlelan__gorosei",
       "name": "Gorosei",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -494,7 +494,7 @@
       "enabled": true
     },
     {
-      "id": "ace",
+      "id": "izlelan__ace",
       "name": "Ace",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -507,7 +507,7 @@
       "enabled": true
     },
     {
-      "id": "hiriluk",
+      "id": "izlelan__hiriluk",
       "name": "Hiriluk",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -520,7 +520,7 @@
       "enabled": true
     },
     {
-      "id": "urouge",
+      "id": "izlelan__urouge",
       "name": "Urouge",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -533,7 +533,7 @@
       "enabled": true
     },
     {
-      "id": "gaban",
+      "id": "izlelan__gaban",
       "name": "Gaban",
       "description": "Film • Dizi",
       "version": "1.14.623",
@@ -546,7 +546,7 @@
       "enabled": true
     },
     {
-      "id": "jinbe",
+      "id": "izlelan__jinbe",
       "name": "Jinbe",
       "description": "Film • Dizi",
       "version": "1.14.623",

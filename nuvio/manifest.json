@@ -1,7 +1,7 @@
 {
   "name": "Repo Pluginleri (Global)",
-  "version": "2026.10.22.2027",
-  "description": "Repo Manager ortak Nuvio plugin paketi (12 repo, 225 tekil plugin)",
+  "version": "2026.10.22.2032",
+  "description": "Repo Manager ortak Nuvio plugin paketi (11 repo, 223 tekil plugin)",
   "author": "liberta09",
   "scrapers": [
     {
@@ -4361,45 +4361,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__justemi-r84-plugin__streamo",
-      "name": "Streamo",
-      "version": "1.0.2",
-      "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/streamo.js",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "enabled": true,
-      "hasSettings": false,
-      "formats": [
-        "m3u8"
-      ],
-      "contentLanguage": [
-        "en"
-      ]
-    },
-    {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__gs-repo-nuvi-o-plugi-n__csnuvio-belgeselx",
-      "name": "BelgeselX",
-      "description": "BelgeselX Türkçe belgesel ve dizi kaynakları",
-      "version": "1.0.6",
-      "author": "gs",
-      "supportedTypes": [
-        "tv",
-        "movie"
-      ],
-      "filename": "https://raw.githubusercontent.com/csprofesor/csnuvio/main/providers/belgeselx.js",
-      "enabled": true,
-      "formats": [
-        "m3u8",
-        "mp4"
-      ],
-      "contentLanguage": [
-        "tr"
-      ]
-    },
-    {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmmodu",
+      "id": "wekmed__filmmodu",
       "name": "FilmModu",
       "description": "Türkçe dublaj ve altyazılı full HD filmler. filmmodu.ws üzerinden stream sağlar.",
       "version": "1.0.0",
@@ -4417,7 +4379,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmmakinesi",
+      "id": "wekmed__filmmakinesi",
       "name": "FilmMakinesi",
       "description": "FilmMakinesi.to uzerinden Turkce dublajli ve altyazili filmler.",
       "version": "1.0.1",
@@ -4441,7 +4403,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__hdfilmcehennemi",
+      "id": "wekmed__hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "Türkçe dublaj ve altyazılı full HD film ve diziler. hdfilmcehennemi üzerinden stream sağlar.",
       "version": "1.0.0",
@@ -4459,7 +4421,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__filmekseni",
+      "id": "wekmed__filmekseni",
       "name": "Film Ekseni",
       "description": "Türkçe film ve diziler - filmekseni.cc",
       "version": "1.0.0",
@@ -4480,7 +4442,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__patron-setfilm",
+      "id": "wekmed__patron-setfilm",
       "name": "patronSetFilmIzle",
       "description": "SetFilmIzle tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
       "version": "1.0.0",
@@ -4505,7 +4467,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__m3u_provider",
+      "id": "wekmed__m3u_provider",
       "name": "M3U Birleşik",
       "description": "birlesik.m3u dosyasından TMDB eşleştirmeli stream. Vidmody, m3u8 ve direkt linkler desteklenir.",
       "version": "1.0.0",
@@ -4522,7 +4484,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__jetfilmizle",
+      "id": "wekmed__jetfilmizle",
       "name": "JetFilmizle",
       "description": "Türkçe dublaj full HD filmler. jetfilmizle.net üzerinden Pixeldrain mp4 stream sağlar.",
       "version": "1.0.0",
@@ -4540,7 +4502,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__webteizle",
+      "id": "wekmed__webteizle",
       "name": "WebteIzle",
       "description": "Türkçe dublaj ve altyazılı filmler ve diziler. webteizle3.xyz üzerinden VidMoly/Sibnet/FileMoon/Dzen stream sağlar.",
       "version": "1.0.0",
@@ -4559,7 +4521,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__sezonlukdizi",
+      "id": "wekmed__sezonlukdizi",
       "name": "SezonlukDizi",
       "description": "Türkçe dublaj ve altyazılı diziler. sezonlukdizi8.com üzerinden VidMoly/Sibnet stream sağlar.",
       "version": "1.0.0",
@@ -4576,7 +4538,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__diziyo",
+      "id": "wekmed__diziyo",
       "name": "Diziyo",
       "description": "Türkçe dublaj ve altyazılı diziler.",
       "version": "1.0.0",
@@ -4593,7 +4555,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__fullhdfilmizlesene",
+      "id": "wekmed__fullhdfilmizlesene",
       "name": "FullHDFilmizlesene",
       "description": "Türkçe dublaj ve altyazılı full HD filmler. fullhdfilmizlesene.live üzerinden stream sağlar.",
       "version": "1.0.0",
@@ -4610,7 +4572,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__cizgimax",
+      "id": "wekmed__cizgimax",
       "name": "CizgiMax",
       "description": "Türkçe çizgi film ve animasyon dizileri. cizgimax.online üzerinden 500+ içerikle full HD stream sağlar.",
       "version": "1.0.0",
@@ -4628,7 +4590,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__cizgivedizi",
+      "id": "wekmed__cizgivedizi",
       "name": "ÇizgiVeDizi",
       "description": "Türkçe çizgi film, animasyon dizi ve filmler. cizgivedizi.com üzerinden Sibnet/MailRu/MP4Upload stream sağlar.",
       "version": "1.1.0",
@@ -4647,7 +4609,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__sinewix",
+      "id": "wekmed__sinewix",
       "name": "SineWix",
       "description": "Türkçe dublaj ve altyazılı film ve diziler. SineWix üzerinden stream sağlar.",
       "version": "1.0.0",
@@ -4665,7 +4627,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__dizilife",
+      "id": "wekmed__dizilife",
       "name": "DiziLife",
       "description": "Türk dizi ve filmler — Türkçe & İngilizce ses + altyazı",
       "version": "1.0.0",
@@ -4685,7 +4647,7 @@
       ]
     },
     {
-      "id": "mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__mooncrown__wekmed__diziyou",
+      "id": "wekmed__diziyou",
       "name": "DiziYou",
       "description": "Türkce dizi ve filmler — Türkçe altyazı & dublaj desteği",
       "version": "1.0.0",

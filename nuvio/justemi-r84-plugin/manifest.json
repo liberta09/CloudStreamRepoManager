@@ -1,11 +1,11 @@
 {
   "name": "JUSTEMİR84 plugin Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - JUSTEMİR84 plugin Nuvio plugin paketi (20 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "dexterpw",
+      "id": "justemi-r84-plugin__dexterpw",
       "name": "Dexter.pw",
       "version": "1.0.11",
       "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/dexterpw.js",
@@ -17,7 +17,7 @@
       "hasSettings": false
     },
     {
-      "id": "kmmovies",
+      "id": "justemi-r84-plugin__kmmovies",
       "name": "KMMovies",
       "version": "1.2.0",
       "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/kmmovies.js",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": "yts",
+      "id": "justemi-r84-plugin__yts",
       "name": "YTS",
       "version": "1.0.7",
       "description": "YTS torrent provider (magnet, debrid gerektirir)",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "vidcloud",
+      "id": "justemi-r84-plugin__vidcloud",
       "name": "VidCloud",
       "version": "1.0.2",
       "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vidcloud.js",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "mapple",
+      "id": "justemi-r84-plugin__mapple",
       "name": "Mapple",
       "version": "1.0.6",
       "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/mapple.js",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "atlantic",
+      "id": "justemi-r84-plugin__atlantic",
       "name": "Atlantic",
       "version": "1.0.6",
       "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/atlantic.js",
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "vaplayer",
+      "id": "justemi-r84-plugin__vaplayer",
       "name": "VAplayer",
       "version": "1.0.2",
       "filename": "https://raw.githubusercontent.com/justemir84/nuvio-dexter-plugin/main/providers/vaplayer.js",
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "moviesapi",
+      "id": "justemi-r84-plugin__moviesapi",
       "name": "MoviesAPI",
       "version": "1.0.2",
       "description": "VidSpark backend; film + dizi, çok dilli VTT altyazı",
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "popwatch",
+      "id": "justemi-r84-plugin__popwatch",
       "name": "PopWatch",
       "version": "1.0.4",
       "description": "Kendi scraper ağı (7 kaynak); film + dizi, SRT altyazı",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "vidlove",
+      "id": "justemi-r84-plugin__vidlove",
       "name": "Vidlove",
       "version": "1.0.0",
       "description": "moviebox2/vidapi kaynak ağı; 4K'ya kadar, çok dilli VTT altyazı",
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "vidrift",
+      "id": "justemi-r84-plugin__vidrift",
       "name": "VidRift",
       "version": "1.0.2",
       "description": "Orion altyapısı; HEVC HLS, çok dilli dublaj seçenekleri",
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "vidbolt",
+      "id": "justemi-r84-plugin__vidbolt",
       "name": "VidBolt",
       "version": "1.0.1",
       "description": "1080p HLS; HLS içinde 10 dilde ses + 5 altyazı",
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "thugtv",
+      "id": "justemi-r84-plugin__thugtv",
       "name": "ThugTV",
       "version": "1.0.2",
       "description": "Castle/Bishop/Knight sunucuları; HLS + MP4, çok dilli altyazı",
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "aoneroom",
+      "id": "justemi-r84-plugin__aoneroom",
       "name": "123Movies",
       "version": "1.0.0",
       "description": "aoneroom altyapısı; 1080p'ye kadar MP4, SRT altyazı",
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "vixsrc",
+      "id": "justemi-r84-plugin__vixsrc",
       "name": "VixSrc",
       "version": "1.0.1",
       "description": "İtalyanca/İngilizce çift sesli HLS; 6+ dilde VTT altyazı",
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "vidrock",
+      "id": "justemi-r84-plugin__vidrock",
       "name": "VidRock",
       "version": "1.0.1",
       "description": "9 sunucu (Luna/Orion/…); 1080p'ye kadar HLS",
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "4khdhub",
+      "id": "justemi-r84-plugin__4khdhub",
       "name": "4KHDHub",
       "version": "1.0.4",
       "description": "4K/UHD film ve dizi stream'leri",
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "moviesdrive",
+      "id": "justemi-r84-plugin__moviesdrive",
       "name": "MoviesDrive",
       "version": "1.0.1",
       "description": "MoviesDrive arşivi; HubCloud üzerinden R2 doğrudan MKV, film + dizi",
@@ -343,7 +343,7 @@
       ]
     },
     {
-      "id": "uhdmovies",
+      "id": "justemi-r84-plugin__uhdmovies",
       "name": "UHDMovies",
       "version": "1.1.0",
       "description": "UHDMovies.us.org; thenaukriadda/driveseed zincirini çözüp doğrudan Google video (MKV) linki verir. Film + dizi.",
@@ -364,7 +364,7 @@
       ]
     },
     {
-      "id": "febbox",
+      "id": "justemi-r84-plugin__febbox",
       "name": "Febbox",
       "version": "1.0.0",
       "description": "Febbox / SuperStream kaynakları; Febbox token gerekir.",

@@ -1,11 +1,11 @@
 {
   "name": "ANTHOLOGY PLUGİN Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - ANTHOLOGY PLUGİN Nuvio plugin paketi (41 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "anthology_m3u",
+      "id": "anthology-plugi-n__anthology_m3u",
       "name": "Anthology M3U",
       "description": "Binlerce yerli ve yabancı film ve dizi arşivi doğrudan HD HLS akışları.",
       "version": "1.8.28",
@@ -29,7 +29,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "liderfilmizle",
+      "id": "anthology-plugi-n__liderfilmizle",
       "name": "LiderFilm",
       "description": "LiderFilm.vip - Yerli & yabancı film ve dizi arşivi, 1080p doğrudan HLS akışları.",
       "version": "1.8.28",
@@ -81,7 +81,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "youtube_dizifilm",
+      "id": "anthology-plugi-n__youtube_dizifilm",
       "name": "YouTube Dizi & Film",
       "description": "YouTube resmi yapımcı kanalları, yerli dizi ve Yeşilçam film arşivleri, 1080p resmi akışlar.",
       "version": "1.8.28",
@@ -134,7 +134,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "sinewix",
+      "id": "anthology-plugi-n__sinewix",
       "name": "SineWix",
       "description": "5000+ HD film, dizi ve anime - Türkçe dublaj & altyazı, 1080p çift ses direct MKV.",
       "version": "1.8.28",
@@ -185,7 +185,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "vidlink",
+      "id": "anthology-plugi-n__vidlink",
       "name": "Vidlink",
       "description": "TMDB entegrasyonlu global film ve dizi akış sağlayıcısı (4K/1080p direct MP4).",
       "version": "1.8.28",
@@ -208,7 +208,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "dizibak",
+      "id": "anthology-plugi-n__dizibak",
       "name": "DiziBak",
       "description": "Yabancı dizi arşivi, güncel bölümler kataloğu ve doğrudan d1iz-b0ok.xyz 1080p HLS master akışları.",
       "version": "1.8.28",
@@ -249,7 +249,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "m3u.anthology.addon",
+      "id": "anthology-plugi-n__m3u.anthology.addon",
       "name": "Anthology Canlı TV",
       "description": "138 canlı TV kanalı — Ulusal, Spor, Haber, Belgesel & Çocuk, Müzik ve Sinema (7 vitrin kataloğu) + M3U kataloğu.",
       "logo": "https://raw.githubusercontent.com/falsisdev/anthology/main/assets/logo_1_transparent.png",
@@ -302,7 +302,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "filmmodu",
+      "id": "anthology-plugi-n__filmmodu",
       "name": "FilmModu",
       "description": "Türkçe dublaj ve altyazılı 4K/1080p full HD film akışları (ImgsAPI).",
       "version": "1.8.28",
@@ -342,7 +342,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "hdfilmcehennemi",
+      "id": "anthology-plugi-n__hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "Binlerce HD film - Türkçe dublaj & altyazı, 1080p CloseLoad adaptif HLS akışları.",
       "version": "1.8.28",
@@ -383,7 +383,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "diziyou",
+      "id": "anthology-plugi-n__diziyou",
       "name": "DiziYou",
       "description": "DiziYou doğrudan depolama akışları ve Türkçe altyazı desteği.",
       "version": "1.8.28",
@@ -405,7 +405,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "dizipod",
+      "id": "anthology-plugi-n__dizipod",
       "name": "DiziPod",
       "description": "Popüler yabancı ve yerli dizi/film arşivi — Doğrudan HLS master akışları ve Türkçe altyazı desteği.",
       "version": "1.8.28",
@@ -439,7 +439,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "sinemacx",
+      "id": "anthology-plugi-n__sinemacx",
       "name": "SinemaCX",
       "description": "Sinema.gg arşivi üzerinden doğrudan 1080p Filmizle HLS master akışları.",
       "version": "1.8.28",
@@ -461,7 +461,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "animecix",
+      "id": "anthology-plugi-n__animecix",
       "name": "AnimeciX",
       "description": "TauVideo altyapısıyla binlerce anime bölümü (1080p, 720p, 480p direct MP4).",
       "version": "1.8.28",
@@ -500,7 +500,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "anizm",
+      "id": "anthology-plugi-n__anizm",
       "name": "Anizm",
       "description": "AnizmPlayer (FirePlayer HLS), OK.ru ve Sibnet üzerinden Türkçe anime akışları.",
       "version": "1.8.28",
@@ -541,7 +541,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "animom",
+      "id": "anthology-plugi-n__animom",
       "name": "AniMOM",
       "description": "HDPlayer HLS, Sibnet ve YourUpload üzerinden Türkçe anime akışları.",
       "version": "1.8.28",
@@ -582,7 +582,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "animeprax",
+      "id": "anthology-plugi-n__animeprax",
       "name": "AnimePraX",
       "description": "Sibnet, OK.ru ve Dailymotion üzerinden Türkçe anime akışları.",
       "version": "1.8.28",
@@ -623,7 +623,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "anizium",
+      "id": "anthology-plugi-n__anizium",
       "name": "Anizium",
       "description": "4K & 1080p Türkçe Dublaj ve Altyazılı Anime Kaynağı (Doğrudan MP4 + WebVTT).",
       "version": "1.8.28",
@@ -665,7 +665,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "asyaanimeleri",
+      "id": "anthology-plugi-n__asyaanimeleri",
       "name": "AsyaAnimeleri",
       "description": "Anime ve donghua arşivi — Sibnet, Ok.ru, Mail.ru ve Rumble üzerinden 1080p doğrudan MP4 ve HLS akışları.",
       "version": "1.8.28",
@@ -706,7 +706,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "sonanime",
+      "id": "anthology-plugi-n__sonanime",
       "name": "SonAnime",
       "description": "SonAnime Türkçe anime arşivi — Doğrudan Backblaze B2 ve Cloudflare CDN üzerinden 1080p, 720p ve 480p Türkçe altyazılı MP4 akışları.",
       "version": "1.8.28",
@@ -745,7 +745,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "diziboxizle",
+      "id": "anthology-plugi-n__diziboxizle",
       "name": "DiziBoxİzle",
       "description": "Güncel yabancı dizi arşivi — VidMoly ve Ok.ru üzerinden 1080p doğrudan HLS ve MP4 akışları.",
       "version": "1.8.28",
@@ -786,7 +786,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "anthology_spor",
+      "id": "anthology-plugi-n__anthology_spor",
       "name": "Anthology Canlı Spor",
       "description": "B-In Sports 1-5, Es Sport 1-2, TV-Bu Spor, Eksen Spor, Tab11 Spor ve 55 canlı spor kanalı (Çok kaynaklı canlı spor ve maç yayınları altyapısı). Taraftarium24 canlı maç ve spor yayınları motoru dahil.",
       "version": "1.8.28",
@@ -830,7 +830,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "anthology_haber",
+      "id": "anthology-plugi-n__anthology_haber",
       "name": "Anthology Canlı Haber",
       "description": "NTV, Habertürk, TRT Haber, A Haber, CNBC-e, TBMM TV ve 27 canlı haber kanalı.",
       "version": "1.8.28",
@@ -874,7 +874,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "anthology_ulusal",
+      "id": "anthology-plugi-n__anthology_ulusal",
       "name": "Anthology Ulusal Kanallar",
       "description": "TRT 1, ATV, Kanal D, Show TV, Star TV, NOW TV, TV8, TRT Genç, Euro D, TV4 ve 25 ulusal televizyon kanalı.",
       "version": "1.8.28",
@@ -918,7 +918,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "ddizi",
+      "id": "anthology-plugi-n__ddizi",
       "name": "DDizi",
       "description": "Yerli dizi arşivi, güncel bölümler kataloğu ve doğrudan Ciner/Yandex CDN MP4/HLS akışları.",
       "version": "1.8.28",
@@ -959,7 +959,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "dizimom",
+      "id": "anthology-plugi-n__dizimom",
       "name": "DiziMom",
       "description": "Popüler yabancı diziler arşivi, güncel bölümler kataloğu ve doğrudan 1080p Fire HLS master akışları.",
       "version": "1.8.28",
@@ -999,7 +999,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "vidmody",
+      "id": "anthology-plugi-n__vidmody",
       "name": "Vidmody",
       "description": "Doğrudan çoklu dil ve altyazı destekli HLS film ve dizi akış sağlayıcısı (1080p).",
       "version": "1.8.28",
@@ -1022,7 +1022,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "webteizle",
+      "id": "anthology-plugi-n__webteizle",
       "name": "Webteİzle",
       "description": "Webteİzle arşivi üzerinden Türkçe Dublaj ve Altyazılı VidMoly 1080p master HLS akışları.",
       "version": "1.8.28",
@@ -1044,7 +1044,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "yabancidizi",
+      "id": "anthology-plugi-n__yabancidizi",
       "name": "YabancıDizi",
       "description": "YabancıDizi arşivi üzerinden Türkçe Dublaj ve Altyazılı VidMoly 1080p master HLS akışları.",
       "version": "1.8.28",
@@ -1067,7 +1067,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "tvdiziler",
+      "id": "anthology-plugi-n__tvdiziler",
       "name": "TvDiziler",
       "description": "TvDiziler.tv yerli dizi arşivi üzerinden 1080p HLS (Twitter Amplify), doğrudan MP4 (Ciner/CDN) ve YouTube akışları.",
       "version": "1.8.28",
@@ -1108,7 +1108,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "setfilmizle",
+      "id": "anthology-plugi-n__setfilmizle",
       "name": "SetFilmIzle",
       "description": "SetFilmIzle arşivi üzerinden FastPlay 1080p HLS master akışları ve TR/EN altyazılar (film + dizi).",
       "version": "1.8.28",
@@ -1159,7 +1159,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "kultfilmler",
+      "id": "anthology-plugi-n__kultfilmler",
       "name": "KultFilmler",
       "description": "KultFilmler arşivi üzerinden VidMoly/Vidpapi HLS akışları.",
       "version": "1.8.28",
@@ -1199,7 +1199,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "hdfilmdelisi",
+      "id": "anthology-plugi-n__hdfilmdelisi",
       "name": "HDFilmDelisi",
       "description": "HDFilmDelisi JSON API arşivi üzerinden VidMody 1080p HLS akışları.",
       "version": "1.8.28",
@@ -1239,7 +1239,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "hdfilmizle",
+      "id": "anthology-plugi-n__hdfilmizle",
       "name": "HDFilmIzle",
       "description": "HDFilmIzle (Ink/Vip) arşivi üzerinden FastPlay 1080p HLS master akışları ve TR/EN altyazılar.",
       "version": "1.8.28",
@@ -1279,7 +1279,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "anthology_belgesel_cocuk",
+      "id": "anthology-plugi-n__anthology_belgesel_cocuk",
       "name": "Anthology Belgesel & Çocuk",
       "description": "TRT Belgesel, TRT Çocuk, Minika, TRT Diyanet Çocuk, Çiftçi TV, TLC, DMAX, Travelxp ve 12 canlı belgesel & çocuk kanalı.",
       "version": "1.8.28",
@@ -1323,7 +1323,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "anthology_muzik",
+      "id": "anthology-plugi-n__anthology_muzik",
       "name": "Anthology Müzik & Eğlence",
       "description": "Kral Pop, Power, Number 1, Dream Türk, TMB TV, Show Max ve 16 canlı müzik & eğlence kanalı.",
       "version": "1.8.28",
@@ -1367,7 +1367,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "anthology_sinema",
+      "id": "anthology-plugi-n__anthology_sinema",
       "name": "Anthology Sinema Kanalları",
       "description": "Cine 1, FX, TRT Nostalji ve canli.m3u SİNEMA KANALLARI grubundaki tüm canlı sinema yayınları (Türkçe + İngilizce ses).",
       "version": "1.8.28",
@@ -1411,7 +1411,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "diziwatch",
+      "id": "anthology-plugi-n__diziwatch",
       "name": "DiziWatch",
       "description": "diziwatch.ac arşivi üzerinden güncel anime ve yabancı dizi akışları sunar.",
       "version": "1.8.28",
@@ -1441,7 +1441,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "seicode",
+      "id": "anthology-plugi-n__seicode",
       "name": "SeiCode",
       "description": "SeiCode anime platformu — TauVideo, Ok.ru, Sibnet, VidMoly ve MP4Upload üzerinden 1080p doğrudan MP4 ve HLS akışları.",
       "version": "1.8.28",
@@ -1487,7 +1487,7 @@
       "version": "1.8.28",
       "enabled": true,
       "supportsExternalPlayer": true,
-      "id": "anthology_diziler",
+      "id": "anthology-plugi-n__anthology_diziler",
       "name": "Anthology Dizi",
       "description": "NOW / Show TV / KanalD / Star TV / ATV / TRT1 resmi yayın arşivlerinden dinamik bölüm akışları — TMDB eşleştirmeli, sabit harita yok.",
       "supportedTypes": [
@@ -1521,7 +1521,7 @@
       "version": "1.8.28",
       "enabled": true,
       "supportsExternalPlayer": true,
-      "id": "puhutv",
+      "id": "anthology-plugi-n__puhutv",
       "name": "PuhuTV",
       "description": "puhutv.com arşivi — DYG video_info üzerinden mncdn 1080p HLS ve Türkçe altyazı.",
       "supportedTypes": [
@@ -1555,7 +1555,7 @@
       "version": "1.8.28",
       "enabled": true,
       "supportsExternalPlayer": true,
-      "id": "trdiziizle",
+      "id": "anthology-plugi-n__trdiziizle",
       "name": "TR Dizi İzle",
       "description": "trdiziizle.xyz yerli dizi arşivi (Cloudflare koruması varsa boş döner).",
       "supportedTypes": [

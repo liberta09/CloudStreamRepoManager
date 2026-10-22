@@ -1,11 +1,11 @@
 {
   "name": "hdfilmcehennemi Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - hdfilmcehennemi Nuvio plugin paketi (1 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "hdfilmcehennemi",
+      "id": "hdfilmcehennemi__hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "Movie and TV playback sources from hdfilmcehennemi.nl, with alternative players and available subtitles.",
       "version": "1.0.1",

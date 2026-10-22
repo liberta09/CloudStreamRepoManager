@@ -1,11 +1,11 @@
 {
   "name": "wekmed Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - wekmed Nuvio plugin paketi (16 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "filmmodu",
+      "id": "wekmed__filmmodu",
       "name": "FilmModu",
       "description": "Türkçe dublaj ve altyazılı full HD filmler. filmmodu.ws üzerinden stream sağlar.",
       "version": "1.0.0",
@@ -23,7 +23,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "filmmakinesi",
+      "id": "wekmed__filmmakinesi",
       "name": "FilmMakinesi",
       "description": "FilmMakinesi.to uzerinden Turkce dublajli ve altyazili filmler.",
       "version": "1.0.1",
@@ -47,7 +47,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "hdfilmcehennemi",
+      "id": "wekmed__hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "Türkçe dublaj ve altyazılı full HD film ve diziler. hdfilmcehennemi üzerinden stream sağlar.",
       "version": "1.0.0",
@@ -65,7 +65,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "filmekseni",
+      "id": "wekmed__filmekseni",
       "name": "Film Ekseni",
       "description": "Türkçe film ve diziler - filmekseni.cc",
       "version": "1.0.0",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "patron-setfilm",
+      "id": "wekmed__patron-setfilm",
       "name": "patronSetFilmIzle",
       "description": "SetFilmIzle tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
       "version": "1.0.0",
@@ -111,7 +111,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "m3u_provider",
+      "id": "wekmed__m3u_provider",
       "name": "M3U Birleşik",
       "description": "birlesik.m3u dosyasından TMDB eşleştirmeli stream. Vidmody, m3u8 ve direkt linkler desteklenir.",
       "version": "1.0.0",
@@ -128,7 +128,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "jetfilmizle",
+      "id": "wekmed__jetfilmizle",
       "name": "JetFilmizle",
       "description": "Türkçe dublaj full HD filmler. jetfilmizle.net üzerinden Pixeldrain mp4 stream sağlar.",
       "version": "1.0.0",
@@ -146,7 +146,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "webteizle",
+      "id": "wekmed__webteizle",
       "name": "WebteIzle",
       "description": "Türkçe dublaj ve altyazılı filmler ve diziler. webteizle3.xyz üzerinden VidMoly/Sibnet/FileMoon/Dzen stream sağlar.",
       "version": "1.0.0",
@@ -165,7 +165,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "sezonlukdizi",
+      "id": "wekmed__sezonlukdizi",
       "name": "SezonlukDizi",
       "description": "Türkçe dublaj ve altyazılı diziler. sezonlukdizi8.com üzerinden VidMoly/Sibnet stream sağlar.",
       "version": "1.0.0",
@@ -182,7 +182,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "diziyo",
+      "id": "wekmed__diziyo",
       "name": "Diziyo",
       "description": "Türkçe dublaj ve altyazılı diziler.",
       "version": "1.0.0",
@@ -199,7 +199,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "fullhdfilmizlesene",
+      "id": "wekmed__fullhdfilmizlesene",
       "name": "FullHDFilmizlesene",
       "description": "Türkçe dublaj ve altyazılı full HD filmler. fullhdfilmizlesene.live üzerinden stream sağlar.",
       "version": "1.0.0",
@@ -216,7 +216,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "cizgimax",
+      "id": "wekmed__cizgimax",
       "name": "CizgiMax",
       "description": "Türkçe çizgi film ve animasyon dizileri. cizgimax.online üzerinden 500+ içerikle full HD stream sağlar.",
       "version": "1.0.0",
@@ -234,7 +234,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "cizgivedizi",
+      "id": "wekmed__cizgivedizi",
       "name": "ÇizgiVeDizi",
       "description": "Türkçe çizgi film, animasyon dizi ve filmler. cizgivedizi.com üzerinden Sibnet/MailRu/MP4Upload stream sağlar.",
       "version": "1.1.0",
@@ -253,7 +253,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "sinewix",
+      "id": "wekmed__sinewix",
       "name": "SineWix",
       "description": "Türkçe dublaj ve altyazılı film ve diziler. SineWix üzerinden stream sağlar.",
       "version": "1.0.0",
@@ -271,7 +271,7 @@
       "disabledPlatforms": []
     },
     {
-      "id": "dizilife",
+      "id": "wekmed__dizilife",
       "name": "DiziLife",
       "description": "Türk dizi ve filmler — Türkçe & İngilizce ses + altyazı",
       "version": "1.0.0",
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "diziyou",
+      "id": "wekmed__diziyou",
       "name": "DiziYou",
       "description": "Türkce dizi ve filmler — Türkçe altyazı & dublaj desteği",
       "version": "1.0.0",

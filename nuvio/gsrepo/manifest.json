@@ -1,11 +1,11 @@
 {
   "name": "GSREPO Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - GSREPO Nuvio plugin paketi (29 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "csnuvio-catalog",
+      "id": "gsrepo__csnuvio-catalog",
       "name": "CSNuvio Ana Sayfa Kataloğu",
       "description": "CSNuvio birleşik film, dizi ve anime ana sayfa kataloğu",
       "version": "1.0.16",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "csnuvio-hdfilmcehennemi",
+      "id": "gsrepo__csnuvio-hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "HDFilmCehennemi Türkçe film ve dizi kaynakları",
       "version": "1.0.16",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "csnuvio-selcukflix",
+      "id": "gsrepo__csnuvio-selcukflix",
       "name": "SelçukFlix",
       "description": "SelçukFlix film ve dizi kaynakları",
       "version": "1.0.16",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "csnuvio-dizilla",
+      "id": "gsrepo__csnuvio-dizilla",
       "name": "Dizilla",
       "description": "Dizilla Türkçe yabancı dizi kaynakları",
       "version": "1.0.16",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "csnuvio-dizipal",
+      "id": "gsrepo__csnuvio-dizipal",
       "name": "DiziPal",
       "description": "DiziPal Türkçe dizi ve film kaynakları",
       "version": "1.0.16",
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "csnuvio-animecix",
+      "id": "gsrepo__csnuvio-animecix",
       "name": "AnimeciX",
       "description": "AnimeciX Türkçe anime kaynakları",
       "version": "1.0.16",
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "csnuvio-fullhdfilm",
+      "id": "gsrepo__csnuvio-fullhdfilm",
       "name": "FullHDFilm",
       "description": "FullHDFilm Türkçe film ve dizi kaynakları",
       "version": "1.0.16",
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "csnuvio-filmmakinesi",
+      "id": "gsrepo__csnuvio-filmmakinesi",
       "name": "FilmMakinesi",
       "description": "FilmMakinesi Türkçe film ve dizi kaynakları",
       "version": "1.0.16",
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "csnuvio-filmkovasi",
+      "id": "gsrepo__csnuvio-filmkovasi",
       "name": "FilmKovası",
       "description": "FilmKovası Türkçe film kaynakları",
       "version": "1.0.16",
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "csnuvio-jetfilmizle",
+      "id": "gsrepo__csnuvio-jetfilmizle",
       "name": "JetFilmizle",
       "description": "JetFilmizle Türkçe film kaynakları",
       "version": "1.0.16",
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "csnuvio-setfilmizle",
+      "id": "gsrepo__csnuvio-setfilmizle",
       "name": "SetFilmİzle",
       "description": "SetFilmİzle Türkçe film ve dizi kaynakları",
       "version": "1.0.16",
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "csnuvio-kultfilmler",
+      "id": "gsrepo__csnuvio-kultfilmler",
       "name": "KültFilmler",
       "description": "KültFilmler Türkçe film kaynakları",
       "version": "1.0.16",
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "csnuvio-dizigom",
+      "id": "gsrepo__csnuvio-dizigom",
       "name": "DiziGom",
       "description": "DiziGom Türkçe dizi ve film kaynakları",
       "version": "1.0.16",
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "csnuvio-dizimom",
+      "id": "gsrepo__csnuvio-dizimom",
       "name": "DiziMom",
       "description": "DiziMom Türkçe dizi ve film kaynakları",
       "version": "1.0.16",
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "csnuvio-dizikorea",
+      "id": "gsrepo__csnuvio-dizikorea",
       "name": "DiziKorea",
       "description": "DiziKorea Asya ve Kore dizileri kaynakları",
       "version": "1.0.16",
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "csnuvio-sinemacx",
+      "id": "gsrepo__csnuvio-sinemacx",
       "name": "SinemaCX",
       "description": "SinemaCX Türkçe film kaynakları",
       "version": "1.0.16",
@@ -325,7 +325,7 @@
       ]
     },
     {
-      "id": "csnuvio-filmmodu",
+      "id": "gsrepo__csnuvio-filmmodu",
       "name": "FilmModu",
       "description": "FilmModu Türkçe film kaynakları",
       "version": "1.0.16",
@@ -345,7 +345,7 @@
       ]
     },
     {
-      "id": "csnuvio-dizimag",
+      "id": "gsrepo__csnuvio-dizimag",
       "name": "DiziMag",
       "description": "DiziMag Türkçe dizi ve film kaynakları",
       "version": "1.0.16",
@@ -365,7 +365,7 @@
       ]
     },
     {
-      "id": "csnuvio-webteizle",
+      "id": "gsrepo__csnuvio-webteizle",
       "name": "Webteİzle",
       "description": "Webteİzle Türkçe film kaynakları",
       "version": "1.0.16",
@@ -385,7 +385,7 @@
       ]
     },
     {
-      "id": "csnuvio-tavsiyefilmizle",
+      "id": "gsrepo__csnuvio-tavsiyefilmizle",
       "name": "TavsiyeFilmİzle",
       "description": "TavsiyeFilmİzle Türkçe film kaynakları",
       "version": "1.0.16",
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "csnuvio-hintfilmizle",
+      "id": "gsrepo__csnuvio-hintfilmizle",
       "name": "HintFilmİzle",
       "description": "HintFilmİzle Hint ve yabancı film kaynakları",
       "version": "1.0.16",
@@ -425,7 +425,7 @@
       ]
     },
     {
-      "id": "csnuvio-dizibox",
+      "id": "gsrepo__csnuvio-dizibox",
       "name": "DiziBox",
       "description": "DiziBox Türkçe yabancı dizi kaynakları",
       "version": "1.0.16",
@@ -445,7 +445,7 @@
       ]
     },
     {
-      "id": "csnuvio-sezonlukdizi",
+      "id": "gsrepo__csnuvio-sezonlukdizi",
       "name": "SezonlukDizi",
       "description": "SezonlukDizi Türkçe yabancı dizi kaynakları",
       "version": "1.0.16",
@@ -465,7 +465,7 @@
       ]
     },
     {
-      "id": "csnuvio-yabancidizi",
+      "id": "gsrepo__csnuvio-yabancidizi",
       "name": "YabancıDizi",
       "description": "YabancıDizi Türkçe dizi ve film kaynakları",
       "version": "1.0.16",
@@ -485,7 +485,7 @@
       ]
     },
     {
-      "id": "csnuvio-ddizi",
+      "id": "gsrepo__csnuvio-ddizi",
       "name": "DDizi",
       "description": "DDizi yerli ve yabancı dizi kaynakları",
       "version": "1.0.16",
@@ -505,7 +505,7 @@
       ]
     },
     {
-      "id": "csnuvio-sinewix",
+      "id": "gsrepo__csnuvio-sinewix",
       "name": "SineWix",
       "description": "SineWix film, dizi ve anime kaynakları",
       "version": "1.0.16",
@@ -525,7 +525,7 @@
       ]
     },
     {
-      "id": "csnuvio-sinematv",
+      "id": "gsrepo__csnuvio-sinematv",
       "name": "SinemaTV",
       "description": "SinemaTV film ve dizi kaynakları",
       "version": "1.0.16",
@@ -545,7 +545,7 @@
       ]
     },
     {
-      "id": "csnuvio-anizm",
+      "id": "gsrepo__csnuvio-anizm",
       "name": "Anizm",
       "description": "Anizm Türkçe anime kaynakları",
       "version": "1.0.16",
@@ -565,7 +565,7 @@
       ]
     },
     {
-      "id": "csnuvio-watch2movies",
+      "id": "gsrepo__csnuvio-watch2movies",
       "name": "Watch2Movies",
       "description": "Watch2Movies İngilizce film ve dizi kaynakları",
       "version": "1.0.16",

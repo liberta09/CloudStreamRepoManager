@@ -1,11 +1,11 @@
 {
   "name": "jasoleys Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - jasoleys Nuvio plugin paketi (7 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "animecix",
+      "id": "jasoleys__animecix",
       "name": "AnimeCix",
       "description": "Anime",
       "version": "1.0.1",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "fullhdfilmizlesene",
+      "id": "jasoleys__fullhdfilmizlesene",
       "name": "FullHDFilmizlesene",
       "description": "Film",
       "version": "1.0.1",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "anizium",
+      "id": "jasoleys__anizium",
       "name": "Anizium",
       "description": "Anime 4K",
       "version": "1.0.1",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "selcukflix",
+      "id": "jasoleys__selcukflix",
       "name": "SelcukFlix",
       "description": "Film - Dizi",
       "version": "1.0.1",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "id": "dizilla",
+      "id": "jasoleys__dizilla",
       "name": "Dizilla",
       "description": "Dizi",
       "version": "1.0.1",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "hdfilmcehennemi",
+      "id": "jasoleys__hdfilmcehennemi",
       "name": "HDFilmCehennemi",
       "description": "Film - Dizi",
       "version": "1.0.1",
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "yabancidizi",
+      "id": "jasoleys__yabancidizi",
       "name": "Yabancı Dizi",
       "description": "Film • Dizi",
       "version": "1.0.1",

@@ -1,11 +1,11 @@
 {
   "name": "PATRON Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - PATRON Nuvio plugin paketi (11 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "patron-asya-animeleri",
+      "id": "patron__patron-asya-animeleri",
       "name": "PatronAsyaAnimeleri",
       "description": "AsyaAnimeleri.top uzerinden Turkce dublajli ve altyazili Asya animeleri. @patr0n tarafindan gelistirildi.",
       "version": "1.0.0",
@@ -29,7 +29,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-film-makinesi",
+      "id": "patron__patron-film-makinesi",
       "name": "PatronFilmMakinesi",
       "description": "FilmMakinesi.to uzerinden Turkce dublajli ve altyazili filmler. @patr0n tarafindan gelistirildi.",
       "version": "1.0.4",
@@ -53,7 +53,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-multi",
+      "id": "patron__patron-multi",
       "name": "PatronMulti",
       "description": "Birden fazla kaynaktan film ve dizi stream linkleri. @patr0n tarafindan gelistirildi.",
       "version": "1.0.0",
@@ -77,7 +77,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-dort-khd",
+      "id": "patron__patron-dort-khd",
       "name": "PatronDortKHD",
       "description": "4KHDHub tabanli film ve dizi stream linkleri. @patr0n tarafindan gelistirildi.",
       "version": "2.0.0",
@@ -103,7 +103,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-hdf-cehennemi",
+      "id": "patron__patron-hdf-cehennemi",
       "name": "PatronHDFCehennemi",
       "description": "HDFilmCehennemi tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
       "version": "1.0.1",
@@ -127,7 +127,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-sinewix",
+      "id": "patron__patron-sinewix",
       "name": "patronSineWix",
       "description": "SineWix tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
       "version": "1.1.0",
@@ -152,7 +152,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-dizipal",
+      "id": "patron__patron-dizipal",
       "name": "patronDizipal",
       "description": "Dizipal tabanli film ve dizi saglayicisi. @patr0n tarafindan gelistirildi.",
       "version": "1.0.10",
@@ -177,7 +177,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-diziyou",
+      "id": "patron__patron-diziyou",
       "name": "patronDiziyou",
       "description": "Diziyou tabanli dizi saglayicisi. @patr0n tarafindan gelistirildi.",
       "version": "1.0.0",
@@ -203,7 +203,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-fullhd-filmizlesene",
+      "id": "patron__patron-fullhd-filmizlesene",
       "name": "patronFullHDFilmizlesene",
       "description": "FullHDFilmizlesene.now üzerinden Türkçe dublajlı ve altyazılı filmler. @patr0n tarafından geliştirildi.",
       "version": "1.0.0",
@@ -229,7 +229,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-jet-filmizle",
+      "id": "patron__patron-jet-filmizle",
       "name": "patronJetFilmizle",
       "description": "JetFilmizle.com üzerinden Türkçe dublajlı ve altyazılı filmler. @patr0n tarafından geliştirildi.",
       "version": "1.0.1",
@@ -254,7 +254,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "patron-selcukflix",
+      "id": "patron__patron-selcukflix",
       "name": "patronSelcukFlix",
       "description": "SelcukFlix tabanlı film ve dizi sağlayıcısı. @patr0n tarafından geliştirildi.",
       "version": "1.0.0",

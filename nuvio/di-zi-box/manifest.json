@@ -1,11 +1,11 @@
 {
   "name": "DİZİBOX Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - DİZİBOX Nuvio plugin paketi (1 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "dizibox-tv",
+      "id": "di-zi-box__dizibox-tv",
       "name": "DiziBOX TV",
       "description": "Series from Dizibox's public directory, with direct player resolution and checked HLS playlists.",
       "version": "1.0.0",

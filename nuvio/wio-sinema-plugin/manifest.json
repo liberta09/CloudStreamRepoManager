@@ -1,11 +1,11 @@
 {
   "name": "wio sinema plugin Pluginleri",
-  "version": "2026.10.22.2027",
+  "version": "2026.10.22.2032",
   "description": "Repo Manager - wio sinema plugin Nuvio plugin paketi (11 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
-      "id": "wiosinema-dizibox",
+      "id": "wio-sinema-plugin__wiosinema-dizibox",
       "name": "WioSinema • DiziBox",
       "description": "DiziBox yerel HTML/JS dizi sağlayıcısı.",
       "version": "1.0.0",
@@ -29,7 +29,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-vidup",
+      "id": "wio-sinema-plugin__wiosinema-vidup",
       "name": "WioSinema • Vidup",
       "description": "CineStream Vidup doğrudan TMDB sağlayıcısı.",
       "version": "0.2.0",
@@ -55,7 +55,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-hexa",
+      "id": "wio-sinema-plugin__wiosinema-hexa",
       "name": "WioSinema • Hexa",
       "description": "CineStream Hexa doğrudan TMDB sağlayıcısı.",
       "version": "0.2.0",
@@ -81,7 +81,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-vidfastpro",
+      "id": "wio-sinema-plugin__wiosinema-vidfastpro",
       "name": "WioSinema • VidFastPro",
       "description": "CineStream VidFastPro doğrudan TMDB sağlayıcısı.",
       "version": "0.1.0",
@@ -107,7 +107,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-vidcore",
+      "id": "wio-sinema-plugin__wiosinema-vidcore",
       "name": "WioSinema • Vidcore",
       "description": "CineStream Vidcore doğrudan TMDB sağlayıcısı.",
       "version": "0.1.0",
@@ -133,7 +133,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-xpass",
+      "id": "wio-sinema-plugin__wiosinema-xpass",
       "name": "WioSinema • Xpass",
       "description": "CineStream Xpass doğrudan TMDB sağlayıcısı.",
       "version": "0.1.0",
@@ -159,7 +159,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-filmmodu",
+      "id": "wio-sinema-plugin__wiosinema-filmmodu",
       "name": "WioSinema • FilmModu",
       "description": "FilmModu yerel HTML/JS film kazıyıcısı.",
       "version": "0.1.0",
@@ -183,7 +183,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-dizimom",
+      "id": "wio-sinema-plugin__wiosinema-dizimom",
       "name": "WioSinema • DiziMom",
       "description": "DiziMom yerel HTML/JS dizi kazıyıcısı.",
       "version": "0.1.0",
@@ -207,7 +207,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-setfilmizle",
+      "id": "wio-sinema-plugin__wiosinema-setfilmizle",
       "name": "WioSinema • SetFilmIzle",
       "description": "SetFilmIzle yerel HTML/JS film ve dizi kazıyıcısı.",
       "version": "0.1.0",
@@ -233,7 +233,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-filmmakinesi",
+      "id": "wio-sinema-plugin__wiosinema-filmmakinesi",
       "name": "WioSinema • FilmMakinesi",
       "description": "FilmMakinesi yerel HTML/JS film ve dizi kazıyıcısı.",
       "version": "0.1.0",
@@ -258,7 +258,7 @@
       "supportsExternalPlayer": true
     },
     {
-      "id": "wiosinema-hdfilmcehennemi",
+      "id": "wio-sinema-plugin__wiosinema-hdfilmcehennemi",
       "name": "WioSinema • HDFilmCehennemi",
       "description": "HDFilmCehennemi yerel HTML/JS film ve dizi kazıyıcısı.",
       "version": "0.1.0",
