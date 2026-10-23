@@ -289,6 +289,15 @@ fun getEffectiveIconUrl(repo: Repo): String {
     return ""
 }
 
+/** 
+ * Nuvio pluginleri için aktarım/kopyalama URL'sini döndürür.
+ * NUVIO_PLUGIN_BUNDLE_URL (genel paket) dondurmez; 
+ * her pluginin kendine ait, tekilleştirilmiş küçük manifestini hedefler.
+ */
+fun pluginTransferUrl(repo: Repo): String {
+    return CentralRepoApiManager.getRepoNuvioManifestUrl(repo.name, repo.url)
+}
+
 private const val PREFS_NAME = "cloudstream_repo_manager"
 private const val REPOS_KEY = "repos"
 
@@ -856,30 +865,6 @@ fun openNuvioAndPrepareRepo(
 ) {
     val rawUrl = repo.url.trim()
 
-    // 🚨 KRİTİK DÜZELTME: Nuvio Plugin'leri için güvenli çözüm
-    // Nuvio'nun varsayılan eklenti deep linkleri (nuviorepo://), Plugin formatındaki JSON'u
-    // normal eklenti deposu gibi ayrıştırmaya çalıştığında uygulamanın donmasına (ANR) yol açar.
-    // Şimdilik plugin deep link'i göndermiyoruz; sadece kopyalayıp Nuvio'yu düz başlatıyoruz.
-    if (repo.isNuvioPlugin()) {
-        val pluginManifestUrl = CentralRepoApiManager.getRepoNuvioManifestUrl(repo.name, repo.url)
-        copyToClipboard(
-            context,
-            pluginManifestUrl,
-            "Plugin URL kopyalandı"
-        )
-        
-        Toast.makeText(
-            context,
-            "Plugin URL'si kopyalandı.\nLütfen Nuvio > Ayarlar > Pluginler > Depo Ekle bölümüne yapıştırın.",
-            Toast.LENGTH_LONG
-        ).show()
-        
-        if (!launchNuvioApp(context)) {
-            onNotInstalled()
-        }
-        return
-    }
-
     /*
      * Normal Nuvio eklenti (addon) deposu yönlendirmesi
      *
@@ -1128,17 +1113,6 @@ fun launchNuvioApp(context: Context): Boolean {
         }
     }
     return false
-}
-
-private const val NUVIO_PLUGIN_BUNDLE_INSTALLED_KEY = "nuvio_plugin_bundle_installed"
-
-fun isNuvioPluginBundleInstalled(context: Context): Boolean =
-    context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        .getBoolean(NUVIO_PLUGIN_BUNDLE_INSTALLED_KEY, false)
-
-fun setNuvioPluginBundleInstalled(context: Context, installed: Boolean) {
-    context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        .edit().putBoolean(NUVIO_PLUGIN_BUNDLE_INSTALLED_KEY, installed).apply()
 }
 
 fun validateNuvioRepoJson(jsonString: String): String {
@@ -1397,19 +1371,17 @@ fun CloudStreamRepoManager() {
         mutableStateOf(false)
     }
 
-    // 🔌 Nuvio Plugin paketi (tek seferlik kurulum) diyaloğu
+    // 🔌 Nuvio Plugin paketi diyaloğu
     var showPluginBundleDialog by remember { mutableStateOf(false) }
     var pluginDialogRepo by remember { mutableStateOf<Repo?>(null) }
-    var pluginBundleInstalled by remember { mutableStateOf(isNuvioPluginBundleInstalled(context)) }
 
     // Tüm "Aktar" butonları buradan geçer: CS → CloudStream, Nuvio Eklenti → doğrudan kurulum (değişmedi),
     // Nuvio Plugin → ortak plugin paketi diyaloğu
     val transferRepo: (Repo) -> Unit = { target ->
         when {
             target.isNuvioPlugin() -> {
-                if (!pluginBundleInstalled) {
-                    copyToClipboard(context, CentralRepoApiManager.NUVIO_PLUGIN_BUNDLE_URL, "Plugin paketi linki kopyalandı")
-                }
+                val pluginUrl = pluginTransferUrl(target)
+                copyToClipboard(context, pluginUrl, "Plugin adresi kopyalandı")
                 pluginDialogRepo = target
                 showPluginBundleDialog = true
             }
@@ -1918,36 +1890,6 @@ fun CloudStreamRepoManager() {
                             maxLines = 1
                         )
                     }
-                }
-            }
-
-            // 🔌 Nuvio sekmesinde: Plugin paketi kurulum şeridi
-            if (selectedPlatform == "Nuvio" && !showFavoritesOnly) {
-                val pluginRepoCount = repos.count { it.isNuvioPlugin() }
-                TvOutlinedButton(
-                    onClick = {
-                        if (!pluginBundleInstalled) {
-                            copyToClipboard(context, CentralRepoApiManager.NUVIO_PLUGIN_BUNDLE_URL, "Plugin paketi linki kopyalandı")
-                        }
-                        pluginDialogRepo = null
-                        showPluginBundleDialog = true
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 8.dp)
-                ) {
-                    Text(
-                        text = if (pluginBundleInstalled) {
-                            "🔌 Nuvio Plugin Paketi: Kurulu ✅  •  $pluginRepoCount plugin reposu otomatik güncelleniyor"
-                        } else {
-                            "🔌 Nuvio Plugin Paketi: Kurulmadı  •  Tek seferlik kurulum için dokun"
-                        },
-                        color = if (pluginBundleInstalled) CyberGreen else CyberYellow,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
                 }
             }
 
@@ -2604,8 +2546,10 @@ fun CloudStreamRepoManager() {
        🔌 NUVIO PLUGIN PAKETİ (TEK SEFERLİK KURULUM)
        ========================================================= */
 
-    if (showPluginBundleDialog) {
-        val dialogRepo = pluginDialogRepo
+    if (showPluginBundleDialog && pluginDialogRepo != null) {
+        val dialogRepo = pluginDialogRepo!!
+        val pluginUrl = pluginTransferUrl(dialogRepo)
+        
         val closePluginDialog = {
             showPluginBundleDialog = false
             pluginDialogRepo = null
@@ -2623,61 +2567,35 @@ fun CloudStreamRepoManager() {
             textContentColor = CyberTextPrimary,
             title = {
                 Text(
-                    text = if (pluginBundleInstalled) "🔌 Plugin Paketi Kurulu" else "🔌 Plugin Paketi – Tek Seferlik Kurulum",
+                    text = "🔌 Plugin adresi kopyalandı",
                     fontWeight = FontWeight.Bold,
                     color = CyberTextPrimary
                 )
             },
             text = {
                 Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                    if (dialogRepo != null) {
-                        Text(
-                            text = "Plugin: ${dialogRepo.name}",
-                            color = CyberAccent,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 13.sp
-                        )
-                        Spacer(Modifier.height(8.dp))
-                    }
-                    if (pluginBundleInstalled) {
-                        Text(
-                            "Bu plugin ortak paketin içinde ✅\n\n" +
-                                    "Nuvio'da ayrıca bir şey yapmana gerek yok; paket kendini otomatik günceller " +
-                                    "(en geç 6 saat). Hemen görmek için: Nuvio → Ayarlar → İçerik ve Keşif → Pluginler → Yenile.",
-                            color = CyberTextPrimary,
-                            fontSize = 13.sp
-                        )
-                    } else {
-                        Text(
-                            "Paket linki panoya kopyalandı 📋\n\n" +
-                                    "1. \"Nuvio'yu Aç\"a bas.\n" +
-                                    "2. Ayarlar → İçerik ve Keşif → Pluginler bölümüne gir.\n" +
-                                    "3. Linki yapıştırıp ekle.\n\n" +
-                                    "Bunu sadece BİR KEZ yapman yeterli. Bu ve bundan sonra eklenecek tüm pluginler otomatik gelir. " +
-                                    "Ekledikten sonra \"Ekledim ✅\" butonuna bas.",
-                            color = CyberTextPrimary,
-                            fontSize = 13.sp
-                        )
-                    }
-                    Spacer(Modifier.height(10.dp))
                     Text(
-                        text = CentralRepoApiManager.NUVIO_PLUGIN_BUNDLE_URL,
+                        text = "Plugin: ${dialogRepo.name}",
+                        color = CyberAccent,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    
+                    Text(
+                        "1. Nuvio'yu Aç\n" +
+                        "2. Ayarlar → İçerik ve Keşif → Pluginler\n" +
+                        "3. Depo Ekle alanına yapıştırıp Yükle.",
+                        color = CyberTextPrimary,
+                        fontSize = 13.sp
+                    )
+                    Spacer(Modifier.height(10.dp))
+                    
+                    Text(
+                        text = pluginUrl,
                         color = CyberTextSecondary,
                         fontSize = 10.sp
                     )
-                    if (pluginBundleInstalled) {
-                        Spacer(Modifier.height(10.dp))
-                        TvOutlinedButton(
-                            onClick = {
-                                setNuvioPluginBundleInstalled(context, false)
-                                pluginBundleInstalled = false
-                                copyToClipboard(context, CentralRepoApiManager.NUVIO_PLUGIN_BUNDLE_URL, "Plugin paketi linki kopyalandı")
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Text("📋 Linki tekrar kopyala (yeni cihaza kur)", fontSize = 11.sp, color = CyberTextSecondary)
-                        }
-                    }
                 }
             },
             confirmButton = {
@@ -2685,24 +2603,14 @@ fun CloudStreamRepoManager() {
                     TvButton(onClick = { openNuvio() }) {
                         Text("🟣 Nuvio'yu Aç")
                     }
-                    if (!pluginBundleInstalled) {
-                        TvButton(
-                            onClick = {
-                                setNuvioPluginBundleInstalled(context, true)
-                                pluginBundleInstalled = true
-                                Toast.makeText(context, "Harika! Pluginler artık otomatik gelecek.", Toast.LENGTH_SHORT).show()
-                                closePluginDialog()
-                            }
-                        ) {
-                            Text("Ekledim ✅")
-                        }
+                    TvOutlinedButton(onClick = closePluginDialog) {
+                        Text("Tamam")
                     }
                 }
             },
             dismissButton = {
-                TvOutlinedButton(onClick = closePluginDialog) {
-                    Text(if (pluginBundleInstalled) "Tamam" else "İptal")
-                }
+                // Confirm butonları yan yana olduğu için dismissButton'ı boş geçebiliriz veya buraya da bir şey koyabiliriz.
+                // Üstteki buton satırı Row ile yapıldığı için burada bir şeye gerek yok.
             }
         )
     }
