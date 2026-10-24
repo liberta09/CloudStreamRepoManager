@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-22T14:07:43Z",
+  "updatedAt": "2026-10-24T15:58:49Z",
   "repos": [
     {
       "id": "1",
@@ -91,17 +91,6 @@
     },
     {
       "id": "9",
-      "name": "GSREPO",
-      "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/csnuvio\/main\/manifest.json",
-      "code": "",
-      "category": "Genel",
-      "stars": 0,
-      "type": "nuvio",
-      "platform": "nuvio",
-      "nuvioKind": "plugin"
-    },
-    {
-      "id": "10",
       "name": "ANTHOLOGY PLUGİN",
       "url": "https:\/\/raw.githubusercontent.com\/falsisdev\/anthology\/main\/manifest.json",
       "code": "",
@@ -112,7 +101,7 @@
       "nuvioKind": "plugin"
     },
     {
-      "id": "11",
+      "id": "10",
       "name": "izlelan",
       "url": "https:\/\/izlelan.com\/manifest.json",
       "code": "",
@@ -123,7 +112,7 @@
       "nuvioKind": "plugin"
     },
     {
-      "id": "12",
+      "id": "11",
       "name": "DİZİBOX",
       "url": "https:\/\/raw.githubusercontent.com\/kratoskrator\/dizibox-nuvio\/main\/manifest.json",
       "code": "",
@@ -134,7 +123,7 @@
       "nuvioKind": "plugin"
     },
     {
-      "id": "13",
+      "id": "12",
       "name": "hdfilmcehennemi",
       "url": "https:\/\/raw.githubusercontent.com\/kratoskrator\/hdfilmcehennemi-nuvio\/main\/manifest.json",
       "code": "",
@@ -145,7 +134,7 @@
       "nuvioKind": "plugin"
     },
     {
-      "id": "14",
+      "id": "13",
       "name": "BRONZE CLOUD",
       "url": "https:\/\/raw.githubusercontent.com\/dr-octagon\/Nuvio\/main\/manifest.json",
       "code": "",
@@ -156,7 +145,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "15",
+      "id": "14",
       "name": "PATRON",
       "url": "https:\/\/raw.githubusercontent.com\/patr0nq\/nuvioaddons\/main\/manifest.json",
       "code": "",
@@ -167,7 +156,7 @@
       "nuvioKind": "plugin"
     },
     {
-      "id": "16",
+      "id": "15",
       "name": "SREAİKER",
       "url": "https:\/\/streailer.elfhosted.com\/%7B%22language%22%3A%22tr-TR%22%2C%22externalLink%22%3Afalse%2C%22showRecap%22%3Afalse%2C%22onlyRecaps%22%3Afalse%7D\/manifest.json",
       "code": "",
@@ -178,7 +167,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "17",
+      "id": "16",
       "name": "mooncrown",
       "url": "https:\/\/raw.githubusercontent.com\/liberta09\/CloudStreamRepoManager\/main\/nuvio\/manifest.json",
       "code": "",
@@ -189,7 +178,7 @@
       "nuvioKind": "plugin"
     },
     {
-      "id": "18",
+      "id": "17",
       "name": "wekmed",
       "url": "https:\/\/raw.githubusercontent.com\/Wekmed\/nuvio\/refs\/heads\/main\/manifest.json",
       "code": "",
@@ -200,7 +189,7 @@
       "nuvioKind": "plugin"
     },
     {
-      "id": "19",
+      "id": "18",
       "name": "nexus",
       "url": "https:\/\/nexuszen.vercel.app\/manifest.json",
       "code": "",
@@ -211,7 +200,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "20",
+      "id": "19",
       "name": "SKCZ TORRENT",
       "url": "https:\/\/61ab9c85a149-skcz-torrents.baby-beamup.club\/manifest.json",
       "code": "",
@@ -222,7 +211,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "21",
+      "id": "20",
       "name": "MOTORSPORT HUB",
       "url": "https:\/\/stream.prototipo.nl\/%7B%7D\/manifest.json",
       "code": "",
@@ -233,7 +222,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "22",
+      "id": "21",
       "name": "sİNEWİX",
       "url": "https:\/\/sine-wix.vercel.app\/manifest.json",
       "code": "",
@@ -244,7 +233,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "23",
+      "id": "22",
       "name": "TORRENTİNO",
       "url": "https:\/\/torrentio.strem.fun\/manifest.json",
       "code": "",
@@ -255,7 +244,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "24",
+      "id": "23",
       "name": "İZLEMELİ",
       "url": "https:\/\/izlemeli.github.io\/nuvio\/tr\/manifest.json",
       "code": "",
@@ -266,7 +255,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "25",
+      "id": "24",
       "name": "wiospor",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/Nuvio-Addons\/live\/wiospor\/manifest.json",
       "code": "",
@@ -277,7 +266,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "26",
+      "id": "25",
       "name": "MANİTUX",
       "url": "https:\/\/raw.githubusercontent.com\/manitux-app\/nuvio-plugins\/refs\/heads\/main\/manifest.json",
       "code": "",
@@ -288,7 +277,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "27",
+      "id": "26",
       "name": "EUROSPORT",
       "url": "https:\/\/tvvoo.hayd.uk\/cfg-tr-hc1\/manifest.json",
       "code": "",
@@ -299,7 +288,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "28",
+      "id": "27",
       "name": "NUVİO KATALOG",
       "url": "https:\/\/catalog.nuvio.tv\/%7B%22language%22%3A%22tr-TR%22%2C%22region%22%3A%22TR%22%7D\/manifest.json",
       "code": "",
@@ -310,7 +299,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "29",
+      "id": "28",
       "name": "ANTHOLOGY NUVİO",
       "url": "https:\/\/falsisdev.github.io\/anthology\/stremio\/manifest.json",
       "code": "",
@@ -321,7 +310,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "30",
+      "id": "29",
       "name": "megawio",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioLand\/builds\/repo.json",
       "code": "!megawio",
@@ -331,7 +320,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "31",
+      "id": "30",
       "name": "ALTYAZI",
       "url": "https:\/\/altyazi-stremio.online\/manifest.json",
       "code": "",
@@ -342,7 +331,7 @@
       "nuvioKind": "addon"
     },
     {
-      "id": "32",
+      "id": "31",
       "name": "Manitux Cloudstream Plugins",
       "url": "https:\/\/raw.githubusercontent.com\/manitux-app\/cs-plugins\/refs\/heads\/main\/repo.json",
       "code": "",
@@ -352,7 +341,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "33",
+      "id": "32",
       "name": "TurkSinema",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSinema\/main\/repo.json",
       "code": "",
@@ -362,7 +351,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "34",
+      "id": "33",
       "name": "cstest",
       "url": "https:\/\/raw.githubusercontent.com\/ctnkyaumt\/cstest\/master\/repo.json",
       "code": "",
@@ -372,7 +361,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "35",
+      "id": "34",
       "name": "BronzeCloud",
       "url": "https:\/\/raw.githubusercontent.com\/Dr-Octagon\/cloudstream-turkish\/refs\/heads\/builds\/repo_stable.json",
       "code": "",
@@ -382,7 +371,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "36",
+      "id": "35",
       "name": "Phisher Repo",
       "url": "https:\/\/raw.githubusercontent.com\/phisher98\/cloudstream-extensions-phisher\/refs\/heads\/builds\/repo.json",
       "code": ".",
@@ -392,7 +381,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "37",
+      "id": "36",
       "name": "Mega repository",
       "url": "https:\/\/raw.githubusercontent.com\/self-similarity\/MegaRepo\/builds\/repo.json",
       "code": "",
@@ -402,7 +391,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "38",
+      "id": "37",
       "name": "megaturk",
       "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/TurkMegaRepo\/refs\/heads\/master\/repo.json",
       "code": "",
@@ -412,7 +401,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "39",
+      "id": "38",
       "name": "Latte - Sinetech.TR",
       "url": "https:\/\/raw.githubusercontent.com\/GitLatte\/Sinetech\/refs\/heads\/main\/repo.json",
       "code": "",
@@ -422,7 +411,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "40",
+      "id": "39",
       "name": "Makoto'nun Cloudstream Reposu",
       "url": "https:\/\/raw.githubusercontent.com\/Sertel392\/Makotogecici\/refs\/heads\/main\/repo.json",
       "code": "",
@@ -432,7 +421,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "41",
+      "id": "40",
       "name": "Wio Sinema",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSinema\/builds\/repo.json",
       "code": "yok",
@@ -442,7 +431,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "42",
+      "id": "41",
       "name": "TurkSpor",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/TurkSpor\/main\/repo.json",
       "code": ".",
@@ -452,7 +441,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "43",
+      "id": "42",
       "name": "Ripplay",
       "url": "https:\/\/raw.githubusercontent.com\/Ripplay\/cloudstream-repo\/main\/repo.json",
       "code": "yok",
@@ -462,7 +451,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "44",
+      "id": "43",
       "name": "Blackhope01",
       "url": "https:\/\/raw.githubusercontent.com\/blackhope01\/cloudstream-plugins\/refs\/heads\/main\/repo.json",
       "code": ".",
@@ -472,7 +461,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "45",
+      "id": "44",
       "name": "EmreKahveci",
       "url": "https:\/\/raw.githubusercontent.com\/baristomruk-max\/BTVault\/main\/repo.json",
       "code": ".",
@@ -482,7 +471,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "46",
+      "id": "45",
       "name": "wiojelt",
       "url": "https:\/\/raw.githubusercontent.com\/Wiojelt\/WioSpor\/main\/repo.json",
       "code": ".",
@@ -492,7 +481,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "47",
+      "id": "46",
       "name": "cs-karma",
       "url": "https:\/\/raw.githubusercontent.com\/Kraptor123\/cs-Karma\/refs\/heads\/master\/repo.json",
       "code": ".",
@@ -502,7 +491,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "48",
+      "id": "47",
       "name": "doGior's Had Enough",
       "url": "https:\/\/raw.githubusercontent.com\/doGior\/doGiorsHadEnough\/refs\/heads\/builds\/repo.json",
       "code": ".",
@@ -512,7 +501,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "49",
+      "id": "48",
       "name": "German providers repository",
       "url": "https:\/\/raw.githubusercontent.com\/Bnyro\/GermanProviders\/refs\/heads\/master\/repo.json",
       "code": ".",
@@ -522,7 +511,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "50",
+      "id": "49",
       "name": "Megix Repo",
       "url": "https:\/\/raw.githubusercontent.com\/SaurabhKaperwan\/CSX\/builds\/CS.json",
       "code": ".",
@@ -532,7 +521,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "51",
+      "id": "50",
       "name": "CNC REPO ( ALL LAUNGAGES",
       "url": "https:\/\/raw.githubusercontent.com\/NivinCNC\/CNCVerse-Cloud-Stream-Extension\/refs\/heads\/builds\/CNC.json",
       "code": ".",
@@ -542,7 +531,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "52",
+      "id": "51",
       "name": "CDEScript",
       "url": "https:\/\/raw.githubusercontent.com\/GD2021\/CDEScript\/refs\/heads\/main\/repo.json",
       "code": ".",
@@ -552,7 +541,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "53",
+      "id": "52",
       "name": "safarxe",
       "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
       "code": ".",
@@ -562,7 +551,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "54",
+      "id": "53",
       "name": "ramazansancar",
       "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -572,7 +561,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "55",
+      "id": "54",
       "name": "mrc",
       "url": "https:\/\/raw.githubusercontent.com\/lepotane\/MRC-builds\/builds\/repo.json",
       "code": ".",
@@ -582,7 +571,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "56",
+      "id": "55",
       "name": "FRENCH STREAM",
       "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
       "code": ".",
@@ -592,17 +581,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "57",
-      "name": "providers",
-      "url": "https:\/\/raw.githubusercontent.com\/recloudstream\/extensions\/master\/repo.json",
-      "code": ".",
-      "category": "İNGİLİZCE",
-      "stars": 0,
-      "type": "cloudstream",
-      "platform": "cloudstream"
-    },
-    {
-      "id": "58",
+      "id": "56",
       "name": "Keyifler olsun",
       "url": "https:\/\/raw.githubusercontent.com\/keyiflerolsun\/Kekik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -612,7 +591,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "59",
+      "id": "57",
       "name": "Ayu CloudStream Games",
       "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
       "code": ".",
@@ -622,7 +601,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "60",
+      "id": "58",
       "name": "gsrepo",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/gsrepo\/builds\/repo.json",
       "code": ".",
