@@ -1,7 +1,7 @@
 {
   "name": "Repo Pluginleri (Global)",
-  "version": "2026.10.24.1258",
-  "description": "Repo Manager ortak Nuvio plugin paketi (10 repo, 190 tekil plugin)",
+  "version": "2026.10.25.2321",
+  "description": "Repo Manager ortak Nuvio plugin paketi (10 repo, 188 tekil plugin)",
   "author": "liberta09",
   "scrapers": [
     {
@@ -775,7 +775,7 @@
       "id": "jasoleys__turkdizileri",
       "name": "Türk Dizileri",
       "description": "Yerli Dizi",
-      "version": "1.0.1",
+      "version": "1.0.13",
       "author": "jasoelysss",
       "supportedTypes": [
         "tv",
@@ -785,13 +785,23 @@
       "enabled": true,
       "formats": [
         "m3u8"
-      ]
+      ],
+      "catalogs": [
+        {
+          "type": "series",
+          "id": "turk-dizileri",
+          "name": "Türk Dizileri"
+        }
+      ],
+      "meta": {
+        "type": "series"
+      }
     },
     {
       "id": "hans-mega__hans-1",
       "name": "han's 1",
       "description": "han's 1 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -804,7 +814,7 @@
       "id": "hans-mega__hans-2",
       "name": "han's 2",
       "description": "han's 2 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -817,7 +827,7 @@
       "id": "hans-mega__hans-3",
       "name": "han's 3",
       "description": "han's 3 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -830,10 +840,10 @@
       "id": "hans-mega__hans-4",
       "name": "han's 4",
       "description": "han's 4 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
-        "tv"
+        "movie"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-4.js",
       "enabled": true
@@ -842,10 +852,11 @@
       "id": "hans-mega__hans-5",
       "name": "han's 5",
       "description": "han's 5 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-5.js",
       "enabled": true
@@ -854,7 +865,7 @@
       "id": "hans-mega__hans-6",
       "name": "han's 6",
       "description": "han's 6 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -867,11 +878,10 @@
       "id": "hans-mega__hans-7",
       "name": "han's 7",
       "description": "han's 7 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
-        "movie",
-        "tv"
+        "movie"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-7.js",
       "enabled": true
@@ -880,7 +890,7 @@
       "id": "hans-mega__hans-8",
       "name": "han's 8",
       "description": "han's 8 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie"
@@ -892,10 +902,12 @@
       "id": "hans-mega__hans-9",
       "name": "han's 9",
       "description": "han's 9 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "series",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-9.js",
       "enabled": true
@@ -904,7 +916,7 @@
       "id": "hans-mega__hans-10",
       "name": "han's 10",
       "description": "han's 10 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -918,11 +930,10 @@
       "id": "hans-mega__hans-11",
       "name": "han's 11",
       "description": "han's 11 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
-        "series",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-11.js",
@@ -932,7 +943,7 @@
       "id": "hans-mega__hans-12",
       "name": "han's 12",
       "description": "han's 12 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -945,7 +956,7 @@
       "id": "hans-mega__hans-13",
       "name": "han's 13",
       "description": "han's 13 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -958,10 +969,9 @@
       "id": "hans-mega__hans-14",
       "name": "han's 14",
       "description": "han's 14 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
-        "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-14.js",
@@ -971,9 +981,10 @@
       "id": "hans-mega__hans-15",
       "name": "han's 15",
       "description": "han's 15 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
+        "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-15.js",
@@ -983,7 +994,7 @@
       "id": "hans-mega__hans-16",
       "name": "han's 16",
       "description": "han's 16 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -996,7 +1007,7 @@
       "id": "hans-mega__hans-17",
       "name": "han's 17",
       "description": "han's 17 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1009,7 +1020,7 @@
       "id": "hans-mega__hans-18",
       "name": "han's 18",
       "description": "han's 18 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1022,7 +1033,7 @@
       "id": "hans-mega__hans-19",
       "name": "han's 19",
       "description": "han's 19 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1035,10 +1046,9 @@
       "id": "hans-mega__hans-20",
       "name": "han's 20",
       "description": "han's 20 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
-        "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-20.js",
@@ -1048,9 +1058,10 @@
       "id": "hans-mega__hans-21",
       "name": "han's 21",
       "description": "han's 21 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
+        "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-21.js",
@@ -1060,7 +1071,7 @@
       "id": "hans-mega__hans-22",
       "name": "han's 22",
       "description": "han's 22 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1073,7 +1084,7 @@
       "id": "hans-mega__hans-23",
       "name": "han's 23",
       "description": "han's 23 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1086,7 +1097,7 @@
       "id": "hans-mega__hans-24",
       "name": "han's 24",
       "description": "han's 24 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1099,7 +1110,7 @@
       "id": "hans-mega__hans-25",
       "name": "han's 25",
       "description": "han's 25 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1112,11 +1123,10 @@
       "id": "hans-mega__hans-26",
       "name": "han's 26",
       "description": "han's 26 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
-        "movie",
-        "tv"
+        "movie"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-26.js",
       "enabled": true
@@ -1125,10 +1135,11 @@
       "id": "hans-mega__hans-27",
       "name": "han's 27",
       "description": "han's 27 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
-        "movie"
+        "movie",
+        "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-27.js",
       "enabled": true
@@ -1137,7 +1148,7 @@
       "id": "hans-mega__hans-28",
       "name": "han's 28",
       "description": "han's 28 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1150,7 +1161,7 @@
       "id": "hans-mega__hans-29",
       "name": "han's 29",
       "description": "han's 29 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1163,7 +1174,7 @@
       "id": "hans-mega__hans-30",
       "name": "han's 30",
       "description": "han's 30 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1176,7 +1187,7 @@
       "id": "hans-mega__hans-31",
       "name": "han's 31",
       "description": "han's 31 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1189,7 +1200,7 @@
       "id": "hans-mega__hans-32",
       "name": "han's 32",
       "description": "han's 32 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1202,7 +1213,7 @@
       "id": "hans-mega__hans-33",
       "name": "han's 33",
       "description": "han's 33 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1215,7 +1226,7 @@
       "id": "hans-mega__hans-34",
       "name": "han's 34",
       "description": "han's 34 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1228,7 +1239,7 @@
       "id": "hans-mega__hans-35",
       "name": "han's 35",
       "description": "han's 35 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1241,7 +1252,7 @@
       "id": "hans-mega__hans-36",
       "name": "han's 36",
       "description": "han's 36 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1254,7 +1265,7 @@
       "id": "hans-mega__hans-37",
       "name": "han's 37",
       "description": "han's 37 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1267,7 +1278,7 @@
       "id": "hans-mega__hans-38",
       "name": "han's 38",
       "description": "han's 38 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
@@ -1280,26 +1291,13 @@
       "id": "hans-mega__hans-39",
       "name": "han's 39",
       "description": "han's 39 provider",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "han",
       "supportedTypes": [
         "movie",
         "tv"
       ],
       "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-39.js",
-      "enabled": true
-    },
-    {
-      "id": "hans-mega__hans-40",
-      "name": "han's 40",
-      "description": "han's 40 provider",
-      "version": "1.14.624",
-      "author": "han",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https:\/\/raw.githubusercontent.com\/pnthancyb\/hans-mega\/main\/providers\/hans-40.js",
       "enabled": true
     },
     {
@@ -2961,7 +2959,7 @@
       "id": "izlelan__imu",
       "name": "Imu",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -2974,7 +2972,7 @@
       "id": "izlelan__joyboy",
       "name": "JoyBoy",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -2987,7 +2985,7 @@
       "id": "izlelan__enel",
       "name": "Enel",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -2997,22 +2995,10 @@
       "enabled": true
     },
     {
-      "id": "izlelan__crocodile",
-      "name": "Crocodile",
-      "description": "Dizi",
-      "version": "1.14.624",
-      "author": "izlelan",
-      "supportedTypes": [
-        "tv"
-      ],
-      "filename": "https:\/\/izlelan.com\/providers\/crocodile.js",
-      "enabled": true
-    },
-    {
       "id": "izlelan__xebec",
       "name": "Xebec",
       "description": "Film",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
@@ -3024,7 +3010,7 @@
       "id": "izlelan__kidd",
       "name": "Kidd",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3037,7 +3023,7 @@
       "id": "izlelan__shiki",
       "name": "Shiki",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3050,7 +3036,7 @@
       "id": "izlelan__garp",
       "name": "Garp",
       "description": "Film",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
@@ -3062,7 +3048,7 @@
       "id": "izlelan__ryuma",
       "name": "Ryuma",
       "description": "Film",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
@@ -3074,7 +3060,7 @@
       "id": "izlelan__rouge",
       "name": "Rouge",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3088,7 +3074,7 @@
       "id": "izlelan__turkdizi",
       "name": "TurkDizi",
       "description": "Test Aşamasında",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3102,7 +3088,7 @@
       "id": "izlelan__kalgara",
       "name": "Kalgara",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3115,7 +3101,7 @@
       "id": "izlelan__sakazuki",
       "name": "Sakazuki",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3128,7 +3114,7 @@
       "id": "izlelan__shanks",
       "name": "Shanks",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3141,7 +3127,7 @@
       "id": "izlelan__sengoku",
       "name": "Sengoku",
       "description": "Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "tv"
@@ -3153,7 +3139,7 @@
       "id": "izlelan__katakuri",
       "name": "Katakuri",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3166,7 +3152,7 @@
       "id": "izlelan__mihawk",
       "name": "Mihawk",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3179,7 +3165,7 @@
       "id": "izlelan__kizaru",
       "name": "Kizaru",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3192,7 +3178,7 @@
       "id": "izlelan__smoker",
       "name": "Smoker",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3205,7 +3191,7 @@
       "id": "izlelan__noland",
       "name": "Noland",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3218,7 +3204,7 @@
       "id": "izlelan__zunesha",
       "name": "Zunesha",
       "description": "Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "tv"
@@ -3230,7 +3216,7 @@
       "id": "izlelan__oden",
       "name": "Oden",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3243,7 +3229,7 @@
       "id": "izlelan__clover",
       "name": "Clover",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3256,7 +3242,7 @@
       "id": "izlelan__doflamingo",
       "name": "Doflamingo",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3269,7 +3255,7 @@
       "id": "izlelan__roger",
       "name": "Roger",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3282,7 +3268,7 @@
       "id": "izlelan__teach",
       "name": "Teach",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3295,7 +3281,7 @@
       "id": "izlelan__kuzan",
       "name": "Kuzan",
       "description": "Film",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
@@ -3307,7 +3293,7 @@
       "id": "izlelan__dragon",
       "name": "Dragon",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3320,7 +3306,7 @@
       "id": "izlelan__toki",
       "name": "Toki",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3333,7 +3319,7 @@
       "id": "izlelan__fujitora",
       "name": "Fujitora",
       "description": "Anime",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3346,7 +3332,7 @@
       "id": "izlelan__lili",
       "name": "Lili",
       "description": "Anime",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3359,7 +3345,7 @@
       "id": "izlelan__sabo",
       "name": "Sabo",
       "description": "Anime",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3372,7 +3358,7 @@
       "id": "izlelan__beckman",
       "name": "Beckman",
       "description": "Anime",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3385,7 +3371,7 @@
       "id": "izlelan__rayleigh",
       "name": "Rayleigh",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3398,7 +3384,7 @@
       "id": "izlelan__gorosei",
       "name": "Gorosei",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3411,7 +3397,7 @@
       "id": "izlelan__ace",
       "name": "Ace",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3424,7 +3410,7 @@
       "id": "izlelan__hiriluk",
       "name": "Hiriluk",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3437,7 +3423,7 @@
       "id": "izlelan__urouge",
       "name": "Urouge",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3450,7 +3436,7 @@
       "id": "izlelan__gaban",
       "name": "Gaban",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
@@ -3463,7 +3449,7 @@
       "id": "izlelan__jinbe",
       "name": "Jinbe",
       "description": "Film • Dizi",
-      "version": "1.14.624",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
