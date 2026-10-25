@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-24T15:58:49Z",
+  "updatedAt": "2026-10-26T02:21:34Z",
   "repos": [
     {
       "id": "1",
@@ -582,16 +582,6 @@
     },
     {
       "id": "56",
-      "name": "Keyifler olsun",
-      "url": "https:\/\/raw.githubusercontent.com\/keyiflerolsun\/Kekik-cloudstream\/master\/repo.json",
-      "code": ".",
-      "category": "turkçe",
-      "stars": 0,
-      "type": "cloudstream",
-      "platform": "cloudstream"
-    },
-    {
-      "id": "57",
       "name": "Ayu CloudStream Games",
       "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
       "code": ".",
@@ -601,7 +591,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "58",
+      "id": "57",
       "name": "gsrepo",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/gsrepo\/builds\/repo.json",
       "code": ".",
