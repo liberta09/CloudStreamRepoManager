@@ -1,6 +1,6 @@
 {
   "name": "jasoleys Pluginleri",
-  "version": "2026.10.24.1258",
+  "version": "2026.10.25.2321",
   "description": "Repo Manager - jasoleys Nuvio plugin paketi (8 plugin)",
   "author": "liberta09",
   "scrapers": [
@@ -121,7 +121,7 @@
       "id": "jasoleys__turkdizileri",
       "name": "Türk Dizileri",
       "description": "Yerli Dizi",
-      "version": "1.0.1",
+      "version": "1.0.13",
       "author": "jasoelysss",
       "supportedTypes": [
         "tv",
@@ -131,7 +131,17 @@
       "enabled": true,
       "formats": [
         "m3u8"
-      ]
+      ],
+      "catalogs": [
+        {
+          "type": "series",
+          "id": "turk-dizileri",
+          "name": "Türk Dizileri"
+        }
+      ],
+      "meta": {
+        "type": "series"
+      }
     }
   ]
 }
