@@ -1,561 +1,510 @@
 {
   "name": "izlelan Pluginleri",
-  "version": "2026.10.22.2032",
-  "description": "Repo Manager - izlelan Nuvio plugin paketi (43 plugin)",
+  "version": "2026.10.25.2321",
+  "description": "Repo Manager - izlelan Nuvio plugin paketi (39 plugin)",
   "author": "liberta09",
   "scrapers": [
     {
       "id": "izlelan__imu",
       "name": "Imu",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/imu.js",
+      "filename": "https:\/\/izlelan.com\/providers\/imu.js",
       "enabled": true
     },
     {
       "id": "izlelan__joyboy",
       "name": "JoyBoy",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/joyboy.js",
+      "filename": "https:\/\/izlelan.com\/providers\/joyboy.js",
       "enabled": true
     },
     {
       "id": "izlelan__enel",
       "name": "Enel",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/enel.js",
-      "enabled": true
-    },
-    {
-      "id": "izlelan__crocodile",
-      "name": "Crocodile",
-      "description": "Dizi",
-      "version": "1.14.623",
-      "author": "izlelan",
-      "supportedTypes": [
-        "tv"
-      ],
-      "filename": "https://izlelan.com/providers/crocodile.js",
+      "filename": "https:\/\/izlelan.com\/providers\/enel.js",
       "enabled": true
     },
     {
       "id": "izlelan__xebec",
       "name": "Xebec",
       "description": "Film",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
       ],
-      "filename": "https://izlelan.com/providers/xebec.js",
+      "filename": "https:\/\/izlelan.com\/providers\/xebec.js",
       "enabled": true
     },
     {
       "id": "izlelan__kidd",
       "name": "Kidd",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/kidd.js",
+      "filename": "https:\/\/izlelan.com\/providers\/kidd.js",
       "enabled": true
     },
     {
       "id": "izlelan__shiki",
       "name": "Shiki",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/shiki.js",
+      "filename": "https:\/\/izlelan.com\/providers\/shiki.js",
       "enabled": true
     },
     {
       "id": "izlelan__garp",
       "name": "Garp",
       "description": "Film",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
       ],
-      "filename": "https://izlelan.com/providers/garp.js",
+      "filename": "https:\/\/izlelan.com\/providers\/garp.js",
       "enabled": true
     },
     {
       "id": "izlelan__ryuma",
       "name": "Ryuma",
       "description": "Film",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
       ],
-      "filename": "https://izlelan.com/providers/ryuma.js",
+      "filename": "https:\/\/izlelan.com\/providers\/ryuma.js",
       "enabled": true
     },
     {
       "id": "izlelan__rouge",
       "name": "Rouge",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "series",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/rouge.js",
+      "filename": "https:\/\/izlelan.com\/providers\/rouge.js",
       "enabled": true
     },
     {
       "id": "izlelan__turkdizi",
       "name": "TurkDizi",
       "description": "Test Aşamasında",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "series",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/turkdizi.js",
+      "filename": "https:\/\/izlelan.com\/providers\/turkdizi.js",
       "enabled": true
     },
     {
       "id": "izlelan__kalgara",
       "name": "Kalgara",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/kalgara.js",
+      "filename": "https:\/\/izlelan.com\/providers\/kalgara.js",
       "enabled": true
     },
     {
       "id": "izlelan__sakazuki",
       "name": "Sakazuki",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/sakazuki.js",
+      "filename": "https:\/\/izlelan.com\/providers\/sakazuki.js",
       "enabled": true
     },
     {
       "id": "izlelan__shanks",
       "name": "Shanks",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/shanks.js",
-      "enabled": true
-    },
-    {
-      "id": "izlelan__bogard",
-      "name": "Bogard",
-      "description": "Film • Dizi",
-      "version": "1.14.623",
-      "author": "izlelan",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://izlelan.com/providers/bogard.js",
+      "filename": "https:\/\/izlelan.com\/providers\/shanks.js",
       "enabled": true
     },
     {
       "id": "izlelan__sengoku",
       "name": "Sengoku",
       "description": "Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/sengoku.js",
+      "filename": "https:\/\/izlelan.com\/providers\/sengoku.js",
       "enabled": true
     },
     {
       "id": "izlelan__katakuri",
       "name": "Katakuri",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/katakuri.js",
+      "filename": "https:\/\/izlelan.com\/providers\/katakuri.js",
       "enabled": true
     },
     {
       "id": "izlelan__mihawk",
       "name": "Mihawk",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/mihawk.js",
+      "filename": "https:\/\/izlelan.com\/providers\/mihawk.js",
       "enabled": true
     },
     {
       "id": "izlelan__kizaru",
       "name": "Kizaru",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/kizaru.js",
+      "filename": "https:\/\/izlelan.com\/providers\/kizaru.js",
       "enabled": true
     },
     {
       "id": "izlelan__smoker",
       "name": "Smoker",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/smoker.js",
+      "filename": "https:\/\/izlelan.com\/providers\/smoker.js",
       "enabled": true
     },
     {
       "id": "izlelan__noland",
       "name": "Noland",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/noland.js",
+      "filename": "https:\/\/izlelan.com\/providers\/noland.js",
       "enabled": true
     },
     {
       "id": "izlelan__zunesha",
       "name": "Zunesha",
       "description": "Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/zunesha.js",
+      "filename": "https:\/\/izlelan.com\/providers\/zunesha.js",
       "enabled": true
     },
     {
       "id": "izlelan__oden",
       "name": "Oden",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/oden.js",
+      "filename": "https:\/\/izlelan.com\/providers\/oden.js",
       "enabled": true
     },
     {
       "id": "izlelan__clover",
       "name": "Clover",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/clover.js",
+      "filename": "https:\/\/izlelan.com\/providers\/clover.js",
       "enabled": true
     },
     {
       "id": "izlelan__doflamingo",
       "name": "Doflamingo",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/doflamingo.js",
+      "filename": "https:\/\/izlelan.com\/providers\/doflamingo.js",
       "enabled": true
     },
     {
       "id": "izlelan__roger",
       "name": "Roger",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/roger.js",
+      "filename": "https:\/\/izlelan.com\/providers\/roger.js",
       "enabled": true
     },
     {
       "id": "izlelan__teach",
       "name": "Teach",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/teach.js",
+      "filename": "https:\/\/izlelan.com\/providers\/teach.js",
       "enabled": true
     },
     {
       "id": "izlelan__kuzan",
       "name": "Kuzan",
       "description": "Film",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie"
       ],
-      "filename": "https://izlelan.com/providers/kuzan.js",
-      "enabled": true
-    },
-    {
-      "id": "izlelan__garling",
-      "name": "Garling",
-      "description": "Film • Dizi",
-      "version": "1.14.623",
-      "author": "izlelan",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://izlelan.com/providers/garling.js",
+      "filename": "https:\/\/izlelan.com\/providers\/kuzan.js",
       "enabled": true
     },
     {
       "id": "izlelan__dragon",
       "name": "Dragon",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/dragon.js",
+      "filename": "https:\/\/izlelan.com\/providers\/dragon.js",
       "enabled": true
     },
     {
       "id": "izlelan__toki",
       "name": "Toki",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/toki.js",
+      "filename": "https:\/\/izlelan.com\/providers\/toki.js",
       "enabled": true
     },
     {
       "id": "izlelan__fujitora",
       "name": "Fujitora",
       "description": "Anime",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/fujitora.js",
+      "filename": "https:\/\/izlelan.com\/providers\/fujitora.js",
       "enabled": true
     },
     {
       "id": "izlelan__lili",
       "name": "Lili",
       "description": "Anime",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/lili.js",
+      "filename": "https:\/\/izlelan.com\/providers\/lili.js",
       "enabled": true
     },
     {
       "id": "izlelan__sabo",
       "name": "Sabo",
       "description": "Anime",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/sabo.js",
-      "enabled": true
-    },
-    {
-      "id": "izlelan__shamrock",
-      "name": "Shamrock",
-      "description": "Anime",
-      "version": "1.14.623",
-      "author": "izlelan",
-      "supportedTypes": [
-        "movie",
-        "tv"
-      ],
-      "filename": "https://izlelan.com/providers/shamrock.js",
+      "filename": "https:\/\/izlelan.com\/providers\/sabo.js",
       "enabled": true
     },
     {
       "id": "izlelan__beckman",
       "name": "Beckman",
       "description": "Anime",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/beckman.js",
+      "filename": "https:\/\/izlelan.com\/providers\/beckman.js",
       "enabled": true
     },
     {
       "id": "izlelan__rayleigh",
       "name": "Rayleigh",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/rayleigh.js",
+      "filename": "https:\/\/izlelan.com\/providers\/rayleigh.js",
       "enabled": true
     },
     {
       "id": "izlelan__gorosei",
       "name": "Gorosei",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/gorosei.js",
+      "filename": "https:\/\/izlelan.com\/providers\/gorosei.js",
       "enabled": true
     },
     {
       "id": "izlelan__ace",
       "name": "Ace",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/ace.js",
+      "filename": "https:\/\/izlelan.com\/providers\/ace.js",
       "enabled": true
     },
     {
       "id": "izlelan__hiriluk",
       "name": "Hiriluk",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/hiriluk.js",
+      "filename": "https:\/\/izlelan.com\/providers\/hiriluk.js",
       "enabled": true
     },
     {
       "id": "izlelan__urouge",
       "name": "Urouge",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/urouge.js",
+      "filename": "https:\/\/izlelan.com\/providers\/urouge.js",
       "enabled": true
     },
     {
       "id": "izlelan__gaban",
       "name": "Gaban",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/gaban.js",
+      "filename": "https:\/\/izlelan.com\/providers\/gaban.js",
       "enabled": true
     },
     {
       "id": "izlelan__jinbe",
       "name": "Jinbe",
       "description": "Film • Dizi",
-      "version": "1.14.623",
+      "version": "1.14.626",
       "author": "izlelan",
       "supportedTypes": [
         "movie",
         "tv"
       ],
-      "filename": "https://izlelan.com/providers/jinbe.js",
+      "filename": "https:\/\/izlelan.com\/providers\/jinbe.js",
       "enabled": true
     }
   ]
