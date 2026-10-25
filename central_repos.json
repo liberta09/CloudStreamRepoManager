@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-26T02:21:34Z",
+  "updatedAt": "2026-10-26T02:21:53Z",
   "repos": [
     {
       "id": "1",
@@ -542,16 +542,6 @@
     },
     {
       "id": "52",
-      "name": "safarxe",
-      "url": "https:\/\/raw.githubusercontent.com\/safarxe\/CloudStream\/main\/repo.json",
-      "code": ".",
-      "category": "TÜRKÇE",
-      "stars": 0,
-      "type": "cloudstream",
-      "platform": "cloudstream"
-    },
-    {
-      "id": "53",
       "name": "ramazansancar",
       "url": "https:\/\/raw.githubusercontent.com\/ramazansancar\/keyiflerolsun_Kekik-cloudstream\/master\/repo.json",
       "code": ".",
@@ -561,7 +551,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "54",
+      "id": "53",
       "name": "mrc",
       "url": "https:\/\/raw.githubusercontent.com\/lepotane\/MRC-builds\/builds\/repo.json",
       "code": ".",
@@ -571,7 +561,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "55",
+      "id": "54",
       "name": "FRENCH STREAM",
       "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
       "code": ".",
@@ -581,7 +571,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "56",
+      "id": "55",
       "name": "Ayu CloudStream Games",
       "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
       "code": ".",
@@ -591,7 +581,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "57",
+      "id": "56",
       "name": "gsrepo",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/gsrepo\/builds\/repo.json",
       "code": ".",
