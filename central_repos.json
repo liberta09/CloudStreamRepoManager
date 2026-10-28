@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-26T02:21:53Z",
+  "updatedAt": "2026-10-28T20:30:25Z",
   "repos": [
     {
       "id": "1",
@@ -562,16 +562,6 @@
     },
     {
       "id": "54",
-      "name": "FRENCH STREAM",
-      "url": "https:\/\/raw.githubusercontent.com\/Nikola17\/cloudstream-frenchstream\/main\/repo.json",
-      "code": ".",
-      "category": "FRANSIZCA",
-      "stars": 0,
-      "type": "cloudstream",
-      "platform": "cloudstream"
-    },
-    {
-      "id": "55",
       "name": "Ayu CloudStream Games",
       "url": "https:\/\/raw.githubusercontent.com\/errorcode26\/Ayu-CloudStream-Games\/builds\/repo.json",
       "code": ".",
@@ -581,7 +571,7 @@
       "platform": "cloudstream"
     },
     {
-      "id": "56",
+      "id": "55",
       "name": "gsrepo",
       "url": "https:\/\/raw.githubusercontent.com\/csprofesor\/gsrepo\/builds\/repo.json",
       "code": ".",
