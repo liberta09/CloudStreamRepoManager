@@ -1,9 +1,593 @@
 {
   "name": "Repo Pluginleri",
-  "version": "2026.11.08.2334",
-  "description": "Repo Manager ortak Nuvio plugin paketi (12 repo, 1590 plugin)",
+  "version": "2026.11.08.2336",
+  "description": "Repo Manager ortak Nuvio plugin paketi (13 repo, 1620 plugin)",
   "author": "liberta09",
   "scrapers": [
+    {
+      "id": "bi-gbull-nuvi-o__animecix",
+      "name": "AnimeciX",
+      "description": "AnimeciX Turkce altyazili anime arsivi (MP4 akislari).",
+      "version": "1.0.5",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/animecix.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=animecix.tv&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__anizium",
+      "name": "Anizium",
+      "description": "Anizium anime arsivi (Turkce altyazili MP4 akislari).",
+      "version": "1.0.7",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/anizium.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=anizium.co&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__asyaanimeleri",
+      "name": "AsyaAnimeleri",
+      "description": "AsyaAnimeleri anime kaynaklari (rumble, vidmoly HLS).",
+      "version": "1.0.11",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/asyaanimeleri.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=asyaanimeleri.top&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__belgeselx",
+      "name": "BelgeselX",
+      "description": "BelgeselX Türkçe belgesel dizileri; ok.ru ve CDN MP4 kaynakları.",
+      "version": "1.0.4",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/belgeselx.js",
+      "enabled": true,
+      "formats": [
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=belgeselx.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__ddizi",
+      "name": "Ddizi",
+      "description": "Ddizi yerli dizi arşivi; bölümler jwplayer HLS (tabii) olarak açılır.",
+      "version": "1.0.4",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/ddizi.js",
+      "enabled": true,
+      "formats": [
+        "mp4",
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=www.ddizi.tel&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__dizibal",
+      "name": "DiziBal",
+      "description": "DiziBal altyazili yabanci dizi\/film arsivi; pilavyer HLS akisi ve altyazilar.",
+      "version": "1.0.6",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv",
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/dizibal.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizibal.org&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__dizibox",
+      "name": "Dizibox",
+      "description": "Dizibox dizi kaynaklari (king.php -> sheila HLS).",
+      "version": "1.0.12",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/dizibox.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizibox.live&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__dizikorea3",
+      "name": "Dizikorea3",
+      "description": "Dizikorea3 Kore dizileri arsivi (HLS + Turkce altyazi).",
+      "version": "1.0.9",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/dizikorea3.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizikorea3.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__dizilla",
+      "name": "Dizilla",
+      "description": "Dizilla yabanci dizi arsivi (HLS + Turkce altyazi).",
+      "version": "1.0.12",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/dizilla.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizilla.la&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__dizimom",
+      "name": "DiziMom",
+      "description": "DiziMom yabancı diziler Türkçe dublaj\/altyazılı arşivi (pilavyer HLS).",
+      "version": "1.1.0",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/dizimom.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=ddizimom.net&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__dizipal",
+      "name": "DiziPal",
+      "description": "DiziPal - Turkce dizi ve film arsivi; PBKDF2+SHA512 player token -> dplayer82 HLS master.",
+      "version": "1.0.8",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/dizipal.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizipal1594.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__dizipod",
+      "name": "DiziPod",
+      "description": "DiziPod Türkçe altyazılı yabancı dizi arşivi (HLS).",
+      "version": "1.1.0",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/dizipod.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dizipod.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__diziyou",
+      "name": "DiziYou",
+      "description": "DiziYou dizi\/film kaynaklari (HLS + altyazi).",
+      "version": "1.0.9",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/diziyou.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=diziyou.one&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__dmax",
+      "name": "DMAX",
+      "description": "DMAX Türkiye program arşivi; bölümler player\/info HLS adresiyle açılır.",
+      "version": "1.0.4",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/dmax.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=dmax.com.tr&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__filmmakinesi",
+      "name": "FilmMakinesi",
+      "description": "FilmMakinesi film kaynaklari (oynatloload secure-hls).",
+      "version": "1.0.1",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/filmmakinesi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=filmmakinesi.co&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__filmmodu",
+      "name": "FilmModu",
+      "description": "FilmModu Türkçe dublaj\/altyazılı film arşivi (pilavyerplay HLS + altyazı).",
+      "version": "1.1.0",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/filmmodu.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=filmmodu.news&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__fullhdfilmizlesene",
+      "name": "FullHDFilmizlesene",
+      "description": "FullHDFilmizlesene - Turkce dublaj\/altyazili filmler; scx kaynagi -> rapidvid atom HLS + altyazi.",
+      "version": "1.0.6",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/fullhdfilmizlesene.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=fullhdfilmizlesene.now&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "description": "HDFilmCehennemi - Turkce dublaj\/altyazili filmler; obfuscated jwplayer token -> HLS + altyazi.",
+      "version": "1.0.11",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/hdfilmcehennemi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=hdfilmcehennemi.nl&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__inattvdizi",
+      "name": "İnatTV Dizi",
+      "description": "İnatTV yabancı, yerli ve platform dizileri kataloğu (imzalı liste + AES çözümleyici, HLS).",
+      "version": "1.0.4",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/inattvdizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=inatbox&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__inattvfilmler",
+      "name": "İnatTV Filmler",
+      "description": "İnatTV yerli film kataloğu (imzalı liste + AES çözümleyici, HLS\/MP4; 4K film katalogları upstream'de kapatıldı).",
+      "version": "1.0.6",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/inattvfilmler.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=inatbox&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__jetfilmizle",
+      "name": "JetFilmizle",
+      "description": "JetFilmizle Türkçe dublaj\/altyazılı film arşivi (godrive + videopark).",
+      "version": "1.1.0",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/jetfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=jetfilmizle.app&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__puhutv",
+      "name": "PuhuTV",
+      "description": "PuhuTV yerli dizi, puhutv Orijinal yapimlar ve filmler; DYG HLS akislari.",
+      "version": "1.0.0",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/puhutv.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=puhutv.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__rectv",
+      "name": "RecTV",
+      "description": "RecTV imzalı resmî API film ve dizi kataloğu (attest\/nonce + HMAC-SHA256; arama ve sezon\/bölüm uçları, token'lı m3u8).",
+      "version": "1.0.2",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/rectv.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=rectv.org.tr&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__selcukflix",
+      "name": "SelcukFlix",
+      "description": "SelcukFlix - Turkce dublaj\/altyazili film ve diziler; PBKDF2+SHA512 player token -> HLS master.",
+      "version": "1.1.0",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/selcukflix.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=selcukflix.app&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__setfilmizle",
+      "name": "SetFilmIzle",
+      "description": "SetFilmIzle Türkçe dublaj\/altyazılı film ve dizi arşivi (HLS + altyazı).",
+      "version": "1.0.7",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/setfilmizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=setfilmizle.ltd&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__sezonlukdizi",
+      "name": "Sezonlukdizi",
+      "description": "SezonlukDizi yabancı dizi arşivi (altyazı\/dublaj, Filemoon korumalı HLS).",
+      "version": "1.0.8",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/sezonlukdizi.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=sezonlukdizi.cc&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__tlctr",
+      "name": "TLC Türkiye",
+      "description": "TLC Türkiye program arşivi; bölümler DYG imzalı HLS olarak açılır.",
+      "version": "1.0.3",
+      "author": "bigbull",
+      "supportedTypes": [
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/tlctr.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=tlctv.com.tr&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__webdramaturkey2",
+      "name": "WebdramaTurkey2",
+      "description": "WebdramaTurkey2 Kore\/Cin\/Japon dizileri, filmleri ve animeleri (Turkce altyazili).",
+      "version": "1.0.6",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/webdramaturkey2.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=webdramaturkey2.com&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__webteizle",
+      "name": "WebteIzle",
+      "description": "WebteIzle film\/dizi kaynaklari (vidmoly, streamruby HLS; ok.ru\/pixel yedek).",
+      "version": "1.0.3",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie",
+        "tv"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/webteizle.js",
+      "enabled": true,
+      "formats": [
+        "m3u8"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=webteizle.info&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
+    {
+      "id": "bi-gbull-nuvi-o__yesilcamtv",
+      "name": "YesilCamTv",
+      "description": "Yeşilçam TV: klasik Türk filmleri; Rumble HLS kaliteleri ve doğrudan MP4 akışları.",
+      "version": "1.0.7",
+      "author": "bigbull",
+      "supportedTypes": [
+        "movie"
+      ],
+      "filename": "https:\/\/raw.githubusercontent.com\/F0Rextasy\/bigbullapp-cs\/master\/nuvio\/providers\/yesilcamtv.js",
+      "enabled": true,
+      "formats": [
+        "m3u8",
+        "mp4"
+      ],
+      "logo": "https:\/\/www.google.com\/s2\/favicons?domain=yesilcamtv.com.tr&sz=128",
+      "contentLanguage": [
+        "tr"
+      ]
+    },
     {
       "id": "burhanb3-plugi-n__nuvio-tr-hd",
       "name": "Nuvio TR HD",
