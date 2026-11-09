@@ -1,6 +1,6 @@
 {
   "name": "Repo Pluginleri",
-  "version": "2026.11.09.0008",
+  "version": "2026.11.09.0010",
   "description": "Repo Manager ortak Nuvio plugin paketi (13 repo, 1851 plugin)",
   "author": "liberta09",
   "scrapers": [
