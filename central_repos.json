@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-09T02:36:46Z",
+  "updatedAt": "2026-11-09T03:08:02Z",
   "repos": [
     {
       "id": "1",
@@ -286,10 +286,10 @@
     },
     {
       "id": "27",
-      "name": "İZLEMELİ",
+      "name": "İZLEMELi KATALOG",
       "url": "https:\/\/izlemeli.github.io\/nuvio\/tr\/manifest.json",
       "code": "",
-      "category": "TÜRKÇE",
+      "category": "TÜRKÇE  KATALOG",
       "stars": 0,
       "type": "nuvio",
       "platform": "nuvio",
